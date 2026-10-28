@@ -56,10 +56,15 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   late final Animation<double> _pulse;
 
   Timer? _mockPlaybackTimer;
+  Timer? _resyncTimer;
   String? _mockPlayingOption;
   bool _mockPaused = false;
   int _mockPositionMs = 0;
   static const _mockDurationMs = 2200;
+  static const _syncDrift = Duration(milliseconds: 150);
+  bool _finishingPair = false;
+  bool _sharedEndArmed = false;
+  bool _holdingSync = false;
 
   @override
   void initState() {
@@ -70,7 +75,13 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     _content = _buildContentForCurrentExercise();
     _audioPlayer = ExerciseAudioPlayer()
       ..onPlaybackStateChanged = () {
-        if (mounted) setState(() {});
+        if (!mounted) return;
+        _maybeFinishTogether();
+        setState(() {});
+      }
+      ..onCompleted = () {
+        if (!mounted || !_hasVideo) return;
+        unawaited(_finishTogether());
       };
     _pulseController = AnimationController(
       vsync: this,
@@ -90,6 +101,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   @override
   void dispose() {
     _mockPlaybackTimer?.cancel();
+    _resyncTimer?.cancel();
     _disposeVideo();
     _audioPlayer.dispose();
     _pulseController.dispose();
@@ -105,10 +117,12 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
 
     await _disposeVideo();
     final controller = VideoPlayerController.asset(AppAssets.bundle(asset));
+    controller.addListener(_onVideoControllerTick);
     _videoController = controller;
 
     try {
       await controller.initialize();
+      await controller.setVolume(0);
       await controller.setLooping(true);
       await controller.play();
     } catch (_) {
@@ -125,12 +139,126 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   }
 
   Future<void> _disposeVideo() async {
+    _resyncTimer?.cancel();
     final controller = _videoController;
     _videoController = null;
     if (controller != null) {
+      controller.removeListener(_onVideoControllerTick);
       await controller.pause();
       await controller.dispose();
     }
+  }
+
+  bool get _canSyncVideo {
+    final video = _videoController;
+    return _hasVideo && video != null && video.value.isInitialized;
+  }
+
+  VideoPlayerController? get _syncedVideo =>
+      _canSyncVideo ? _videoController : null;
+
+  void _onVideoControllerTick() {
+    final video = _videoController;
+    if (video != null && video.value.isInitialized && video.value.volume > 0.01) {
+      unawaited(video.setVolume(0));
+    }
+    _maybeFinishTogether();
+  }
+
+  Duration? _sharedEnd() {
+    final video = _syncedVideo;
+    if (video == null) return null;
+    final audioDuration = _audioPlayer.snapshot.duration;
+    final videoDuration = video.value.duration;
+    if (audioDuration <= Duration.zero || videoDuration <= Duration.zero) {
+      return null;
+    }
+    return audioDuration < videoDuration ? audioDuration : videoDuration;
+  }
+
+  void _maybeFinishTogether() {
+    if (_holdingSync ||
+        _finishingPair ||
+        !_sharedEndArmed ||
+        _phase != _DemoPhase.listen) {
+      return;
+    }
+    final video = _syncedVideo;
+    final snap = _audioPlayer.snapshot;
+    if (video == null) return;
+    if (!snap.isPlaying && !video.value.isPlaying) return;
+    final end = _sharedEnd();
+    if (end == null || end.inMilliseconds <= 0) return;
+
+    final limit = end - const Duration(milliseconds: 60);
+    if (limit <= Duration.zero) return;
+    final audioNearEnd =
+        snap.position >= limit - const Duration(milliseconds: 200);
+    if (!audioNearEnd) return;
+
+    final audioHit = snap.isPlaying && snap.position >= limit;
+    final videoHit = video.value.isPlaying &&
+        (video.value.isCompleted || video.value.position >= limit);
+    if (!audioHit && !videoHit) return;
+    unawaited(_finishTogether());
+  }
+
+  Future<void> _finishTogether() async {
+    if (_finishingPair || _phase != _DemoPhase.listen) return;
+    _finishingPair = true;
+    _sharedEndArmed = false;
+    _resyncTimer?.cancel();
+    final video = _videoController;
+    if (video != null && video.value.isInitialized) {
+      await video.pause();
+      await video.seekTo(Duration.zero);
+      await video.setVolume(0);
+    }
+    final snap = _audioPlayer.snapshot;
+    if (snap.isPlaying || snap.isPaused) {
+      await _audioPlayer.stop();
+    }
+    _finishingPair = false;
+    if (mounted) setState(() {});
+  }
+
+  void _scheduleVideoResync() {
+    _resyncTimer?.cancel();
+    var checks = 0;
+    _resyncTimer = Timer.periodic(const Duration(milliseconds: 220), (timer) {
+      checks += 1;
+      unawaited(_resyncVideoToAudio());
+      if (checks >= 2) timer.cancel();
+    });
+  }
+
+  Future<void> _resyncVideoToAudio() async {
+    if (_holdingSync ||
+        _finishingPair ||
+        !_sharedEndArmed ||
+        _phase != _DemoPhase.listen) {
+      return;
+    }
+    final video = _syncedVideo;
+    final snap = _audioPlayer.snapshot;
+    if (video == null || (!snap.isPlaying && !snap.isPaused)) return;
+    final delta = (video.value.position - snap.position).inMilliseconds.abs();
+    if (delta > _syncDrift.inMilliseconds) {
+      await video.seekTo(snap.position);
+    }
+  }
+
+  void _prepareSyncedVideo(
+    VideoPlayerController video, {
+    bool seekToStart = false,
+    bool play = true,
+  }) {
+    unawaited(video.setVolume(0));
+    unawaited(video.setLooping(false));
+    if (seekToStart && video.value.position > _syncDrift) {
+      unawaited(video.seekTo(Duration.zero));
+    }
+    if (play) unawaited(video.play());
   }
 
   String? _assetFor(String option) =>
@@ -179,21 +307,36 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     if (phase == _DemoPhase.video) {
       await _initVideo();
     }
+    if (phase == _DemoPhase.listen) {
+      final video = _syncedVideo;
+      if (video != null) await video.setVolume(0);
+    }
     await _fadeController.forward();
   }
 
   Future<void> _stopAllPlayback() async {
     _mockPlaybackTimer?.cancel();
+    _resyncTimer?.cancel();
+    _sharedEndArmed = false;
+    _holdingSync = false;
     _mockPlayingOption = null;
     _mockPaused = false;
     _mockPositionMs = 0;
+    final video = _videoController;
+    if (video != null && video.value.isInitialized && video.value.isPlaying) {
+      await video.pause();
+    }
     await _audioPlayer.stop();
   }
 
   Future<void> _playPauseOption(String option) async {
     final asset = _assetFor(option);
     if (asset != null) {
-      await _audioPlayer.playOption(option, asset);
+      if (_canSyncVideo) {
+        await _playPauseSynced(option, asset);
+      } else {
+        await _audioPlayer.playOption(option, asset);
+      }
       if (mounted) setState(() {});
       return;
     }
@@ -222,7 +365,18 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   Future<void> _replayOption(String option) async {
     final asset = _assetFor(option);
     if (asset != null) {
-      await _audioPlayer.replayOption(option, asset);
+      final video = _syncedVideo;
+      if (video != null) {
+        _holdingSync = true;
+        _sharedEndArmed = true;
+        _prepareSyncedVideo(video, seekToStart: true);
+      }
+      try {
+        await _audioPlayer.replayOption(option, asset);
+      } finally {
+        _holdingSync = false;
+      }
+      if (video != null) _scheduleVideoResync();
       if (mounted) setState(() {});
       return;
     }
@@ -239,10 +393,14 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   Future<void> _seekOption(String option, double fraction) async {
     final asset = _assetFor(option);
     if (asset != null) {
-      if (!_audioPlayer.snapshot.isActive(option)) {
-        await _audioPlayer.playOption(option, asset);
+      if (_canSyncVideo) {
+        await _seekSynced(option, asset, fraction);
+      } else {
+        if (!_audioPlayer.snapshot.isActive(option)) {
+          await _audioPlayer.playOption(option, asset);
+        }
+        await _audioPlayer.seekToFraction(fraction);
       }
-      await _audioPlayer.seekToFraction(fraction);
       if (mounted) setState(() {});
       return;
     }
@@ -254,6 +412,122 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
       _mockPositionMs = (_mockDurationMs * fraction).round();
     });
     _startMockPlayback(option);
+  }
+
+  Future<void> _playPauseSynced(String option, String asset) async {
+    final video = _syncedVideo;
+    if (video == null) {
+      await _audioPlayer.playOption(option, asset);
+      return;
+    }
+
+    final snap = _audioPlayer.snapshot;
+    final switching = snap.activeOption != null &&
+        snap.activeOption != option &&
+        (snap.isPlaying || snap.isPaused);
+
+    if (switching) {
+      final resumed = !video.value.isPlaying;
+      _holdingSync = true;
+      _sharedEndArmed = true;
+      _prepareSyncedVideo(video, play: resumed);
+      try {
+        await _audioPlayer.playOption(
+          option,
+          asset,
+          resolveStart: () => video.value.position,
+        );
+      } finally {
+        _holdingSync = false;
+      }
+      _scheduleAudioCatchUp(video);
+      return;
+    }
+
+    if (snap.isPlayingOption(option)) {
+      final pausing = video.pause();
+      await _audioPlayer.playOption(option, asset);
+      await pausing;
+      return;
+    }
+
+    _holdingSync = true;
+    _sharedEndArmed = true;
+    _prepareSyncedVideo(
+      video,
+      seekToStart: !snap.isPausedOption(option) && video.value.position > _syncDrift,
+    );
+    try {
+      await _audioPlayer.playOption(option, asset);
+    } finally {
+      _holdingSync = false;
+    }
+    _scheduleVideoResync();
+  }
+
+  void _scheduleAudioCatchUp(VideoPlayerController video) {
+    _resyncTimer?.cancel();
+    var checks = 0;
+    _resyncTimer = Timer.periodic(const Duration(milliseconds: 220), (timer) {
+      checks += 1;
+      unawaited(_catchAudioUpToVideo(video));
+      if (checks >= 2) timer.cancel();
+    });
+  }
+
+  Future<void> _catchAudioUpToVideo(VideoPlayerController video) async {
+    if (!mounted || _finishingPair || _phase != _DemoPhase.listen) return;
+    if (!video.value.isInitialized) return;
+    final snap = _audioPlayer.snapshot;
+    if ((!snap.isPlaying && !snap.isPaused) || snap.duration <= Duration.zero) {
+      return;
+    }
+    final delta = (video.value.position - snap.position).inMilliseconds.abs();
+    if (delta <= _syncDrift.inMilliseconds) return;
+    final end = _sharedEnd();
+    if (end != null && video.value.position >= end - const Duration(milliseconds: 60)) {
+      await _finishTogether();
+      return;
+    }
+    final target = video.value.position > snap.duration
+        ? snap.duration
+        : video.value.position;
+    await _audioPlayer.seekTo(target);
+  }
+
+  Future<void> _seekSynced(String option, String asset, double fraction) async {
+    final video = _syncedVideo;
+    if (video == null) return;
+
+    _holdingSync = true;
+    _sharedEndArmed = true;
+    _prepareSyncedVideo(video, play: false);
+    var reachedEnd = false;
+    try {
+      if (!_audioPlayer.snapshot.isActive(option)) {
+        unawaited(video.play());
+        await _audioPlayer.playOption(option, asset);
+      }
+      await _audioPlayer.seekToFraction(fraction);
+      final target = _audioPlayer.snapshot.position;
+      final end = _sharedEnd();
+      if (end != null && target >= end - const Duration(milliseconds: 60)) {
+        reachedEnd = true;
+      } else {
+        final seeking = video.seekTo(target);
+        if (_audioPlayer.snapshot.isPlaying && !video.value.isPlaying) {
+          unawaited(video.play());
+        }
+        await seeking;
+      }
+    } finally {
+      _holdingSync = false;
+    }
+    if (reachedEnd) {
+      await _finishTogether();
+      return;
+    }
+    _scheduleVideoResync();
   }
 
   void _startMockPlayback(String option) {
@@ -404,6 +678,8 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
       _DemoPhase.listen => _ListenPhase(
           pulse: _pulse,
           content: _content,
+          accent: _category.accent,
+          videoController: _hasVideo ? _videoController : null,
           isPlaying: _isPlaying,
           isPaused: _isPaused,
           progressFor: _progressFor,
@@ -617,6 +893,8 @@ class _ListenPhase extends StatelessWidget {
   const _ListenPhase({
     required this.pulse,
     required this.content,
+    required this.accent,
+    required this.videoController,
     required this.isPlaying,
     required this.isPaused,
     required this.progressFor,
@@ -628,6 +906,8 @@ class _ListenPhase extends StatelessWidget {
 
   final Animation<double> pulse;
   final CategoryDemoContent content;
+  final Color accent;
+  final VideoPlayerController? videoController;
   final bool Function(String option) isPlaying;
   final bool Function(String option) isPaused;
   final double Function(String option) progressFor;
@@ -652,61 +932,129 @@ class _ListenPhase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ExerciseFocusHeader(
-          instruction: content.introTitle,
-          question: content.question,
-          hint: content.listenHint,
-          questionSize: 24,
-        ),
-        const SizedBox(height: 28),
-        if (content.singleListen)
-          _buildListenCard('A', OptionSlot.a, content.optionALabel)
-        else ...[
-          _buildListenCard('A', OptionSlot.a, content.optionALabel),
-          const SizedBox(height: 14),
-          _buildListenCard('B', OptionSlot.b, content.optionBLabel),
-        ],
-        const SizedBox(height: 28),
-        Text(
-          'Tu respuesta',
-          style: AppTypography.exerciseInstruction,
-        ),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(
-              child: OptionChoiceCard(
-                slot: OptionSlot.a,
-                label: content.choiceA,
-                selected: false,
-                pulse: pulse,
-                showWaveform: true,
-                onTap: () => onSelect('A'),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: OptionChoiceCard(
-                slot: OptionSlot.b,
-                label: content.choiceB,
-                selected: false,
-                pulse: pulse,
-                showWaveform: true,
-                onTap: () => onSelect('B'),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        Text(
-          'Tómate tu tiempo antes de responder.',
-          textAlign: TextAlign.center,
-          style: AppTypography.exerciseHint,
-        ),
+    final scene = videoController;
+    final children = <Widget>[
+      ExerciseFocusHeader(
+        instruction: content.introTitle,
+        question: content.question,
+        hint: content.listenHint,
+        questionSize: 24,
+      ),
+      const SizedBox(height: 28),
+      if (scene != null) ...[
+        _SceneVideoFrame(controller: scene, accent: accent),
+        const SizedBox(height: 20),
       ],
+      if (content.singleListen)
+        _buildListenCard('A', OptionSlot.a, content.optionALabel)
+      else ...[
+        _buildListenCard('A', OptionSlot.a, content.optionALabel),
+        const SizedBox(height: 14),
+        _buildListenCard('B', OptionSlot.b, content.optionBLabel),
+      ],
+      const SizedBox(height: 28),
+      Text(
+        'Tu respuesta',
+        style: AppTypography.exerciseInstruction,
+      ),
+      const SizedBox(height: 12),
+      Row(
+        children: [
+          Expanded(
+            child: OptionChoiceCard(
+              slot: OptionSlot.a,
+              label: content.choiceA,
+              selected: false,
+              pulse: pulse,
+              showWaveform: true,
+              onTap: () => onSelect('A'),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: OptionChoiceCard(
+              slot: OptionSlot.b,
+              label: content.choiceB,
+              selected: false,
+              pulse: pulse,
+              showWaveform: true,
+              onTap: () => onSelect('B'),
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: 16),
+      Text(
+        'Tómate tu tiempo antes de responder.',
+        textAlign: TextAlign.center,
+        style: AppTypography.exerciseHint,
+      ),
+    ];
+
+    if (scene == null) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: children,
+      );
+    }
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: children,
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _SceneVideoFrame extends StatelessWidget {
+  const _SceneVideoFrame({
+    required this.controller,
+    required this.accent,
+  });
+
+  final VideoPlayerController controller;
+  final Color accent;
+
+  @override
+  Widget build(BuildContext context) {
+    final ready = controller.value.isInitialized;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: accent.withValues(alpha: 0.35)),
+        boxShadow: [
+          BoxShadow(
+            color: accent.withValues(alpha: 0.14),
+            blurRadius: 24,
+            spreadRadius: -4,
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: AspectRatio(
+          aspectRatio: ready && controller.value.aspectRatio > 0
+              ? controller.value.aspectRatio
+              : 16 / 9,
+          child: ready
+              ? VideoPlayer(controller)
+              : Center(
+                  child: CircularProgressIndicator(
+                    color: accent.withValues(alpha: 0.8),
+                    strokeWidth: 2,
+                  ),
+                ),
+        ),
+      ),
     );
   }
 }

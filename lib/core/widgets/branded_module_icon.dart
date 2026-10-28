@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../constants/app_assets.dart';
-
-/// Premium PNG module icon with subtle cinematic glow frame.
+/// Single-color module mark with a soft accent glow.
 class BrandedModuleIcon extends StatelessWidget {
   const BrandedModuleIcon({
     super.key,
-    required this.assetPath,
+    required this.icon,
     required this.accentStart,
     required this.accentEnd,
     this.isActive = false,
     this.size = 46,
-    this.padding = 8,
+    this.padding = 4,
   });
 
-  final String assetPath;
+  final IconData icon;
   final Color accentStart;
   final Color accentEnd;
   final bool isActive;
@@ -52,12 +50,16 @@ class BrandedModuleIcon extends StatelessWidget {
         ),
         child: Padding(
           padding: EdgeInsets.all(padding),
-          child: Image.asset(
-            AppAssets.bundle(assetPath),
-            fit: BoxFit.contain,
-            filterQuality: FilterQuality.high,
-            gaplessPlayback: true,
-            isAntiAlias: true,
+          child: Icon(
+            icon,
+            size: size - padding * 2,
+            color: accentStart,
+            shadows: [
+              Shadow(
+                color: accentStart.withValues(alpha: isActive ? 0.65 : 0.42),
+                blurRadius: isActive ? 12 : 8,
+              ),
+            ],
           ),
         ),
       ),
@@ -69,13 +71,13 @@ class BrandedModuleIcon extends StatelessWidget {
 class BrandedModuleIconInline extends StatelessWidget {
   const BrandedModuleIconInline({
     super.key,
-    required this.assetPath,
+    required this.icon,
     required this.accent,
     this.size = 32,
     this.isActive = false,
   });
 
-  final String assetPath;
+  final IconData icon;
   final Color accent;
   final double size;
   final bool isActive;
@@ -83,12 +85,12 @@ class BrandedModuleIconInline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BrandedModuleIcon(
-      assetPath: assetPath,
+      icon: icon,
       accentStart: accent,
       accentEnd: accent,
       isActive: isActive,
       size: size,
-      padding: size * 0.16,
+      padding: size * 0.1,
     );
   }
 }

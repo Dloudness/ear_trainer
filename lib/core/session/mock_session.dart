@@ -1,5 +1,7 @@
 import '../../features/home/data/home_mock_data.dart';
 import '../../features/home/models/training_module.dart';
+import '../../features/modules/models/module_exercise_catalog.dart';
+import '../../features/onboarding/models/onboarding_option.dart';
 import '../router/app_routes.dart';
 import '../storage/progress_repository.dart';
 
@@ -38,13 +40,6 @@ class MockSession {
 
   static bool loginPromptDismissed = false;
 
-  static const _moduleTotals = <String, int>{
-    'frecuencias': 5,
-    'dinamica': 1,
-    'escucha_real': 2,
-    'entrenamiento_musical': 1,
-  };
-
   static int get streakDays => _progress.streakDays;
   static int get xp => _progress.xp;
   static List<CompletedExerciseRecord> get completedExercises =>
@@ -62,12 +57,14 @@ class MockSession {
   static ContinueTrainingInfo get continueTraining {
     final last = _latestExercise;
     if (last == null) {
+      final route = _routeForFocus() ?? AppRoutes.moduleFrecuencias;
+      final moduleId = _moduleIdForRoute(route) ?? 'frecuencias';
       return ContinueTrainingInfo(
         title: 'Empieza tu primer ejercicio',
-        route: _routeForFocus() ?? AppRoutes.moduleFrecuencias,
+        route: route,
         accuracyPercent: 0,
         completedCount: 0,
-        totalCount: 0,
+        totalCount: _totalExercisesForModule(moduleId),
         hasHistory: false,
       );
     }
@@ -75,13 +72,14 @@ class MockSession {
     final moduleId = moduleIdForExercise(last.id);
     final module = HomeMockData.moduleById(moduleId);
     final records = _exercisesForModule(moduleId);
+    final catalogTotal = _totalExercisesForModule(moduleId);
 
     return ContinueTrainingInfo(
       title: module?.title ?? 'Entrenamiento',
       route: module?.route ?? AppRoutes.moduleFrecuencias,
       accuracyPercent: _accuracyPercent(records),
       completedCount: records.length,
-      totalCount: _moduleTotals[moduleId] ?? records.length,
+      totalCount: catalogTotal == 0 ? records.length : catalogTotal,
       hasHistory: true,
     );
   }
@@ -245,6 +243,25 @@ class MockSession {
     if (records.isEmpty) return 0;
     final correct = records.where((item) => item.correct).length;
     return ((correct / records.length) * 100).round();
+  }
+
+  static int _totalExercisesForModule(String moduleId) {
+    final category = switch (moduleId) {
+      'frecuencias' => OnboardingOption.ecualizacionFrecuencias,
+      'dinamica' => OnboardingOption.dinamicaCompresion,
+      'escucha_real' => OnboardingOption.escuchaReal,
+      'entrenamiento_musical' => OnboardingOption.entrenamientoMusical,
+      _ => null,
+    };
+    if (category == null) return 0;
+    return ModuleExerciseCatalog.forCategory(category).length;
+  }
+
+  static String? _moduleIdForRoute(String route) {
+    for (final module in HomeMockData.carouselModules) {
+      if (module.route == route) return module.id;
+    }
+    return null;
   }
 
   static String? _routeForFocus() {

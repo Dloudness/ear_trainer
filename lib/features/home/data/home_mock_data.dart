@@ -59,9 +59,6 @@ abstract final class HomeMockData {
 
   static const dailyChallengeQuestion = '¿La voz suena muddy o harsh?';
 
-  static const earTodayInsight = 'Tus medios se sienten más despejados que ayer.';
-  static const earTodayDetail = 'Sigue entrenando la claridad vocal y el balance tonal.';
-
   static const recommendedListenTitle = 'Referencia vocal en contexto';
   static const recommendedListenDetail = 'Escucha una toma seca y procesada para comparar presencia.';
 }

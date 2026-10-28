@@ -106,10 +106,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 SizedBox(height: 28 * layout.scale),
-                                const EarTodaySection(),
+                                EarTodaySection(),
                                 SizedBox(height: 32 * layout.scale),
                                 MockSession.hasFullAccess
-                                    ? const ContinueTrainingSection()
+                                    ? ContinueTrainingSection()
                                     : isLight
                                         ? LightContinueTrainingSection(onLoginTap: _openLogin)
                                         : const SizedBox.shrink(),

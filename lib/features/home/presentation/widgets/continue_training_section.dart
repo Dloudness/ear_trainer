@@ -48,16 +48,12 @@ class ContinueTrainingSection extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          info.hasHistory
-                              ? '${info.completedCount} de ${info.totalCount} ejercicios'
-                              : 'Aún no hay ejercicios completados',
+                          '${info.completedCount} de ${info.totalCount} ejercicios',
                           style: AppTypography.caption.copyWith(color: AppColors.cyan),
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          info.hasHistory
-                              ? '${info.accuracyPercent}% precisión'
-                              : 'Empieza tu primer ejercicio',
+                          '${info.accuracyPercent}% precisión',
                           style: AppTypography.caption,
                         ),
                       ],
@@ -69,7 +65,7 @@ class ContinueTrainingSection extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: LinearProgressIndicator(
-                  value: info.hasHistory ? info.accuracyPercent / 100 : 0,
+                  value: info.accuracyPercent / 100,
                   minHeight: 4,
                   backgroundColor: Colors.white.withValues(alpha: 0.08),
                   color: AppColors.blue,

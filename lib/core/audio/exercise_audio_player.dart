@@ -39,6 +39,7 @@ class ExerciseAudioPlayer {
     _player.onPlayerComplete.listen((_) {
       _position = Duration.zero;
       _playingOption = null;
+      onCompleted?.call();
       onPlaybackStateChanged?.call();
     });
     _player.onPlayerStateChanged.listen((_) {
@@ -61,6 +62,7 @@ class ExerciseAudioPlayer {
   Duration _position = Duration.zero;
 
   VoidCallback? onPlaybackStateChanged;
+  VoidCallback? onCompleted;
 
   ExercisePlaybackSnapshot get snapshot => ExercisePlaybackSnapshot(
         activeOption: _playingOption,
@@ -76,16 +78,24 @@ class ExerciseAudioPlayer {
     return (_position.inMilliseconds / _duration.inMilliseconds).clamp(0.0, 1.0);
   }
 
-  Future<void> playOption(String option, String assetPath) async {
+  Future<void> playOption(
+    String option,
+    String assetPath, {
+    Duration Function()? resolveStart,
+  }) async {
     final sameTrack = _playingOption == option && _currentAssetPath == assetPath;
 
     if (!sameTrack) {
       await _player.stop();
+      final start = resolveStart?.call() ?? Duration.zero;
       _playingOption = option;
       _currentAssetPath = assetPath;
       _duration = Duration.zero;
-      _position = Duration.zero;
-      await _player.play(AssetSource(AppAssets.audioSourcePath(assetPath)));
+      _position = start;
+      await _player.play(
+        AssetSource(AppAssets.audioSourcePath(assetPath)),
+        position: start > Duration.zero ? start : null,
+      );
       onPlaybackStateChanged?.call();
       return;
     }
@@ -120,8 +130,16 @@ class ExerciseAudioPlayer {
     final target = Duration(
       milliseconds: (_duration.inMilliseconds * fraction.clamp(0.0, 1.0)).round(),
     );
-    await _player.seek(target);
-    _position = target;
+    await seekTo(target);
+  }
+
+  Future<void> seekTo(Duration target) async {
+    if (_duration.inMilliseconds <= 0) return;
+    final clamped = target < Duration.zero
+        ? Duration.zero
+        : (target > _duration ? _duration : target);
+    await _player.seek(clamped);
+    _position = clamped;
     onPlaybackStateChanged?.call();
   }
 

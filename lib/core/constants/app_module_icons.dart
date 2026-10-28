@@ -1,22 +1,20 @@
-import '../constants/app_assets.dart';
+import 'package:flutter/material.dart';
+
 import '../../features/home/models/module_icon_type.dart';
 
 abstract final class AppModuleIcons {
-  static String forModuleId(String id) => switch (id) {
-        'frecuencias' => AppAssets.demoFrequencies,
-        'dinamica' => AppAssets.demoDynamics,
-        'entrenamiento_musical' => AppAssets.demoMusical,
-        'escucha_real' => AppAssets.demoListening,
-        _ => AppAssets.demoFrequencies,
+  static IconData forModuleId(String id) => switch (id) {
+        'frecuencias' => Icons.equalizer,
+        'dinamica' => Icons.graphic_eq,
+        'entrenamiento_musical' => Icons.piano,
+        'escucha_real' => Icons.headphones,
+        _ => Icons.equalizer,
       };
 
-  static String forIconType(ModuleIconType type) => switch (type) {
-        ModuleIconType.frequency => AppAssets.demoFrequencies,
-        ModuleIconType.gauge => AppAssets.demoDynamics,
-        ModuleIconType.piano => AppAssets.demoMusical,
-        ModuleIconType.headphones => AppAssets.demoListening,
-        ModuleIconType.waveform => AppAssets.demoFrequencies,
-        ModuleIconType.eqGraph => AppAssets.demoFrequencies,
-        ModuleIconType.live => AppAssets.demoListening,
+  static IconData forIconType(ModuleIconType type) => switch (type) {
+        ModuleIconType.frequency || ModuleIconType.eqGraph => Icons.equalizer,
+        ModuleIconType.gauge || ModuleIconType.waveform => Icons.graphic_eq,
+        ModuleIconType.piano => Icons.piano,
+        ModuleIconType.headphones || ModuleIconType.live => Icons.headphones,
       };
 }

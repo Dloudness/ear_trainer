@@ -116,12 +116,12 @@ class _ModuleCarouselCardState extends State<ModuleCarouselCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BrandedModuleIcon(
-                  assetPath: AppModuleIcons.forIconType(module.iconType),
+                  icon: AppModuleIcons.forIconType(module.iconType),
                   accentStart: module.accentStart,
                   accentEnd: module.accentEnd,
                   isActive: isActive,
                   size: 56,
-                  padding: 6,
+                  padding: 2,
                 ),
                 const SizedBox(height: 14),
                 Text(module.title, style: AppTypography.cardTitle),

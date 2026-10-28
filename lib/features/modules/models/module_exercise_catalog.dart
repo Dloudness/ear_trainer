@@ -1,7 +1,7 @@
 import '../../../core/router/app_routes.dart';
 import '../../demo/models/category_demo_content.dart';
-import '../../demo/models/eq_demo_exercises.dart';
 import '../../demo/models/escucha_real_exercises.dart';
+import '../../exercises/data/exercise_repository.dart';
 import '../../onboarding/models/onboarding_option.dart';
 
 class ModuleExerciseEntry {
@@ -22,12 +22,14 @@ abstract final class ModuleExerciseCatalog {
   static List<ModuleExerciseEntry> forCategory(OnboardingOption category) {
     return switch (category) {
       OnboardingOption.ecualizacionFrecuencias => [
-          for (var i = 0; i < EqDemoExercises.exercises.length; i++)
+          for (final (index, exercise) in ExerciseRepository.instance
+              .byModule(category.name)
+              .indexed)
             ModuleExerciseEntry(
-              label: 'Ejercicio ${i + 1}',
-              title: EqDemoExercises.exercises[i].question,
+              label: 'Ejercicio ${index + 1}',
+              title: exercise.question,
               category: category,
-              exerciseIndex: i,
+              exerciseIndex: index,
             ),
         ],
       OnboardingOption.dinamicaCompresion => [

@@ -1,0 +1,164 @@
+{
+  "exercises": [
+    {
+      "id": "EQ_01",
+      "module": "ecualizacionFrecuencias",
+      "type": "ab_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/source/guitar_acoustic_01.wav"
+      },
+      "introSubtitle": "Compara una guitarra natural con una versión procesada.",
+      "question": "¿Cuál conserva mejor su naturalidad?",
+      "options": [
+        {
+          "id": "natural",
+          "label": "Versión natural",
+          "path": "assets/source/guitar_acoustic_01.wav"
+        },
+        {
+          "id": "processed",
+          "label": "Versión procesada",
+          "path": "assets/eq/guitar_acoustic_01_boomy_dark.wav"
+        }
+      ],
+      "correct": "natural",
+      "difficulty": "beginner",
+      "explanation": "Correcto. La versión natural conserva el balance original del instrumento.",
+      "explanationIncorrect": "Escucha nuevamente el exceso de graves y la pérdida de claridad en la otra versión.",
+      "tags": {
+        "instrument": "guitar",
+        "contrast": "boomy_dark"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_02",
+      "module": "ecualizacionFrecuencias",
+      "type": "ab_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/source/voice_narration_01.wav"
+      },
+      "introSubtitle": "Compara una voz natural con una versión procesada.",
+      "question": "¿Cuál suena más clara?",
+      "options": [
+        {
+          "id": "natural",
+          "label": "Versión natural",
+          "path": "assets/source/voice_narration_01.wav"
+        },
+        {
+          "id": "processed",
+          "label": "Versión procesada",
+          "path": "assets/eq/voice_narration_01_muddy.wav"
+        }
+      ],
+      "correct": "natural",
+      "difficulty": "beginner",
+      "explanation": "Correcto. La voz mantiene mejor definición e inteligibilidad.",
+      "explanationIncorrect": "Escucha nuevamente cómo el exceso de medios bajos afecta la claridad.",
+      "tags": {
+        "instrument": "voice",
+        "contrast": "muddy"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_03",
+      "module": "ecualizacionFrecuencias",
+      "type": "ab_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/source/music_instrumental_01.wav"
+      },
+      "introSubtitle": "Compara una mezcla instrumental natural con una versión procesada.",
+      "question": "¿Cuál suena más equilibrada?",
+      "options": [
+        {
+          "id": "natural",
+          "label": "Versión natural",
+          "path": "assets/source/music_instrumental_01.wav"
+        },
+        {
+          "id": "processed",
+          "label": "Versión procesada",
+          "path": "assets/eq/music_instrumental_01_harsh.wav"
+        }
+      ],
+      "correct": "natural",
+      "difficulty": "beginner",
+      "explanation": "Correcto. La mezcla conserva un balance más natural entre frecuencias.",
+      "explanationIncorrect": "Escucha nuevamente la agresividad de las frecuencias altas.",
+      "tags": {
+        "instrument": "mix",
+        "contrast": "harsh"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_04",
+      "module": "ecualizacionFrecuencias",
+      "type": "ab_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/source/voice_narration_01.wav"
+      },
+      "introSubtitle": "Compara una voz natural con una versión con medios atenuados.",
+      "question": "¿Cuál tiene mejor presencia?",
+      "options": [
+        {
+          "id": "natural",
+          "label": "Versión natural",
+          "path": "assets/source/voice_narration_01.wav"
+        },
+        {
+          "id": "processed",
+          "label": "Versión procesada",
+          "path": "assets/eq/voice_narration_01_scooped.wav"
+        }
+      ],
+      "correct": "natural",
+      "difficulty": "beginner",
+      "explanation": "Correcto. La voz conserva mejor presencia y definición.",
+      "explanationIncorrect": "Escucha nuevamente qué versión se percibe más cercana y definida.",
+      "tags": {
+        "instrument": "voice",
+        "contrast": "scooped"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_05",
+      "module": "ecualizacionFrecuencias",
+      "type": "ab_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/source/guitar_acoustic_01.wav"
+      },
+      "introSubtitle": "Compara una guitarra natural con una versión procesada.",
+      "question": "¿Cuál perdió demasiado cuerpo?",
+      "options": [
+        {
+          "id": "natural",
+          "label": "Versión natural",
+          "path": "assets/source/guitar_acoustic_01.wav"
+        },
+        {
+          "id": "processed",
+          "label": "Versión procesada",
+          "path": "assets/eq/guitar_acoustic_01_thin.wav"
+        }
+      ],
+      "correct": "processed",
+      "difficulty": "beginner",
+      "explanation": "Correcto. Esa versión perdió demasiado contenido de bajas frecuencias.",
+      "explanationIncorrect": "Escucha nuevamente cuál de las dos versiones se percibe más delgada.",
+      "tags": {
+        "instrument": "guitar",
+        "contrast": "thin"
+      },
+      "access": "free"
+    }
+  ]
+}

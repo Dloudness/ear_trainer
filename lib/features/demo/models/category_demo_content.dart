@@ -47,7 +47,7 @@ class CategoryDemoContent {
     return switch (category) {
       OnboardingOption.ecualizacionFrecuencias =>
         throw UnsupportedError(
-          'Use EqDemoExercises.toDemoContent for ecualizacionFrecuencias.',
+          'Use ExerciseRepository for ecualizacionFrecuencias.',
         ),
       OnboardingOption.dinamicaCompresion => const CategoryDemoContent(
             introTitle: 'Escucha atentamente.',

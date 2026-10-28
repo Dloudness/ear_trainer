@@ -18,10 +18,12 @@ import '../../../../core/widgets/cinematic_screen.dart';
 import '../../../home/presentation/widgets/module_neon_icon.dart';
 import '../../../../core/widgets/gradient_button.dart';
 import '../../../../core/widgets/premium_back_button.dart';
+import '../../../exercises/data/exercise_repository.dart';
+import '../../../exercises/models/exercise.dart';
 import '../../../onboarding/models/onboarding_option.dart';
 import '../../models/category_demo_content.dart';
-import '../../models/eq_demo_exercises.dart';
 import '../../models/escucha_real_exercises.dart';
+import '../../models/exercise_demo_mapper.dart';
 
 enum _DemoPhase { intro, video, listen, feedback, reveal }
 
@@ -562,11 +564,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   }
 
   String get _currentExerciseId {
-    if (_isEqCategory) {
-      final index =
-          _exerciseIndex.clamp(0, EqDemoExercises.exercises.length - 1);
-      return EqDemoExercises.exercises[index].id;
-    }
+    if (_isEqCategory) return _currentEqExercise().id;
     if (_isEscuchaRealCategory) {
       final index = _exerciseIndex.clamp(
         0,
@@ -589,12 +587,21 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
 
   bool get _isCorrectAnswer => _selectedOption == _content.correctOption;
 
+  Exercise _currentEqExercise() {
+    final exercises = ExerciseRepository.instance.byModule(
+      OnboardingOption.ecualizacionFrecuencias.name,
+    );
+    if (exercises.isEmpty) {
+      throw StateError('No hay ejercicios de ecualización cargados.');
+    }
+    final index = _exerciseIndex.clamp(0, exercises.length - 1);
+    return exercises[index];
+  }
+
   CategoryDemoContent _buildContentForCurrentExercise() {
     if (_isEqCategory) {
-      final index =
-          _exerciseIndex.clamp(0, EqDemoExercises.exercises.length - 1);
-      return EqDemoExercises.toDemoContent(
-        EqDemoExercises.exercises[index],
+      return ExerciseDemoMapper.toContent(
+        _currentEqExercise(),
         random: _random,
       );
     }

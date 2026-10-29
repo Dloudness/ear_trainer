@@ -26,6 +26,15 @@ const _seventhOptions = [
   {'id': 'min7', 'label': 'Menor 7'},
 ];
 
+const _intervalIntro = 'Escucha las dos notas e identifica el intervalo.';
+const _chordIntro = 'Escucha el acorde y elige la opción que lo describe.';
+
+const _freeIntervalIds = {
+  'interval_min2_asc_c4_01',
+  'interval_perf5_asc_c4_01',
+  'interval_perf8_asc_c4_01',
+};
+
 const _intervalOptions = [
   {'id': 'min2', 'label': '2da menor'},
   {'id': 'maj2', 'label': '2da mayor'},
@@ -81,6 +90,16 @@ void main() {
     for (final exercise in existing)
       if (!_generatedTypes.contains(exercise['type'])) exercise,
   ];
+  for (final exercise in kept) {
+    final id = exercise['id'];
+    if (id == 'EQ_04' || id == 'EQ_05') {
+      exercise['access'] = 'account';
+    }
+    if (id == 'EQ_04') {
+      exercise['introSubtitle'] =
+          'Compara una voz natural con una versión procesada.';
+    }
+  }
   final keptIds = {for (final exercise in kept) exercise['id'].toString()};
 
   final skipped = <String>[];
@@ -160,7 +179,7 @@ Map<String, dynamic>? _exerciseFor(String folder, String name) {
         'source': 'asset',
         'path': 'assets/musical/$folder/$name',
       },
-      'intro': inverted ? copy.invertedIntro : copy.intro,
+      'intro': _chordIntro,
       'question': quality == 'maj' || quality == 'min'
           ? '¿Este acorde es mayor o menor?'
           : '¿Qué acorde con séptima escuchas?',
@@ -176,7 +195,7 @@ Map<String, dynamic>? _exerciseFor(String folder, String name) {
         'inversion': position,
         'voicing': inverted ? 'bass_inverted' : 'root',
       },
-      'access': 'free',
+      'access': 'premium',
     };
   }
 
@@ -195,7 +214,7 @@ Map<String, dynamic>? _exerciseFor(String folder, String name) {
         'source': 'asset',
         'path': 'assets/musical/$folder/$name',
       },
-      'intro': copy.intro,
+      'intro': _intervalIntro,
       'question': '¿Qué intervalo escuchas?',
       'options': _intervalOptions,
       'maxOptions': 4,
@@ -212,7 +231,7 @@ Map<String, dynamic>? _exerciseFor(String folder, String name) {
         'mode': mode,
         'startNote': startNote,
       },
-      'access': 'free',
+      'access': _intervalAccess(name.substring(0, name.length - 4), mode),
     };
   }
 
@@ -230,6 +249,12 @@ bool _chordFolderAccepts(String folder, String quality, String? inversion) {
     'inversiones_chords' => seventh && inversion != null,
     _ => false,
   };
+}
+
+String _intervalAccess(String id, String mode) {
+  if (mode != 'asc') return 'premium';
+  if (_freeIntervalIds.contains(id)) return 'free';
+  return 'account';
 }
 
 String? _modeForFolder(String folder) {
@@ -295,21 +320,22 @@ void _rejectRepeatedCopy(List<Map<String, dynamic>> exercises) {
   final tipOwner = <String, String>{};
   for (final exercise in exercises) {
     final tags = exercise['tags']! as Map;
-    final owner = '${exercise['type']}:${exercise['correct']}';
-    final tipIdentity = exercise['type'] == 'interval_quality'
+    final type = exercise['type']! as String;
+    final owner = '$type:${exercise['correct']}';
+    final tipIdentity = type == 'interval_quality'
         ? '$owner:${tags['mode']}'
         : '$owner:${tags['voicing']}';
     final intro = exercise['intro']! as String;
     final tip = exercise['tip']! as String;
     final previousIntro = introOwner[intro];
-    if (previousIntro != null && previousIntro != owner) {
-      throw StateError('intro de "$owner" repite el de "$previousIntro"');
+    if (previousIntro != null && previousIntro != type) {
+      throw StateError('intro de "$type" repite el de "$previousIntro"');
     }
     final previousTip = tipOwner[tip];
     if (previousTip != null && previousTip != tipIdentity) {
       throw StateError('tip de "$tipIdentity" repite el de "$previousTip"');
     }
-    introOwner[intro] = owner;
+    introOwner[intro] = type;
     tipOwner[tip] = tipIdentity;
   }
 }

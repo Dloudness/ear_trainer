@@ -227,7 +227,55 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
-  testWidgets('Musical module shows six sections instead of the mock', (tester) async {
+  test('access is free, account or premium without revealing intros', () {
+    final musical = ExerciseRepository.instance.byModule(
+      OnboardingOption.entrenamientoMusical.name,
+    );
+    final free = musical
+        .where((exercise) => exercise.access == 'free')
+        .map((exercise) => exercise.id)
+        .toSet();
+    expect(free, {
+      'interval_min2_asc_c4_01',
+      'interval_perf5_asc_c4_01',
+      'interval_perf8_asc_c4_01',
+    });
+    expect(
+      musical
+          .where(
+            (exercise) =>
+                exercise.type == 'interval_quality' && exercise.access == 'account',
+          )
+          .length,
+      9,
+    );
+    expect(
+      musical.where((exercise) => exercise.type == 'chord_quality').every(
+            (exercise) => exercise.access == 'premium',
+          ),
+      isTrue,
+    );
+    expect(
+      musical
+          .where((exercise) => exercise.type == 'interval_quality')
+          .map((exercise) => exercise.intro)
+          .toSet(),
+      {'Escucha las dos notas e identifica el intervalo.'},
+    );
+    expect(
+      musical
+          .where((exercise) => exercise.type == 'chord_quality')
+          .map((exercise) => exercise.intro)
+          .toSet(),
+      {'Escucha el acorde y elige la opción que lo describe.'},
+    );
+    expect(
+      eqExercises.map((exercise) => exercise.access).toList(),
+      ['free', 'free', 'free', 'account', 'account'],
+    );
+  });
+
+  testWidgets('Musical module opens intervals and chords directly', (tester) async {
     tester.view.physicalSize = const Size(800, 1600);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
@@ -236,15 +284,25 @@ void main() {
     await tester.pumpWidget(const MaterialApp(home: MusicalTrainingScreen()));
     await tester.pump();
 
-    expect(find.text('Intervalos ascendentes'), findsOneWidget);
-    expect(find.text('Intervalos descendentes'), findsOneWidget);
-    expect(find.text('Intervalos armónicos'), findsOneWidget);
-    expect(find.text('Acordes · tríadas'), findsOneWidget);
-    expect(find.text('Acordes · séptimas'), findsOneWidget);
-    expect(find.text('Acordes · inversiones'), findsOneWidget);
+    expect(find.text('Intervalos'), findsOneWidget);
+    expect(find.text('Acordes'), findsOneWidget);
+    expect(find.text('Se desbloquea con premium.'), findsOneWidget);
+    expect(find.text('Intervalos ascendentes'), findsNothing);
+    expect(find.text('Acordes · tríadas'), findsNothing);
     expect(find.text('3ª mayor'), findsNothing);
     expect(find.text('5ª justa'), findsNothing);
-    expect(find.text('VER LISTA'), findsNWidgets(6));
+    expect(find.textContaining('ejercicio'), findsNothing);
+
+    await tester.tap(find.text('ESCUCHAR'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(
+      find.text('Escucha las dos notas e identifica el intervalo.'),
+      findsOneWidget,
+    );
+    expect(find.text('¿Qué intervalo escuchas?'), findsOneWidget);
+    expect(find.text('Pista'), findsNothing);
 
     await tester.pumpWidget(const SizedBox.shrink());
   });

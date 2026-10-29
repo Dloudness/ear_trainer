@@ -54,6 +54,9 @@ class ProgressSnapshot {
     this.lastActivityDate,
     this.hasCompletedDemo = false,
     this.trainingFocus,
+    this.isLoggedIn = false,
+    this.isGuest = false,
+    this.hasPremium = false,
   });
 
   final List<CompletedExerciseRecord> exercises;
@@ -62,6 +65,9 @@ class ProgressSnapshot {
   final String? lastActivityDate;
   final bool hasCompletedDemo;
   final String? trainingFocus;
+  final bool isLoggedIn;
+  final bool isGuest;
+  final bool hasPremium;
 
   ProgressSnapshot copyWith({
     List<CompletedExerciseRecord>? exercises,
@@ -70,6 +76,9 @@ class ProgressSnapshot {
     String? lastActivityDate,
     bool? hasCompletedDemo,
     String? trainingFocus,
+    bool? isLoggedIn,
+    bool? isGuest,
+    bool? hasPremium,
   }) {
     return ProgressSnapshot(
       exercises: exercises ?? this.exercises,
@@ -78,6 +87,9 @@ class ProgressSnapshot {
       lastActivityDate: lastActivityDate ?? this.lastActivityDate,
       hasCompletedDemo: hasCompletedDemo ?? this.hasCompletedDemo,
       trainingFocus: trainingFocus ?? this.trainingFocus,
+      isLoggedIn: isLoggedIn ?? this.isLoggedIn,
+      isGuest: isGuest ?? this.isGuest,
+      hasPremium: hasPremium ?? this.hasPremium,
     );
   }
 }
@@ -92,6 +104,9 @@ class ProgressRepository {
   static const _kLastActivity = 'progress.lastActivityDate';
   static const _kHasCompletedDemo = 'progress.hasCompletedDemo';
   static const _kTrainingFocus = 'progress.trainingFocus';
+  static const _kIsLoggedIn = 'progress.isLoggedIn';
+  static const _kIsGuest = 'progress.isGuest';
+  static const _kHasPremium = 'progress.hasPremium';
 
   Future<ProgressSnapshot> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -121,6 +136,9 @@ class ProgressRepository {
       lastActivityDate: prefs.getString(_kLastActivity),
       hasCompletedDemo: prefs.getBool(_kHasCompletedDemo) ?? false,
       trainingFocus: prefs.getString(_kTrainingFocus),
+      isLoggedIn: prefs.getBool(_kIsLoggedIn) ?? false,
+      isGuest: prefs.getBool(_kIsGuest) ?? false,
+      hasPremium: prefs.getBool(_kHasPremium) ?? false,
     );
   }
 
@@ -138,6 +156,9 @@ class ProgressRepository {
       await prefs.setString(_kLastActivity, snapshot.lastActivityDate!);
     }
     await prefs.setBool(_kHasCompletedDemo, snapshot.hasCompletedDemo);
+    await prefs.setBool(_kIsLoggedIn, snapshot.isLoggedIn);
+    await prefs.setBool(_kIsGuest, snapshot.isGuest);
+    await prefs.setBool(_kHasPremium, snapshot.hasPremium);
     if (snapshot.trainingFocus == null) {
       await prefs.remove(_kTrainingFocus);
     } else {

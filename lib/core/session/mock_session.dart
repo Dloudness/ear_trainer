@@ -23,7 +23,7 @@ class ContinueTrainingInfo {
   final bool hasHistory;
 }
 
-/// Session state — auth flags stay in memory; progress is persisted locally.
+/// Session state. Progress and account flags persist in shared preferences.
 class MockSession {
   MockSession._();
 
@@ -32,6 +32,8 @@ class MockSession {
 
   static bool isLoggedIn = false;
   static bool isGuest = false;
+  static bool hasPremium = false;
+  static const premiumInviteCode = 'OIDO-PREMIUM';
   static bool hasCompletedDemo = false;
   static bool hasUsedFreeDailyChallenge = false;
   static bool showLoginPromptAfterChallenge = false;
@@ -132,10 +134,31 @@ class MockSession {
   static bool get shouldShowLoginPrompt =>
       isLightMode && showLoginPromptAfterChallenge && !loginPromptDismissed;
 
+  static bool get hasAccount => isLoggedIn && !isGuest;
+
+  static bool get dinamicaUnlocked => _progress.exercises
+      .any((item) => moduleIdForExercise(item.id) != 'dinamica');
+
+  static bool allowsAccess(String access) {
+    return switch (access) {
+      'free' => true,
+      'account' => hasAccount || hasPremium,
+      'premium' => hasPremium,
+      _ => false,
+    };
+  }
+
   static Future<void> load() async {
     _progress = await _progressRepository.load();
     hasCompletedDemo = _progress.hasCompletedDemo;
     trainingFocus = _progress.trainingFocus;
+    isLoggedIn = _progress.isLoggedIn;
+    isGuest = _progress.isGuest;
+    hasPremium = _progress.hasPremium;
+    if (hasPremium && !hasAccount) {
+      isLoggedIn = true;
+      isGuest = false;
+    }
   }
 
   static Future<void> recordExerciseResult({
@@ -208,18 +231,40 @@ class MockSession {
     loginPromptDismissed = true;
   }
 
-  static void signInAsGuest() {
+  static Future<void> signInAsGuest() async {
     isLoggedIn = true;
     isGuest = true;
     loginPromptDismissed = true;
     showLoginPromptAfterChallenge = false;
+    await _saveAccount();
   }
 
-  static void signIn() {
+  static Future<void> signIn() async {
     isLoggedIn = true;
     isGuest = false;
     loginPromptDismissed = true;
     showLoginPromptAfterChallenge = false;
+    await _saveAccount();
+  }
+
+  static Future<bool> redeemPremiumCode(String code) async {
+    if (code.trim().toUpperCase() != premiumInviteCode) return false;
+    hasPremium = true;
+    isLoggedIn = true;
+    isGuest = false;
+    loginPromptDismissed = true;
+    showLoginPromptAfterChallenge = false;
+    await _saveAccount();
+    return true;
+  }
+
+  static Future<void> _saveAccount() async {
+    _progress = _progress.copyWith(
+      isLoggedIn: isLoggedIn,
+      isGuest: isGuest,
+      hasPremium: hasPremium,
+    );
+    await _progressRepository.save(_progress);
   }
 
   static Future<void> setTrainingFocus(String focus) async {

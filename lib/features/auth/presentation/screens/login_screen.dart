@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/auth/account_auth.dart';
 import '../../../../core/navigation/app_navigator.dart';
-import '../../../../core/session/mock_session.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/cinematic_screen.dart';
@@ -12,12 +12,13 @@ import '../../../../core/widgets/gradient_button.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  void _enterHome(BuildContext context, {required bool guest}) {
+  Future<void> _enterHome(BuildContext context, {required bool guest}) async {
     if (guest) {
-      MockSession.signInAsGuest();
+      await AccountAuth.continueAsGuest();
     } else {
-      MockSession.signIn();
+      await AccountAuth.registerWithMock();
     }
+    if (!context.mounted) return;
     if (Navigator.canPop(context)) {
       Navigator.pop(context);
       return;

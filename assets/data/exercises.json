@@ -104,7 +104,7 @@
         "source": "asset",
         "path": "assets/source/voice_narration_01.wav"
       },
-      "introSubtitle": "Compara una voz natural con una versión con medios atenuados.",
+      "introSubtitle": "Compara una voz natural con una versión procesada.",
       "question": "¿Cuál tiene mejor presencia?",
       "options": [
         {
@@ -126,7 +126,7 @@
         "instrument": "voice",
         "contrast": "scooped"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "EQ_05",
@@ -158,7 +158,7 @@
         "instrument": "guitar",
         "contrast": "thin"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "chord_dom7_a3_01",
@@ -168,7 +168,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_dom7_a3_01.wav"
       },
-      "intro": "Entrenas el acorde dominante 7. También parte de un mayor, pero su séptima es menor. Entre esa séptima y la tercera aparece un tritono, la tensión que suele pedir ir hacia la tónica.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -193,7 +193,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_dom7_c3_01",
@@ -203,7 +203,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_dom7_c3_01.wav"
       },
-      "intro": "Entrenas el acorde dominante 7. También parte de un mayor, pero su séptima es menor. Entre esa séptima y la tercera aparece un tritono, la tensión que suele pedir ir hacia la tónica.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -228,7 +228,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_dom7_dsharp3_01",
@@ -238,7 +238,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_dom7_dsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde dominante 7. También parte de un mayor, pero su séptima es menor. Entre esa séptima y la tercera aparece un tritono, la tensión que suele pedir ir hacia la tónica.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -263,7 +263,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_dom7_fsharp3_01",
@@ -273,7 +273,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_dom7_fsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde dominante 7. También parte de un mayor, pero su séptima es menor. Entre esa séptima y la tercera aparece un tritono, la tensión que suele pedir ir hacia la tónica.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -298,7 +298,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_dom7_inv1_a3_01",
@@ -308,7 +308,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_dom7_inv1_a3_01.wav"
       },
-      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -333,7 +333,7 @@
         "inversion": "inv1",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_dom7_inv1_dsharp3_01",
@@ -343,7 +343,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_dom7_inv1_dsharp3_01.wav"
       },
-      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -368,7 +368,7 @@
         "inversion": "inv1",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_dom7_inv2_c3_01",
@@ -378,7 +378,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_dom7_inv2_c3_01.wav"
       },
-      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -403,7 +403,7 @@
         "inversion": "inv2",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_dom7_inv2_fsharp3_01",
@@ -413,7 +413,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_dom7_inv2_fsharp3_01.wav"
       },
-      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -438,7 +438,7 @@
         "inversion": "inv2",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_dom7_inv3_a3_01",
@@ -448,7 +448,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_dom7_inv3_a3_01.wav"
       },
-      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -473,7 +473,7 @@
         "inversion": "inv3",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_dom7_inv3_dsharp3_01",
@@ -483,7 +483,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_dom7_inv3_dsharp3_01.wav"
       },
-      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -508,7 +508,7 @@
         "inversion": "inv3",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj7_a3_01",
@@ -518,7 +518,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_maj7_a3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor 7. Nace de un mayor y suma la séptima mayor, a un semitono de la octava. Suena amplio y suave, muy usado en jazz, y no empuja a resolver.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -543,7 +543,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj7_c3_01",
@@ -553,7 +553,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_maj7_c3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor 7. Nace de un mayor y suma la séptima mayor, a un semitono de la octava. Suena amplio y suave, muy usado en jazz, y no empuja a resolver.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -578,7 +578,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj7_dsharp3_01",
@@ -588,7 +588,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_maj7_dsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor 7. Nace de un mayor y suma la séptima mayor, a un semitono de la octava. Suena amplio y suave, muy usado en jazz, y no empuja a resolver.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -613,7 +613,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj7_fsharp3_01",
@@ -623,7 +623,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_maj7_fsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor 7. Nace de un mayor y suma la séptima mayor, a un semitono de la octava. Suena amplio y suave, muy usado en jazz, y no empuja a resolver.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -648,7 +648,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj7_inv1_c3_01",
@@ -658,7 +658,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_maj7_inv1_c3_01.wav"
       },
-      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -683,7 +683,7 @@
         "inversion": "inv1",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj7_inv1_fsharp3_01",
@@ -693,7 +693,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_maj7_inv1_fsharp3_01.wav"
       },
-      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -718,7 +718,7 @@
         "inversion": "inv1",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj7_inv2_a3_01",
@@ -728,7 +728,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_maj7_inv2_a3_01.wav"
       },
-      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -753,7 +753,7 @@
         "inversion": "inv2",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj7_inv2_dsharp3_01",
@@ -763,7 +763,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_maj7_inv2_dsharp3_01.wav"
       },
-      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -788,7 +788,7 @@
         "inversion": "inv2",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj7_inv3_c3_01",
@@ -798,7 +798,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_maj7_inv3_c3_01.wav"
       },
-      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -823,7 +823,7 @@
         "inversion": "inv3",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj7_inv3_fsharp3_01",
@@ -833,7 +833,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_maj7_inv3_fsharp3_01.wav"
       },
-      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -858,7 +858,7 @@
         "inversion": "inv3",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_a3_01",
@@ -868,7 +868,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_a3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -889,7 +889,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_asharp3_01",
@@ -899,7 +899,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_asharp3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -920,7 +920,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_b3_01",
@@ -930,7 +930,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_b3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -951,7 +951,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_c3_01",
@@ -961,7 +961,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_c3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -982,7 +982,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_csharp3_01",
@@ -992,7 +992,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_csharp3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1013,7 +1013,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_d3_01",
@@ -1023,7 +1023,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_d3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1044,7 +1044,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_dsharp3_01",
@@ -1054,7 +1054,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_dsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1075,7 +1075,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_e3_01",
@@ -1085,7 +1085,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_e3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1106,7 +1106,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_f3_01",
@@ -1116,7 +1116,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_f3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1137,7 +1137,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_fsharp3_01",
@@ -1147,7 +1147,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_fsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1168,7 +1168,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_g3_01",
@@ -1178,7 +1178,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_g3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1199,7 +1199,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_gsharp3_01",
@@ -1209,7 +1209,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_maj_gsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1230,7 +1230,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_inv1_a3_01",
@@ -1240,7 +1240,7 @@
         "source": "asset",
         "path": "assets/musical/triadas_inversiones/chord_maj_inv1_a3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor cuando la fundamental no está en el bajo. El color sigue siendo luminoso; el trabajo es no dejarte engañar por la nota más grave.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1261,7 +1261,7 @@
         "inversion": "inv1",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_inv1_dsharp3_01",
@@ -1271,7 +1271,7 @@
         "source": "asset",
         "path": "assets/musical/triadas_inversiones/chord_maj_inv1_dsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor cuando la fundamental no está en el bajo. El color sigue siendo luminoso; el trabajo es no dejarte engañar por la nota más grave.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1292,7 +1292,7 @@
         "inversion": "inv1",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_inv2_c3_01",
@@ -1302,7 +1302,7 @@
         "source": "asset",
         "path": "assets/musical/triadas_inversiones/chord_maj_inv2_c3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor cuando la fundamental no está en el bajo. El color sigue siendo luminoso; el trabajo es no dejarte engañar por la nota más grave.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1323,7 +1323,7 @@
         "inversion": "inv2",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_maj_inv2_fsharp3_01",
@@ -1333,7 +1333,7 @@
         "source": "asset",
         "path": "assets/musical/triadas_inversiones/chord_maj_inv2_fsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde mayor cuando la fundamental no está en el bajo. El color sigue siendo luminoso; el trabajo es no dejarte engañar por la nota más grave.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1354,7 +1354,7 @@
         "inversion": "inv2",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min7_a3_01",
@@ -1364,7 +1364,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_min7_a3_01.wav"
       },
-      "intro": "Entrenas el acorde menor 7. Es un menor con una séptima menor añadida. Suena redondo y relajado: tiene séptima, pero no el tritono que vuelve urgente al dominante.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -1389,7 +1389,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min7_c3_01",
@@ -1399,7 +1399,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_min7_c3_01.wav"
       },
-      "intro": "Entrenas el acorde menor 7. Es un menor con una séptima menor añadida. Suena redondo y relajado: tiene séptima, pero no el tritono que vuelve urgente al dominante.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -1424,7 +1424,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min7_dsharp3_01",
@@ -1434,7 +1434,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_min7_dsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde menor 7. Es un menor con una séptima menor añadida. Suena redondo y relajado: tiene séptima, pero no el tritono que vuelve urgente al dominante.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -1459,7 +1459,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min7_fsharp3_01",
@@ -1469,7 +1469,7 @@
         "source": "asset",
         "path": "assets/musical/chords_maj7_min7_dom7/chord_min7_fsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde menor 7. Es un menor con una séptima menor añadida. Suena redondo y relajado: tiene séptima, pero no el tritono que vuelve urgente al dominante.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -1494,7 +1494,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min7_inv1_c3_01",
@@ -1504,7 +1504,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_min7_inv1_c3_01.wav"
       },
-      "intro": "Entrenas el menor 7 con el bajo invertido. No lo confundas con un dominante: su tercera es menor y su séptima no choca contra ella.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -1529,7 +1529,7 @@
         "inversion": "inv1",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min7_inv1_fsharp3_01",
@@ -1539,7 +1539,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_min7_inv1_fsharp3_01.wav"
       },
-      "intro": "Entrenas el menor 7 con el bajo invertido. No lo confundas con un dominante: su tercera es menor y su séptima no choca contra ella.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -1564,7 +1564,7 @@
         "inversion": "inv1",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min7_inv2_a3_01",
@@ -1574,7 +1574,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_min7_inv2_a3_01.wav"
       },
-      "intro": "Entrenas el menor 7 con el bajo invertido. No lo confundas con un dominante: su tercera es menor y su séptima no choca contra ella.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -1599,7 +1599,7 @@
         "inversion": "inv2",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min7_inv2_dsharp3_01",
@@ -1609,7 +1609,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_min7_inv2_dsharp3_01.wav"
       },
-      "intro": "Entrenas el menor 7 con el bajo invertido. No lo confundas con un dominante: su tercera es menor y su séptima no choca contra ella.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -1634,7 +1634,7 @@
         "inversion": "inv2",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min7_inv3_fsharp3_01",
@@ -1644,7 +1644,7 @@
         "source": "asset",
         "path": "assets/musical/inversiones_chords/chord_min7_inv3_fsharp3_01.wav"
       },
-      "intro": "Entrenas el menor 7 con el bajo invertido. No lo confundas con un dominante: su tercera es menor y su séptima no choca contra ella.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Qué acorde con séptima escuchas?",
       "options": [
         {
@@ -1669,7 +1669,7 @@
         "inversion": "inv3",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_a3_01",
@@ -1679,7 +1679,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_a3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1700,7 +1700,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_asharp3_01",
@@ -1710,7 +1710,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_asharp3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1731,7 +1731,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_b3_01",
@@ -1741,7 +1741,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_b3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1762,7 +1762,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_c3_01",
@@ -1772,7 +1772,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_c3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1793,7 +1793,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_csharp3_01",
@@ -1803,7 +1803,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_csharp3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1824,7 +1824,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_d3_01",
@@ -1834,7 +1834,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_d3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1855,7 +1855,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_dsharp3_01",
@@ -1865,7 +1865,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_dsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1886,7 +1886,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_e3_01",
@@ -1896,7 +1896,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_e3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1917,7 +1917,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_f3_01",
@@ -1927,7 +1927,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_f3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1948,7 +1948,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_fsharp3_01",
@@ -1958,7 +1958,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_fsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -1979,7 +1979,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_g3_01",
@@ -1989,7 +1989,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_g3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -2010,7 +2010,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_gsharp3_01",
@@ -2020,7 +2020,7 @@
         "source": "asset",
         "path": "assets/musical/chords_min_maj/chord_min_gsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -2041,7 +2041,7 @@
         "inversion": "root",
         "voicing": "root"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_inv1_c3_01",
@@ -2051,7 +2051,7 @@
         "source": "asset",
         "path": "assets/musical/triadas_inversiones/chord_min_inv1_c3_01.wav"
       },
-      "intro": "Entrenas el acorde menor con el bajo cambiado. La nota grave ya no nombra el acorde: hay que encontrar la tercera menor, que lo oscurece.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -2072,7 +2072,7 @@
         "inversion": "inv1",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_inv1_fsharp3_01",
@@ -2082,7 +2082,7 @@
         "source": "asset",
         "path": "assets/musical/triadas_inversiones/chord_min_inv1_fsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde menor con el bajo cambiado. La nota grave ya no nombra el acorde: hay que encontrar la tercera menor, que lo oscurece.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -2103,7 +2103,7 @@
         "inversion": "inv1",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_inv2_a3_01",
@@ -2113,7 +2113,7 @@
         "source": "asset",
         "path": "assets/musical/triadas_inversiones/chord_min_inv2_a3_01.wav"
       },
-      "intro": "Entrenas el acorde menor con el bajo cambiado. La nota grave ya no nombra el acorde: hay que encontrar la tercera menor, que lo oscurece.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -2134,7 +2134,7 @@
         "inversion": "inv2",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "chord_min_inv2_dsharp3_01",
@@ -2144,7 +2144,7 @@
         "source": "asset",
         "path": "assets/musical/triadas_inversiones/chord_min_inv2_dsharp3_01.wav"
       },
-      "intro": "Entrenas el acorde menor con el bajo cambiado. La nota grave ya no nombra el acorde: hay que encontrar la tercera menor, que lo oscurece.",
+      "intro": "Escucha el acorde y elige la opción que lo describe.",
       "question": "¿Este acorde es mayor o menor?",
       "options": [
         {
@@ -2165,7 +2165,7 @@
         "inversion": "inv2",
         "voicing": "bass_inverted"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_maj2_asc_c4_01",
@@ -2175,7 +2175,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_maj2_asc_c4_01.wav"
       },
-      "intro": "La segunda mayor es un tono entero, dos semitonos. Es el paso de vecino más habitual de una escala y suena cercano, ya sin el roce tan cerrado de la segunda menor.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2236,7 +2236,7 @@
         "mode": "asc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "interval_maj2_desc_c4_01",
@@ -2246,7 +2246,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_maj2_desc_c4_01.wav"
       },
-      "intro": "La segunda mayor es un tono entero, dos semitonos. Es el paso de vecino más habitual de una escala y suena cercano, ya sin el roce tan cerrado de la segunda menor.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2307,7 +2307,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_maj2_harm_c4_01",
@@ -2317,7 +2317,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_maj2_harm_c4_01.wav"
       },
-      "intro": "La segunda mayor es un tono entero, dos semitonos. Es el paso de vecino más habitual de una escala y suena cercano, ya sin el roce tan cerrado de la segunda menor.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2378,7 +2378,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_maj3_asc_c4_01",
@@ -2388,7 +2388,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_maj3_asc_c4_01.wav"
       },
-      "intro": "La tercera mayor abarca cuatro semitonos, dos tonos. Es el intervalo que da al acorde mayor su brillo y su sensación de reposo.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2449,7 +2449,7 @@
         "mode": "asc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "interval_maj3_desc_c4_01",
@@ -2459,7 +2459,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_maj3_desc_c4_01.wav"
       },
-      "intro": "La tercera mayor abarca cuatro semitonos, dos tonos. Es el intervalo que da al acorde mayor su brillo y su sensación de reposo.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2520,7 +2520,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_maj3_harm_c4_01",
@@ -2530,7 +2530,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_maj3_harm_c4_01.wav"
       },
-      "intro": "La tercera mayor abarca cuatro semitonos, dos tonos. Es el intervalo que da al acorde mayor su brillo y su sensación de reposo.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2591,7 +2591,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_maj6_asc_c4_01",
@@ -2601,7 +2601,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_maj6_asc_c4_01.wav"
       },
-      "intro": "La sexta mayor son nueve semitonos. Suena abierta y luminosa, y es la inversión de la tercera menor.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2662,7 +2662,7 @@
         "mode": "asc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "interval_maj6_desc_c4_01",
@@ -2672,7 +2672,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_maj6_desc_c4_01.wav"
       },
-      "intro": "La sexta mayor son nueve semitonos. Suena abierta y luminosa, y es la inversión de la tercera menor.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2733,7 +2733,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_maj6_harm_c4_01",
@@ -2743,7 +2743,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_maj6_harm_c4_01.wav"
       },
-      "intro": "La sexta mayor son nueve semitonos. Suena abierta y luminosa, y es la inversión de la tercera menor.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2804,7 +2804,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_maj7_asc_c4_01",
@@ -2814,7 +2814,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_maj7_asc_c4_01.wav"
       },
-      "intro": "La séptima mayor son once semitonos. Se queda a un semitono de la octava, como la nota sensible que quiere resolver hacia arriba.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2875,7 +2875,7 @@
         "mode": "asc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "interval_maj7_desc_c4_01",
@@ -2885,7 +2885,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_maj7_desc_c4_01.wav"
       },
-      "intro": "La séptima mayor son once semitonos. Se queda a un semitono de la octava, como la nota sensible que quiere resolver hacia arriba.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -2946,7 +2946,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_maj7_harm_c4_01",
@@ -2956,7 +2956,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_maj7_harm_c4_01.wav"
       },
-      "intro": "La séptima mayor son once semitonos. Se queda a un semitono de la octava, como la nota sensible que quiere resolver hacia arriba.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3017,7 +3017,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_min2_asc_c4_01",
@@ -3027,7 +3027,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_min2_asc_c4_01.wav"
       },
-      "intro": "La segunda menor es un semitono, el salto entre dos teclas vecinas. Reconocerla te da la unidad con la que se miden todos los demás intervalos.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3098,7 +3098,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_min2_desc_c4_01.wav"
       },
-      "intro": "La segunda menor es un semitono, el salto entre dos teclas vecinas. Reconocerla te da la unidad con la que se miden todos los demás intervalos.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3159,7 +3159,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_min2_harm_c4_01",
@@ -3169,7 +3169,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_min2_harm_c4_01.wav"
       },
-      "intro": "La segunda menor es un semitono, el salto entre dos teclas vecinas. Reconocerla te da la unidad con la que se miden todos los demás intervalos.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3230,7 +3230,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_min3_asc_c4_01",
@@ -3240,7 +3240,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_min3_asc_c4_01.wav"
       },
-      "intro": "La tercera menor abarca tres semitonos. Es la distancia que vuelve menor a un acorde: si la reconoces, ya puedes separar un color oscuro de uno brillante.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3301,7 +3301,7 @@
         "mode": "asc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "interval_min3_desc_c4_01",
@@ -3311,7 +3311,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_min3_desc_c4_01.wav"
       },
-      "intro": "La tercera menor abarca tres semitonos. Es la distancia que vuelve menor a un acorde: si la reconoces, ya puedes separar un color oscuro de uno brillante.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3372,7 +3372,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_min3_harm_c4_01",
@@ -3382,7 +3382,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_min3_harm_c4_01.wav"
       },
-      "intro": "La tercera menor abarca tres semitonos. Es la distancia que vuelve menor a un acorde: si la reconoces, ya puedes separar un color oscuro de uno brillante.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3443,7 +3443,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_min6_asc_c4_01",
@@ -3453,7 +3453,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_min6_asc_c4_01.wav"
       },
-      "intro": "La sexta menor son ocho semitonos. Suena ancha y algo nostálgica, y es la inversión de la tercera mayor: la misma familia de notas, escuchada al revés.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3514,7 +3514,7 @@
         "mode": "asc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "interval_min6_desc_c4_01",
@@ -3524,7 +3524,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_min6_desc_c4_01.wav"
       },
-      "intro": "La sexta menor son ocho semitonos. Suena ancha y algo nostálgica, y es la inversión de la tercera mayor: la misma familia de notas, escuchada al revés.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3585,7 +3585,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_min6_harm_c4_01",
@@ -3595,7 +3595,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_min6_harm_c4_01.wav"
       },
-      "intro": "La sexta menor son ocho semitonos. Suena ancha y algo nostálgica, y es la inversión de la tercera mayor: la misma familia de notas, escuchada al revés.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3656,7 +3656,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_min7_asc_c4_01",
@@ -3666,7 +3666,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_min7_asc_c4_01.wav"
       },
-      "intro": "La séptima menor son diez semitonos, a un tono de la octava. Es la séptima del dominante y del menor 7: amplia, y con tendencia a bajar.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3727,7 +3727,7 @@
         "mode": "asc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "interval_min7_desc_c4_01",
@@ -3737,7 +3737,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_min7_desc_c4_01.wav"
       },
-      "intro": "La séptima menor son diez semitonos, a un tono de la octava. Es la séptima del dominante y del menor 7: amplia, y con tendencia a bajar.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3798,7 +3798,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_min7_harm_c4_01",
@@ -3808,7 +3808,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_min7_harm_c4_01.wav"
       },
-      "intro": "La séptima menor son diez semitonos, a un tono de la octava. Es la séptima del dominante y del menor 7: amplia, y con tendencia a bajar.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3869,7 +3869,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_perf4_asc_c4_01",
@@ -3879,7 +3879,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_perf4_asc_c4_01.wav"
       },
-      "intro": "La cuarta justa son cinco semitonos. No es mayor ni menor: suena abierta y un poco suspendida, como si todavía no se hubiera apoyado en una tercera.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -3940,7 +3940,7 @@
         "mode": "asc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "interval_perf4_desc_c4_01",
@@ -3950,7 +3950,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_perf4_desc_c4_01.wav"
       },
-      "intro": "La cuarta justa son cinco semitonos. No es mayor ni menor: suena abierta y un poco suspendida, como si todavía no se hubiera apoyado en una tercera.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4011,7 +4011,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_perf4_harm_c4_01",
@@ -4021,7 +4021,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_perf4_harm_c4_01.wav"
       },
-      "intro": "La cuarta justa son cinco semitonos. No es mayor ni menor: suena abierta y un poco suspendida, como si todavía no se hubiera apoyado en una tercera.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4082,7 +4082,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_perf5_asc_c4_01",
@@ -4092,7 +4092,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_perf5_asc_c4_01.wav"
       },
-      "intro": "La quinta justa son siete semitonos. Junto con la octava, es de las consonancias más firmes: hueca, estable y sin color mayor ni menor.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4163,7 +4163,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_perf5_desc_c4_01.wav"
       },
-      "intro": "La quinta justa son siete semitonos. Junto con la octava, es de las consonancias más firmes: hueca, estable y sin color mayor ni menor.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4224,7 +4224,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_perf5_harm_c4_01",
@@ -4234,7 +4234,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_perf5_harm_c4_01.wav"
       },
-      "intro": "La quinta justa son siete semitonos. Junto con la octava, es de las consonancias más firmes: hueca, estable y sin color mayor ni menor.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4295,7 +4295,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_perf8_asc_c4_01",
@@ -4305,7 +4305,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_perf8_asc_c4_01.wav"
       },
-      "intro": "La octava son doce semitonos: la misma nota, más aguda o más grave. Es el marco donde caben los demás intervalos y la consonancia que más fácilmente se fusiona.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4376,7 +4376,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_perf8_desc_c4_01.wav"
       },
-      "intro": "La octava son doce semitonos: la misma nota, más aguda o más grave. Es el marco donde caben los demás intervalos y la consonancia que más fácilmente se fusiona.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4437,7 +4437,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_perf8_harm_c4_01",
@@ -4447,7 +4447,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_perf8_harm_c4_01.wav"
       },
-      "intro": "La octava son doce semitonos: la misma nota, más aguda o más grave. Es el marco donde caben los demás intervalos y la consonancia que más fácilmente se fusiona.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4508,7 +4508,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_tritone_asc_c4_01",
@@ -4518,7 +4518,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_ascendentes/interval_tritone_asc_c4_01.wav"
       },
-      "intro": "El tritono parte la octava por la mitad: seis semitonos. Es el intervalo más inestable y el mismo choque que empuja al acorde dominante a resolver.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4579,7 +4579,7 @@
         "mode": "asc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "account"
     },
     {
       "id": "interval_tritone_desc_c4_01",
@@ -4589,7 +4589,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_descendentes/interval_tritone_desc_c4_01.wav"
       },
-      "intro": "El tritono parte la octava por la mitad: seis semitonos. Es el intervalo más inestable y el mismo choque que empuja al acorde dominante a resolver.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4650,7 +4650,7 @@
         "mode": "desc",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     },
     {
       "id": "interval_tritone_harm_c4_01",
@@ -4660,7 +4660,7 @@
         "source": "asset",
         "path": "assets/musical/intervalos_armonicos/interval_tritone_harm_c4_01.wav"
       },
-      "intro": "El tritono parte la octava por la mitad: seis semitonos. Es el intervalo más inestable y el mismo choque que empuja al acorde dominante a resolver.",
+      "intro": "Escucha las dos notas e identifica el intervalo.",
       "question": "¿Qué intervalo escuchas?",
       "options": [
         {
@@ -4721,7 +4721,7 @@
         "mode": "harm",
         "startNote": "c4"
       },
-      "access": "free"
+      "access": "premium"
     }
   ]
 }

@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../../../core/audio/exercise_audio_player.dart';
+import '../../../../core/auth/account_prompt.dart';
 import '../../../../core/session/mock_session.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -16,17 +17,18 @@ import '../../../../core/widgets/gradient_button.dart';
 import '../../../../core/widgets/option_choice_card.dart';
 import '../../../../core/widgets/premium_back_button.dart';
 import '../../../exercises/models/exercise.dart';
+import '../../models/musical_pool.dart';
 import '../../models/musical_sections.dart';
 
 class MusicalExerciseScreen extends StatefulWidget {
   const MusicalExerciseScreen({
     super.key,
-    required this.sectionId,
-    required this.exerciseIndex,
+    required this.pool,
+    required this.exercise,
   });
 
-  final MusicalSectionId sectionId;
-  final int exerciseIndex;
+  final MusicalPool pool;
+  final Exercise exercise;
 
   @override
   State<MusicalExerciseScreen> createState() => _MusicalExerciseScreenState();
@@ -40,7 +42,6 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
   List<ExerciseOption> _options = const [];
   String? _selectedId;
   var _showFeedback = false;
-  var _isLast = false;
 
   @override
   void initState() {
@@ -48,13 +49,8 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
     _audioPlayer.onPlaybackStateChanged = () {
       if (mounted) setState(() {});
     };
-    final section = MusicalSections.byId(widget.sectionId);
-    final exercises = section?.exercises ?? const <Exercise>[];
-    if (exercises.isEmpty) return;
-    final index = widget.exerciseIndex.clamp(0, exercises.length - 1);
-    _exercise = exercises[index];
-    _isLast = index >= exercises.length - 1;
-    _options = _rolledOptions(_exercise!);
+    _exercise = widget.exercise;
+    _options = _rolledOptions(widget.exercise);
   }
 
   @override
@@ -108,8 +104,15 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
     setState(() => _showFeedback = true);
   }
 
-  void _goNext() {
-    if (_isLast) {
+  Future<void> _goNext() async {
+    var next = MusicalPools.pick(widget.pool, avoidId: _exercise?.id);
+    if (next == null && MusicalPools.needsAccountPrompt(widget.pool)) {
+      final registered = await promptRegister(context);
+      if (!registered || !mounted) return;
+      next = MusicalPools.pick(widget.pool, avoidId: _exercise?.id);
+    }
+    if (!mounted) return;
+    if (next == null) {
       Navigator.pop(context);
       return;
     }
@@ -117,10 +120,7 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
       context,
       AppTransitions.cinematicRoute<void>(
         settings: const RouteSettings(name: '/module/musical/exercise'),
-        screen: MusicalExerciseScreen(
-          sectionId: widget.sectionId,
-          exerciseIndex: widget.exerciseIndex + 1,
-        ),
+        screen: MusicalExerciseScreen(pool: widget.pool, exercise: next),
       ),
     );
   }
@@ -165,8 +165,8 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
               SizedBox(
                 width: double.infinity,
                 child: GradientButton(
-                  label: _isLast ? 'VOLVER AL LISTADO' : 'SIGUIENTE EJERCICIO',
-                  onPressed: _goNext,
+                  label: 'SIGUIENTE EJERCICIO',
+                  onPressed: () => unawaited(_goNext()),
                 ),
               )
             else

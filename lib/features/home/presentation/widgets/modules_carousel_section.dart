@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_module_icons.dart';
+import '../../../../core/session/mock_session.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/branded_module_icon.dart';
@@ -38,17 +39,22 @@ class ModulesCarouselSection extends StatelessWidget {
             separatorBuilder: (_, _) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
               final module = modules[index];
+              final progressLocked =
+                  module.id == 'dinamica' && !MockSession.dinamicaUnlocked;
               return SizedBox(
                 width: 172,
                 child: ModuleCarouselCard(
                   module: module,
-                  onTap: () async {
-                    if (module.route != null) {
-                      await Navigator.pushNamed(context, module.route!);
-                      onModuleReturn?.call();
-                    }
-                    onModuleTap?.call(module);
-                  },
+                  progressLocked: progressLocked,
+                  onTap: progressLocked
+                      ? null
+                      : () async {
+                          if (module.route != null) {
+                            await Navigator.pushNamed(context, module.route!);
+                            onModuleReturn?.call();
+                          }
+                          onModuleTap?.call(module);
+                        },
                 ),
               );
             },
@@ -63,10 +69,12 @@ class ModuleCarouselCard extends StatefulWidget {
   const ModuleCarouselCard({
     super.key,
     required this.module,
+    this.progressLocked = false,
     this.onTap,
   });
 
   final TrainingModule module;
+  final bool progressLocked;
   final VoidCallback? onTap;
 
   @override
@@ -79,12 +87,14 @@ class _ModuleCarouselCardState extends State<ModuleCarouselCard> {
   @override
   Widget build(BuildContext context) {
     final module = widget.module;
-    final isActive = _hovered;
+    final isActive = _hovered && !widget.progressLocked;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
-      cursor: SystemMouseCursors.click,
+      cursor: widget.progressLocked
+          ? SystemMouseCursors.basic
+          : SystemMouseCursors.click,
       child: GestureDetector(
         onTap: widget.onTap,
         child: AnimatedScale(
@@ -124,11 +134,25 @@ class _ModuleCarouselCardState extends State<ModuleCarouselCard> {
                   padding: 2,
                 ),
                 const SizedBox(height: 14),
-                Text(module.title, style: AppTypography.cardTitle),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(module.title, style: AppTypography.cardTitle),
+                    ),
+                    if (widget.progressLocked)
+                      const Icon(
+                        Icons.hourglass_top_rounded,
+                        color: AppColors.orange,
+                        size: 18,
+                      ),
+                  ],
+                ),
                 const SizedBox(height: 6),
                 Expanded(
                   child: Text(
-                    module.description,
+                    widget.progressLocked
+                        ? 'Se desbloquea al avanzar en tu entrenamiento.'
+                        : module.description,
                     style: AppTypography.caption,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

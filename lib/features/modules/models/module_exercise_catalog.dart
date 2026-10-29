@@ -11,12 +11,14 @@ class ModuleExerciseEntry {
     required this.title,
     required this.category,
     required this.exerciseIndex,
+    this.access,
   });
 
   final String label;
   final String title;
   final OnboardingOption category;
   final int exerciseIndex;
+  final String? access;
 }
 
 abstract final class ModuleExerciseCatalog {
@@ -31,6 +33,7 @@ abstract final class ModuleExerciseCatalog {
               title: exercise.question,
               category: category,
               exerciseIndex: index,
+              access: exercise.access,
             ),
         ],
       OnboardingOption.dinamicaCompresion => [

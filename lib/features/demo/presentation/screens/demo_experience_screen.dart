@@ -574,7 +574,6 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     }
     return switch (_category) {
       OnboardingOption.dinamicaCompresion => 'DYN_01',
-      OnboardingOption.entrenamientoMusical => 'MUS_01',
       _ => '${_category.name}_$_exerciseIndex',
     };
   }

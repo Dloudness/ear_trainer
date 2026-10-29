@@ -75,6 +75,13 @@ flutter:
     - assets/video/
     - assets/video/source/
     - assets/data/exercises.json
+    - assets/musical/chords_min_maj/
+    - assets/musical/chords_maj7_min7_dom7/
+    - assets/musical/triadas_inversiones/
+    - assets/musical/inversiones_chords/
+    - assets/musical/intervalos_ascendentes/
+    - assets/musical/intervalos_descendentes/
+    - assets/musical/intervalos_armonicos/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

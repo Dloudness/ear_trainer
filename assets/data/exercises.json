@@ -159,6 +159,4569 @@
         "contrast": "thin"
       },
       "access": "free"
+    },
+    {
+      "id": "chord_dom7_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_dom7_a3_01.wav"
+      },
+      "intro": "Entrenas el acorde dominante 7. También parte de un mayor, pero su séptima es menor. Entre esa séptima y la tercera aparece un tritono, la tensión que suele pedir ir hacia la tónica.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "dom7",
+      "difficulty": "beginner",
+      "explanation": "Es dominante 7 sobre La: la tercera mayor y la séptima menor forman un tritono. La fundamental suena en el bajo.",
+      "tip": "Escucha el choque entre la tercera mayor y la séptima menor. Ese tritono suena inestable, como si el acorde quisiera moverse.",
+      "tags": {
+        "root": "a3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_dom7_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_dom7_c3_01.wav"
+      },
+      "intro": "Entrenas el acorde dominante 7. También parte de un mayor, pero su séptima es menor. Entre esa séptima y la tercera aparece un tritono, la tensión que suele pedir ir hacia la tónica.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "dom7",
+      "difficulty": "beginner",
+      "explanation": "Es dominante 7 sobre Do: la tercera mayor y la séptima menor forman un tritono. La fundamental suena en el bajo.",
+      "tip": "Escucha el choque entre la tercera mayor y la séptima menor. Ese tritono suena inestable, como si el acorde quisiera moverse.",
+      "tags": {
+        "root": "c3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_dom7_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_dom7_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde dominante 7. También parte de un mayor, pero su séptima es menor. Entre esa séptima y la tercera aparece un tritono, la tensión que suele pedir ir hacia la tónica.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "dom7",
+      "difficulty": "beginner",
+      "explanation": "Es dominante 7 sobre Re sostenido: la tercera mayor y la séptima menor forman un tritono. La fundamental suena en el bajo.",
+      "tip": "Escucha el choque entre la tercera mayor y la séptima menor. Ese tritono suena inestable, como si el acorde quisiera moverse.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_dom7_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_dom7_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde dominante 7. También parte de un mayor, pero su séptima es menor. Entre esa séptima y la tercera aparece un tritono, la tensión que suele pedir ir hacia la tónica.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "dom7",
+      "difficulty": "beginner",
+      "explanation": "Es dominante 7 sobre Fa sostenido: la tercera mayor y la séptima menor forman un tritono. La fundamental suena en el bajo.",
+      "tip": "Escucha el choque entre la tercera mayor y la séptima menor. Ese tritono suena inestable, como si el acorde quisiera moverse.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_dom7_inv1_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_dom7_inv1_a3_01.wav"
+      },
+      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "dom7",
+      "difficulty": "intermediate",
+      "explanation": "Es dominante 7 sobre La: la tercera mayor y la séptima menor forman un tritono. Suena en primera inversión: la tercera está en el bajo.",
+      "tip": "El bajo cambió, pero el tritono entre la tercera mayor y la séptima menor sigue ahí. Esa tensión es la del dominante.",
+      "tags": {
+        "root": "a3",
+        "inversion": "inv1",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_dom7_inv1_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_dom7_inv1_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "dom7",
+      "difficulty": "intermediate",
+      "explanation": "Es dominante 7 sobre Re sostenido: la tercera mayor y la séptima menor forman un tritono. Suena en primera inversión: la tercera está en el bajo.",
+      "tip": "El bajo cambió, pero el tritono entre la tercera mayor y la séptima menor sigue ahí. Esa tensión es la del dominante.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "inv1",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_dom7_inv2_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_dom7_inv2_c3_01.wav"
+      },
+      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "dom7",
+      "difficulty": "intermediate",
+      "explanation": "Es dominante 7 sobre Do: la tercera mayor y la séptima menor forman un tritono. Suena en segunda inversión: la quinta está en el bajo.",
+      "tip": "El bajo cambió, pero el tritono entre la tercera mayor y la séptima menor sigue ahí. Esa tensión es la del dominante.",
+      "tags": {
+        "root": "c3",
+        "inversion": "inv2",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_dom7_inv2_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_dom7_inv2_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "dom7",
+      "difficulty": "intermediate",
+      "explanation": "Es dominante 7 sobre Fa sostenido: la tercera mayor y la séptima menor forman un tritono. Suena en segunda inversión: la quinta está en el bajo.",
+      "tip": "El bajo cambió, pero el tritono entre la tercera mayor y la séptima menor sigue ahí. Esa tensión es la del dominante.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "inv2",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_dom7_inv3_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_dom7_inv3_a3_01.wav"
+      },
+      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "dom7",
+      "difficulty": "intermediate",
+      "explanation": "Es dominante 7 sobre La: la tercera mayor y la séptima menor forman un tritono. Suena en tercera inversión: la séptima está en el bajo.",
+      "tip": "El bajo cambió, pero el tritono entre la tercera mayor y la séptima menor sigue ahí. Esa tensión es la del dominante.",
+      "tags": {
+        "root": "a3",
+        "inversion": "inv3",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_dom7_inv3_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_dom7_inv3_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el dominante 7 aunque el bajo no sea la fundamental. La inversión mueve el grave; la tensión que tienes que oír sigue siendo el tritono.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "dom7",
+      "difficulty": "intermediate",
+      "explanation": "Es dominante 7 sobre Re sostenido: la tercera mayor y la séptima menor forman un tritono. Suena en tercera inversión: la séptima está en el bajo.",
+      "tip": "El bajo cambió, pero el tritono entre la tercera mayor y la séptima menor sigue ahí. Esa tensión es la del dominante.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "inv3",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj7_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_maj7_a3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor 7. Nace de un mayor y suma la séptima mayor, a un semitono de la octava. Suena amplio y suave, muy usado en jazz, y no empuja a resolver.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "maj7",
+      "difficulty": "beginner",
+      "explanation": "Es mayor 7 sobre La: un acorde mayor más una séptima a un semitono de la octava. La fundamental suena en el bajo.",
+      "tip": "Busca la nota que casi llega a la octava y se queda a un semitono. Brilla, y no tiene el roce áspero del dominante.",
+      "tags": {
+        "root": "a3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj7_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_maj7_c3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor 7. Nace de un mayor y suma la séptima mayor, a un semitono de la octava. Suena amplio y suave, muy usado en jazz, y no empuja a resolver.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "maj7",
+      "difficulty": "beginner",
+      "explanation": "Es mayor 7 sobre Do: un acorde mayor más una séptima a un semitono de la octava. La fundamental suena en el bajo.",
+      "tip": "Busca la nota que casi llega a la octava y se queda a un semitono. Brilla, y no tiene el roce áspero del dominante.",
+      "tags": {
+        "root": "c3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj7_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_maj7_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor 7. Nace de un mayor y suma la séptima mayor, a un semitono de la octava. Suena amplio y suave, muy usado en jazz, y no empuja a resolver.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "maj7",
+      "difficulty": "beginner",
+      "explanation": "Es mayor 7 sobre Re sostenido: un acorde mayor más una séptima a un semitono de la octava. La fundamental suena en el bajo.",
+      "tip": "Busca la nota que casi llega a la octava y se queda a un semitono. Brilla, y no tiene el roce áspero del dominante.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj7_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_maj7_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor 7. Nace de un mayor y suma la séptima mayor, a un semitono de la octava. Suena amplio y suave, muy usado en jazz, y no empuja a resolver.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "maj7",
+      "difficulty": "beginner",
+      "explanation": "Es mayor 7 sobre Fa sostenido: un acorde mayor más una séptima a un semitono de la octava. La fundamental suena en el bajo.",
+      "tip": "Busca la nota que casi llega a la octava y se queda a un semitono. Brilla, y no tiene el roce áspero del dominante.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj7_inv1_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_maj7_inv1_c3_01.wav"
+      },
+      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "maj7",
+      "difficulty": "intermediate",
+      "explanation": "Es mayor 7 sobre Do: un acorde mayor más una séptima a un semitono de la octava. Suena en primera inversión: la tercera está en el bajo.",
+      "tip": "Ignora qué nota quedó abajo. La séptima mayor sigue a un semitono de la octava, suave y sin el tritono del dominante.",
+      "tags": {
+        "root": "c3",
+        "inversion": "inv1",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj7_inv1_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_maj7_inv1_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "maj7",
+      "difficulty": "intermediate",
+      "explanation": "Es mayor 7 sobre Fa sostenido: un acorde mayor más una séptima a un semitono de la octava. Suena en primera inversión: la tercera está en el bajo.",
+      "tip": "Ignora qué nota quedó abajo. La séptima mayor sigue a un semitono de la octava, suave y sin el tritono del dominante.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "inv1",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj7_inv2_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_maj7_inv2_a3_01.wav"
+      },
+      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "maj7",
+      "difficulty": "intermediate",
+      "explanation": "Es mayor 7 sobre La: un acorde mayor más una séptima a un semitono de la octava. Suena en segunda inversión: la quinta está en el bajo.",
+      "tip": "Ignora qué nota quedó abajo. La séptima mayor sigue a un semitono de la octava, suave y sin el tritono del dominante.",
+      "tags": {
+        "root": "a3",
+        "inversion": "inv2",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj7_inv2_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_maj7_inv2_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "maj7",
+      "difficulty": "intermediate",
+      "explanation": "Es mayor 7 sobre Re sostenido: un acorde mayor más una séptima a un semitono de la octava. Suena en segunda inversión: la quinta está en el bajo.",
+      "tip": "Ignora qué nota quedó abajo. La séptima mayor sigue a un semitono de la octava, suave y sin el tritono del dominante.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "inv2",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj7_inv3_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_maj7_inv3_c3_01.wav"
+      },
+      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "maj7",
+      "difficulty": "intermediate",
+      "explanation": "Es mayor 7 sobre Do: un acorde mayor más una séptima a un semitono de la octava. Suena en tercera inversión: la séptima está en el bajo.",
+      "tip": "Ignora qué nota quedó abajo. La séptima mayor sigue a un semitono de la octava, suave y sin el tritono del dominante.",
+      "tags": {
+        "root": "c3",
+        "inversion": "inv3",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj7_inv3_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_maj7_inv3_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el mayor 7 en inversión. Cambia la nota del bajo, no el color: sigue siendo un mayor con una séptima brillante pegada a la octava.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "maj7",
+      "difficulty": "intermediate",
+      "explanation": "Es mayor 7 sobre Fa sostenido: un acorde mayor más una séptima a un semitono de la octava. Suena en tercera inversión: la séptima está en el bajo.",
+      "tip": "Ignora qué nota quedó abajo. La séptima mayor sigue a un semitono de la octava, suave y sin el tritono del dominante.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "inv3",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_a3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre La: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "a3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_asharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_asharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre La sostenido: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "asharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_b3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_b3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre Si: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "b3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_c3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre Do: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "c3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_csharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_csharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre Do sostenido: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "csharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_d3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_d3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre Re: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "d3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre Re sostenido: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_e3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_e3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre Mi: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "e3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_f3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_f3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre Fa: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "f3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre Fa sostenido: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_g3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_g3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre Sol: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "g3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_gsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_maj_gsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor: tres notas con una tercera grande en el centro. Es el color luminoso y estable que te sirve de referencia para reconocer casi todo lo demás.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "beginner",
+      "explanation": "Es mayor sobre Sol sostenido: la tercera está a dos tonos de la fundamental. La fundamental suena en el bajo.",
+      "tip": "Fíjate en la tercera, dos tonos por encima de la fundamental. Si brilla y el acorde se siente abierto, es mayor.",
+      "tags": {
+        "root": "gsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_inv1_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/triadas_inversiones/chord_maj_inv1_a3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor cuando la fundamental no está en el bajo. El color sigue siendo luminoso; el trabajo es no dejarte engañar por la nota más grave.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "intermediate",
+      "explanation": "Es mayor sobre La: la tercera está a dos tonos de la fundamental. Suena en primera inversión: la tercera está en el bajo.",
+      "tip": "La tercera mayor sigue a dos tonos de la fundamental, aunque ya no suene encima del bajo. Si el color es luminoso, es mayor.",
+      "tags": {
+        "root": "a3",
+        "inversion": "inv1",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_inv1_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/triadas_inversiones/chord_maj_inv1_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor cuando la fundamental no está en el bajo. El color sigue siendo luminoso; el trabajo es no dejarte engañar por la nota más grave.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "intermediate",
+      "explanation": "Es mayor sobre Re sostenido: la tercera está a dos tonos de la fundamental. Suena en primera inversión: la tercera está en el bajo.",
+      "tip": "La tercera mayor sigue a dos tonos de la fundamental, aunque ya no suene encima del bajo. Si el color es luminoso, es mayor.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "inv1",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_inv2_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/triadas_inversiones/chord_maj_inv2_c3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor cuando la fundamental no está en el bajo. El color sigue siendo luminoso; el trabajo es no dejarte engañar por la nota más grave.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "intermediate",
+      "explanation": "Es mayor sobre Do: la tercera está a dos tonos de la fundamental. Suena en segunda inversión: la quinta está en el bajo.",
+      "tip": "La tercera mayor sigue a dos tonos de la fundamental, aunque ya no suene encima del bajo. Si el color es luminoso, es mayor.",
+      "tags": {
+        "root": "c3",
+        "inversion": "inv2",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_maj_inv2_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/triadas_inversiones/chord_maj_inv2_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde mayor cuando la fundamental no está en el bajo. El color sigue siendo luminoso; el trabajo es no dejarte engañar por la nota más grave.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "maj",
+      "difficulty": "intermediate",
+      "explanation": "Es mayor sobre Fa sostenido: la tercera está a dos tonos de la fundamental. Suena en segunda inversión: la quinta está en el bajo.",
+      "tip": "La tercera mayor sigue a dos tonos de la fundamental, aunque ya no suene encima del bajo. Si el color es luminoso, es mayor.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "inv2",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min7_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_min7_a3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor 7. Es un menor con una séptima menor añadida. Suena redondo y relajado: tiene séptima, pero no el tritono que vuelve urgente al dominante.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "min7",
+      "difficulty": "beginner",
+      "explanation": "Es menor 7 sobre La: tercera menor y séptima menor, sin el tritono del dominante. La fundamental suena en el bajo.",
+      "tip": "Hay una tercera menor y, arriba, una séptima a un tono de la octava. No aparece el tritono: suena oscuro y blando, no urgente.",
+      "tags": {
+        "root": "a3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min7_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_min7_c3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor 7. Es un menor con una séptima menor añadida. Suena redondo y relajado: tiene séptima, pero no el tritono que vuelve urgente al dominante.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "min7",
+      "difficulty": "beginner",
+      "explanation": "Es menor 7 sobre Do: tercera menor y séptima menor, sin el tritono del dominante. La fundamental suena en el bajo.",
+      "tip": "Hay una tercera menor y, arriba, una séptima a un tono de la octava. No aparece el tritono: suena oscuro y blando, no urgente.",
+      "tags": {
+        "root": "c3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min7_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_min7_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor 7. Es un menor con una séptima menor añadida. Suena redondo y relajado: tiene séptima, pero no el tritono que vuelve urgente al dominante.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "min7",
+      "difficulty": "beginner",
+      "explanation": "Es menor 7 sobre Re sostenido: tercera menor y séptima menor, sin el tritono del dominante. La fundamental suena en el bajo.",
+      "tip": "Hay una tercera menor y, arriba, una séptima a un tono de la octava. No aparece el tritono: suena oscuro y blando, no urgente.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min7_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_maj7_min7_dom7/chord_min7_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor 7. Es un menor con una séptima menor añadida. Suena redondo y relajado: tiene séptima, pero no el tritono que vuelve urgente al dominante.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "min7",
+      "difficulty": "beginner",
+      "explanation": "Es menor 7 sobre Fa sostenido: tercera menor y séptima menor, sin el tritono del dominante. La fundamental suena en el bajo.",
+      "tip": "Hay una tercera menor y, arriba, una séptima a un tono de la octava. No aparece el tritono: suena oscuro y blando, no urgente.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min7_inv1_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_min7_inv1_c3_01.wav"
+      },
+      "intro": "Entrenas el menor 7 con el bajo invertido. No lo confundas con un dominante: su tercera es menor y su séptima no choca contra ella.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "min7",
+      "difficulty": "intermediate",
+      "explanation": "Es menor 7 sobre Do: tercera menor y séptima menor, sin el tritono del dominante. Suena en primera inversión: la tercera está en el bajo.",
+      "tip": "No busques el choque del dominante. La tercera es menor y la séptima queda a un tono de la octava, aunque el bajo sea otra nota.",
+      "tags": {
+        "root": "c3",
+        "inversion": "inv1",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min7_inv1_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_min7_inv1_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el menor 7 con el bajo invertido. No lo confundas con un dominante: su tercera es menor y su séptima no choca contra ella.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "min7",
+      "difficulty": "intermediate",
+      "explanation": "Es menor 7 sobre Fa sostenido: tercera menor y séptima menor, sin el tritono del dominante. Suena en primera inversión: la tercera está en el bajo.",
+      "tip": "No busques el choque del dominante. La tercera es menor y la séptima queda a un tono de la octava, aunque el bajo sea otra nota.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "inv1",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min7_inv2_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_min7_inv2_a3_01.wav"
+      },
+      "intro": "Entrenas el menor 7 con el bajo invertido. No lo confundas con un dominante: su tercera es menor y su séptima no choca contra ella.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "min7",
+      "difficulty": "intermediate",
+      "explanation": "Es menor 7 sobre La: tercera menor y séptima menor, sin el tritono del dominante. Suena en segunda inversión: la quinta está en el bajo.",
+      "tip": "No busques el choque del dominante. La tercera es menor y la séptima queda a un tono de la octava, aunque el bajo sea otra nota.",
+      "tags": {
+        "root": "a3",
+        "inversion": "inv2",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min7_inv2_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_min7_inv2_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el menor 7 con el bajo invertido. No lo confundas con un dominante: su tercera es menor y su séptima no choca contra ella.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "min7",
+      "difficulty": "intermediate",
+      "explanation": "Es menor 7 sobre Re sostenido: tercera menor y séptima menor, sin el tritono del dominante. Suena en segunda inversión: la quinta está en el bajo.",
+      "tip": "No busques el choque del dominante. La tercera es menor y la séptima queda a un tono de la octava, aunque el bajo sea otra nota.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "inv2",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min7_inv3_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/inversiones_chords/chord_min7_inv3_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el menor 7 con el bajo invertido. No lo confundas con un dominante: su tercera es menor y su séptima no choca contra ella.",
+      "question": "¿Qué acorde con séptima escuchas?",
+      "options": [
+        {
+          "id": "maj7",
+          "label": "Mayor 7"
+        },
+        {
+          "id": "dom7",
+          "label": "Dominante 7"
+        },
+        {
+          "id": "min7",
+          "label": "Menor 7"
+        }
+      ],
+      "correct": "min7",
+      "difficulty": "intermediate",
+      "explanation": "Es menor 7 sobre Fa sostenido: tercera menor y séptima menor, sin el tritono del dominante. Suena en tercera inversión: la séptima está en el bajo.",
+      "tip": "No busques el choque del dominante. La tercera es menor y la séptima queda a un tono de la octava, aunque el bajo sea otra nota.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "inv3",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_a3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre La: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "a3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_asharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_asharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre La sostenido: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "asharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_b3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_b3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre Si: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "b3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_c3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre Do: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "c3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_csharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_csharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre Do sostenido: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "csharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_d3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_d3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre Re: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "d3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre Re sostenido: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_e3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_e3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre Mi: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "e3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_f3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_f3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre Fa: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "f3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre Fa sostenido: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_g3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_g3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre Sol: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "g3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_gsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/chords_min_maj/chord_min_gsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor. También son tres notas, pero la del medio está un semitono más baja que en el mayor, y por eso suena más oscuro y menos conclusivo.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "beginner",
+      "explanation": "Es menor sobre Sol sostenido: la tercera está a un tono y medio y el color es más oscuro. La fundamental suena en el bajo.",
+      "tip": "La pista es la tercera, a un tono y medio de la fundamental. Queda más baja que en el mayor y el color se apaga.",
+      "tags": {
+        "root": "gsharp3",
+        "inversion": "root",
+        "voicing": "root"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_inv1_c3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/triadas_inversiones/chord_min_inv1_c3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor con el bajo cambiado. La nota grave ya no nombra el acorde: hay que encontrar la tercera menor, que lo oscurece.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "intermediate",
+      "explanation": "Es menor sobre Do: la tercera está a un tono y medio y el color es más oscuro. Suena en primera inversión: la tercera está en el bajo.",
+      "tip": "Aunque el bajo sea otra nota, la tercera está un semitono más baja que la del mayor. Ese oscurecimiento es lo que lo hace menor.",
+      "tags": {
+        "root": "c3",
+        "inversion": "inv1",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_inv1_fsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/triadas_inversiones/chord_min_inv1_fsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor con el bajo cambiado. La nota grave ya no nombra el acorde: hay que encontrar la tercera menor, que lo oscurece.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "intermediate",
+      "explanation": "Es menor sobre Fa sostenido: la tercera está a un tono y medio y el color es más oscuro. Suena en primera inversión: la tercera está en el bajo.",
+      "tip": "Aunque el bajo sea otra nota, la tercera está un semitono más baja que la del mayor. Ese oscurecimiento es lo que lo hace menor.",
+      "tags": {
+        "root": "fsharp3",
+        "inversion": "inv1",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_inv2_a3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/triadas_inversiones/chord_min_inv2_a3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor con el bajo cambiado. La nota grave ya no nombra el acorde: hay que encontrar la tercera menor, que lo oscurece.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "intermediate",
+      "explanation": "Es menor sobre La: la tercera está a un tono y medio y el color es más oscuro. Suena en segunda inversión: la quinta está en el bajo.",
+      "tip": "Aunque el bajo sea otra nota, la tercera está un semitono más baja que la del mayor. Ese oscurecimiento es lo que lo hace menor.",
+      "tags": {
+        "root": "a3",
+        "inversion": "inv2",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "chord_min_inv2_dsharp3_01",
+      "module": "entrenamientoMusical",
+      "type": "chord_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/triadas_inversiones/chord_min_inv2_dsharp3_01.wav"
+      },
+      "intro": "Entrenas el acorde menor con el bajo cambiado. La nota grave ya no nombra el acorde: hay que encontrar la tercera menor, que lo oscurece.",
+      "question": "¿Este acorde es mayor o menor?",
+      "options": [
+        {
+          "id": "maj",
+          "label": "Mayor"
+        },
+        {
+          "id": "min",
+          "label": "Menor"
+        }
+      ],
+      "correct": "min",
+      "difficulty": "intermediate",
+      "explanation": "Es menor sobre Re sostenido: la tercera está a un tono y medio y el color es más oscuro. Suena en segunda inversión: la quinta está en el bajo.",
+      "tip": "Aunque el bajo sea otra nota, la tercera está un semitono más baja que la del mayor. Ese oscurecimiento es lo que lo hace menor.",
+      "tags": {
+        "root": "dsharp3",
+        "inversion": "inv2",
+        "voicing": "bass_inverted"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj2_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_maj2_asc_c4_01.wav"
+      },
+      "intro": "La segunda mayor es un tono entero, dos semitonos. Es el paso de vecino más habitual de una escala y suena cercano, ya sin el roce tan cerrado de la segunda menor.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj2",
+      "difficulty": "beginner",
+      "explanation": "Es una segunda mayor. Mide un tono entero, dos semitonos. La segunda nota está más aguda.",
+      "tip": "Sube un tono, no un semitono. Hay un hueco claro y la tensión es suave, de paso entre vecinos.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj2_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_maj2_desc_c4_01.wav"
+      },
+      "intro": "La segunda mayor es un tono entero, dos semitonos. Es el paso de vecino más habitual de una escala y suena cercano, ya sin el roce tan cerrado de la segunda menor.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj2",
+      "difficulty": "intermediate",
+      "explanation": "Es una segunda mayor. Mide un tono entero, dos semitonos. La segunda nota está más grave.",
+      "tip": "Baja un tono entero. Se siente un paso completo, más holgado que el semitono de la segunda menor.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj2_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_maj2_harm_c4_01.wav"
+      },
+      "intro": "La segunda mayor es un tono entero, dos semitonos. Es el paso de vecino más habitual de una escala y suena cercano, ya sin el roce tan cerrado de la segunda menor.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj2",
+      "difficulty": "advanced",
+      "explanation": "Es una segunda mayor. Mide un tono entero, dos semitonos. Las dos notas suenan a la vez.",
+      "tip": "Suenan a la vez con un tono de por medio. Hay roce, pero más abierto que el de dos teclas vecinas.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj3_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_maj3_asc_c4_01.wav"
+      },
+      "intro": "La tercera mayor abarca cuatro semitonos, dos tonos. Es el intervalo que da al acorde mayor su brillo y su sensación de reposo.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj3",
+      "difficulty": "beginner",
+      "explanation": "Es una tercera mayor. Mide cuatro semitonos y da el brillo del acorde mayor. La segunda nota está más aguda.",
+      "tip": "Sube dos tonos justos. Es el salto que abre un acorde mayor: luminoso y estable.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj3_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_maj3_desc_c4_01.wav"
+      },
+      "intro": "La tercera mayor abarca cuatro semitonos, dos tonos. Es el intervalo que da al acorde mayor su brillo y su sensación de reposo.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj3",
+      "difficulty": "intermediate",
+      "explanation": "Es una tercera mayor. Mide cuatro semitonos y da el brillo del acorde mayor. La segunda nota está más grave.",
+      "tip": "Baja dos tonos. La nota de llegada sigue sonando mayor, brillante y no apagada.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj3_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_maj3_harm_c4_01.wav"
+      },
+      "intro": "La tercera mayor abarca cuatro semitonos, dos tonos. Es el intervalo que da al acorde mayor su brillo y su sensación de reposo.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj3",
+      "difficulty": "advanced",
+      "explanation": "Es una tercera mayor. Mide cuatro semitonos y da el brillo del acorde mayor. Las dos notas suenan a la vez.",
+      "tip": "Suenan juntas a dos tonos de distancia. El resultado es consonante y claro, la tercera del acorde mayor.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj6_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_maj6_asc_c4_01.wav"
+      },
+      "intro": "La sexta mayor son nueve semitonos. Suena abierta y luminosa, y es la inversión de la tercera menor.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj6",
+      "difficulty": "beginner",
+      "explanation": "Es una sexta mayor. Mide nueve semitonos y suena abierta y luminosa. La segunda nota está más aguda.",
+      "tip": "Sube nueve semitonos: un tono por encima de la quinta y un semitono más que la sexta menor. El salto se oye despejado.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj6_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_maj6_desc_c4_01.wav"
+      },
+      "intro": "La sexta mayor son nueve semitonos. Suena abierta y luminosa, y es la inversión de la tercera menor.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj6",
+      "difficulty": "intermediate",
+      "explanation": "Es una sexta mayor. Mide nueve semitonos y suena abierta y luminosa. La segunda nota está más grave.",
+      "tip": "Baja nueve semitonos. Sigue sonando mayor: brillante, no nostálgica.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj6_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_maj6_harm_c4_01.wav"
+      },
+      "intro": "La sexta mayor son nueve semitonos. Suena abierta y luminosa, y es la inversión de la tercera menor.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj6",
+      "difficulty": "advanced",
+      "explanation": "Es una sexta mayor. Mide nueve semitonos y suena abierta y luminosa. Las dos notas suenan a la vez.",
+      "tip": "Es una tercera menor dada vuelta. Suena consonante y clara, más luminosa que la sexta menor.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj7_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_maj7_asc_c4_01.wav"
+      },
+      "intro": "La séptima mayor son once semitonos. Se queda a un semitono de la octava, como la nota sensible que quiere resolver hacia arriba.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj7",
+      "difficulty": "beginner",
+      "explanation": "Es una séptima mayor. Mide once semitonos y queda a un semitono de la octava. La segunda nota está más aguda.",
+      "tip": "Casi alcanza la octava y se detiene un semitono antes. Ese casi, brillante y cercano, es la séptima mayor.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj7_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_maj7_desc_c4_01.wav"
+      },
+      "intro": "La séptima mayor son once semitonos. Se queda a un semitono de la octava, como la nota sensible que quiere resolver hacia arriba.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj7",
+      "difficulty": "intermediate",
+      "explanation": "Es una séptima mayor. Mide once semitonos y queda a un semitono de la octava. La segunda nota está más grave.",
+      "tip": "Casi cae una octava, pero se queda un semitono por encima de ella. Las dos notas quedan vecinas de octava.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_maj7_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_maj7_harm_c4_01.wav"
+      },
+      "intro": "La séptima mayor son once semitonos. Se queda a un semitono de la octava, como la nota sensible que quiere resolver hacia arriba.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "maj7",
+      "difficulty": "advanced",
+      "explanation": "Es una séptima mayor. Mide once semitonos y queda a un semitono de la octava. Las dos notas suenan a la vez.",
+      "tip": "Están a un semitono de formar una octava. El roce es agudo y luminoso, más cerrado que el tono entero de la séptima menor.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min2_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_min2_asc_c4_01.wav"
+      },
+      "intro": "La segunda menor es un semitono, el salto entre dos teclas vecinas. Reconocerla te da la unidad con la que se miden todos los demás intervalos.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min2",
+      "difficulty": "beginner",
+      "explanation": "Es una segunda menor. Mide un semitono, la distancia más pequeña. La segunda nota está más aguda.",
+      "tip": "La segunda nota sube apenas un semitono. El roce es inmediato, como si las dos notas no cupieran.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min2_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_min2_desc_c4_01.wav"
+      },
+      "intro": "La segunda menor es un semitono, el salto entre dos teclas vecinas. Reconocerla te da la unidad con la que se miden todos los demás intervalos.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min2",
+      "difficulty": "intermediate",
+      "explanation": "Es una segunda menor. Mide un semitono, la distancia más pequeña. La segunda nota está más grave.",
+      "tip": "La segunda nota baja un semitono. El descenso es mínimo: casi la misma altura, solo un poco más grave.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min2_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_min2_harm_c4_01.wav"
+      },
+      "intro": "La segunda menor es un semitono, el salto entre dos teclas vecinas. Reconocerla te da la unidad con la que se miden todos los demás intervalos.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min2",
+      "difficulty": "advanced",
+      "explanation": "Es una segunda menor. Mide un semitono, la distancia más pequeña. Las dos notas suenan a la vez.",
+      "tip": "Suenan juntas, separadas por un solo semitono. El choque es áspero y muy cerrado.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min3_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_min3_asc_c4_01.wav"
+      },
+      "intro": "La tercera menor abarca tres semitonos. Es la distancia que vuelve menor a un acorde: si la reconoces, ya puedes separar un color oscuro de uno brillante.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min3",
+      "difficulty": "beginner",
+      "explanation": "Es una tercera menor. Mide tres semitonos y da el color del acorde menor. La segunda nota está más aguda.",
+      "tip": "La nota alta queda a un tono y medio. Comparada con una tercera mayor, llega un semitono antes y suena más oscura.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min3_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_min3_desc_c4_01.wav"
+      },
+      "intro": "La tercera menor abarca tres semitonos. Es la distancia que vuelve menor a un acorde: si la reconoces, ya puedes separar un color oscuro de uno brillante.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min3",
+      "difficulty": "intermediate",
+      "explanation": "Es una tercera menor. Mide tres semitonos y da el color del acorde menor. La segunda nota está más grave.",
+      "tip": "El salto hacia abajo es de tres semitonos. El color es el del acorde menor, más sombrío que una tercera mayor.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min3_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_min3_harm_c4_01.wav"
+      },
+      "intro": "La tercera menor abarca tres semitonos. Es la distancia que vuelve menor a un acorde: si la reconoces, ya puedes separar un color oscuro de uno brillante.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min3",
+      "difficulty": "advanced",
+      "explanation": "Es una tercera menor. Mide tres semitonos y da el color del acorde menor. Las dos notas suenan a la vez.",
+      "tip": "Las dos notas forman a la vez una tercera menor. Ese intervalo es el centro sonoro del acorde menor.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min6_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_min6_asc_c4_01.wav"
+      },
+      "intro": "La sexta menor son ocho semitonos. Suena ancha y algo nostálgica, y es la inversión de la tercera mayor: la misma familia de notas, escuchada al revés.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min6",
+      "difficulty": "beginner",
+      "explanation": "Es una sexta menor. Mide ocho semitonos y suena ancha, con un dejo nostálgico. La segunda nota está más aguda.",
+      "tip": "Sube ocho semitonos, uno más que la quinta. El salto ya es ancho y el color queda dulce, no del todo luminoso.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min6_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_min6_desc_c4_01.wav"
+      },
+      "intro": "La sexta menor son ocho semitonos. Suena ancha y algo nostálgica, y es la inversión de la tercera mayor: la misma familia de notas, escuchada al revés.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min6",
+      "difficulty": "intermediate",
+      "explanation": "Es una sexta menor. Mide ocho semitonos y suena ancha, con un dejo nostálgico. La segunda nota está más grave.",
+      "tip": "La caída cubre ocho semitonos. Es grande y algo melancólica, un semitono más estrecha que la sexta mayor.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min6_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_min6_harm_c4_01.wav"
+      },
+      "intro": "La sexta menor son ocho semitonos. Suena ancha y algo nostálgica, y es la inversión de la tercera mayor: la misma familia de notas, escuchada al revés.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min6",
+      "difficulty": "advanced",
+      "explanation": "Es una sexta menor. Mide ocho semitonos y suena ancha, con un dejo nostálgico. Las dos notas suenan a la vez.",
+      "tip": "Juntas ocupan el lugar de una tercera mayor invertida. Suena suave, con un dejo nostálgico.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min7_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_min7_asc_c4_01.wav"
+      },
+      "intro": "La séptima menor son diez semitonos, a un tono de la octava. Es la séptima del dominante y del menor 7: amplia, y con tendencia a bajar.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min7",
+      "difficulty": "beginner",
+      "explanation": "Es una séptima menor. Mide diez semitonos y queda a un tono de la octava. La segunda nota está más aguda.",
+      "tip": "Sube diez semitonos y se queda a un tono de la octava. No llega arriba del todo: esa distancia es lo que se escucha.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min7_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_min7_desc_c4_01.wav"
+      },
+      "intro": "La séptima menor son diez semitonos, a un tono de la octava. Es la séptima del dominante y del menor 7: amplia, y con tendencia a bajar.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min7",
+      "difficulty": "intermediate",
+      "explanation": "Es una séptima menor. Mide diez semitonos y queda a un tono de la octava. La segunda nota está más grave.",
+      "tip": "Baja diez semitonos. La nota grave queda a un tono de la octava inferior, amplia y un poco inestable.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_min7_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_min7_harm_c4_01.wav"
+      },
+      "intro": "La séptima menor son diez semitonos, a un tono de la octava. Es la séptima del dominante y del menor 7: amplia, y con tendencia a bajar.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "min7",
+      "difficulty": "advanced",
+      "explanation": "Es una séptima menor. Mide diez semitonos y queda a un tono de la octava. Las dos notas suenan a la vez.",
+      "tip": "Suenan a un tono de la octava. El intervalo es ancho y blando, el de la séptima del acorde dominante.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_perf4_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_perf4_asc_c4_01.wav"
+      },
+      "intro": "La cuarta justa son cinco semitonos. No es mayor ni menor: suena abierta y un poco suspendida, como si todavía no se hubiera apoyado en una tercera.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "perf4",
+      "difficulty": "beginner",
+      "explanation": "Es una cuarta justa. Mide cinco semitonos y no es mayor ni menor. La segunda nota está más aguda.",
+      "tip": "Sube cinco semitonos. La llegada es limpia, pero hueca: no tiene el color de una tercera.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_perf4_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_perf4_desc_c4_01.wav"
+      },
+      "intro": "La cuarta justa son cinco semitonos. No es mayor ni menor: suena abierta y un poco suspendida, como si todavía no se hubiera apoyado en una tercera.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "perf4",
+      "difficulty": "intermediate",
+      "explanation": "Es una cuarta justa. Mide cinco semitonos y no es mayor ni menor. La segunda nota está más grave.",
+      "tip": "Baja una cuarta justa. El salto es amplio y abierto, ni triste como el menor ni brillante como el mayor.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_perf4_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_perf4_harm_c4_01.wav"
+      },
+      "intro": "La cuarta justa son cinco semitonos. No es mayor ni menor: suena abierta y un poco suspendida, como si todavía no se hubiera apoyado en una tercera.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "perf4",
+      "difficulty": "advanced",
+      "explanation": "Es una cuarta justa. Mide cinco semitonos y no es mayor ni menor. Las dos notas suenan a la vez.",
+      "tip": "Juntas suenan limpias y huecas. No hay una tercera que las vuelva mayores o menores: el intervalo queda abierto.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_perf5_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_perf5_asc_c4_01.wav"
+      },
+      "intro": "La quinta justa son siete semitonos. Junto con la octava, es de las consonancias más firmes: hueca, estable y sin color mayor ni menor.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "perf5",
+      "difficulty": "beginner",
+      "explanation": "Es una quinta justa. Mide siete semitonos y es una consonancia hueca y estable. La segunda nota está más aguda.",
+      "tip": "Sube siete semitonos. La nota alta suena hueca y sólida, un semitono por encima de donde estaría el tritono.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_perf5_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_perf5_desc_c4_01.wav"
+      },
+      "intro": "La quinta justa son siete semitonos. Junto con la octava, es de las consonancias más firmes: hueca, estable y sin color mayor ni menor.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "perf5",
+      "difficulty": "intermediate",
+      "explanation": "Es una quinta justa. Mide siete semitonos y es una consonancia hueca y estable. La segunda nota está más grave.",
+      "tip": "Baja una quinta justa. El salto se siente amplio y asentado, sin una tensión que haya que resolver.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_perf5_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_perf5_harm_c4_01.wav"
+      },
+      "intro": "La quinta justa son siete semitonos. Junto con la octava, es de las consonancias más firmes: hueca, estable y sin color mayor ni menor.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "perf5",
+      "difficulty": "advanced",
+      "explanation": "Es una quinta justa. Mide siete semitonos y es una consonancia hueca y estable. Las dos notas suenan a la vez.",
+      "tip": "Suenan juntas y casi se funden. No hay choque: es la quinta limpia del acorde.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_perf8_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_perf8_asc_c4_01.wav"
+      },
+      "intro": "La octava son doce semitonos: la misma nota, más aguda o más grave. Es el marco donde caben los demás intervalos y la consonancia que más fácilmente se fusiona.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "perf8",
+      "difficulty": "beginner",
+      "explanation": "Es una octava. Mide doce semitonos: la misma nota en otro registro. La segunda nota está más aguda.",
+      "tip": "La segunda nota repite el mismo nombre y suena el doble de aguda. Al cantarla, la voz siente que llegó a la misma nota.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_perf8_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_perf8_desc_c4_01.wav"
+      },
+      "intro": "La octava son doce semitonos: la misma nota, más aguda o más grave. Es el marco donde caben los demás intervalos y la consonancia que más fácilmente se fusiona.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "perf8",
+      "difficulty": "intermediate",
+      "explanation": "Es una octava. Mide doce semitonos: la misma nota en otro registro. La segunda nota está más grave.",
+      "tip": "Baja hasta la misma nota, una octava más grave. No cambia de nombre, solo de registro.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_perf8_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_perf8_harm_c4_01.wav"
+      },
+      "intro": "La octava son doce semitonos: la misma nota, más aguda o más grave. Es el marco donde caben los demás intervalos y la consonancia que más fácilmente se fusiona.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "perf8",
+      "difficulty": "advanced",
+      "explanation": "Es una octava. Mide doce semitonos: la misma nota en otro registro. Las dos notas suenan a la vez.",
+      "tip": "Suenan juntas y se fusionan: es la misma nota en dos alturas. No hay roce ni color mayor o menor.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_tritone_asc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_ascendentes/interval_tritone_asc_c4_01.wav"
+      },
+      "intro": "El tritono parte la octava por la mitad: seis semitonos. Es el intervalo más inestable y el mismo choque que empuja al acorde dominante a resolver.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "tritone",
+      "difficulty": "beginner",
+      "explanation": "Es un tritono. Mide seis semitonos y parte la octava por la mitad. La segunda nota está más aguda.",
+      "tip": "Sube seis semitonos, media octava. Ni la cuarta ni la quinta terminan de asentarse: la nota queda en el medio y pide moverse.",
+      "tags": {
+        "mode": "asc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_tritone_desc_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_descendentes/interval_tritone_desc_c4_01.wav"
+      },
+      "intro": "El tritono parte la octava por la mitad: seis semitonos. Es el intervalo más inestable y el mismo choque que empuja al acorde dominante a resolver.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "tritone",
+      "difficulty": "intermediate",
+      "explanation": "Es un tritono. Mide seis semitonos y parte la octava por la mitad. La segunda nota está más grave.",
+      "tip": "Baja exactamente media octava. La caída no encuentra apoyo consonante: sigue tensa en los dos extremos.",
+      "tags": {
+        "mode": "desc",
+        "startNote": "c4"
+      },
+      "access": "free"
+    },
+    {
+      "id": "interval_tritone_harm_c4_01",
+      "module": "entrenamientoMusical",
+      "type": "interval_quality",
+      "audio": {
+        "source": "asset",
+        "path": "assets/musical/intervalos_armonicos/interval_tritone_harm_c4_01.wav"
+      },
+      "intro": "El tritono parte la octava por la mitad: seis semitonos. Es el intervalo más inestable y el mismo choque que empuja al acorde dominante a resolver.",
+      "question": "¿Qué intervalo escuchas?",
+      "options": [
+        {
+          "id": "min2",
+          "label": "2da menor"
+        },
+        {
+          "id": "maj2",
+          "label": "2da mayor"
+        },
+        {
+          "id": "min3",
+          "label": "3ra menor"
+        },
+        {
+          "id": "maj3",
+          "label": "3ra mayor"
+        },
+        {
+          "id": "perf4",
+          "label": "4ta justa"
+        },
+        {
+          "id": "tritone",
+          "label": "tritono"
+        },
+        {
+          "id": "perf5",
+          "label": "5ta justa"
+        },
+        {
+          "id": "min6",
+          "label": "6ta menor"
+        },
+        {
+          "id": "maj6",
+          "label": "6ta mayor"
+        },
+        {
+          "id": "min7",
+          "label": "7ma menor"
+        },
+        {
+          "id": "maj7",
+          "label": "7ma mayor"
+        },
+        {
+          "id": "perf8",
+          "label": "octava"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "tritone",
+      "difficulty": "advanced",
+      "explanation": "Es un tritono. Mide seis semitonos y parte la octava por la mitad. Las dos notas suenan a la vez.",
+      "tip": "Suenan a la vez y el choque es muy áspero. Es el mismo tritono que hay entre la tercera y la séptima del dominante.",
+      "tags": {
+        "mode": "harm",
+        "startNote": "c4"
+      },
+      "access": "free"
     }
   ]
 }

@@ -3,6 +3,7 @@ import '../../demo/models/category_demo_content.dart';
 import '../../demo/models/escucha_real_exercises.dart';
 import '../../exercises/data/exercise_repository.dart';
 import '../../onboarding/models/onboarding_option.dart';
+import 'musical_sections.dart';
 
 class ModuleExerciseEntry {
   const ModuleExerciseEntry({
@@ -41,12 +42,14 @@ abstract final class ModuleExerciseCatalog {
           ),
         ],
       OnboardingOption.entrenamientoMusical => [
-          ModuleExerciseEntry(
-            label: 'Ejercicio 1',
-            title: CategoryDemoContent.forCategory(category).question,
-            category: category,
-            exerciseIndex: 0,
-          ),
+          for (final (index, exercise)
+              in MusicalSections.playableExercises().indexed)
+            ModuleExerciseEntry(
+              label: 'Ejercicio ${index + 1}',
+              title: exercise.question,
+              category: category,
+              exerciseIndex: index,
+            ),
         ],
       OnboardingOption.escuchaReal => [
           for (var i = 0; i < EscuchaRealExercises.exercises.length; i++)

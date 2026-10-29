@@ -114,6 +114,8 @@ class MockSession {
       return 'dinamica';
     }
     if (exerciseId.startsWith('MUS_') ||
+        exerciseId.startsWith('chord_') ||
+        exerciseId.startsWith('interval_') ||
         exerciseId.startsWith('entrenamiento')) {
       return 'entrenamiento_musical';
     }

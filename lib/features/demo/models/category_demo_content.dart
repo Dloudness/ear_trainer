@@ -63,23 +63,10 @@ class CategoryDemoContent {
             feedbackIncorrectBody:
                 'Compara la respuesta dinámica — el audio B suena más comprimido.',
           ),
-      OnboardingOption.entrenamientoMusical => const CategoryDemoContent(
-            introTitle: 'Escucha atentamente.',
-            introSubtitle: 'Identifica la relación entre las dos notas.',
-            listenHint: 'Reproduce la secuencia y elige el intervalo.',
-            optionALabel: 'SECUENCIA',
-            optionBLabel: 'SECUENCIA',
-            question: '¿Qué intervalo escuchas?',
-            chooseALabel: '3ª mayor',
-            chooseBLabel: '5ª justa',
-            correctOption: 'B',
-            feedbackTitle: 'Buen oído.',
-            feedbackBody:
-                'Escuchaste una quinta justa — amplia, estable y muy musical.',
-            feedbackIncorrectBody:
-                'Vuelve a sentir la distancia entre notas — aquí era una quinta justa.',
-            singleListen: true,
-          ),
+      OnboardingOption.entrenamientoMusical =>
+        throw UnsupportedError(
+          'Use MusicalExerciseScreen for entrenamientoMusical.',
+        ),
       OnboardingOption.escuchaReal =>
         throw UnsupportedError(
           'Use EscuchaRealExercises.toDemoContent for escuchaReal.',

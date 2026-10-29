@@ -4,7 +4,9 @@ import 'dart:math';
 import 'package:ear_trainer/features/demo/models/exercise_demo_mapper.dart';
 import 'package:ear_trainer/features/exercises/data/exercise_repository.dart';
 import 'package:ear_trainer/features/exercises/models/exercise.dart';
+import 'package:ear_trainer/features/modules/models/musical_sections.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/frecuencias_screen.dart';
+import 'package:ear_trainer/features/modules/presentation/screens/musical_training_screen.dart';
 import 'package:ear_trainer/features/onboarding/models/onboarding_option.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -174,6 +176,41 @@ void main() {
     expect(warnings.last, contains('assets/eq/also_missing.wav'));
   });
 
+  test('musical exercises are grouped and the mock MUS_01 is gone', () {
+    final sections = MusicalSections.all();
+    expect(sections.map((section) => section.id), [
+      MusicalSectionId.intervalsAscending,
+      MusicalSectionId.intervalsDescending,
+      MusicalSectionId.intervalsHarmonic,
+      MusicalSectionId.triads,
+      MusicalSectionId.sevenths,
+      MusicalSectionId.inversions,
+    ]);
+    expect(sections.map((section) => section.exercises.length), [
+      12,
+      12,
+      12,
+      24,
+      12,
+      25,
+    ]);
+    for (final section in sections) {
+      final ranks = section.exercises.map((exercise) {
+        return switch (exercise.difficulty) {
+          'beginner' => 0,
+          'intermediate' => 1,
+          'advanced' => 2,
+          _ => 9,
+        };
+      });
+      expect(ranks, orderedEquals([...ranks]..sort()));
+    }
+    expect(
+      sections.expand((section) => section.exercises).map((e) => e.id),
+      isNot(contains('MUS_01')),
+    );
+  });
+
   testWidgets('Frecuencias lists the five JSON questions', (tester) async {
     tester.view.physicalSize = const Size(800, 2400);
     tester.view.devicePixelRatio = 1;
@@ -186,6 +223,28 @@ void main() {
     expect(find.text('¿Cuál conserva mejor su naturalidad?'), findsOneWidget);
     expect(find.text('¿Cuál perdió demasiado cuerpo?'), findsOneWidget);
     expect(find.text('Ejercicio 5'), findsOneWidget);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('Musical module shows six sections instead of the mock', (tester) async {
+    tester.view.physicalSize = const Size(800, 1600);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(const MaterialApp(home: MusicalTrainingScreen()));
+    await tester.pump();
+
+    expect(find.text('Intervalos ascendentes'), findsOneWidget);
+    expect(find.text('Intervalos descendentes'), findsOneWidget);
+    expect(find.text('Intervalos armónicos'), findsOneWidget);
+    expect(find.text('Acordes · tríadas'), findsOneWidget);
+    expect(find.text('Acordes · séptimas'), findsOneWidget);
+    expect(find.text('Acordes · inversiones'), findsOneWidget);
+    expect(find.text('3ª mayor'), findsNothing);
+    expect(find.text('5ª justa'), findsNothing);
+    expect(find.text('VER LISTA'), findsNWidgets(6));
 
     await tester.pumpWidget(const SizedBox.shrink());
   });

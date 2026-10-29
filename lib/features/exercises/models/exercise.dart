@@ -61,6 +61,8 @@ class Exercise {
     required this.explanation,
     this.explanationIncorrect,
     this.introSubtitle,
+    this.intro,
+    this.tip,
     required this.tags,
     required this.access,
   });
@@ -77,6 +79,8 @@ class Exercise {
   final String explanation;
   final String? explanationIncorrect;
   final String? introSubtitle;
+  final String? intro;
+  final String? tip;
   final Map<String, String> tags;
   final String access;
 
@@ -131,6 +135,8 @@ class Exercise {
       explanation: _requireString(json['explanation'], 'explanation'),
       explanationIncorrect: _optionalString(json['explanationIncorrect']),
       introSubtitle: _optionalString(json['introSubtitle']),
+      intro: _optionalString(json['intro']),
+      tip: _optionalString(json['tip']),
       tags: _tagsFrom(json['tags']),
       access: _requireString(json['access'], 'access'),
     );

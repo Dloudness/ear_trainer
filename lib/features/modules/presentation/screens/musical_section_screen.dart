@@ -65,25 +65,27 @@ class _SectionExerciseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassPanel(
       accent: MusicalSections.accent,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Ejercicio ${index + 1} · ${_difficultyLabel(difficulty)}',
             style: AppTypography.caption.copyWith(
+              fontSize: 11,
               color: MusicalSections.accent,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           Text(
             question,
-            style: AppTypography.cardTitle.copyWith(fontSize: 16, height: 1.35),
+            style: AppTypography.cardTitle.copyWith(fontSize: 14, height: 1.25),
           ),
-          const SizedBox(height: 18),
+          const SizedBox(height: 10),
           GradientButton(
             label: 'ESCUCHAR',
             compact: true,
+            dense: true,
             icon: Icons.play_arrow_rounded,
             emphasized: true,
             onPressed: onListen,

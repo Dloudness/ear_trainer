@@ -46,13 +46,13 @@ class EarTodaySection extends StatelessWidget {
                     : 'Tu precisión global es ${MockSession.globalAccuracyPercent}%.',
                 style: AppTypography.tagline(16),
               ),
-              const SizedBox(height: 8),
-              Text(
-                MockSession.completedExerciseCount == 0
-                    ? 'Completa un ejercicio para ver tu lectura auditiva.'
-                    : 'Has completado ${MockSession.completedExerciseCount} ejercicios.',
-                style: AppTypography.caption.copyWith(color: AppColors.textMuted),
-              ),
+              if (MockSession.completedExerciseCount == 0) ...[
+                const SizedBox(height: 8),
+                Text(
+                  'Completa un ejercicio para ver tu lectura auditiva.',
+                  style: AppTypography.caption.copyWith(color: AppColors.textMuted),
+                ),
+              ],
             ],
           ),
         ),

@@ -250,17 +250,17 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     }
   }
 
-  void _prepareSyncedVideo(
+  Future<void> _prepareSyncedVideo(
     VideoPlayerController video, {
     bool seekToStart = false,
     bool play = true,
-  }) {
-    unawaited(video.setVolume(0));
-    unawaited(video.setLooping(false));
-    if (seekToStart && video.value.position > _syncDrift) {
-      unawaited(video.seekTo(Duration.zero));
+  }) async {
+    await video.setVolume(0);
+    await video.setLooping(false);
+    if (seekToStart) {
+      await video.seekTo(Duration.zero);
     }
-    if (play) unawaited(video.play());
+    if (play) await video.play();
   }
 
   String? _assetFor(String option) =>
@@ -364,34 +364,6 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     _startMockPlayback(option);
   }
 
-  Future<void> _replayOption(String option) async {
-    final asset = _assetFor(option);
-    if (asset != null) {
-      final video = _syncedVideo;
-      if (video != null) {
-        _holdingSync = true;
-        _sharedEndArmed = true;
-        _prepareSyncedVideo(video, seekToStart: true);
-      }
-      try {
-        await _audioPlayer.replayOption(option, asset);
-      } finally {
-        _holdingSync = false;
-      }
-      if (video != null) _scheduleVideoResync();
-      if (mounted) setState(() {});
-      return;
-    }
-
-    _mockPlaybackTimer?.cancel();
-    setState(() {
-      _mockPlayingOption = option;
-      _mockPaused = false;
-      _mockPositionMs = 0;
-    });
-    _startMockPlayback(option);
-  }
-
   Future<void> _seekOption(String option, double fraction) async {
     final asset = _assetFor(option);
     if (asset != null) {
@@ -432,7 +404,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
       final resumed = !video.value.isPlaying;
       _holdingSync = true;
       _sharedEndArmed = true;
-      _prepareSyncedVideo(video, play: resumed);
+      await _prepareSyncedVideo(video, play: resumed);
       try {
         await _audioPlayer.playOption(
           option,
@@ -455,9 +427,9 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
 
     _holdingSync = true;
     _sharedEndArmed = true;
-    _prepareSyncedVideo(
+    await _prepareSyncedVideo(
       video,
-      seekToStart: !snap.isPausedOption(option) && video.value.position > _syncDrift,
+      seekToStart: !snap.isPausedOption(option),
     );
     try {
       await _audioPlayer.playOption(option, asset);
@@ -503,7 +475,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
 
     _holdingSync = true;
     _sharedEndArmed = true;
-    _prepareSyncedVideo(video, play: false);
+    await _prepareSyncedVideo(video, play: false);
     var reachedEnd = false;
     try {
       if (!_audioPlayer.snapshot.isActive(option)) {
@@ -690,7 +662,6 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
           isPaused: _isPaused,
           progressFor: _progressFor,
           onPlayPause: _playPauseOption,
-          onReplay: _replayOption,
           onSeek: _seekOption,
           onSelect: _selectOption,
         ),
@@ -905,7 +876,6 @@ class _ListenPhase extends StatelessWidget {
     required this.isPaused,
     required this.progressFor,
     required this.onPlayPause,
-    required this.onReplay,
     required this.onSeek,
     required this.onSelect,
   });
@@ -918,7 +888,6 @@ class _ListenPhase extends StatelessWidget {
   final bool Function(String option) isPaused;
   final double Function(String option) progressFor;
   final ValueChanged<String> onPlayPause;
-  final ValueChanged<String> onReplay;
   final void Function(String option, double fraction) onSeek;
   final ValueChanged<String> onSelect;
 
@@ -931,7 +900,6 @@ class _ListenPhase extends StatelessWidget {
       progress: progressFor(option),
       pulse: pulse,
       onPlayPause: () => onPlayPause(option),
-      onReplay: () => onReplay(option),
       onSeek: (fraction) => onSeek(option, fraction),
     );
   }

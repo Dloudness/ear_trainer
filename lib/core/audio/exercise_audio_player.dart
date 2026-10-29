@@ -94,7 +94,7 @@ class ExerciseAudioPlayer {
       _position = start;
       await _player.play(
         AssetSource(AppAssets.audioSourcePath(assetPath)),
-        position: start > Duration.zero ? start : null,
+        position: start,
       );
       onPlaybackStateChanged?.call();
       return;
@@ -109,7 +109,10 @@ class ExerciseAudioPlayer {
       case PlayerState.completed:
         _position = Duration.zero;
         await _player.stop();
-        await _player.play(AssetSource(AppAssets.audioSourcePath(assetPath)));
+        await _player.play(
+          AssetSource(AppAssets.audioSourcePath(assetPath)),
+          position: Duration.zero,
+        );
       case PlayerState.disposed:
         break;
     }
@@ -121,7 +124,10 @@ class ExerciseAudioPlayer {
     _playingOption = option;
     _currentAssetPath = assetPath;
     _position = Duration.zero;
-    await _player.play(AssetSource(AppAssets.audioSourcePath(assetPath)));
+    await _player.play(
+      AssetSource(AppAssets.audioSourcePath(assetPath)),
+      position: Duration.zero,
+    );
     onPlaybackStateChanged?.call();
   }
 

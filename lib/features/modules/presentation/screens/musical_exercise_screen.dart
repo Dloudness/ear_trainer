@@ -233,7 +233,6 @@ class _ListenView extends StatelessWidget {
           isPaused: isPaused,
           progress: progress,
           onPlayPause: onPlay,
-          onReplay: onReplay,
           onSeek: onSeek,
         ),
         const SizedBox(height: 12),
@@ -242,6 +241,7 @@ class _ListenView extends StatelessWidget {
           child: GradientButton(
             label: 'REPETIR',
             compact: true,
+            translucent: true,
             icon: Icons.replay_rounded,
             onPressed: onReplay,
           ),

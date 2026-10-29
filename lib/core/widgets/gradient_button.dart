@@ -8,6 +8,8 @@ class GradientButton extends StatefulWidget {
     required this.label,
     this.onPressed,
     this.compact = false,
+    this.dense = false,
+    this.translucent = false,
     this.icon,
     this.emphasized = false,
   });
@@ -15,6 +17,8 @@ class GradientButton extends StatefulWidget {
   final String label;
   final VoidCallback? onPressed;
   final bool compact;
+  final bool dense;
+  final bool translucent;
   final IconData? icon;
 
   /// Listen-style pulse and tap feedback for ESCUCHAR interactions.
@@ -73,9 +77,11 @@ class _GradientButtonState extends State<GradientButton>
 
   @override
   Widget build(BuildContext context) {
-    final height = widget.compact ? 44.0 : 50.0;
+    final height = widget.dense ? 34.0 : (widget.compact ? 44.0 : 50.0);
     final enabled = widget.onPressed != null;
     final baseShadow = _hovered ? 0.38 : 0.25;
+    final accent = AppColors.purple;
+    final foreground = widget.translucent ? accent : Colors.white;
 
     Widget button = AnimatedScale(
       scale: _pressed ? 0.97 : 1.0,
@@ -88,24 +94,36 @@ class _GradientButtonState extends State<GradientButton>
           duration: const Duration(milliseconds: 220),
           curve: Curves.easeOutCubic,
           height: height,
-          padding: EdgeInsets.symmetric(horizontal: widget.compact ? 20 : 28),
+          padding: EdgeInsets.symmetric(
+            horizontal: widget.dense ? 12 : (widget.compact ? 20 : 28),
+          ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(height / 2),
-            gradient: LinearGradient(
-              colors: _hovered || _pressed
-                  ? [AppColors.purpleDeep, AppColors.blueDeep]
-                  : [
-                      AppColors.purpleDeep.withValues(alpha: 0.92),
-                      AppColors.blueDeep.withValues(alpha: 0.92),
-                    ],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.purple.withValues(alpha: baseShadow),
-                blurRadius: _hovered ? 22 : 16,
-                offset: const Offset(0, 4),
-              ),
-            ],
+            color: widget.translucent
+                ? accent.withValues(alpha: _hovered || _pressed ? 0.2 : 0.17)
+                : null,
+            gradient: widget.translucent
+                ? null
+                : LinearGradient(
+                    colors: _hovered || _pressed
+                        ? [AppColors.purpleDeep, AppColors.blueDeep]
+                        : [
+                            AppColors.purpleDeep.withValues(alpha: 0.92),
+                            AppColors.blueDeep.withValues(alpha: 0.92),
+                          ],
+                  ),
+            border: widget.translucent
+                ? Border.all(color: accent.withValues(alpha: 0.55))
+                : null,
+            boxShadow: widget.translucent
+                ? null
+                : [
+                    BoxShadow(
+                      color: AppColors.purple.withValues(alpha: baseShadow),
+                      blurRadius: _hovered ? 22 : 16,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -114,15 +132,19 @@ class _GradientButtonState extends State<GradientButton>
               Text(
                 widget.label,
                 style: TextStyle(
-                  fontSize: widget.compact ? 11 : 12,
+                  fontSize: widget.dense ? 10 : (widget.compact ? 11 : 12),
                   fontWeight: FontWeight.w600,
-                  letterSpacing: widget.compact ? 1.6 : 2,
-                  color: Colors.white,
+                  letterSpacing: widget.dense ? 1.2 : (widget.compact ? 1.6 : 2),
+                  color: foreground,
                 ),
               ),
               if (widget.icon != null) ...[
-                const SizedBox(width: 8),
-                Icon(widget.icon, size: 16, color: Colors.white.withValues(alpha: 0.9)),
+                SizedBox(width: widget.dense ? 6 : 8),
+                Icon(
+                  widget.icon,
+                  size: widget.dense ? 13 : 16,
+                  color: foreground.withValues(alpha: widget.translucent ? 1 : 0.9),
+                ),
               ],
             ],
           ),

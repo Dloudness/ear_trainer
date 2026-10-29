@@ -21,23 +21,24 @@ class ModuleExerciseListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlassPanel(
       accent: accent,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             entry.label,
-            style: AppTypography.caption.copyWith(color: accent),
+            style: AppTypography.caption.copyWith(fontSize: 11, color: accent),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           Text(
             entry.title,
-            style: AppTypography.cardTitle.copyWith(fontSize: 16, height: 1.35),
+            style: AppTypography.cardTitle.copyWith(fontSize: 14, height: 1.25),
           ),
-          const SizedBox(height: 18),
+          const SizedBox(height: 10),
           GradientButton(
             label: 'ESCUCHAR',
             compact: true,
+            dense: true,
             icon: Icons.play_arrow_rounded,
             emphasized: true,
             onPressed: () {

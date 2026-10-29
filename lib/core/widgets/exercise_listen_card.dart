@@ -15,7 +15,6 @@ class ExerciseListenCard extends StatefulWidget {
     required this.progress,
     required this.onPlayPause,
     required this.onSeek,
-    this.onReplay,
     this.pulse,
   });
 
@@ -26,7 +25,6 @@ class ExerciseListenCard extends StatefulWidget {
   final double progress;
   final VoidCallback onPlayPause;
   final ValueChanged<double> onSeek;
-  final VoidCallback? onReplay;
   final Animation<double>? pulse;
 
   @override
@@ -43,9 +41,6 @@ class _ExerciseListenCardState extends State<ExerciseListenCard>
   OptionChoiceColors get _colors => OptionChoiceColors.forSlot(widget.slot);
 
   bool get _active => widget.isPlaying || widget.isPaused || _hovered;
-
-  bool get _showReplay =>
-      !widget.isPlaying && !widget.isPaused && widget.progress > 0.99;
 
   @override
   void initState() {
@@ -128,15 +123,12 @@ class _ExerciseListenCardState extends State<ExerciseListenCard>
                   _ListenPlayButton(
                     colors: colors,
                     isPlaying: widget.isPlaying,
-                    showReplay: _showReplay,
                     pressed: _pressed,
                     playIconAnimation: _playIconController,
                     onTapDown: () => setState(() => _pressed = true),
                     onTapUp: () => setState(() => _pressed = false),
                     onTapCancel: () => setState(() => _pressed = false),
-                    onTap: _showReplay && widget.onReplay != null
-                        ? widget.onReplay!
-                        : widget.onPlayPause,
+                    onTap: widget.onPlayPause,
                   ),
                   const SizedBox(width: 14),
                   Expanded(
@@ -161,9 +153,7 @@ class _ExerciseListenCardState extends State<ExerciseListenCard>
                               ? 'Reproduciendo…'
                               : widget.isPaused
                                   ? 'Pausado'
-                                  : _showReplay
-                                      ? 'Toca para repetir'
-                                      : 'Listo para escuchar',
+                                  : 'Listo para escuchar',
                           style: AppTypography.caption.copyWith(color: AppColors.textMuted),
                         ),
                       ],
@@ -209,7 +199,6 @@ class _ListenPlayButton extends StatelessWidget {
   const _ListenPlayButton({
     required this.colors,
     required this.isPlaying,
-    required this.showReplay,
     required this.pressed,
     required this.playIconAnimation,
     required this.onTapDown,
@@ -220,7 +209,6 @@ class _ListenPlayButton extends StatelessWidget {
 
   final OptionChoiceColors colors;
   final bool isPlaying;
-  final bool showReplay;
   final bool pressed;
   final Animation<double> playIconAnimation;
   final VoidCallback onTapDown;
@@ -257,9 +245,6 @@ class _ListenPlayButton extends StatelessWidget {
           child: AnimatedBuilder(
             animation: playIconAnimation,
             builder: (context, child) {
-              if (showReplay) {
-                return Icon(Icons.replay_rounded, color: colors.accent, size: 24);
-              }
               return Stack(
                 alignment: Alignment.center,
                 children: [

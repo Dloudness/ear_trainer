@@ -27,25 +27,19 @@ class MusicalTrainingScreen extends StatelessWidget {
         for (final section in sections)
           GlassPanel(
             accent: MusicalSections.accent,
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   section.title,
-                  style: AppTypography.cardTitle.copyWith(fontSize: 16, height: 1.35),
+                  style: AppTypography.cardTitle.copyWith(fontSize: 14, height: 1.25),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  '${section.exercises.length} ejercicios',
-                  style: AppTypography.caption.copyWith(
-                    color: MusicalSections.accent,
-                  ),
-                ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 10),
                 GradientButton(
                   label: 'VER LISTA',
                   compact: true,
+                  dense: true,
                   icon: Icons.queue_music_rounded,
                   emphasized: true,
                   onPressed: () {

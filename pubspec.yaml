@@ -75,6 +75,7 @@ flutter:
     - assets/video/
     - assets/video/source/
     - assets/data/exercises.json
+    - assets/data/training_context.json
     - assets/musical/chords_min_maj/
     - assets/musical/chords_maj7_min7_dom7/
     - assets/musical/triadas_inversiones/

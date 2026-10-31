@@ -3035,51 +3035,18 @@
           "label": "2da menor"
         },
         {
-          "id": "maj2",
-          "label": "2da mayor"
-        },
-        {
-          "id": "min3",
-          "label": "3ra menor"
-        },
-        {
-          "id": "maj3",
-          "label": "3ra mayor"
-        },
-        {
           "id": "perf4",
           "label": "4ta justa"
-        },
-        {
-          "id": "tritone",
-          "label": "tritono"
-        },
-        {
-          "id": "perf5",
-          "label": "5ta justa"
         },
         {
           "id": "min6",
           "label": "6ta menor"
         },
         {
-          "id": "maj6",
-          "label": "6ta mayor"
-        },
-        {
-          "id": "min7",
-          "label": "7ma menor"
-        },
-        {
-          "id": "maj7",
-          "label": "7ma mayor"
-        },
-        {
           "id": "perf8",
           "label": "octava"
         }
       ],
-      "maxOptions": 4,
       "correct": "min2",
       "difficulty": "beginner",
       "explanation": "Es una segunda menor. Mide un semitono, la distancia más pequeña. La segunda nota está más aguda.",
@@ -4100,51 +4067,18 @@
           "label": "2da menor"
         },
         {
-          "id": "maj2",
-          "label": "2da mayor"
-        },
-        {
-          "id": "min3",
-          "label": "3ra menor"
-        },
-        {
           "id": "maj3",
           "label": "3ra mayor"
-        },
-        {
-          "id": "perf4",
-          "label": "4ta justa"
-        },
-        {
-          "id": "tritone",
-          "label": "tritono"
         },
         {
           "id": "perf5",
           "label": "5ta justa"
         },
         {
-          "id": "min6",
-          "label": "6ta menor"
-        },
-        {
-          "id": "maj6",
-          "label": "6ta mayor"
-        },
-        {
-          "id": "min7",
-          "label": "7ma menor"
-        },
-        {
-          "id": "maj7",
-          "label": "7ma mayor"
-        },
-        {
           "id": "perf8",
           "label": "octava"
         }
       ],
-      "maxOptions": 4,
       "correct": "perf5",
       "difficulty": "beginner",
       "explanation": "Es una quinta justa. Mide siete semitonos y es una consonancia hueca y estable. La segunda nota está más aguda.",
@@ -4313,51 +4247,18 @@
           "label": "2da menor"
         },
         {
-          "id": "maj2",
-          "label": "2da mayor"
-        },
-        {
-          "id": "min3",
-          "label": "3ra menor"
-        },
-        {
-          "id": "maj3",
-          "label": "3ra mayor"
-        },
-        {
           "id": "perf4",
           "label": "4ta justa"
-        },
-        {
-          "id": "tritone",
-          "label": "tritono"
-        },
-        {
-          "id": "perf5",
-          "label": "5ta justa"
         },
         {
           "id": "min6",
           "label": "6ta menor"
         },
         {
-          "id": "maj6",
-          "label": "6ta mayor"
-        },
-        {
-          "id": "min7",
-          "label": "7ma menor"
-        },
-        {
-          "id": "maj7",
-          "label": "7ma mayor"
-        },
-        {
           "id": "perf8",
           "label": "octava"
         }
       ],
-      "maxOptions": 4,
       "correct": "perf8",
       "difficulty": "beginner",
       "explanation": "Es una octava. Mide doce semitonos: la misma nota en otro registro. La segunda nota está más aguda.",

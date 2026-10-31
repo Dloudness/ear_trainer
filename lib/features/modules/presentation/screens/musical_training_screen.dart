@@ -6,9 +6,11 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/app_motion.dart';
 import '../../../../core/widgets/glass_panel.dart';
 import '../../../../core/widgets/gradient_button.dart';
+import '../../../../core/session/mock_session.dart';
 import '../../models/musical_pool.dart';
 import '../../models/musical_sections.dart';
 import '../widgets/module_screen_layout.dart';
+import '../widgets/training_context_dialog.dart';
 import 'musical_exercise_screen.dart';
 
 class MusicalTrainingScreen extends StatefulWidget {
@@ -34,6 +36,11 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
       if (!mounted) return;
       if (registered) setState(() {});
       if (!registered) return;
+    }
+
+    if (!MockSession.hasSeenTrainingContext(pool.name)) {
+      final started = await showTrainingContext(context, pool, required: true);
+      if (!mounted || !started) return;
     }
 
     final exercise = MusicalPools.pick(pool);
@@ -108,6 +115,8 @@ class _PoolCard extends StatelessWidget {
               style: AppTypography.caption.copyWith(fontSize: 11),
             ),
           ],
+          const SizedBox(height: 8),
+          TrainingContextLink(pool: pool),
           const SizedBox(height: 10),
           GradientButton(
             label: locked ? 'BLOQUEADO' : 'ESCUCHAR',

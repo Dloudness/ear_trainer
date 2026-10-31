@@ -1,0 +1,38 @@
+{
+  "intervals": {
+    "title": "¿Por qué entrenar intervalos?",
+    "full": {
+      "intro": "Un intervalo es la distancia entre dos notas, y es la base de toda melodía y armonía.",
+      "skills": [
+        "Sacar canciones de oído",
+        "Anticipar hacia dónde va una melodía",
+        "Detectar notas desafinadas o que chocan en una mezcla",
+        "Hablar el mismo idioma que otros músicos y productores"
+      ],
+      "closing": "Al principio cuesta, y es normal. Con unos minutos al día, el oído mejora más rápido de lo que imaginas."
+    },
+    "short": {
+      "intro": "Un intervalo es la distancia entre dos notas, la base de la melodía y la armonía.",
+      "skills": [],
+      "closing": "Unos minutos al día afinan el oído más rápido de lo que imaginas."
+    }
+  },
+  "chords": {
+    "title": "¿Por qué entrenar acordes?",
+    "full": {
+      "intro": "Un acorde son varias notas sonando juntas, y es el color de la armonía en una canción.",
+      "skills": [
+        "Reconocer el carácter de una armonía",
+        "Seguir cómo cambia el acompañamiento",
+        "Detectar cuando la armonía no encaja en una mezcla",
+        "Hablar el mismo idioma que otros músicos y productores"
+      ],
+      "closing": "Al principio cuesta, y es normal. Con unos minutos al día, el oído mejora más rápido de lo que imaginas."
+    },
+    "short": {
+      "intro": "Un acorde son varias notas juntas: el color de la armonía.",
+      "skills": [],
+      "closing": "Unos minutos al día afinan el oído más rápido de lo que imaginas."
+    }
+  }
+}

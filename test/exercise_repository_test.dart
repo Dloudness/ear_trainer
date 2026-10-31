@@ -10,6 +10,7 @@ import 'package:ear_trainer/features/modules/presentation/screens/musical_traini
 import 'package:ear_trainer/features/onboarding/models/onboarding_option.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -242,6 +243,27 @@ void main() {
     });
     expect(
       musical
+          .firstWhere((exercise) => exercise.id == 'interval_perf8_asc_c4_01')
+          .options
+          .map((option) => option.id),
+      ['min2', 'perf4', 'min6', 'perf8'],
+    );
+    expect(
+      musical
+          .firstWhere((exercise) => exercise.id == 'interval_perf5_asc_c4_01')
+          .options
+          .map((option) => option.id),
+      ['min2', 'maj3', 'perf5', 'perf8'],
+    );
+    expect(
+      musical
+          .firstWhere((exercise) => exercise.id == 'interval_min2_asc_c4_01')
+          .options
+          .map((option) => option.id),
+      ['min2', 'perf4', 'min6', 'perf8'],
+    );
+    expect(
+      musical
           .where(
             (exercise) =>
                 exercise.type == 'interval_quality' && exercise.access == 'account',
@@ -293,7 +315,14 @@ void main() {
     expect(find.text('5ª justa'), findsNothing);
     expect(find.textContaining('ejercicio'), findsNothing);
 
+    SharedPreferences.setMockInitialValues({});
     await tester.tap(find.text('ESCUCHAR'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+
+    expect(find.text('¿Por qué entrenar intervalos?'), findsOneWidget);
+    expect(find.text('2da mayor'), findsNothing);
+    await tester.tap(find.text('EMPEZAR'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
 
@@ -301,6 +330,8 @@ void main() {
       find.text('Escucha las dos notas e identifica el intervalo.'),
       findsOneWidget,
     );
+    expect(find.text('octava'), findsOneWidget);
+    expect(find.text('2da mayor'), findsNothing);
     expect(find.text('¿Qué intervalo escuchas?'), findsOneWidget);
     expect(find.text('Pista'), findsNothing);
 

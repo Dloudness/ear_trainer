@@ -57,6 +57,9 @@ class ProgressSnapshot {
     this.isLoggedIn = false,
     this.isGuest = false,
     this.hasPremium = false,
+    this.trainingLevel,
+    this.seenIntervalContext = false,
+    this.seenChordContext = false,
   });
 
   final List<CompletedExerciseRecord> exercises;
@@ -68,6 +71,9 @@ class ProgressSnapshot {
   final bool isLoggedIn;
   final bool isGuest;
   final bool hasPremium;
+  final String? trainingLevel;
+  final bool seenIntervalContext;
+  final bool seenChordContext;
 
   ProgressSnapshot copyWith({
     List<CompletedExerciseRecord>? exercises,
@@ -79,6 +85,9 @@ class ProgressSnapshot {
     bool? isLoggedIn,
     bool? isGuest,
     bool? hasPremium,
+    String? trainingLevel,
+    bool? seenIntervalContext,
+    bool? seenChordContext,
   }) {
     return ProgressSnapshot(
       exercises: exercises ?? this.exercises,
@@ -90,6 +99,9 @@ class ProgressSnapshot {
       isLoggedIn: isLoggedIn ?? this.isLoggedIn,
       isGuest: isGuest ?? this.isGuest,
       hasPremium: hasPremium ?? this.hasPremium,
+      trainingLevel: trainingLevel ?? this.trainingLevel,
+      seenIntervalContext: seenIntervalContext ?? this.seenIntervalContext,
+      seenChordContext: seenChordContext ?? this.seenChordContext,
     );
   }
 }
@@ -107,6 +119,9 @@ class ProgressRepository {
   static const _kIsLoggedIn = 'progress.isLoggedIn';
   static const _kIsGuest = 'progress.isGuest';
   static const _kHasPremium = 'progress.hasPremium';
+  static const _kTrainingLevel = 'progress.trainingLevel';
+  static const _kSeenIntervalContext = 'progress.seenIntervalContext';
+  static const _kSeenChordContext = 'progress.seenChordContext';
 
   Future<ProgressSnapshot> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -139,6 +154,9 @@ class ProgressRepository {
       isLoggedIn: prefs.getBool(_kIsLoggedIn) ?? false,
       isGuest: prefs.getBool(_kIsGuest) ?? false,
       hasPremium: prefs.getBool(_kHasPremium) ?? false,
+      trainingLevel: prefs.getString(_kTrainingLevel),
+      seenIntervalContext: prefs.getBool(_kSeenIntervalContext) ?? false,
+      seenChordContext: prefs.getBool(_kSeenChordContext) ?? false,
     );
   }
 
@@ -159,6 +177,13 @@ class ProgressRepository {
     await prefs.setBool(_kIsLoggedIn, snapshot.isLoggedIn);
     await prefs.setBool(_kIsGuest, snapshot.isGuest);
     await prefs.setBool(_kHasPremium, snapshot.hasPremium);
+    if (snapshot.trainingLevel == null) {
+      await prefs.remove(_kTrainingLevel);
+    } else {
+      await prefs.setString(_kTrainingLevel, snapshot.trainingLevel!);
+    }
+    await prefs.setBool(_kSeenIntervalContext, snapshot.seenIntervalContext);
+    await prefs.setBool(_kSeenChordContext, snapshot.seenChordContext);
     if (snapshot.trainingFocus == null) {
       await prefs.remove(_kTrainingFocus);
     } else {

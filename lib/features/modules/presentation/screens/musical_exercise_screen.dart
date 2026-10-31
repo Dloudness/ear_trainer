@@ -19,6 +19,7 @@ import '../../../../core/widgets/premium_back_button.dart';
 import '../../../exercises/models/exercise.dart';
 import '../../models/musical_pool.dart';
 import '../../models/musical_sections.dart';
+import '../widgets/training_context_dialog.dart';
 
 class MusicalExerciseScreen extends StatefulWidget {
   const MusicalExerciseScreen({
@@ -61,6 +62,7 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
 
   List<ExerciseOption> _rolledOptions(Exercise exercise) {
     final presented = exercise.present(random: _random);
+    if (exercise.access == 'free') return List<ExerciseOption>.of(presented);
     return List<ExerciseOption>.of(presented)..shuffle(_random);
   }
 
@@ -137,6 +139,8 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
               backLabel: 'Back',
               onBack: () => Navigator.maybePop(context),
             ),
+            TrainingContextLink(pool: widget.pool),
+            const SizedBox(height: 8),
             Expanded(
               child: exercise == null
                   ? const Center(child: Text('Este ejercicio no está disponible.'))

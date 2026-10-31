@@ -10,6 +10,11 @@ enum MusicalPool { intervals, chords }
 abstract final class MusicalPools {
   static const intervalsTitle = 'Intervalos';
   static const chordsTitle = 'Acordes';
+  static const freeIntervalOrder = [
+    'interval_perf8_asc_c4_01',
+    'interval_perf5_asc_c4_01',
+    'interval_min2_asc_c4_01',
+  ];
 
   static String title(MusicalPool pool) {
     return switch (pool) {
@@ -79,6 +84,14 @@ abstract final class MusicalPools {
       ];
     }
     if (list.isEmpty) return null;
+    if (pool == MusicalPool.intervals &&
+        list.every((exercise) => exercise.access == 'free')) {
+      for (final id in freeIntervalOrder) {
+        for (final exercise in list) {
+          if (exercise.id == id) return exercise;
+        }
+      }
+    }
     return list[rng.nextInt(list.length)];
   }
 }

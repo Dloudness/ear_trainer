@@ -136,6 +136,32 @@ class MockSession {
 
   static bool get hasAccount => isLoggedIn && !isGuest;
 
+  /// Onboarding level: beginner, intermediate, or advanced.
+  /// A missing value is treated as beginner.
+  static String get trainingLevel => _progress.trainingLevel ?? 'beginner';
+
+  static bool get usesFullTrainingContext {
+    return switch (trainingLevel.toLowerCase()) {
+      'intermediate' || 'intermedio' || 'advanced' || 'avanzado' => false,
+      _ => true,
+    };
+  }
+
+  static bool hasSeenTrainingContext(String pool) {
+    return switch (pool) {
+      'chords' => _progress.seenChordContext,
+      _ => _progress.seenIntervalContext,
+    };
+  }
+
+  static Future<void> markTrainingContextSeen(String pool) async {
+    _progress = switch (pool) {
+      'chords' => _progress.copyWith(seenChordContext: true),
+      _ => _progress.copyWith(seenIntervalContext: true),
+    };
+    await _progressRepository.save(_progress);
+  }
+
   static bool get dinamicaUnlocked => _progress.exercises
       .any((item) => moduleIdForExercise(item.id) != 'dinamica');
 

@@ -35,6 +35,13 @@ const _freeIntervalIds = {
   'interval_perf8_asc_c4_01',
 };
 
+/// Four fixed choices, at least a minor third apart, including the answer.
+const _freeIntervalOptionIds = {
+  'interval_perf8_asc_c4_01': ['min2', 'perf4', 'min6', 'perf8'],
+  'interval_perf5_asc_c4_01': ['min2', 'maj3', 'perf5', 'perf8'],
+  'interval_min2_asc_c4_01': ['min2', 'perf4', 'min6', 'perf8'],
+};
+
 const _intervalOptions = [
   {'id': 'min2', 'label': '2da menor'},
   {'id': 'maj2', 'label': '2da mayor'},
@@ -206,8 +213,10 @@ Map<String, dynamic>? _exerciseFor(String folder, String name) {
     final startNote = interval.group(3)!;
     if (_modeForFolder(folder) != mode) return null;
     final copy = _intervals[kind]!;
+    final id = name.substring(0, name.length - 4);
+    final fixedOptions = _freeIntervalOptionIds[id];
     return {
-      'id': name.substring(0, name.length - 4),
+      'id': id,
       'module': 'entrenamientoMusical',
       'type': 'interval_quality',
       'audio': {
@@ -216,8 +225,13 @@ Map<String, dynamic>? _exerciseFor(String folder, String name) {
       },
       'intro': _intervalIntro,
       'question': '¿Qué intervalo escuchas?',
-      'options': _intervalOptions,
-      'maxOptions': 4,
+      'options': fixedOptions == null
+          ? _intervalOptions
+          : [
+              for (final optionId in fixedOptions)
+                _intervalOptions.firstWhere((option) => option['id'] == optionId),
+            ],
+      if (fixedOptions == null) 'maxOptions': 4,
       'correct': kind,
       'difficulty': switch (mode) {
         'asc' => 'beginner',
@@ -231,7 +245,7 @@ Map<String, dynamic>? _exerciseFor(String folder, String name) {
         'mode': mode,
         'startNote': startNote,
       },
-      'access': _intervalAccess(name.substring(0, name.length - 4), mode),
+      'access': _intervalAccess(id, mode),
     };
   }
 

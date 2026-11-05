@@ -49,8 +49,7 @@ class MockSession {
 
   static int get completedExerciseCount => _progress.exercises.length;
 
-  static int get globalAccuracyPercent =>
-      _accuracyPercent(_progress.exercises);
+  static int get globalAccuracyPercent => _accuracyPercent(_progress.exercises);
 
   static int get achievements => completedExerciseCount;
 
@@ -93,9 +92,8 @@ class MockSession {
   static List<TrainingModule> get homeModules {
     return HomeMockData.carouselModules
         .map(
-          (module) => module.copyWith(
-            progress: accuracyForModule(module.id) / 100,
-          ),
+          (module) =>
+              module.copyWith(progress: accuracyForModule(module.id) / 100),
         )
         .toList();
   }
@@ -105,8 +103,7 @@ class MockSession {
   }
 
   static String moduleIdForExercise(String exerciseId) {
-    if (exerciseId.startsWith('EQ_') ||
-        exerciseId.startsWith('ecualizacion')) {
+    if (exerciseId.startsWith('EQ_') || exerciseId.startsWith('ecualizacion')) {
       return 'frecuencias';
     }
     if (exerciseId.startsWith('REAL_') || exerciseId.startsWith('escucha')) {
@@ -147,23 +144,26 @@ class MockSession {
     };
   }
 
-  static bool hasSeenTrainingContext(String pool) {
-    return switch (pool) {
+  static bool hasSeenTrainingContext(String id) {
+    return switch (id) {
       'chords' => _progress.seenChordContext,
+      'eq' => _progress.seenEqContext,
       _ => _progress.seenIntervalContext,
     };
   }
 
-  static Future<void> markTrainingContextSeen(String pool) async {
-    _progress = switch (pool) {
+  static Future<void> markTrainingContextSeen(String id) async {
+    _progress = switch (id) {
       'chords' => _progress.copyWith(seenChordContext: true),
+      'eq' => _progress.copyWith(seenEqContext: true),
       _ => _progress.copyWith(seenIntervalContext: true),
     };
     await _progressRepository.save(_progress);
   }
 
-  static bool get dinamicaUnlocked => _progress.exercises
-      .any((item) => moduleIdForExercise(item.id) != 'dinamica');
+  static bool get dinamicaUnlocked => _progress.exercises.any(
+    (item) => moduleIdForExercise(item.id) != 'dinamica',
+  );
 
   static bool allowsAccess(String access) {
     return switch (access) {

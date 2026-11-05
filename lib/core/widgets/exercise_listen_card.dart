@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../audio/exercise_audio_player.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_typography.dart';
 import '../theme/option_choice_palette.dart';
@@ -16,6 +17,8 @@ class ExerciseListenCard extends StatefulWidget {
     required this.onPlayPause,
     required this.onSeek,
     this.pulse,
+    this.listensUsed,
+    this.enabled = true,
   });
 
   final OptionSlot slot;
@@ -26,6 +29,10 @@ class ExerciseListenCard extends StatefulWidget {
   final VoidCallback onPlayPause;
   final ValueChanged<double> onSeek;
   final Animation<double>? pulse;
+
+  /// Listens already spent, out of 3. Null hides the indicator.
+  final int? listensUsed;
+  final bool enabled;
 
   @override
   State<ExerciseListenCard> createState() => _ExerciseListenCardState();
@@ -109,7 +116,9 @@ class _ExerciseListenCardState extends State<ExerciseListenCard>
                 offset: const Offset(0, 6),
               ),
               BoxShadow(
-                color: colors.glow.withValues(alpha: widget.isPlaying ? 0.2 : 0.08),
+                color: colors.glow.withValues(
+                  alpha: widget.isPlaying ? 0.2 : 0.08,
+                ),
                 blurRadius: widget.isPlaying ? 22 : 16,
                 spreadRadius: -2,
               ),
@@ -124,12 +133,20 @@ class _ExerciseListenCardState extends State<ExerciseListenCard>
                     colors: colors,
                     isPlaying: widget.isPlaying,
                     pressed: _pressed,
+                    enabled: widget.enabled,
                     playIconAnimation: _playIconController,
                     onTapDown: () => setState(() => _pressed = true),
                     onTapUp: () => setState(() => _pressed = false),
                     onTapCancel: () => setState(() => _pressed = false),
-                    onTap: widget.onPlayPause,
+                    onTap: widget.enabled ? widget.onPlayPause : null,
                   ),
+                  if (widget.listensUsed != null) ...[
+                    const SizedBox(width: 10),
+                    _ListenDots(
+                      used: widget.listensUsed!,
+                      color: colors.accent,
+                    ),
+                  ],
                   const SizedBox(width: 14),
                   Expanded(
                     child: Column(
@@ -142,7 +159,9 @@ class _ExerciseListenCardState extends State<ExerciseListenCard>
                             Expanded(
                               child: Text(
                                 widget.label,
-                                style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                                style: AppTypography.cardTitle.copyWith(
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
                           ],
@@ -152,9 +171,11 @@ class _ExerciseListenCardState extends State<ExerciseListenCard>
                           widget.isPlaying
                               ? 'Reproduciendo…'
                               : widget.isPaused
-                                  ? 'Pausado'
-                                  : 'Listo para escuchar',
-                          style: AppTypography.caption.copyWith(color: AppColors.textMuted),
+                              ? 'Pausado'
+                              : 'Listo para escuchar',
+                          style: AppTypography.caption.copyWith(
+                            color: AppColors.textMuted,
+                          ),
                         ),
                       ],
                     ),
@@ -165,20 +186,26 @@ class _ExerciseListenCardState extends State<ExerciseListenCard>
               GestureDetector(
                 key: _waveformKey,
                 behavior: HitTestBehavior.opaque,
-                onTapDown: (details) {
-                  final box =
-                      _waveformKey.currentContext?.findRenderObject() as RenderBox?;
-                  if (box == null) return;
-                  final local = box.globalToLocal(details.globalPosition);
-                  _handleScrub(local.dx, box.size.width);
-                },
-                onHorizontalDragUpdate: (details) {
-                  final box =
-                      _waveformKey.currentContext?.findRenderObject() as RenderBox?;
-                  if (box == null) return;
-                  final local = box.globalToLocal(details.globalPosition);
-                  _handleScrub(local.dx, box.size.width);
-                },
+                onTapDown: widget.enabled
+                    ? (details) {
+                        final box =
+                            _waveformKey.currentContext?.findRenderObject()
+                                as RenderBox?;
+                        if (box == null) return;
+                        final local = box.globalToLocal(details.globalPosition);
+                        _handleScrub(local.dx, box.size.width);
+                      }
+                    : null,
+                onHorizontalDragUpdate: widget.enabled
+                    ? (details) {
+                        final box =
+                            _waveformKey.currentContext?.findRenderObject()
+                                as RenderBox?;
+                        if (box == null) return;
+                        final local = box.globalToLocal(details.globalPosition);
+                        _handleScrub(local.dx, box.size.width);
+                      }
+                    : null,
                 child: _ListenWaveformProgress(
                   color: colors.accent,
                   glow: colors.glow,
@@ -200,6 +227,7 @@ class _ListenPlayButton extends StatelessWidget {
     required this.colors,
     required this.isPlaying,
     required this.pressed,
+    required this.enabled,
     required this.playIconAnimation,
     required this.onTapDown,
     required this.onTapUp,
@@ -210,58 +238,97 @@ class _ListenPlayButton extends StatelessWidget {
   final OptionChoiceColors colors;
   final bool isPlaying;
   final bool pressed;
+  final bool enabled;
   final Animation<double> playIconAnimation;
   final VoidCallback onTapDown;
   final VoidCallback onTapUp;
   final VoidCallback onTapCancel;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (_) => onTapDown(),
-      onTapUp: (_) => onTapUp(),
-      onTapCancel: onTapCancel,
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
-        width: 46,
-        height: 46,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: colors.tint.withValues(alpha: isPlaying ? 0.9 : 0.65),
-          border: Border.all(
-            color: colors.accent.withValues(alpha: isPlaying ? 0.55 : 0.35),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: colors.glow.withValues(alpha: isPlaying ? 0.22 : 0.1),
-              blurRadius: isPlaying ? 18 : 12,
-              spreadRadius: -2,
+    return Opacity(
+      opacity: enabled ? 1 : 0.38,
+      child: GestureDetector(
+        onTapDown: enabled ? (_) => onTapDown() : null,
+        onTapUp: enabled ? (_) => onTapUp() : null,
+        onTapCancel: enabled ? onTapCancel : null,
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 220),
+          width: 46,
+          height: 46,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: colors.tint.withValues(alpha: isPlaying ? 0.9 : 0.65),
+            border: Border.all(
+              color: colors.accent.withValues(alpha: isPlaying ? 0.55 : 0.35),
             ),
-          ],
-        ),
-        child: Center(
-          child: AnimatedBuilder(
-            animation: playIconAnimation,
-            builder: (context, child) {
-              return Stack(
-                alignment: Alignment.center,
-                children: [
-                  Opacity(
-                    opacity: 1 - playIconAnimation.value,
-                    child: Icon(Icons.play_arrow_rounded, color: colors.accent, size: 26),
-                  ),
-                  Opacity(
-                    opacity: playIconAnimation.value,
-                    child: Icon(Icons.pause_rounded, color: colors.accent, size: 24),
-                  ),
-                ],
-              );
-            },
+            boxShadow: [
+              BoxShadow(
+                color: colors.glow.withValues(alpha: isPlaying ? 0.22 : 0.1),
+                blurRadius: isPlaying ? 18 : 12,
+                spreadRadius: -2,
+              ),
+            ],
+          ),
+          child: Center(
+            child: AnimatedBuilder(
+              animation: playIconAnimation,
+              builder: (context, child) {
+                return Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Opacity(
+                      opacity: 1 - playIconAnimation.value,
+                      child: Icon(
+                        Icons.play_arrow_rounded,
+                        color: colors.accent,
+                        size: 26,
+                      ),
+                    ),
+                    Opacity(
+                      opacity: playIconAnimation.value,
+                      child: Icon(
+                        Icons.pause_rounded,
+                        color: colors.accent,
+                        size: 24,
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ListenDots extends StatelessWidget {
+  const _ListenDots({required this.used, required this.color});
+
+  final int used;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        for (var i = 0; i < ExerciseAudioPlayer.maxListens; i++) ...[
+          if (i > 0) const SizedBox(width: 4),
+          Container(
+            width: 5,
+            height: 5,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: color.withValues(alpha: i < used ? 0.22 : 0.9),
+            ),
+          ),
+        ],
+      ],
     );
   }
 }
@@ -280,7 +347,9 @@ class _ListenBadge extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: colors.tint.withValues(alpha: active ? 0.85 : 0.55),
-        border: Border.all(color: colors.accent.withValues(alpha: active ? 0.55 : 0.32)),
+        border: Border.all(
+          color: colors.accent.withValues(alpha: active ? 0.55 : 0.32),
+        ),
       ),
       alignment: Alignment.center,
       child: Text(
@@ -350,8 +419,26 @@ class _ListenWaveformProgressPainter extends CustomPainter {
   final double pulsePhase;
 
   static const _heights = [
-    0.28, 0.52, 0.38, 0.72, 0.46, 0.88, 0.54, 0.68, 0.42, 0.76, 0.36, 0.58,
-    0.64, 0.44, 0.82, 0.5, 0.7, 0.4, 0.6, 0.48,
+    0.28,
+    0.52,
+    0.38,
+    0.72,
+    0.46,
+    0.88,
+    0.54,
+    0.68,
+    0.42,
+    0.76,
+    0.36,
+    0.58,
+    0.64,
+    0.44,
+    0.82,
+    0.5,
+    0.7,
+    0.4,
+    0.6,
+    0.48,
   ];
 
   @override

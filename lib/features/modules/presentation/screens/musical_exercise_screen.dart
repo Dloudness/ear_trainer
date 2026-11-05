@@ -43,6 +43,18 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
   List<ExerciseOption> _options = const [];
   String? _selectedId;
   var _showFeedback = false;
+  var _listens = 0;
+
+  bool get _unlimited => _selectedId != null;
+
+  bool get _canPlay {
+    final snap = _audioPlayer.snapshot;
+    if (_unlimited) return true;
+    if (snap.isPlayingOption('listen') || snap.isPausedOption('listen')) {
+      return true;
+    }
+    return _listens < ExerciseAudioPlayer.maxListens;
+  }
 
   @override
   void initState() {
@@ -68,10 +80,12 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
 
   Future<void> _play() async {
     final exercise = _exercise;
-    if (exercise == null) return;
+    if (exercise == null || !_canPlay) return;
     final path = exercise.audio.path;
     try {
-      await _audioPlayer.playOption('listen', path);
+      final action = await _audioPlayer.playOption('listen', path);
+      if (!mounted || action != ListenAction.started || _unlimited) return;
+      setState(() => _listens += 1);
     } catch (error) {
       debugPrint(
         'ExerciseRepository: audio inexistente en ${exercise.id}: $path ($error)',
@@ -79,17 +93,34 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
     }
   }
 
-  Future<void> _replay() async {
+  Future<void> _seek(double fraction) async {
     final exercise = _exercise;
-    if (exercise == null) return;
+    if (exercise == null || !_canPlay) return;
     final path = exercise.audio.path;
     try {
-      await _audioPlayer.replayOption('listen', path);
+      final action = await _audioPlayer.startIfIdle('listen', path);
+      if (action == ListenAction.started && !_unlimited && mounted) {
+        setState(() => _listens += 1);
+      }
+      await _audioPlayer.seekToFraction(fraction);
     } catch (error) {
-      debugPrint(
-        'ExerciseRepository: audio inexistente en ${exercise.id}: $path ($error)',
-      );
+      debugPrint('ExerciseRepository: no se pudo buscar en el audio ($error)');
     }
+  }
+
+  Widget _listenCard() {
+    final snap = _audioPlayer.snapshot;
+    return ExerciseListenCard(
+      slot: OptionSlot.a,
+      label: 'ESCUCHAR',
+      isPlaying: snap.isPlayingOption('listen'),
+      isPaused: snap.isPausedOption('listen'),
+      progress: snap.isActive('listen') ? snap.progress : 0,
+      listensUsed: _unlimited ? null : _listens,
+      enabled: _canPlay,
+      onPlayPause: () => unawaited(_play()),
+      onSeek: (fraction) => unawaited(_seek(fraction)),
+    );
   }
 
   Future<void> _answer(String optionId) async {
@@ -139,31 +170,26 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
               backLabel: 'Back',
               onBack: () => Navigator.maybePop(context),
             ),
-            TrainingContextLink(pool: widget.pool),
+            TrainingContextLink(contextId: widget.pool.name),
             const SizedBox(height: 8),
             Expanded(
               child: exercise == null
-                  ? const Center(child: Text('Este ejercicio no está disponible.'))
+                  ? const Center(
+                      child: Text('Este ejercicio no está disponible.'),
+                    )
                   : _showFeedback
-                      ? _FeedbackView(
-                          exercise: exercise,
-                          correct: _selectedId == exercise.correct,
-                        )
-                      : _ListenView(
-                          exercise: exercise,
-                          options: _options,
-                          selectedId: _selectedId,
-                          isPlaying: _audioPlayer.snapshot.isPlayingOption('listen'),
-                          isPaused: _audioPlayer.snapshot.isPausedOption('listen'),
-                          progress: _audioPlayer.snapshot.isActive('listen')
-                              ? _audioPlayer.snapshot.progress
-                              : 0,
-                          onPlay: () => unawaited(_play()),
-                          onReplay: () => unawaited(_replay()),
-                          onSeek: (fraction) =>
-                              unawaited(_audioPlayer.seekToFraction(fraction)),
-                          onSelect: (id) => unawaited(_answer(id)),
-                        ),
+                  ? _FeedbackView(
+                      exercise: exercise,
+                      correct: _selectedId == exercise.correct,
+                      player: _listenCard(),
+                    )
+                  : _ListenView(
+                      exercise: exercise,
+                      options: _options,
+                      selectedId: _selectedId,
+                      player: _listenCard(),
+                      onSelect: (id) => unawaited(_answer(id)),
+                    ),
             ),
             if (exercise != null && _showFeedback)
               SizedBox(
@@ -187,24 +213,14 @@ class _ListenView extends StatelessWidget {
     required this.exercise,
     required this.options,
     required this.selectedId,
-    required this.isPlaying,
-    required this.isPaused,
-    required this.progress,
-    required this.onPlay,
-    required this.onReplay,
-    required this.onSeek,
+    required this.player,
     required this.onSelect,
   });
 
   final Exercise exercise;
   final List<ExerciseOption> options;
   final String? selectedId;
-  final bool isPlaying;
-  final bool isPaused;
-  final double progress;
-  final VoidCallback onPlay;
-  final VoidCallback onReplay;
-  final ValueChanged<double> onSeek;
+  final Widget player;
   final ValueChanged<String> onSelect;
 
   @override
@@ -217,9 +233,9 @@ class _ListenView extends StatelessWidget {
           Text(
             intro,
             textAlign: TextAlign.center,
-            style: AppTypography.tagline(15).copyWith(
-              color: AppColors.textSecondary,
-            ),
+            style: AppTypography.tagline(
+              15,
+            ).copyWith(color: AppColors.textSecondary),
           ),
           const SizedBox(height: 20),
         ],
@@ -230,26 +246,7 @@ class _ListenView extends StatelessWidget {
           questionSize: 24,
         ),
         const SizedBox(height: 28),
-        ExerciseListenCard(
-          slot: OptionSlot.a,
-          label: 'ESCUCHAR',
-          isPlaying: isPlaying,
-          isPaused: isPaused,
-          progress: progress,
-          onPlayPause: onPlay,
-          onSeek: onSeek,
-        ),
-        const SizedBox(height: 12),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: GradientButton(
-            label: 'REPETIR',
-            compact: true,
-            translucent: true,
-            icon: Icons.replay_rounded,
-            onPressed: onReplay,
-          ),
-        ),
+        player,
         const SizedBox(height: 28),
         Text('Tu respuesta', style: AppTypography.exerciseInstruction),
         const SizedBox(height: 12),
@@ -278,10 +275,12 @@ class _FeedbackView extends StatelessWidget {
   const _FeedbackView({
     required this.exercise,
     required this.correct,
+    required this.player,
   });
 
   final Exercise exercise;
   final bool correct;
+  final Widget player;
 
   @override
   Widget build(BuildContext context) {
@@ -306,7 +305,9 @@ class _FeedbackView extends StatelessWidget {
         Text(
           exercise.explanation,
           textAlign: TextAlign.center,
-          style: AppTypography.tagline(15).copyWith(color: AppColors.textSecondary),
+          style: AppTypography.tagline(
+            15,
+          ).copyWith(color: AppColors.textSecondary),
         ),
         if (tip != null && tip.isNotEmpty) ...[
           const SizedBox(height: 20),
@@ -319,9 +320,13 @@ class _FeedbackView extends StatelessWidget {
           Text(
             tip,
             textAlign: TextAlign.center,
-            style: AppTypography.tagline(15).copyWith(color: AppColors.textSecondary),
+            style: AppTypography.tagline(
+              15,
+            ).copyWith(color: AppColors.textSecondary),
           ),
         ],
+        const SizedBox(height: 28),
+        player,
       ],
     );
   }

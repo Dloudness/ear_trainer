@@ -2,14 +2,22 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
+abstract final class TrainingContextIds {
+  static const intervals = 'intervals';
+  static const chords = 'chords';
+  static const eq = 'eq';
+}
+
 class TrainingContextVariant {
   const TrainingContextVariant({
     required this.intro,
     required this.skills,
     required this.closing,
+    this.skillsIntro = '',
   });
 
   final String intro;
+  final String skillsIntro;
   final List<String> skills;
   final String closing;
 
@@ -17,8 +25,12 @@ class TrainingContextVariant {
     final skills = json['skills'];
     return TrainingContextVariant(
       intro: json['intro'] as String? ?? '',
+      skillsIntro: json['skillsIntro'] as String? ?? '',
       skills: skills is List
-          ? [for (final item in skills) if (item is String) item]
+          ? [
+              for (final item in skills)
+                if (item is String) item,
+            ]
           : const [],
       closing: json['closing'] as String? ?? '',
     );

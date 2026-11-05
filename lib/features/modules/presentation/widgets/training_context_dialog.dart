@@ -5,48 +5,54 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/gradient_button.dart';
 import '../../data/training_context.dart';
-import '../../models/musical_pool.dart';
+
+final _openingContext = <String>{};
 
 Future<bool> showTrainingContext(
   BuildContext context,
-  MusicalPool pool, {
+  String contextId, {
   bool required = false,
 }) async {
-  TrainingContextCopy copy;
+  if (!_openingContext.add(contextId)) return false;
   try {
-    copy = await TrainingContextLibrary.forId(pool.name);
-  } catch (error) {
-    debugPrint('TrainingContext: $error');
-    return true;
-  }
-  if (!context.mounted) return false;
+    TrainingContextCopy copy;
+    try {
+      copy = await TrainingContextLibrary.forId(contextId);
+    } catch (error) {
+      debugPrint('TrainingContext: $error');
+      return true;
+    }
+    if (!context.mounted) return false;
 
-  final started = await showDialog<bool>(
-    context: context,
-    barrierDismissible: !required,
-    barrierColor: Colors.black.withValues(alpha: 0.55),
-    builder: (context) => TrainingContextDialog(
-      copy: copy,
-      full: MockSession.usesFullTrainingContext,
-    ),
-  );
-  if (started == true) {
-    await MockSession.markTrainingContextSeen(pool.name);
+    final started = await showDialog<bool>(
+      context: context,
+      barrierDismissible: !required,
+      barrierColor: Colors.black.withValues(alpha: 0.55),
+      builder: (context) => TrainingContextDialog(
+        copy: copy,
+        full: MockSession.usesFullTrainingContext,
+      ),
+    );
+    if (started == true) {
+      await MockSession.markTrainingContextSeen(contextId);
+    }
+    return started == true;
+  } finally {
+    _openingContext.remove(contextId);
   }
-  return started == true;
 }
 
 class TrainingContextLink extends StatelessWidget {
-  const TrainingContextLink({super.key, required this.pool});
+  const TrainingContextLink({super.key, required this.contextId});
 
-  final MusicalPool pool;
+  final String contextId;
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
       child: TextButton.icon(
-        onPressed: () => showTrainingContext(context, pool),
+        onPressed: () => showTrainingContext(context, contextId),
         icon: const Icon(Icons.info_outline_rounded, size: 15),
         label: const Text('¿Por qué entrenar esto?'),
         style: TextButton.styleFrom(
@@ -98,12 +104,23 @@ class TrainingContextDialog extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 variant.intro,
-                style: AppTypography.tagline(15).copyWith(
-                  color: AppColors.textSecondary,
-                ),
+                style: AppTypography.tagline(
+                  15,
+                ).copyWith(color: AppColors.textSecondary),
               ),
+              if (full && variant.skillsIntro.isNotEmpty) ...[
+                const SizedBox(height: 14),
+                Text(
+                  variant.skillsIntro,
+                  style: AppTypography.tagline(
+                    14,
+                  ).copyWith(color: AppColors.textPrimary),
+                ),
+              ],
               if (variant.skills.isNotEmpty) ...[
-                const SizedBox(height: 16),
+                SizedBox(
+                  height: full && variant.skillsIntro.isNotEmpty ? 10 : 16,
+                ),
                 for (final skill in variant.skills) ...[
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,9 +137,9 @@ class TrainingContextDialog extends StatelessWidget {
                       Expanded(
                         child: Text(
                           skill,
-                          style: AppTypography.tagline(14).copyWith(
-                            color: AppColors.textPrimary,
-                          ),
+                          style: AppTypography.tagline(
+                            14,
+                          ).copyWith(color: AppColors.textPrimary),
                         ),
                       ),
                     ],
@@ -134,9 +151,9 @@ class TrainingContextDialog extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   variant.closing,
-                  style: AppTypography.tagline(14).copyWith(
-                    color: AppColors.blue,
-                  ),
+                  style: AppTypography.tagline(
+                    14,
+                  ).copyWith(color: AppColors.blue),
                 ),
               ],
               const SizedBox(height: 18),

@@ -16,18 +16,19 @@ class CompletedExerciseRecord {
   final DateTime completedAt;
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'correct': correct,
-        'attempts': attempts,
-        'completedAt': completedAt.toIso8601String(),
-      };
+    'id': id,
+    'correct': correct,
+    'attempts': attempts,
+    'completedAt': completedAt.toIso8601String(),
+  };
 
   factory CompletedExerciseRecord.fromJson(Map<String, dynamic> json) {
     return CompletedExerciseRecord(
       id: json['id'] as String,
       correct: json['correct'] as bool? ?? false,
       attempts: json['attempts'] as int? ?? 1,
-      completedAt: DateTime.tryParse(json['completedAt'] as String? ?? '') ??
+      completedAt:
+          DateTime.tryParse(json['completedAt'] as String? ?? '') ??
           DateTime.fromMillisecondsSinceEpoch(0),
     );
   }
@@ -60,6 +61,7 @@ class ProgressSnapshot {
     this.trainingLevel,
     this.seenIntervalContext = false,
     this.seenChordContext = false,
+    this.seenEqContext = false,
   });
 
   final List<CompletedExerciseRecord> exercises;
@@ -74,6 +76,7 @@ class ProgressSnapshot {
   final String? trainingLevel;
   final bool seenIntervalContext;
   final bool seenChordContext;
+  final bool seenEqContext;
 
   ProgressSnapshot copyWith({
     List<CompletedExerciseRecord>? exercises,
@@ -88,6 +91,7 @@ class ProgressSnapshot {
     String? trainingLevel,
     bool? seenIntervalContext,
     bool? seenChordContext,
+    bool? seenEqContext,
   }) {
     return ProgressSnapshot(
       exercises: exercises ?? this.exercises,
@@ -102,6 +106,7 @@ class ProgressSnapshot {
       trainingLevel: trainingLevel ?? this.trainingLevel,
       seenIntervalContext: seenIntervalContext ?? this.seenIntervalContext,
       seenChordContext: seenChordContext ?? this.seenChordContext,
+      seenEqContext: seenEqContext ?? this.seenEqContext,
     );
   }
 }
@@ -122,6 +127,7 @@ class ProgressRepository {
   static const _kTrainingLevel = 'progress.trainingLevel';
   static const _kSeenIntervalContext = 'progress.seenIntervalContext';
   static const _kSeenChordContext = 'progress.seenChordContext';
+  static const _kSeenEqContext = 'progress.seenEqContext';
 
   Future<ProgressSnapshot> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -157,6 +163,7 @@ class ProgressRepository {
       trainingLevel: prefs.getString(_kTrainingLevel),
       seenIntervalContext: prefs.getBool(_kSeenIntervalContext) ?? false,
       seenChordContext: prefs.getBool(_kSeenChordContext) ?? false,
+      seenEqContext: prefs.getBool(_kSeenEqContext) ?? false,
     );
   }
 
@@ -184,6 +191,7 @@ class ProgressRepository {
     }
     await prefs.setBool(_kSeenIntervalContext, snapshot.seenIntervalContext);
     await prefs.setBool(_kSeenChordContext, snapshot.seenChordContext);
+    await prefs.setBool(_kSeenEqContext, snapshot.seenEqContext);
     if (snapshot.trainingFocus == null) {
       await prefs.remove(_kTrainingFocus);
     } else {

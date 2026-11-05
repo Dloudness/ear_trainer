@@ -21,6 +21,8 @@ import '../../../../core/widgets/premium_back_button.dart';
 import '../../../exercises/data/exercise_repository.dart';
 import '../../../exercises/models/exercise.dart';
 import '../../../onboarding/models/onboarding_option.dart';
+import '../../../modules/data/training_context.dart';
+import '../../../modules/presentation/widgets/training_context_dialog.dart';
 import '../../models/category_demo_content.dart';
 import '../../models/escucha_real_exercises.dart';
 import '../../models/exercise_demo_mapper.dart';
@@ -67,6 +69,23 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   bool _finishingPair = false;
   bool _sharedEndArmed = false;
   bool _holdingSync = false;
+  final Map<String, int> _listenCounts = {};
+
+  bool get _listensUnlimited =>
+      _selectedOption != null ||
+      _phase == _DemoPhase.feedback ||
+      _phase == _DemoPhase.reveal;
+
+  bool _canPlay(String option) {
+    if (_listensUnlimited) return true;
+    if (_isPlaying(option) || _isPaused(option)) return true;
+    return (_listenCounts[option] ?? 0) < ExerciseAudioPlayer.maxListens;
+  }
+
+  void _noteListen(String option, ListenAction action) {
+    if (action != ListenAction.started || _listensUnlimited) return;
+    _listenCounts[option] = (_listenCounts[option] ?? 0) + 1;
+  }
 
   @override
   void initState() {
@@ -93,7 +112,10 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
       vsync: this,
       duration: const Duration(milliseconds: 600),
     );
-    _fade = CurvedAnimation(parent: _fadeController, curve: Curves.easeOutCubic);
+    _fade = CurvedAnimation(
+      parent: _fadeController,
+      curve: Curves.easeOutCubic,
+    );
     _pulse = Tween<double>(begin: 0.92, end: 1.0).animate(
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
@@ -161,7 +183,9 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
 
   void _onVideoControllerTick() {
     final video = _videoController;
-    if (video != null && video.value.isInitialized && video.value.volume > 0.01) {
+    if (video != null &&
+        video.value.isInitialized &&
+        video.value.volume > 0.01) {
       unawaited(video.setVolume(0));
     }
     _maybeFinishTogether();
@@ -199,7 +223,8 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     if (!audioNearEnd) return;
 
     final audioHit = snap.isPlaying && snap.position >= limit;
-    final videoHit = video.value.isPlaying &&
+    final videoHit =
+        video.value.isPlaying &&
         (video.value.isCompleted || video.value.position >= limit);
     if (!audioHit && !videoHit) return;
     unawaited(_finishTogether());
@@ -304,6 +329,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
       _phase = phase;
       if (phase == _DemoPhase.listen) {
         _selectedOption = null;
+        _listenCounts.clear();
       }
     });
     if (phase == _DemoPhase.video) {
@@ -332,141 +358,99 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   }
 
   Future<void> _playPauseOption(String option) async {
+    if (!_canPlay(option)) return;
     final asset = _assetFor(option);
-    if (asset != null) {
-      if (_canSyncVideo) {
-        await _playPauseSynced(option, asset);
-      } else {
-        await _audioPlayer.playOption(option, asset);
+    try {
+      if (asset != null) {
+        final action = _canSyncVideo
+            ? await _playPauseSynced(option, asset)
+            : await _audioPlayer.playOption(option, asset);
+        _noteListen(option, action);
+        if (mounted) setState(() {});
+        return;
       }
+      _playPauseMock(option);
       if (mounted) setState(() {});
-      return;
+    } catch (error) {
+      debugPrint('Audio: $error');
     }
+  }
 
+  void _playPauseMock(String option) {
     if (_mockPlayingOption == option && !_mockPaused) {
       _mockPlaybackTimer?.cancel();
-      setState(() => _mockPaused = true);
+      _mockPaused = true;
       return;
     }
 
     if (_mockPlayingOption == option && _mockPaused) {
-      setState(() => _mockPaused = false);
+      _mockPaused = false;
       _startMockPlayback(option);
       return;
     }
 
     _mockPlaybackTimer?.cancel();
-    setState(() {
-      _mockPlayingOption = option;
-      _mockPaused = false;
-      _mockPositionMs = 0;
-    });
+    _mockPlayingOption = option;
+    _mockPaused = false;
+    _mockPositionMs = 0;
+    _noteListen(option, ListenAction.started);
     _startMockPlayback(option);
   }
 
   Future<void> _seekOption(String option, double fraction) async {
+    if (!_canPlay(option)) return;
     final asset = _assetFor(option);
-    if (asset != null) {
-      if (_canSyncVideo) {
-        await _seekSynced(option, asset, fraction);
-      } else {
-        if (!_audioPlayer.snapshot.isActive(option)) {
-          await _audioPlayer.playOption(option, asset);
+    try {
+      if (asset != null) {
+        if (_canSyncVideo) {
+          await _seekSynced(option, asset, fraction);
+        } else {
+          final action = await _audioPlayer.startIfIdle(option, asset);
+          if (action != null) _noteListen(option, action);
+          await _audioPlayer.seekToFraction(fraction);
         }
-        await _audioPlayer.seekToFraction(fraction);
+        if (mounted) setState(() {});
+        return;
       }
-      if (mounted) setState(() {});
-      return;
-    }
 
-    _mockPlaybackTimer?.cancel();
-    setState(() {
-      _mockPlayingOption = option;
-      _mockPaused = false;
-      _mockPositionMs = (_mockDurationMs * fraction).round();
-    });
-    _startMockPlayback(option);
+      final alreadyActive = _mockPlayingOption == option;
+      _mockPlaybackTimer?.cancel();
+      setState(() {
+        _mockPlayingOption = option;
+        _mockPaused = false;
+        _mockPositionMs = (_mockDurationMs * fraction).round();
+      });
+      if (!alreadyActive) _noteListen(option, ListenAction.started);
+      _startMockPlayback(option);
+    } catch (error) {
+      debugPrint('Audio: $error');
+    }
   }
 
-  Future<void> _playPauseSynced(String option, String asset) async {
+  Future<ListenAction> _playPauseSynced(String option, String asset) async {
     final video = _syncedVideo;
     if (video == null) {
-      await _audioPlayer.playOption(option, asset);
-      return;
+      return _audioPlayer.playOption(option, asset);
     }
 
     final snap = _audioPlayer.snapshot;
-    final switching = snap.activeOption != null &&
-        snap.activeOption != option &&
-        (snap.isPlaying || snap.isPaused);
-
-    if (switching) {
-      final resumed = !video.value.isPlaying;
-      _holdingSync = true;
-      _sharedEndArmed = true;
-      await _prepareSyncedVideo(video, play: resumed);
-      try {
-        await _audioPlayer.playOption(
-          option,
-          asset,
-          resolveStart: () => video.value.position,
-        );
-      } finally {
-        _holdingSync = false;
-      }
-      _scheduleAudioCatchUp(video);
-      return;
-    }
-
     if (snap.isPlayingOption(option)) {
       final pausing = video.pause();
-      await _audioPlayer.playOption(option, asset);
+      final action = await _audioPlayer.playOption(option, asset);
       await pausing;
-      return;
+      return action;
     }
 
+    final resume = snap.isPausedOption(option);
     _holdingSync = true;
     _sharedEndArmed = true;
-    await _prepareSyncedVideo(
-      video,
-      seekToStart: !snap.isPausedOption(option),
-    );
     try {
-      await _audioPlayer.playOption(option, asset);
+      await _prepareSyncedVideo(video, seekToStart: !resume);
+      return await _audioPlayer.playOption(option, asset);
     } finally {
       _holdingSync = false;
+      _scheduleVideoResync();
     }
-    _scheduleVideoResync();
-  }
-
-  void _scheduleAudioCatchUp(VideoPlayerController video) {
-    _resyncTimer?.cancel();
-    var checks = 0;
-    _resyncTimer = Timer.periodic(const Duration(milliseconds: 220), (timer) {
-      checks += 1;
-      unawaited(_catchAudioUpToVideo(video));
-      if (checks >= 2) timer.cancel();
-    });
-  }
-
-  Future<void> _catchAudioUpToVideo(VideoPlayerController video) async {
-    if (!mounted || _finishingPair || _phase != _DemoPhase.listen) return;
-    if (!video.value.isInitialized) return;
-    final snap = _audioPlayer.snapshot;
-    if ((!snap.isPlaying && !snap.isPaused) || snap.duration <= Duration.zero) {
-      return;
-    }
-    final delta = (video.value.position - snap.position).inMilliseconds.abs();
-    if (delta <= _syncDrift.inMilliseconds) return;
-    final end = _sharedEnd();
-    if (end != null && video.value.position >= end - const Duration(milliseconds: 60)) {
-      await _finishTogether();
-      return;
-    }
-    final target = video.value.position > snap.duration
-        ? snap.duration
-        : video.value.position;
-    await _audioPlayer.seekTo(target);
   }
 
   Future<void> _seekSynced(String option, String asset, double fraction) async {
@@ -478,9 +462,10 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     await _prepareSyncedVideo(video, play: false);
     var reachedEnd = false;
     try {
-      if (!_audioPlayer.snapshot.isActive(option)) {
-        unawaited(video.play());
-        await _audioPlayer.playOption(option, asset);
+      final action = await _audioPlayer.startIfIdle(option, asset);
+      if (action != null) {
+        _noteListen(option, action);
+        if (!video.value.isPlaying) unawaited(video.play());
       }
       await _audioPlayer.seekToFraction(fraction);
       final target = _audioPlayer.snapshot.position;
@@ -506,7 +491,9 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
 
   void _startMockPlayback(String option) {
     _mockPlaybackTimer?.cancel();
-    _mockPlaybackTimer = Timer.periodic(const Duration(milliseconds: 50), (timer) {
+    _mockPlaybackTimer = Timer.periodic(const Duration(milliseconds: 50), (
+      timer,
+    ) {
       if (!mounted || _mockPlayingOption != option || _mockPaused) return;
       _mockPositionMs += 50;
       if (_mockPositionMs >= _mockDurationMs) {
@@ -553,8 +540,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   bool get _isEqCategory =>
       _category == OnboardingOption.ecualizacionFrecuencias;
 
-  bool get _isEscuchaRealCategory =>
-      _category == OnboardingOption.escuchaReal;
+  bool get _isEscuchaRealCategory => _category == OnboardingOption.escuchaReal;
 
   bool get _isCorrectAnswer => _selectedOption == _content.correctOption;
 
@@ -617,21 +603,29 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
             children: [
               CinematicNavBar(
                 backLabel: 'Back',
-                onBack: _phase == _DemoPhase.intro ? null : () {
-                  switch (_phase) {
-                    case _DemoPhase.video:
-                      _goToPhase(_DemoPhase.intro);
-                    case _DemoPhase.listen:
-                      _goToPhase(_hasVideo ? _DemoPhase.video : _DemoPhase.intro);
-                    case _DemoPhase.feedback:
-                      _goToPhase(_DemoPhase.listen);
-                    case _DemoPhase.reveal:
-                      _goToPhase(_DemoPhase.feedback);
-                    case _DemoPhase.intro:
-                      Navigator.maybePop(context);
-                  }
-                },
+                onBack: _phase == _DemoPhase.intro
+                    ? null
+                    : () {
+                        switch (_phase) {
+                          case _DemoPhase.video:
+                            _goToPhase(_DemoPhase.intro);
+                          case _DemoPhase.listen:
+                            _goToPhase(
+                              _hasVideo ? _DemoPhase.video : _DemoPhase.intro,
+                            );
+                          case _DemoPhase.feedback:
+                            _goToPhase(_DemoPhase.listen);
+                          case _DemoPhase.reveal:
+                            _goToPhase(_DemoPhase.feedback);
+                          case _DemoPhase.intro:
+                            Navigator.maybePop(context);
+                        }
+                      },
               ),
+              if (_isEqCategory) ...[
+                const TrainingContextLink(contextId: TrainingContextIds.eq),
+                const SizedBox(height: 8),
+              ],
               Expanded(child: _buildPhaseContent()),
               _buildBottomAction(),
             ],
@@ -641,66 +635,95 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     );
   }
 
+  Widget _listenCard(String option, OptionSlot slot, String label) {
+    return ExerciseListenCard(
+      slot: slot,
+      label: label,
+      isPlaying: _isPlaying(option),
+      isPaused: _isPaused(option),
+      progress: _progressFor(option),
+      pulse: _pulse,
+      listensUsed: _listensUnlimited ? null : (_listenCounts[option] ?? 0),
+      enabled: _canPlay(option),
+      onPlayPause: () => unawaited(_playPauseOption(option)),
+      onSeek: (fraction) => unawaited(_seekOption(option, fraction)),
+    );
+  }
+
+  Widget _listenStack() {
+    final scene = _hasVideo ? _videoController : null;
+    return Column(
+      children: [
+        if (scene != null) ...[
+          _SceneVideoFrame(controller: scene, accent: _category.accent),
+          const SizedBox(height: 20),
+        ],
+        if (_content.singleListen)
+          _listenCard('A', OptionSlot.a, _content.optionALabel)
+        else ...[
+          _listenCard('A', OptionSlot.a, _content.optionALabel),
+          const SizedBox(height: 14),
+          _listenCard('B', OptionSlot.b, _content.optionBLabel),
+        ],
+      ],
+    );
+  }
+
   Widget _buildPhaseContent() {
     return switch (_phase) {
       _DemoPhase.intro => _IntroPhase(
-          pulse: _pulse,
-          category: _category,
-          content: _content,
-        ),
+        pulse: _pulse,
+        category: _category,
+        content: _content,
+      ),
       _DemoPhase.video => _VideoPhase(
-          content: _content,
-          accent: _category.accent,
-          controller: _videoController,
-        ),
+        content: _content,
+        accent: _category.accent,
+        controller: _videoController,
+      ),
       _DemoPhase.listen => _ListenPhase(
-          pulse: _pulse,
-          content: _content,
-          accent: _category.accent,
-          videoController: _hasVideo ? _videoController : null,
-          isPlaying: _isPlaying,
-          isPaused: _isPaused,
-          progressFor: _progressFor,
-          onPlayPause: _playPauseOption,
-          onSeek: _seekOption,
-          onSelect: _selectOption,
-        ),
+        pulse: _pulse,
+        content: _content,
+        player: _listenStack(),
+        onSelect: _selectOption,
+      ),
       _DemoPhase.feedback => _FeedbackPhase(
-          pulse: _pulse,
-          content: _content,
-          accent: _category.accent,
-          isCorrect: _isCorrectAnswer,
-        ),
+        pulse: _pulse,
+        content: _content,
+        accent: _category.accent,
+        isCorrect: _isCorrectAnswer,
+        player: _listenStack(),
+      ),
       _DemoPhase.reveal => _AnswerRevealPhase(
-          pulse: _pulse,
-          content: _content,
-          accent: _category.accent,
-        ),
+        pulse: _pulse,
+        content: _content,
+        accent: _category.accent,
+        player: _listenStack(),
+      ),
     };
   }
 
   Widget _buildBottomAction() {
     return switch (_phase) {
       _DemoPhase.intro => SizedBox(
-          width: double.infinity,
-          child: GradientButton(
-            label: _hasVideo ? 'VER ESCENA' : 'ESCUCHAR',
-            icon: Icons.play_arrow_rounded,
-            emphasized: true,
-            onPressed: () => _goToPhase(
-              _hasVideo ? _DemoPhase.video : _DemoPhase.listen,
-            ),
-          ),
+        width: double.infinity,
+        child: GradientButton(
+          label: _hasVideo ? 'VER ESCENA' : 'ESCUCHAR',
+          icon: Icons.play_arrow_rounded,
+          emphasized: true,
+          onPressed: () =>
+              _goToPhase(_hasVideo ? _DemoPhase.video : _DemoPhase.listen),
         ),
+      ),
       _DemoPhase.video => SizedBox(
-          width: double.infinity,
-          child: GradientButton(
-            label: 'ESCUCHAR',
-            icon: Icons.play_arrow_rounded,
-            emphasized: true,
-            onPressed: () => _goToPhase(_DemoPhase.listen),
-          ),
+        width: double.infinity,
+        child: GradientButton(
+          label: 'ESCUCHAR',
+          icon: Icons.play_arrow_rounded,
+          emphasized: true,
+          onPressed: () => _goToPhase(_DemoPhase.listen),
         ),
+      ),
       _DemoPhase.listen => const SizedBox(height: 50),
       _DemoPhase.feedback => _buildFeedbackActions(),
       _DemoPhase.reveal => _buildRevealActions(),
@@ -777,8 +800,7 @@ class _VideoPhase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isReady =
-        controller != null && controller!.value.isInitialized;
+    final isReady = controller != null && controller!.value.isInitialized;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -870,43 +892,17 @@ class _ListenPhase extends StatelessWidget {
   const _ListenPhase({
     required this.pulse,
     required this.content,
-    required this.accent,
-    required this.videoController,
-    required this.isPlaying,
-    required this.isPaused,
-    required this.progressFor,
-    required this.onPlayPause,
-    required this.onSeek,
+    required this.player,
     required this.onSelect,
   });
 
   final Animation<double> pulse;
   final CategoryDemoContent content;
-  final Color accent;
-  final VideoPlayerController? videoController;
-  final bool Function(String option) isPlaying;
-  final bool Function(String option) isPaused;
-  final double Function(String option) progressFor;
-  final ValueChanged<String> onPlayPause;
-  final void Function(String option, double fraction) onSeek;
+  final Widget player;
   final ValueChanged<String> onSelect;
-
-  Widget _buildListenCard(String option, OptionSlot slot, String label) {
-    return ExerciseListenCard(
-      slot: slot,
-      label: label,
-      isPlaying: isPlaying(option),
-      isPaused: isPaused(option),
-      progress: progressFor(option),
-      pulse: pulse,
-      onPlayPause: () => onPlayPause(option),
-      onSeek: (fraction) => onSeek(option, fraction),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    final scene = videoController;
     final children = <Widget>[
       ExerciseFocusHeader(
         instruction: content.introTitle,
@@ -915,22 +911,9 @@ class _ListenPhase extends StatelessWidget {
         questionSize: 24,
       ),
       const SizedBox(height: 28),
-      if (scene != null) ...[
-        _SceneVideoFrame(controller: scene, accent: accent),
-        const SizedBox(height: 20),
-      ],
-      if (content.singleListen)
-        _buildListenCard('A', OptionSlot.a, content.optionALabel)
-      else ...[
-        _buildListenCard('A', OptionSlot.a, content.optionALabel),
-        const SizedBox(height: 14),
-        _buildListenCard('B', OptionSlot.b, content.optionBLabel),
-      ],
+      player,
       const SizedBox(height: 28),
-      Text(
-        'Tu respuesta',
-        style: AppTypography.exerciseInstruction,
-      ),
+      Text('Tu respuesta', style: AppTypography.exerciseInstruction),
       const SizedBox(height: 12),
       Row(
         children: [
@@ -965,13 +948,6 @@ class _ListenPhase extends StatelessWidget {
       ),
     ];
 
-    if (scene == null) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: children,
-      );
-    }
-
     return LayoutBuilder(
       builder: (context, constraints) {
         return SingleChildScrollView(
@@ -989,10 +965,7 @@ class _ListenPhase extends StatelessWidget {
 }
 
 class _SceneVideoFrame extends StatelessWidget {
-  const _SceneVideoFrame({
-    required this.controller,
-    required this.accent,
-  });
+  const _SceneVideoFrame({required this.controller, required this.accent});
 
   final VideoPlayerController controller;
   final Color accent;
@@ -1039,38 +1012,42 @@ class _FeedbackPhase extends StatelessWidget {
     required this.content,
     required this.accent,
     required this.isCorrect,
+    required this.player,
   });
 
   final Animation<double> pulse;
   final CategoryDemoContent content;
   final Color accent;
   final bool isCorrect;
+  final Widget player;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return ListView(
+      padding: const EdgeInsets.symmetric(vertical: 12),
       children: [
-        ScaleTransition(
-          scale: pulse,
-          child: Container(
-            width: 72,
-            height: 72,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: accent.withValues(alpha: 0.12),
-              border: Border.all(color: accent.withValues(alpha: 0.45)),
-              boxShadow: [
-                BoxShadow(
-                  color: accent.withValues(alpha: 0.2),
-                  blurRadius: 24,
-                ),
-              ],
-            ),
-            child: Icon(
-              isCorrect ? Icons.check_rounded : Icons.auto_awesome_rounded,
-              size: 34,
-              color: accent,
+        Center(
+          child: ScaleTransition(
+            scale: pulse,
+            child: Container(
+              width: 72,
+              height: 72,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: accent.withValues(alpha: 0.12),
+                border: Border.all(color: accent.withValues(alpha: 0.45)),
+                boxShadow: [
+                  BoxShadow(
+                    color: accent.withValues(alpha: 0.2),
+                    blurRadius: 24,
+                  ),
+                ],
+              ),
+              child: Icon(
+                isCorrect ? Icons.check_rounded : Icons.auto_awesome_rounded,
+                size: 34,
+                color: accent,
+              ),
             ),
           ),
         ),
@@ -1084,8 +1061,12 @@ class _FeedbackPhase extends StatelessWidget {
         Text(
           isCorrect ? content.feedbackBody : content.feedbackIncorrectBody,
           textAlign: TextAlign.center,
-          style: AppTypography.tagline(15).copyWith(color: AppColors.textSecondary),
+          style: AppTypography.tagline(
+            15,
+          ).copyWith(color: AppColors.textSecondary),
         ),
+        const SizedBox(height: 28),
+        player,
       ],
     );
   }
@@ -1096,37 +1077,41 @@ class _AnswerRevealPhase extends StatelessWidget {
     required this.pulse,
     required this.content,
     required this.accent,
+    required this.player,
   });
 
   final Animation<double> pulse;
   final CategoryDemoContent content;
   final Color accent;
+  final Widget player;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return ListView(
+      padding: const EdgeInsets.symmetric(vertical: 12),
       children: [
-        ScaleTransition(
-          scale: pulse,
-          child: Container(
-            width: 72,
-            height: 72,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: accent.withValues(alpha: 0.12),
-              border: Border.all(color: accent.withValues(alpha: 0.45)),
-              boxShadow: [
-                BoxShadow(
-                  color: accent.withValues(alpha: 0.2),
-                  blurRadius: 24,
-                ),
-              ],
-            ),
-            child: Icon(
-              Icons.lightbulb_outline_rounded,
-              size: 34,
-              color: accent,
+        Center(
+          child: ScaleTransition(
+            scale: pulse,
+            child: Container(
+              width: 72,
+              height: 72,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: accent.withValues(alpha: 0.12),
+                border: Border.all(color: accent.withValues(alpha: 0.45)),
+                boxShadow: [
+                  BoxShadow(
+                    color: accent.withValues(alpha: 0.2),
+                    blurRadius: 24,
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.lightbulb_outline_rounded,
+                size: 34,
+                color: accent,
+              ),
             ),
           ),
         ),
@@ -1146,8 +1131,12 @@ class _AnswerRevealPhase extends StatelessWidget {
         Text(
           content.feedbackBody,
           textAlign: TextAlign.center,
-          style: AppTypography.tagline(15).copyWith(color: AppColors.textSecondary),
+          style: AppTypography.tagline(
+            15,
+          ).copyWith(color: AppColors.textSecondary),
         ),
+        const SizedBox(height: 28),
+        player,
       ],
     );
   }

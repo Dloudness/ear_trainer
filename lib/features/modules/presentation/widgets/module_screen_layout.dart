@@ -14,11 +14,13 @@ class ModuleScreenLayout extends StatefulWidget {
     required this.title,
     required this.subtitle,
     required this.children,
+    this.header,
   });
 
   final String title;
   final String subtitle;
   final List<Widget> children;
+  final Widget? header;
 
   @override
   State<ModuleScreenLayout> createState() => _ModuleScreenLayoutState();
@@ -66,10 +68,18 @@ class _ModuleScreenLayoutState extends State<ModuleScreenLayout>
                       const SizedBox(height: 6),
                       Text(
                         widget.subtitle,
-                        style: AppTypography.caption.copyWith(color: AppColors.textMuted),
+                        style: AppTypography.caption.copyWith(
+                          color: AppColors.textMuted,
+                        ),
                       ),
+                      if (widget.header != null) ...[
+                        const SizedBox(height: 8),
+                        widget.header!,
+                      ],
                       const SizedBox(height: 20),
-                      Expanded(child: _ModuleCardColumns(children: widget.children)),
+                      Expanded(
+                        child: _ModuleCardColumns(children: widget.children),
+                      ),
                     ],
                   ),
                 ),

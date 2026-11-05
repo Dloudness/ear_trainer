@@ -39,7 +39,11 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
     }
 
     if (!MockSession.hasSeenTrainingContext(pool.name)) {
-      final started = await showTrainingContext(context, pool, required: true);
+      final started = await showTrainingContext(
+        context,
+        pool.name,
+        required: true,
+      );
       if (!mounted || !started) return;
     }
 
@@ -61,20 +65,15 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
       title: 'Entrenamiento Musical',
       subtitle: 'Intervalos, acordes y percepción armónica.',
       children: [
-        for (final pool in MusicalPool.values) _PoolCard(
-          pool: pool,
-          onOpen: () => _open(pool),
-        ),
+        for (final pool in MusicalPool.values)
+          _PoolCard(pool: pool, onOpen: () => _open(pool)),
       ],
     );
   }
 }
 
 class _PoolCard extends StatelessWidget {
-  const _PoolCard({
-    required this.pool,
-    required this.onOpen,
-  });
+  const _PoolCard({required this.pool, required this.onOpen});
 
   final MusicalPool pool;
   final VoidCallback onOpen;
@@ -116,7 +115,7 @@ class _PoolCard extends StatelessWidget {
             ),
           ],
           const SizedBox(height: 8),
-          TrainingContextLink(pool: pool),
+          TrainingContextLink(contextId: pool.name),
           const SizedBox(height: 10),
           GradientButton(
             label: locked ? 'BLOQUEADO' : 'ESCUCHAR',

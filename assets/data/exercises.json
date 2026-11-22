@@ -5808,6 +5808,2558 @@
         "startNote": "c4"
       },
       "access": "premium"
+    },
+    {
+      "id": "TONE_FREQ_125_01",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_125_01.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f125",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 125 Hz, en los subgraves y graves profundos.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "125"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_125_02",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_125_02.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f125",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 125 Hz, en los subgraves y graves profundos.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "125"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_250_01",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_250_01.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f250",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 250 Hz, en los graves.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "250"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_250_02",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_250_02.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f250",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 250 Hz, en los graves.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "250"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_500_01",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_500_01.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f500",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 500 Hz, en los medios graves.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "500"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_500_02",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_500_02.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f500",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 500 Hz, en los medios graves.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "500"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_1000_01",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_1000_01.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f1000",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 1 kHz, en los medios.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "1000"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_1000_02",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_1000_02.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f1000",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 1 kHz, en los medios.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "1000"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_2000_01",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_2000_01.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f2000",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 2 kHz, en los medios agudos.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "2000"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_2000_02",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_2000_02.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f2000",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 2 kHz, en los medios agudos.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "2000"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_4000_01",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_4000_01.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f4000",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 4 kHz, en la presencia.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "4000"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_4000_02",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_4000_02.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f4000",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 4 kHz, en la presencia.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "4000"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_8000_01",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_8000_01.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f8000",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 8 kHz, en el brillo y el aire.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "8000"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_FREQ_8000_02",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_frequency",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_pure_8000_02.wav"
+      },
+      "intro": "Escucha el tono puro e identifica su frecuencia.",
+      "question": "¿Qué frecuencia escuchas?",
+      "options": [
+        {
+          "id": "f125",
+          "label": "125 Hz"
+        },
+        {
+          "id": "f250",
+          "label": "250 Hz"
+        },
+        {
+          "id": "f500",
+          "label": "500 Hz"
+        },
+        {
+          "id": "f1000",
+          "label": "1 kHz"
+        },
+        {
+          "id": "f2000",
+          "label": "2 kHz"
+        },
+        {
+          "id": "f4000",
+          "label": "4 kHz"
+        },
+        {
+          "id": "f8000",
+          "label": "8 kHz"
+        }
+      ],
+      "maxOptions": 4,
+      "correct": "f8000",
+      "difficulty": "beginner",
+      "explanation": "Es un tono de 8 kHz, en el brillo y el aire.",
+      "tags": {
+        "skill": "pure_tone",
+        "frequency": "8000"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_220_UP_100C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_220_up_100c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "beginner",
+      "explanation": "El segundo tono es más agudo: sube un semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "220",
+        "cents": "100"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_220_DOWN_100C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_220_down_100c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "El segundo tono es más grave: baja un semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "220",
+        "cents": "-100"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_220_UP_50C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_220_up_50c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "intermediate",
+      "explanation": "El segundo tono es más agudo: sube medio semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "220",
+        "cents": "50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_220_DOWN_50C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_220_down_50c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "intermediate",
+      "explanation": "El segundo tono es más grave: baja medio semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "220",
+        "cents": "-50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_220_UP_25C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_220_up_25c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "advanced",
+      "explanation": "El segundo tono es más agudo: sube un cuarto de semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "220",
+        "cents": "25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_220_DOWN_25C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_220_down_25c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "advanced",
+      "explanation": "El segundo tono es más grave: baja un cuarto de semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "220",
+        "cents": "-25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_330_UP_100C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_330_up_100c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "beginner",
+      "explanation": "El segundo tono es más agudo: sube un semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "330",
+        "cents": "100"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_330_DOWN_100C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_330_down_100c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "El segundo tono es más grave: baja un semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "330",
+        "cents": "-100"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_330_UP_50C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_330_up_50c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "intermediate",
+      "explanation": "El segundo tono es más agudo: sube medio semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "330",
+        "cents": "50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_330_DOWN_50C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_330_down_50c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "intermediate",
+      "explanation": "El segundo tono es más grave: baja medio semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "330",
+        "cents": "-50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_330_UP_25C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_330_up_25c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "advanced",
+      "explanation": "El segundo tono es más agudo: sube un cuarto de semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "330",
+        "cents": "25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_330_DOWN_25C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_330_down_25c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "advanced",
+      "explanation": "El segundo tono es más grave: baja un cuarto de semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "330",
+        "cents": "-25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_440_UP_100C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_440_up_100c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "beginner",
+      "explanation": "El segundo tono es más agudo: sube un semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "440",
+        "cents": "100"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_440_DOWN_100C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_440_down_100c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "El segundo tono es más grave: baja un semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "440",
+        "cents": "-100"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_440_UP_50C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_440_up_50c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "intermediate",
+      "explanation": "El segundo tono es más agudo: sube medio semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "440",
+        "cents": "50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_440_DOWN_50C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_440_down_50c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "intermediate",
+      "explanation": "El segundo tono es más grave: baja medio semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "440",
+        "cents": "-50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_440_UP_25C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_440_up_25c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "advanced",
+      "explanation": "El segundo tono es más agudo: sube un cuarto de semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "440",
+        "cents": "25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_440_DOWN_25C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_440_down_25c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "advanced",
+      "explanation": "El segundo tono es más grave: baja un cuarto de semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "440",
+        "cents": "-25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_660_UP_100C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_660_up_100c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "beginner",
+      "explanation": "El segundo tono es más agudo: sube un semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "660",
+        "cents": "100"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_660_DOWN_100C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_660_down_100c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "El segundo tono es más grave: baja un semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "660",
+        "cents": "-100"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_660_UP_50C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_660_up_50c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "intermediate",
+      "explanation": "El segundo tono es más agudo: sube medio semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "660",
+        "cents": "50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_660_DOWN_50C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_660_down_50c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "intermediate",
+      "explanation": "El segundo tono es más grave: baja medio semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "660",
+        "cents": "-50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_660_UP_25C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_660_up_25c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "advanced",
+      "explanation": "El segundo tono es más agudo: sube un cuarto de semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "660",
+        "cents": "25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_660_DOWN_25C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_660_down_25c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "advanced",
+      "explanation": "El segundo tono es más grave: baja un cuarto de semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "660",
+        "cents": "-25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_880_UP_100C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_880_up_100c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "beginner",
+      "explanation": "El segundo tono es más agudo: sube un semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "880",
+        "cents": "100"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_880_DOWN_100C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_880_down_100c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "El segundo tono es más grave: baja un semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "880",
+        "cents": "-100"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_880_UP_50C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_880_up_50c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "intermediate",
+      "explanation": "El segundo tono es más agudo: sube medio semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "880",
+        "cents": "50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_880_DOWN_50C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_880_down_50c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "intermediate",
+      "explanation": "El segundo tono es más grave: baja medio semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "880",
+        "cents": "-50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_880_UP_25C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_880_up_25c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "higher",
+      "difficulty": "advanced",
+      "explanation": "El segundo tono es más agudo: sube un cuarto de semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "880",
+        "cents": "25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "TONE_CMP_880_DOWN_25C",
+      "module": "ecualizacionFrecuencias",
+      "type": "tone_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/tones/tone_compare_880_down_25c_01.wav"
+      },
+      "intro": "Escucha dos tonos seguidos y compara su altura.",
+      "question": "¿El segundo tono es más agudo o más grave?",
+      "options": [
+        {
+          "id": "higher",
+          "label": "Más agudo"
+        },
+        {
+          "id": "lower",
+          "label": "Más grave"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "advanced",
+      "explanation": "El segundo tono es más grave: baja un cuarto de semitono.",
+      "tags": {
+        "skill": "pitch_compare",
+        "base": "880",
+        "cents": "-25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_IN_C4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_in_tune_c4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "in_tune",
+      "difficulty": "beginner",
+      "explanation": "Las dos notas son el mismo Do: está afinada.",
+      "tags": {
+        "skill": "tuning",
+        "note": "c4",
+        "cents": "0"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_50C_C4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_50c_up_c4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "beginner",
+      "explanation": "La segunda nota está 50 cents alta (medio semitono por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "c4",
+        "cents": "50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_50C_C4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_50c_down_c4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "beginner",
+      "explanation": "La segunda nota está 50 cents baja (medio semitono por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "c4",
+        "cents": "-50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_25C_C4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_25c_up_c4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "intermediate",
+      "explanation": "La segunda nota está 25 cents alta (un cuarto de semitono por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "c4",
+        "cents": "25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_25C_C4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_25c_down_c4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "intermediate",
+      "explanation": "La segunda nota está 25 cents baja (un cuarto de semitono por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "c4",
+        "cents": "-25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_10C_C4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_10c_up_c4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "advanced",
+      "explanation": "La segunda nota está 10 cents alta (una diferencia muy pequeña (10 cents) por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "c4",
+        "cents": "10"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_10C_C4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_10c_down_c4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "advanced",
+      "explanation": "La segunda nota está 10 cents baja (una diferencia muy pequeña (10 cents) por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "c4",
+        "cents": "-10"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_IN_E4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_in_tune_e4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "in_tune",
+      "difficulty": "beginner",
+      "explanation": "Las dos notas son el mismo Mi: está afinada.",
+      "tags": {
+        "skill": "tuning",
+        "note": "e4",
+        "cents": "0"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_50C_E4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_50c_up_e4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "beginner",
+      "explanation": "La segunda nota está 50 cents alta (medio semitono por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "e4",
+        "cents": "50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_50C_E4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_50c_down_e4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "beginner",
+      "explanation": "La segunda nota está 50 cents baja (medio semitono por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "e4",
+        "cents": "-50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_25C_E4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_25c_up_e4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "intermediate",
+      "explanation": "La segunda nota está 25 cents alta (un cuarto de semitono por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "e4",
+        "cents": "25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_25C_E4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_25c_down_e4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "intermediate",
+      "explanation": "La segunda nota está 25 cents baja (un cuarto de semitono por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "e4",
+        "cents": "-25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_10C_E4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_10c_up_e4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "advanced",
+      "explanation": "La segunda nota está 10 cents alta (una diferencia muy pequeña (10 cents) por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "e4",
+        "cents": "10"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_10C_E4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_10c_down_e4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "advanced",
+      "explanation": "La segunda nota está 10 cents baja (una diferencia muy pequeña (10 cents) por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "e4",
+        "cents": "-10"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_IN_G4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_in_tune_g4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "in_tune",
+      "difficulty": "beginner",
+      "explanation": "Las dos notas son el mismo Sol: está afinada.",
+      "tags": {
+        "skill": "tuning",
+        "note": "g4",
+        "cents": "0"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_50C_G4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_50c_up_g4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "beginner",
+      "explanation": "La segunda nota está 50 cents alta (medio semitono por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "g4",
+        "cents": "50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_50C_G4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_50c_down_g4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "beginner",
+      "explanation": "La segunda nota está 50 cents baja (medio semitono por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "g4",
+        "cents": "-50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_25C_G4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_25c_up_g4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "intermediate",
+      "explanation": "La segunda nota está 25 cents alta (un cuarto de semitono por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "g4",
+        "cents": "25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_25C_G4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_25c_down_g4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "intermediate",
+      "explanation": "La segunda nota está 25 cents baja (un cuarto de semitono por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "g4",
+        "cents": "-25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_10C_G4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_10c_up_g4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "advanced",
+      "explanation": "La segunda nota está 10 cents alta (una diferencia muy pequeña (10 cents) por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "g4",
+        "cents": "10"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_10C_G4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_10c_down_g4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "advanced",
+      "explanation": "La segunda nota está 10 cents baja (una diferencia muy pequeña (10 cents) por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "g4",
+        "cents": "-10"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_IN_A4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_in_tune_a4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "in_tune",
+      "difficulty": "beginner",
+      "explanation": "Las dos notas son el mismo La: está afinada.",
+      "tags": {
+        "skill": "tuning",
+        "note": "a4",
+        "cents": "0"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_50C_A4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_50c_up_a4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "beginner",
+      "explanation": "La segunda nota está 50 cents alta (medio semitono por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "a4",
+        "cents": "50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_50C_A4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_50c_down_a4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "beginner",
+      "explanation": "La segunda nota está 50 cents baja (medio semitono por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "a4",
+        "cents": "-50"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_25C_A4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_25c_up_a4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "intermediate",
+      "explanation": "La segunda nota está 25 cents alta (un cuarto de semitono por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "a4",
+        "cents": "25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_25C_A4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_25c_down_a4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "intermediate",
+      "explanation": "La segunda nota está 25 cents baja (un cuarto de semitono por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "a4",
+        "cents": "-25"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_UP_10C_A4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_10c_up_a4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "sharp",
+      "difficulty": "advanced",
+      "explanation": "La segunda nota está 10 cents alta (una diferencia muy pequeña (10 cents) por encima).",
+      "tags": {
+        "skill": "tuning",
+        "note": "a4",
+        "cents": "10"
+      },
+      "access": "free"
+    },
+    {
+      "id": "PITCH_DOWN_10C_A4",
+      "module": "entrenamientoMusical",
+      "type": "pitch_tuning",
+      "audio": {
+        "source": "asset",
+        "path": "assets/pitch/pitch_10c_down_a4_01.wav"
+      },
+      "intro": "Escucha la nota de referencia y después la misma nota.",
+      "question": "¿La segunda nota está afinada, alta o baja?",
+      "options": [
+        {
+          "id": "in_tune",
+          "label": "Afinada"
+        },
+        {
+          "id": "sharp",
+          "label": "Alta"
+        },
+        {
+          "id": "flat",
+          "label": "Baja"
+        }
+      ],
+      "correct": "flat",
+      "difficulty": "advanced",
+      "explanation": "La segunda nota está 10 cents baja (una diferencia muy pequeña (10 cents) por debajo).",
+      "tags": {
+        "skill": "tuning",
+        "note": "a4",
+        "cents": "-10"
+      },
+      "access": "free"
     }
   ]
 }

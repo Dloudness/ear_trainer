@@ -55,5 +55,43 @@
       "skills": [],
       "closing": "Con práctica constante, el oído distingue el equilibrio, el espacio de cada instrumento y el sistema de escucha."
     }
+  },
+  "tones": {
+    "title": "¿Por qué entrenar con tonos puros?",
+    "full": {
+      "intro": "Un tono puro es una sola frecuencia, sin nada más. Es la forma más clara de aprender dónde está cada zona del espectro.",
+      "skillsIntro": "Con este entrenamiento aprenderás a:",
+      "skills": [
+        "Ubicar de oído las bandas de 125 Hz a 8 kHz",
+        "Notar diferencias de altura cada vez más pequeñas",
+        "Saber qué frecuencia tocar al ecualizar",
+        "Reconocer zumbidos y resonancias en una grabación"
+      ],
+      "closing": "Escucha a un volumen cómodo, mejor con audífonos. Al principio todo suena parecido, y es normal."
+    },
+    "short": {
+      "intro": "Un tono puro es una sola frecuencia: la forma más clara de aprender el espectro.",
+      "skills": [],
+      "closing": "Escucha a un volumen cómodo, mejor con audífonos."
+    }
+  },
+  "tuning": {
+    "title": "¿Por qué entrenar afinación?",
+    "full": {
+      "intro": "Afinar es que una nota caiga exactamente donde debe. Una diferencia mínima ya se siente como algo que no encaja.",
+      "skillsIntro": "Con este entrenamiento aprenderás a:",
+      "skills": [
+        "Notar si una nota está alta, baja o afinada",
+        "Cantar y tocar con más precisión",
+        "Detectar voces e instrumentos desafinados en una mezcla",
+        "Afinar de oído, sin depender solo del afinador"
+      ],
+      "closing": "Las diferencias se miden en cents: 100 cents son un semitono. Empezarás por diferencias grandes y llegarás a las más finas."
+    },
+    "short": {
+      "intro": "Afinar es que una nota caiga exactamente donde debe.",
+      "skills": [],
+      "closing": "100 cents son un semitono: empezarás por diferencias grandes."
+    }
   }
 }

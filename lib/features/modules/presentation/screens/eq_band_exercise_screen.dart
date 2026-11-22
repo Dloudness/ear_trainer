@@ -19,15 +19,43 @@ import '../../../../core/widgets/premium_back_button.dart';
 import '../../../exercises/models/exercise.dart';
 import '../../models/eq_practice.dart';
 
+/// One listen, several answers: advanced EQ bands and pure tones.
 class EqBandExerciseScreen extends StatefulWidget {
   const EqBandExerciseScreen({
     super.key,
-    required this.source,
     required this.exercise,
+    required this.pickNext,
+    this.routeName = '/module/frecuencias/banda',
   });
 
-  final EqSource source;
   final Exercise exercise;
+
+  /// Draws the following exercise of the same practice, avoiding [avoidId].
+  final Exercise? Function(String? avoidId) pickNext;
+  final String routeName;
+
+  /// Advanced EQ practice for one [source].
+  factory EqBandExerciseScreen.band({
+    Key? key,
+    required EqSource source,
+    required Exercise exercise,
+  }) {
+    return EqBandExerciseScreen(
+      key: key,
+      exercise: exercise,
+      pickNext: (avoidId) => EqPractice.pick(source, avoidId: avoidId),
+    );
+  }
+
+  /// Pure-tone practice (frequency and higher/lower).
+  factory EqBandExerciseScreen.tones({Key? key, required Exercise exercise}) {
+    return EqBandExerciseScreen(
+      key: key,
+      exercise: exercise,
+      pickNext: (avoidId) => TonePractice.pick(avoidId: avoidId),
+      routeName: '/module/frecuencias/tonos',
+    );
+  }
 
   @override
   State<EqBandExerciseScreen> createState() => _EqBandExerciseScreenState();
@@ -62,7 +90,17 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
   }
 
   void _load(Exercise exercise) {
-    final options = List<ExerciseOption>.of(exercise.options)..shuffle(_random);
+    final presented = List<ExerciseOption>.of(exercise.present(random: _random));
+    // Tone answers read best in their natural order (low to high, or
+    // higher/lower); band answers are shuffled.
+    final ordered = exercise.type.startsWith('tone_');
+    final options = ordered
+        ? (presented..sort(
+            (a, b) => exercise.options
+                .indexOf(a)
+                .compareTo(exercise.options.indexOf(b)),
+          ))
+        : (presented..shuffle(_random));
     _exercise = exercise;
     _options = options;
     _selectedId = null;
@@ -148,7 +186,7 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
       if (mounted) Navigator.pop(context);
       return;
     }
-    final next = EqPractice.pick(widget.source, avoidId: _exercise?.id);
+    final next = widget.pickNext(_exercise?.id);
     if (!mounted) return;
     if (next == null) {
       Navigator.pop(context);
@@ -157,8 +195,12 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
     Navigator.pushReplacement(
       context,
       AppTransitions.cinematicRoute<void>(
-        settings: const RouteSettings(name: '/module/frecuencias/banda'),
-        screen: EqBandExerciseScreen(source: widget.source, exercise: next),
+        settings: RouteSettings(name: widget.routeName),
+        screen: EqBandExerciseScreen(
+          exercise: next,
+          pickNext: widget.pickNext,
+          routeName: widget.routeName,
+        ),
       ),
     );
   }
@@ -256,9 +298,13 @@ class _ListenView extends StatelessWidget {
         ExerciseFocusHeader(
           instruction: 'Escucha atentamente.',
           question: exercise.question,
-          hint: withReference
-              ? 'El nivel general es el mismo. Cambia una sola banda.'
-              : 'Identifica la frecuencia y el ajuste de este ejemplo.',
+          hint: switch (exercise.type) {
+            'tone_frequency' => 'Un solo tono, sin nada más.',
+            'tone_compare' => 'El primer tono es la referencia.',
+            _ when withReference =>
+              'El nivel general es el mismo. Cambia una sola banda.',
+            _ => 'Identifica la frecuencia y el ajuste de este ejemplo.',
+          },
           questionSize: 24,
         ),
         const SizedBox(height: 24),

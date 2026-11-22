@@ -16,6 +16,7 @@ import '../../models/eq_practice.dart';
 import '../widgets/module_screen_layout.dart';
 import '../widgets/training_context_dialog.dart';
 import 'eq_advanced_screen.dart';
+import 'eq_band_exercise_screen.dart';
 
 class FrecuenciasScreen extends StatefulWidget {
   const FrecuenciasScreen({super.key});
@@ -53,6 +54,24 @@ class _FrecuenciasScreenState extends State<FrecuenciasScreen> {
     );
   }
 
+  /// Tonos puros: explanation, then a random frequency or higher/lower drill.
+  Future<void> _startTones() async {
+    if (!await ensureCanPractice(context) || !mounted) return;
+    final started = await showTrainingContext(
+      context,
+      TrainingContextIds.tones,
+      actionLabel: 'ESCUCHAR',
+      shortWhenSeen: true,
+    );
+    if (!mounted || !started) return;
+    final exercise = TonePractice.pick();
+    if (exercise == null) return;
+    await _open(
+      EqBandExerciseScreen.tones(exercise: exercise),
+      '/module/frecuencias/tonos',
+    );
+  }
+
   Future<void> _open(Widget screen, String routeName) {
     return Navigator.push(
       context,
@@ -83,6 +102,12 @@ class _FrecuenciasScreenState extends State<FrecuenciasScreen> {
               'Identifica la frecuencia y el ajuste en el ruido rosa.',
           onOpen: () =>
               _open(const EqAdvancedScreen(), '/module/frecuencias/avanzado'),
+        ),
+        _LevelCard(
+          title: 'Tonos puros',
+          detail:
+              'Reconoce la frecuencia de un tono y compara qué tan agudo o grave suena.',
+          onOpen: () => unawaited(_startTones()),
         ),
       ],
     );

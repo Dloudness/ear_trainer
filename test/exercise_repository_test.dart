@@ -8,6 +8,7 @@ import 'package:ear_trainer/features/demo/presentation/screens/demo_experience_s
 import 'package:ear_trainer/features/exercises/data/exercise_repository.dart';
 import 'package:ear_trainer/features/exercises/models/exercise.dart';
 import 'package:ear_trainer/features/modules/models/eq_practice.dart';
+import 'package:ear_trainer/features/modules/models/musical_pool.dart';
 import 'package:ear_trainer/features/modules/models/musical_sections.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/eq_band_exercise_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/frecuencias_screen.dart';
@@ -319,12 +320,48 @@ void main() {
     await MockSession.load();
   });
 
+  test('pure tones and tuning drills are generated and playable', () async {
+    final tones = eqExercises
+        .where((exercise) => exercise.type.startsWith('tone_'))
+        .toList();
+    expect(tones.where((e) => e.type == 'tone_frequency'), hasLength(14));
+    expect(tones.where((e) => e.type == 'tone_compare'), hasLength(30));
+    final tuning = ExerciseRepository.instance
+        .byModule(OnboardingOption.entrenamientoMusical.name)
+        .where((exercise) => exercise.type == 'pitch_tuning')
+        .toList();
+    expect(tuning, hasLength(28));
+    expect(
+      tuning.map((e) => e.correct).toSet(),
+      {'in_tune', 'sharp', 'flat'},
+    );
+
+    for (final exercise in tones.where((e) => e.type == 'tone_frequency')) {
+      final shown = exercise.present(random: Random(1));
+      expect(shown, hasLength(4));
+      expect(shown.map((o) => o.id), contains(exercise.correct));
+    }
+    for (final exercise in [...tones, ...tuning]) {
+      expect(exercise.access, 'free');
+      expect(exercise.intro, isNot(contains(exercise.correct)));
+    }
+    expect(TonePractice.pick(random: Random(2)), isNotNull);
+    expect(MusicalPools.pick(MusicalPool.tuning, random: Random(2)), isNotNull);
+    expect(
+      await ExerciseRepository.missingAudioWarnings([...tones, ...tuning]),
+      isEmpty,
+    );
+  });
+
   test('access is free, account or premium without revealing intros', () {
     final musical = ExerciseRepository.instance.byModule(
       OnboardingOption.entrenamientoMusical.name,
     );
     final free = musical
-        .where((exercise) => exercise.access == 'free')
+        .where(
+          (exercise) =>
+              exercise.access == 'free' && exercise.type != 'pitch_tuning',
+        )
         .map((exercise) => exercise.id)
         .toSet();
     expect(free, {
@@ -504,8 +541,10 @@ void main() {
     expect(find.text('5ª justa'), findsNothing);
     expect(find.textContaining('ejercicio'), findsNothing);
 
+    expect(find.text('Afinación'), findsOneWidget);
+
     SharedPreferences.setMockInitialValues({});
-    await tester.tap(find.text('ESCUCHAR'));
+    await tester.tap(find.text('ESCUCHAR').first);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
 
@@ -544,7 +583,10 @@ void main() {
     );
     await tester.pumpWidget(
       MaterialApp(
-        home: EqBandExerciseScreen(source: EqSource.pink, exercise: exercise),
+        home: EqBandExerciseScreen.band(
+          source: EqSource.pink,
+          exercise: exercise,
+        ),
       ),
     );
     await tester.pump();

@@ -72,7 +72,7 @@ const _areas = [
   _Area(
     option: OnboardingOption.entrenamientoMusical,
     title: 'Musical',
-    description: 'Intervalos y acordes.',
+    description: 'Intervalos, acordes y afinación.',
     glyph: CategoryGlyph.musical,
     colors: [Color(0xFFE9D5FF), Color(0xFF7C3AED)],
     profiles: {_Profile.musician},

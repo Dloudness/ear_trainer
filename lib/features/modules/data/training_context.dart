@@ -6,6 +6,8 @@ abstract final class TrainingContextIds {
   static const intervals = 'intervals';
   static const chords = 'chords';
   static const eq = 'eq';
+  static const tones = 'tones';
+  static const tuning = 'tuning';
 }
 
 class TrainingContextVariant {

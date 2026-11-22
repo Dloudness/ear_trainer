@@ -5,11 +5,12 @@ import '../../exercises/data/exercise_repository.dart';
 import '../../exercises/models/exercise.dart';
 import '../../onboarding/models/onboarding_option.dart';
 
-enum MusicalPool { intervals, chords }
+enum MusicalPool { intervals, chords, tuning }
 
 abstract final class MusicalPools {
   static const intervalsTitle = 'Intervalos';
   static const chordsTitle = 'Acordes';
+  static const tuningTitle = 'Afinación';
   static const freeIntervalOrder = [
     'interval_perf8_asc_c4_01',
     'interval_perf5_asc_c4_01',
@@ -20,6 +21,7 @@ abstract final class MusicalPools {
     return switch (pool) {
       MusicalPool.intervals => intervalsTitle,
       MusicalPool.chords => chordsTitle,
+      MusicalPool.tuning => tuningTitle,
     };
   }
 
@@ -27,6 +29,7 @@ abstract final class MusicalPools {
     return switch (pool) {
       MusicalPool.intervals => 'Se desbloquea con una cuenta.',
       MusicalPool.chords => 'Se desbloquea con premium.',
+      MusicalPool.tuning => 'Se desbloquea con una cuenta.',
     };
   }
 
@@ -34,6 +37,7 @@ abstract final class MusicalPools {
     final type = switch (pool) {
       MusicalPool.intervals => 'interval_quality',
       MusicalPool.chords => 'chord_quality',
+      MusicalPool.tuning => 'pitch_tuning',
     };
     final module = OnboardingOption.entrenamientoMusical.name;
     return [

@@ -30,7 +30,7 @@ class EqAdvancedScreen extends StatelessWidget {
       context,
       AppTransitions.cinematicRoute<void>(
         settings: const RouteSettings(name: '/module/frecuencias/banda'),
-        screen: EqBandExerciseScreen(source: source, exercise: exercise),
+        screen: EqBandExerciseScreen.band(source: source, exercise: exercise),
       ),
     );
   }

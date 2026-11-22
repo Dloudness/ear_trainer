@@ -120,7 +120,9 @@ class MockSession {
     if (exerciseId.startsWith('DYN_') || exerciseId.startsWith('dinamica')) {
       return 'dinamica';
     }
+    if (exerciseId.startsWith('TONE_')) return 'frecuencias';
     if (exerciseId.startsWith('MUS_') ||
+        exerciseId.startsWith('PITCH_') ||
         exerciseId.startsWith('chord_') ||
         exerciseId.startsWith('interval_') ||
         exerciseId.startsWith('entrenamiento')) {
@@ -156,6 +158,8 @@ class MockSession {
     return switch (id) {
       'chords' => _progress.seenChordContext,
       'eq' => _progress.seenEqContext,
+      'tones' => _progress.seenToneContext,
+      'tuning' => _progress.seenTuningContext,
       _ => _progress.seenIntervalContext,
     };
   }
@@ -164,6 +168,8 @@ class MockSession {
     _progress = switch (id) {
       'chords' => _progress.copyWith(seenChordContext: true),
       'eq' => _progress.copyWith(seenEqContext: true),
+      'tones' => _progress.copyWith(seenToneContext: true),
+      'tuning' => _progress.copyWith(seenTuningContext: true),
       _ => _progress.copyWith(seenIntervalContext: true),
     };
     await _progressRepository.save(_progress);

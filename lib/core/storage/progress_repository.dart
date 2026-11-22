@@ -62,6 +62,8 @@ class ProgressSnapshot {
     this.seenIntervalContext = false,
     this.seenChordContext = false,
     this.seenEqContext = false,
+    this.seenToneContext = false,
+    this.seenTuningContext = false,
   });
 
   final List<CompletedExerciseRecord> exercises;
@@ -77,6 +79,8 @@ class ProgressSnapshot {
   final bool seenIntervalContext;
   final bool seenChordContext;
   final bool seenEqContext;
+  final bool seenToneContext;
+  final bool seenTuningContext;
 
   ProgressSnapshot copyWith({
     List<CompletedExerciseRecord>? exercises,
@@ -92,6 +96,8 @@ class ProgressSnapshot {
     bool? seenIntervalContext,
     bool? seenChordContext,
     bool? seenEqContext,
+    bool? seenToneContext,
+    bool? seenTuningContext,
   }) {
     return ProgressSnapshot(
       exercises: exercises ?? this.exercises,
@@ -107,6 +113,8 @@ class ProgressSnapshot {
       seenIntervalContext: seenIntervalContext ?? this.seenIntervalContext,
       seenChordContext: seenChordContext ?? this.seenChordContext,
       seenEqContext: seenEqContext ?? this.seenEqContext,
+      seenToneContext: seenToneContext ?? this.seenToneContext,
+      seenTuningContext: seenTuningContext ?? this.seenTuningContext,
     );
   }
 }
@@ -128,6 +136,8 @@ class ProgressRepository {
   static const _kSeenIntervalContext = 'progress.seenIntervalContext';
   static const _kSeenChordContext = 'progress.seenChordContext';
   static const _kSeenEqContext = 'progress.seenEqContext';
+  static const _kSeenToneContext = 'progress.seenToneContext';
+  static const _kSeenTuningContext = 'progress.seenTuningContext';
 
   Future<ProgressSnapshot> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -164,6 +174,8 @@ class ProgressRepository {
       seenIntervalContext: prefs.getBool(_kSeenIntervalContext) ?? false,
       seenChordContext: prefs.getBool(_kSeenChordContext) ?? false,
       seenEqContext: prefs.getBool(_kSeenEqContext) ?? false,
+      seenToneContext: prefs.getBool(_kSeenToneContext) ?? false,
+      seenTuningContext: prefs.getBool(_kSeenTuningContext) ?? false,
     );
   }
 
@@ -192,6 +204,8 @@ class ProgressRepository {
     await prefs.setBool(_kSeenIntervalContext, snapshot.seenIntervalContext);
     await prefs.setBool(_kSeenChordContext, snapshot.seenChordContext);
     await prefs.setBool(_kSeenEqContext, snapshot.seenEqContext);
+    await prefs.setBool(_kSeenToneContext, snapshot.seenToneContext);
+    await prefs.setBool(_kSeenTuningContext, snapshot.seenTuningContext);
     if (snapshot.trainingFocus == null) {
       await prefs.remove(_kTrainingFocus);
     } else {

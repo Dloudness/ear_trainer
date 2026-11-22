@@ -55,6 +55,35 @@ abstract final class EqPractice {
   }
 }
 
+/// Random pure-tone practice: which frequency (T1) and higher or lower (T2).
+abstract final class TonePractice {
+  static const types = {'tone_frequency', 'tone_compare'};
+
+  static List<Exercise> all() {
+    final module = OnboardingOption.ecualizacionFrecuencias.name;
+    return [
+      for (final exercise in ExerciseRepository.instance.byModule(module))
+        if (types.contains(exercise.type) &&
+            ExerciseRepository.instance.isPlayable(exercise) &&
+            MockSession.allowsAccess(exercise.access))
+          exercise,
+    ];
+  }
+
+  static Exercise? pick({String? avoidId, Random? random}) {
+    final rng = random ?? Random();
+    var list = all();
+    if (avoidId != null && list.length > 1) {
+      list = [
+        for (final exercise in list)
+          if (exercise.id != avoidId) exercise,
+      ];
+    }
+    if (list.isEmpty) return null;
+    return list[rng.nextInt(list.length)];
+  }
+}
+
 /// Random practice for the beginner EQ level: the A/B comparisons the
 /// current user has unlocked, drawn without a list screen in between.
 abstract final class EqInitialPractice {

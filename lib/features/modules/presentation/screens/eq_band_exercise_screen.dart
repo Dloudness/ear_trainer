@@ -47,12 +47,16 @@ class EqBandExerciseScreen extends StatefulWidget {
     );
   }
 
-  /// Pure-tone practice (frequency and higher/lower).
-  factory EqBandExerciseScreen.tones({Key? key, required Exercise exercise}) {
+  /// Pure-tone practice for one [drill].
+  factory EqBandExerciseScreen.tones({
+    Key? key,
+    required ToneDrill drill,
+    required Exercise exercise,
+  }) {
     return EqBandExerciseScreen(
       key: key,
       exercise: exercise,
-      pickNext: (avoidId) => TonePractice.pick(avoidId: avoidId),
+      pickNext: (avoidId) => TonePractice.pick(drill, avoidId: avoidId),
       routeName: '/module/frecuencias/tonos',
     );
   }

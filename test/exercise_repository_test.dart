@@ -345,7 +345,10 @@ void main() {
       expect(exercise.access, 'free');
       expect(exercise.intro, isNot(contains(exercise.correct)));
     }
-    expect(TonePractice.pick(random: Random(2)), isNotNull);
+    for (final drill in ToneDrill.values) {
+      final picked = TonePractice.pick(drill, random: Random(2));
+      expect(picked!.type, TonePractice.type(drill));
+    }
     expect(MusicalPools.pick(MusicalPool.tuning, random: Random(2)), isNotNull);
     expect(
       await ExerciseRepository.missingAudioWarnings([...tones, ...tuning]),

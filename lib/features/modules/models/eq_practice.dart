@@ -56,23 +56,40 @@ abstract final class EqPractice {
 }
 
 /// Random pure-tone practice: which frequency (T1) and higher or lower (T2).
-abstract final class TonePractice {
-  static const types = {'tone_frequency', 'tone_compare'};
+enum ToneDrill { frequency, compare }
 
-  static List<Exercise> all() {
+abstract final class TonePractice {
+  static String type(ToneDrill drill) => switch (drill) {
+    ToneDrill.frequency => 'tone_frequency',
+    ToneDrill.compare => 'tone_compare',
+  };
+
+  static String title(ToneDrill drill) => switch (drill) {
+    ToneDrill.frequency => 'Frecuencia del tono',
+    ToneDrill.compare => '¿Más agudo o más grave?',
+  };
+
+  static String detail(ToneDrill drill) => switch (drill) {
+    ToneDrill.frequency =>
+      'Escucha un tono puro e identifica su frecuencia, de 125 Hz a 8 kHz.',
+    ToneDrill.compare =>
+      'Escucha dos tonos seguidos y di si el segundo sube o baja.',
+  };
+
+  static List<Exercise> of(ToneDrill drill) {
     final module = OnboardingOption.ecualizacionFrecuencias.name;
     return [
       for (final exercise in ExerciseRepository.instance.byModule(module))
-        if (types.contains(exercise.type) &&
+        if (exercise.type == type(drill) &&
             ExerciseRepository.instance.isPlayable(exercise) &&
             MockSession.allowsAccess(exercise.access))
           exercise,
     ];
   }
 
-  static Exercise? pick({String? avoidId, Random? random}) {
+  static Exercise? pick(ToneDrill drill, {String? avoidId, Random? random}) {
     final rng = random ?? Random();
-    var list = all();
+    var list = of(drill);
     if (avoidId != null && list.length > 1) {
       list = [
         for (final exercise in list)

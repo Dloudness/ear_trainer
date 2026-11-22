@@ -21,6 +21,8 @@ App de entrenamiento auditivo para productores, ingenieros de sonido y músicos.
 - Ventanas de contexto "¿Por qué entrenar...?" (intervalos, acordes, EQ) con versión "full" (principiante) y "short". Incluyen "Con este entrenamiento aprenderás a:".
 - Dinámica bloqueada por progreso en el Home (candado distinto al de membresía) hasta tener contenido real.
 - Regla de ejercicios objetivos: se cambia UNA variable conocida; la respuesta correcta vive en el JSON ("correct"), nunca se deduce del nombre del archivo.
+- Precios iniciales (suscripción mensual, por validar): estudiantes 8.000 COP; público general en Colombia 15.000-16.000 COP; internacional en USD con precio propio. Habrá licencias para cursos e instituciones (universidades). Aún no implementado en la app.
+- Afinación en contexto (A2-A5): se construirá por código a partir de muestras reales grabadas por el dueño (piano, guitarra, voz). Guía: docs/Ear_Trainer_guia_de_grabacion_afinacion.docx.
 - Plan futuro: cuentas reales y progreso en la nube (Firebase o Supabase), audios premium en almacenamiento protegido, pagos, web en dominio propio. Ejercicios por IA a más largo plazo. Nada de esto antes del piloto.
 
 ## Convenciones de audio

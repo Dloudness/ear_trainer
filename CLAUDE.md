@@ -15,6 +15,8 @@ App de entrenamiento auditivo para productores, ingenieros de sonido y músicos.
 - Entrenamiento Musical: dos tarjetas (Intervalos y Acordes) que abren directo un ejercicio aleatorio entre los desbloqueados. Sin pantalla de secciones.
 - NO mostrar nunca cuántos ejercicios hay (ni totales ni "X de Y"): se busca sensación de ejercicios infinitos.
 - NO revelar la respuesta antes de responder: el "intro" es genérico por tipo; "explanation" y "tip" solo se ven después.
+- Sin cuenta: máximo 5 ejercicios distintos (MockSession.freeExerciseLimit); al pedir el siguiente se exige registro y no se puede continuar sin él (ensureCanPractice).
+- Sin bucle de reintento: si falla, puede ver la respuesta (opcional) y pasa al siguiente ejercicio. Nunca "Volver a intentar" (evita memorizar ejercicios).
 - Máximo 3 escuchas por ejercicio (en A/B, 3 por clip). Play siempre reinicia desde cero. Sin botón Repetir. Tras responder, el audio es ilimitado.
 - Ventanas de contexto "¿Por qué entrenar...?" (intervalos, acordes, EQ) con versión "full" (principiante) y "short". Incluyen "Con este entrenamiento aprenderás a:".
 - Dinámica bloqueada por progreso en el Home (candado distinto al de membresía) hasta tener contenido real.

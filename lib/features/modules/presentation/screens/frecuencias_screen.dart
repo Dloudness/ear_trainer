@@ -27,6 +27,7 @@ class FrecuenciasScreen extends StatefulWidget {
 class _FrecuenciasScreenState extends State<FrecuenciasScreen> {
   /// Inicial: explanation, then straight into a random unlocked comparison.
   Future<void> _startInitial() async {
+    if (!await ensureCanPractice(context) || !mounted) return;
     final started = await showTrainingContext(
       context,
       TrainingContextIds.eq,

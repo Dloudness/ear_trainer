@@ -38,6 +38,8 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
       if (!registered) return;
     }
 
+    if (!await ensureCanPractice(context) || !mounted) return;
+
     if (!MockSession.hasSeenTrainingContext(pool.name)) {
       final started = await showTrainingContext(
         context,

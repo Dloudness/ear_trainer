@@ -49,6 +49,14 @@ class MockSession {
 
   static int get completedExerciseCount => _progress.exercises.length;
 
+  /// Different exercises a visitor without an account may complete.
+  static const freeExerciseLimit = 5;
+
+  /// True once a visitor without an account has used up the free
+  /// exercises; the next one asks them to register.
+  static bool get reachedFreeLimit =>
+      !hasAccount && !hasPremium && completedExerciseCount >= freeExerciseLimit;
+
   static int get globalAccuracyPercent => _accuracyPercent(_progress.exercises);
 
   static int get achievements => completedExerciseCount;

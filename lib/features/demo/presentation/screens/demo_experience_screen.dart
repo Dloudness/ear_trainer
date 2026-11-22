@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../../../core/audio/exercise_audio_player.dart';
+import '../../../../core/auth/account_prompt.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../core/session/mock_session.dart';
@@ -515,13 +516,6 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     return CategoryDemoContent.forCategory(_category);
   }
 
-  Future<void> _retryExercise() async {
-    await _stopAllPlayback();
-    if (!mounted) return;
-    setState(() => _selectedOption = null);
-    await _goToPhase(_DemoPhase.listen);
-  }
-
   Future<void> _showAnswerReveal() async {
     await _goToPhase(_DemoPhase.reveal);
   }
@@ -529,6 +523,10 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   Future<void> _nextPractice() async {
     await _stopAllPlayback();
     if (!mounted) return;
+    if (!await ensureCanPractice(context) || !mounted) {
+      if (mounted) Navigator.maybePop(context);
+      return;
+    }
     final next = EqInitialPractice.pickIndex(avoidId: _currentExerciseId);
     if (next == null) {
       Navigator.maybePop(context);
@@ -579,7 +577,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
                               );
                             }
                           case _DemoPhase.feedback:
-                            _goToPhase(_DemoPhase.listen);
+                            Navigator.maybePop(context);
                           case _DemoPhase.reveal:
                             _goToPhase(_DemoPhase.feedback);
                           case _DemoPhase.intro:
@@ -703,49 +701,30 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     };
   }
 
-  Widget get _exitButton => widget.practice
+  Widget get _continueButton => widget.practice
       ? GradientButton(
           label: 'SIGUIENTE EJERCICIO',
-          compact: true,
           onPressed: () => unawaited(_nextPractice()),
         )
-      : GradientButton(
-          label: 'EXPLORAR APP',
-          compact: true,
-          onPressed: _enterLightHome,
-        );
+      : GradientButton(label: 'EXPLORAR APP', onPressed: _enterLightHome);
 
+  /// No retry loop: a wrong answer moves on like a right one, with the
+  /// answer available only if the listener asks for it.
   Widget _buildFeedbackActions() {
     if (_isCorrectAnswer) {
-      return SizedBox(
-        width: double.infinity,
-        child: widget.practice
-            ? GradientButton(
-                label: 'SIGUIENTE EJERCICIO',
-                onPressed: () => unawaited(_nextPractice()),
-              )
-            : GradientButton(
-                label: 'EXPLORAR APP',
-                onPressed: _enterLightHome,
-              ),
-      );
+      return SizedBox(width: double.infinity, child: _continueButton);
     }
 
     return Column(
       children: [
-        SizedBox(
-          width: double.infinity,
-          child: GradientButton(
-            label: 'VOLVER A INTENTAR',
-            onPressed: _retryExercise,
-          ),
-        ),
+        SizedBox(width: double.infinity, child: _continueButton),
         const SizedBox(height: 12),
         SizedBox(
           width: double.infinity,
           child: GradientButton(
             label: 'VER RESPUESTA',
             compact: true,
+            translucent: true,
             onPressed: _showAnswerReveal,
           ),
         ),
@@ -754,19 +733,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   }
 
   Widget _buildRevealActions() {
-    return Column(
-      children: [
-        SizedBox(
-          width: double.infinity,
-          child: GradientButton(
-            label: 'REINTENTAR EJERCICIO',
-            onPressed: _retryExercise,
-          ),
-        ),
-        const SizedBox(height: 12),
-        SizedBox(width: double.infinity, child: _exitButton),
-      ],
-    );
+    return SizedBox(width: double.infinity, child: _continueButton);
   }
 }
 

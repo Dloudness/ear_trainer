@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../../../core/audio/exercise_audio_player.dart';
+import '../../../../core/auth/account_prompt.dart';
 import '../../../../core/session/mock_session.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -142,6 +143,11 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
   }
 
   Future<void> _goNext() async {
+    unawaited(_audioPlayer.stop());
+    if (!await ensureCanPractice(context) || !mounted) {
+      if (mounted) Navigator.pop(context);
+      return;
+    }
     final next = EqPractice.pick(widget.source, avoidId: _exercise?.id);
     if (!mounted) return;
     if (next == null) {

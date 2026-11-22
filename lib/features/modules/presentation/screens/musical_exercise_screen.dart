@@ -128,6 +128,10 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
   }
 
   Future<void> _goNext() async {
+    if (!await ensureCanPractice(context) || !mounted) {
+      if (mounted) Navigator.pop(context);
+      return;
+    }
     var next = MusicalPools.pick(widget.pool, avoidId: _exercise?.id);
     if (next == null && MusicalPools.needsAccountPrompt(widget.pool)) {
       final registered = await promptRegister(context);

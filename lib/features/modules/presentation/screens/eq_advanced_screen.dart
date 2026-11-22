@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/auth/account_prompt.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/app_motion.dart';
@@ -15,6 +16,7 @@ class EqAdvancedScreen extends StatelessWidget {
   const EqAdvancedScreen({super.key});
 
   Future<void> _open(BuildContext context, EqSource source) async {
+    if (!await ensureCanPractice(context) || !context.mounted) return;
     final started = await showTrainingContext(
       context,
       TrainingContextIds.eq,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../session/mock_session.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_typography.dart';
 import 'account_auth.dart';
@@ -8,6 +9,19 @@ Future<bool> promptRegister(BuildContext context) async {
   final registered = await showDialog<bool>(
     context: context,
     builder: (context) => const _RegisterDialog(),
+  );
+  return registered ?? false;
+}
+
+/// Gate before any new exercise. Without an account only
+/// [MockSession.freeExerciseLimit] exercises are free; after that the
+/// visitor must register to go on. Returns whether they may continue.
+Future<bool> ensureCanPractice(BuildContext context) async {
+  if (!MockSession.reachedFreeLimit) return true;
+  final registered = await showDialog<bool>(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) => const _RegisterDialog(freeLimit: true),
   );
   return registered ?? false;
 }
@@ -21,16 +35,28 @@ Future<bool> promptPremiumCode(BuildContext context) async {
 }
 
 class _RegisterDialog extends StatelessWidget {
-  const _RegisterDialog();
+  const _RegisterDialog({this.freeLimit = false});
+
+  final bool freeLimit;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: const Color(0xFF12151C),
-      title: Text('Sigue entrenando', style: AppTypography.cardTitle),
+      title: Text(
+        freeLimit ? 'Completaste tus ejercicios gratis' : 'Sigue entrenando',
+        style: AppTypography.cardTitle,
+      ),
       content: Text(
-        'Regístrate para continuar con más ejercicios.',
-        style: AppTypography.caption.copyWith(color: AppColors.textSecondary),
+        freeLimit
+            ? 'Crea tu cuenta para seguir entrenando y llevar tu progreso: '
+                  'qué acertaste, qué fallaste y qué te conviene reforzar.'
+            : 'Regístrate para continuar con más ejercicios.',
+        style: AppTypography.caption.copyWith(
+          color: AppColors.textSecondary,
+          fontSize: 13,
+          height: 1.5,
+        ),
       ),
       actions: [
         TextButton(

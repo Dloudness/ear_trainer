@@ -287,6 +287,38 @@ void main() {
     await tester.pump(const Duration(seconds: 1));
   });
 
+  testWidgets('after five free exercises the next one asks to register', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(800, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    SharedPreferences.setMockInitialValues({'progress.seenEqContext': true});
+    await MockSession.load();
+    for (final id in ['EQ_01', 'EQ_02', 'EQ_03', 'EQ_INIT_HPF']) {
+      await MockSession.recordExerciseResult(exerciseId: id, correct: false);
+    }
+    expect(MockSession.reachedFreeLimit, isFalse);
+    await MockSession.recordExerciseResult(exerciseId: 'EQ_INIT_LPF', correct: true);
+    expect(MockSession.reachedFreeLimit, isTrue);
+
+    await tester.pumpWidget(const MaterialApp(home: FrecuenciasScreen()));
+    await tester.pump();
+    await tester.tap(find.text('EMPEZAR').first);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(find.text('Completaste tus ejercicios gratis'), findsOneWidget);
+    await tester.tap(find.text('Ahora no'));
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(find.text('¿Por qué entrenar ecualización?'), findsNothing);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    SharedPreferences.setMockInitialValues({});
+    await MockSession.load();
+  });
+
   test('access is free, account or premium without revealing intros', () {
     final musical = ExerciseRepository.instance.byModule(
       OnboardingOption.entrenamientoMusical.name,

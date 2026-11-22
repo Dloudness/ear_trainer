@@ -41,6 +41,7 @@ class _ModuleExerciseListCardState extends State<ModuleExerciseListCard> {
       if (opened && mounted) setState(() {});
       return;
     }
+    if (!await ensureCanPractice(context) || !mounted) return;
     await Navigator.pushNamed(
       context,
       AppRoutes.demo,

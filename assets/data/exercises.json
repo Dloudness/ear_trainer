@@ -161,6 +161,1191 @@
       "access": "account"
     },
     {
+      "id": "EQ_INIT_HPF",
+      "module": "ecualizacionFrecuencias",
+      "type": "ab_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_music/filter_hpf_500_music_01.wav"
+      },
+      "introSubtitle": "Compara las dos versiones del mismo fragmento.",
+      "question": "¿Cuál recorta los graves?",
+      "options": [
+        {
+          "id": "highpass",
+          "label": "Versión que adelgaza los graves",
+          "path": "assets/eq/eq_music/filter_hpf_500_music_01.wav"
+        },
+        {
+          "id": "lowpass",
+          "label": "Versión que apaga los agudos",
+          "path": "assets/eq/eq_music/filter_lpf_4000_music_01.wav"
+        }
+      ],
+      "correct": "highpass",
+      "difficulty": "beginner",
+      "explanation": "El pasa altos adelgaza el fragmento: pierde peso en los graves y conserva el brillo. La otra versión apaga los agudos.",
+      "explanationIncorrect": "El pasa altos adelgaza el fragmento: pierde peso en los graves y conserva el brillo. La otra versión apaga los agudos.",
+      "tags": {
+        "skill": "filter"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_INIT_LPF",
+      "module": "ecualizacionFrecuencias",
+      "type": "ab_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_music/filter_lpf_4000_music_01.wav"
+      },
+      "introSubtitle": "Compara las dos versiones del mismo fragmento.",
+      "question": "¿Cuál recorta los agudos?",
+      "options": [
+        {
+          "id": "highpass",
+          "label": "Versión que adelgaza los graves",
+          "path": "assets/eq/eq_music/filter_hpf_150_music_01.wav"
+        },
+        {
+          "id": "lowpass",
+          "label": "Versión que apaga los agudos",
+          "path": "assets/eq/eq_music/filter_lpf_4000_music_01.wav"
+        }
+      ],
+      "correct": "lowpass",
+      "difficulty": "beginner",
+      "explanation": "El pasa bajos apaga el aire de los agudos y deja más peso abajo. La otra versión adelgaza los graves.",
+      "explanationIncorrect": "El pasa bajos apaga el aire de los agudos y deja más peso abajo. La otra versión adelgaza los graves.",
+      "tags": {
+        "skill": "filter"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_INIT_LEAN",
+      "module": "ecualizacionFrecuencias",
+      "type": "ab_compare",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_music/filter_hpf_500_music_01.wav"
+      },
+      "introSubtitle": "Compara las dos versiones del mismo fragmento.",
+      "question": "¿Cuál suena más delgada?",
+      "options": [
+        {
+          "id": "gentle",
+          "label": "Versión con más cuerpo",
+          "path": "assets/eq/eq_music/filter_hpf_150_music_01.wav"
+        },
+        {
+          "id": "strong",
+          "label": "Versión más delgada",
+          "path": "assets/eq/eq_music/filter_hpf_500_music_01.wav"
+        }
+      ],
+      "correct": "strong",
+      "difficulty": "beginner",
+      "explanation": "Esa versión recorta más los graves. La otra conserva más peso en la zona baja y el brillo es parecido.",
+      "explanationIncorrect": "Esa versión recorta más los graves. La otra conserva más peso en la zona baja y el brillo es parecido.",
+      "tags": {
+        "skill": "filter"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_125_P6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_125_g6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f125_p6",
+          "label": "125 Hz · +6 dB"
+        },
+        {
+          "id": "f125_p9",
+          "label": "125 Hz · +9 dB"
+        },
+        {
+          "id": "f250_p6",
+          "label": "250 Hz · +6 dB"
+        },
+        {
+          "id": "f500_p6",
+          "label": "500 Hz · +6 dB"
+        }
+      ],
+      "correct": "f125_p6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 125 Hz · +6 dB. El realce está en los subgraves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "125",
+        "gain": "6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_125_P9",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_125_g9_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f125_p9",
+          "label": "125 Hz · +9 dB"
+        },
+        {
+          "id": "f125_p6",
+          "label": "125 Hz · +6 dB"
+        },
+        {
+          "id": "f250_p9",
+          "label": "250 Hz · +9 dB"
+        },
+        {
+          "id": "f500_p9",
+          "label": "500 Hz · +9 dB"
+        }
+      ],
+      "correct": "f125_p9",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 125 Hz · +9 dB. El realce está en los subgraves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "125",
+        "gain": "9"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_125_M3",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_125_c3_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f125_m3",
+          "label": "125 Hz · −3 dB"
+        },
+        {
+          "id": "f125_m6",
+          "label": "125 Hz · −6 dB"
+        },
+        {
+          "id": "f250_m3",
+          "label": "250 Hz · −3 dB"
+        },
+        {
+          "id": "f500_m3",
+          "label": "500 Hz · −3 dB"
+        }
+      ],
+      "correct": "f125_m3",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 125 Hz · −3 dB. El recorte está en los subgraves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "125",
+        "gain": "-3"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_125_M6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_125_c6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f125_m6",
+          "label": "125 Hz · −6 dB"
+        },
+        {
+          "id": "f125_m3",
+          "label": "125 Hz · −3 dB"
+        },
+        {
+          "id": "f250_m6",
+          "label": "250 Hz · −6 dB"
+        },
+        {
+          "id": "f500_m6",
+          "label": "500 Hz · −6 dB"
+        }
+      ],
+      "correct": "f125_m6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 125 Hz · −6 dB. El recorte está en los subgraves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "125",
+        "gain": "-6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_250_P6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_250_g6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f250_p6",
+          "label": "250 Hz · +6 dB"
+        },
+        {
+          "id": "f250_p9",
+          "label": "250 Hz · +9 dB"
+        },
+        {
+          "id": "f125_p6",
+          "label": "125 Hz · +6 dB"
+        },
+        {
+          "id": "f500_p6",
+          "label": "500 Hz · +6 dB"
+        }
+      ],
+      "correct": "f250_p6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 250 Hz · +6 dB. El realce está en los graves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "250",
+        "gain": "6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_250_P9",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_250_g9_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f250_p9",
+          "label": "250 Hz · +9 dB"
+        },
+        {
+          "id": "f250_p6",
+          "label": "250 Hz · +6 dB"
+        },
+        {
+          "id": "f125_p9",
+          "label": "125 Hz · +9 dB"
+        },
+        {
+          "id": "f500_p9",
+          "label": "500 Hz · +9 dB"
+        }
+      ],
+      "correct": "f250_p9",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 250 Hz · +9 dB. El realce está en los graves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "250",
+        "gain": "9"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_250_M3",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_250_c3_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f250_m3",
+          "label": "250 Hz · −3 dB"
+        },
+        {
+          "id": "f250_m6",
+          "label": "250 Hz · −6 dB"
+        },
+        {
+          "id": "f125_m3",
+          "label": "125 Hz · −3 dB"
+        },
+        {
+          "id": "f500_m3",
+          "label": "500 Hz · −3 dB"
+        }
+      ],
+      "correct": "f250_m3",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 250 Hz · −3 dB. El recorte está en los graves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "250",
+        "gain": "-3"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_250_M6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_250_c6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f250_m6",
+          "label": "250 Hz · −6 dB"
+        },
+        {
+          "id": "f250_m3",
+          "label": "250 Hz · −3 dB"
+        },
+        {
+          "id": "f125_m6",
+          "label": "125 Hz · −6 dB"
+        },
+        {
+          "id": "f500_m6",
+          "label": "500 Hz · −6 dB"
+        }
+      ],
+      "correct": "f250_m6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 250 Hz · −6 dB. El recorte está en los graves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "250",
+        "gain": "-6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_500_P6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_500_g6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f500_p6",
+          "label": "500 Hz · +6 dB"
+        },
+        {
+          "id": "f500_p9",
+          "label": "500 Hz · +9 dB"
+        },
+        {
+          "id": "f250_p6",
+          "label": "250 Hz · +6 dB"
+        },
+        {
+          "id": "f1000_p6",
+          "label": "1000 Hz · +6 dB"
+        }
+      ],
+      "correct": "f500_p6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 500 Hz · +6 dB. El realce está en los medios graves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "500",
+        "gain": "6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_500_P9",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_500_g9_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f500_p9",
+          "label": "500 Hz · +9 dB"
+        },
+        {
+          "id": "f500_p6",
+          "label": "500 Hz · +6 dB"
+        },
+        {
+          "id": "f250_p9",
+          "label": "250 Hz · +9 dB"
+        },
+        {
+          "id": "f1000_p9",
+          "label": "1000 Hz · +9 dB"
+        }
+      ],
+      "correct": "f500_p9",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 500 Hz · +9 dB. El realce está en los medios graves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "500",
+        "gain": "9"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_500_M3",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_500_c3_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f500_m3",
+          "label": "500 Hz · −3 dB"
+        },
+        {
+          "id": "f500_m6",
+          "label": "500 Hz · −6 dB"
+        },
+        {
+          "id": "f250_m3",
+          "label": "250 Hz · −3 dB"
+        },
+        {
+          "id": "f1000_m3",
+          "label": "1000 Hz · −3 dB"
+        }
+      ],
+      "correct": "f500_m3",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 500 Hz · −3 dB. El recorte está en los medios graves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "500",
+        "gain": "-3"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_500_M6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_500_c6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f500_m6",
+          "label": "500 Hz · −6 dB"
+        },
+        {
+          "id": "f500_m3",
+          "label": "500 Hz · −3 dB"
+        },
+        {
+          "id": "f250_m6",
+          "label": "250 Hz · −6 dB"
+        },
+        {
+          "id": "f1000_m6",
+          "label": "1000 Hz · −6 dB"
+        }
+      ],
+      "correct": "f500_m6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 500 Hz · −6 dB. El recorte está en los medios graves.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "500",
+        "gain": "-6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_1000_P6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_1000_g6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f1000_p6",
+          "label": "1000 Hz · +6 dB"
+        },
+        {
+          "id": "f1000_p9",
+          "label": "1000 Hz · +9 dB"
+        },
+        {
+          "id": "f500_p6",
+          "label": "500 Hz · +6 dB"
+        },
+        {
+          "id": "f2000_p6",
+          "label": "2000 Hz · +6 dB"
+        }
+      ],
+      "correct": "f1000_p6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 1000 Hz · +6 dB. El realce está en los medios.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "1000",
+        "gain": "6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_1000_P9",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_1000_g9_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f1000_p9",
+          "label": "1000 Hz · +9 dB"
+        },
+        {
+          "id": "f1000_p6",
+          "label": "1000 Hz · +6 dB"
+        },
+        {
+          "id": "f500_p9",
+          "label": "500 Hz · +9 dB"
+        },
+        {
+          "id": "f2000_p9",
+          "label": "2000 Hz · +9 dB"
+        }
+      ],
+      "correct": "f1000_p9",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 1000 Hz · +9 dB. El realce está en los medios.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "1000",
+        "gain": "9"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_1000_M3",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_1000_c3_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f1000_m3",
+          "label": "1000 Hz · −3 dB"
+        },
+        {
+          "id": "f1000_m6",
+          "label": "1000 Hz · −6 dB"
+        },
+        {
+          "id": "f500_m3",
+          "label": "500 Hz · −3 dB"
+        },
+        {
+          "id": "f2000_m3",
+          "label": "2000 Hz · −3 dB"
+        }
+      ],
+      "correct": "f1000_m3",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 1000 Hz · −3 dB. El recorte está en los medios.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "1000",
+        "gain": "-3"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_1000_M6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_1000_c6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f1000_m6",
+          "label": "1000 Hz · −6 dB"
+        },
+        {
+          "id": "f1000_m3",
+          "label": "1000 Hz · −3 dB"
+        },
+        {
+          "id": "f500_m6",
+          "label": "500 Hz · −6 dB"
+        },
+        {
+          "id": "f2000_m6",
+          "label": "2000 Hz · −6 dB"
+        }
+      ],
+      "correct": "f1000_m6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 1000 Hz · −6 dB. El recorte está en los medios.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "1000",
+        "gain": "-6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_2000_P6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_2000_g6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f2000_p6",
+          "label": "2000 Hz · +6 dB"
+        },
+        {
+          "id": "f2000_p9",
+          "label": "2000 Hz · +9 dB"
+        },
+        {
+          "id": "f1000_p6",
+          "label": "1000 Hz · +6 dB"
+        },
+        {
+          "id": "f4000_p6",
+          "label": "4000 Hz · +6 dB"
+        }
+      ],
+      "correct": "f2000_p6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 2000 Hz · +6 dB. El realce está en los medios agudos.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "2000",
+        "gain": "6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_2000_P9",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_2000_g9_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f2000_p9",
+          "label": "2000 Hz · +9 dB"
+        },
+        {
+          "id": "f2000_p6",
+          "label": "2000 Hz · +6 dB"
+        },
+        {
+          "id": "f1000_p9",
+          "label": "1000 Hz · +9 dB"
+        },
+        {
+          "id": "f4000_p9",
+          "label": "4000 Hz · +9 dB"
+        }
+      ],
+      "correct": "f2000_p9",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 2000 Hz · +9 dB. El realce está en los medios agudos.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "2000",
+        "gain": "9"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_2000_M3",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_2000_c3_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f2000_m3",
+          "label": "2000 Hz · −3 dB"
+        },
+        {
+          "id": "f2000_m6",
+          "label": "2000 Hz · −6 dB"
+        },
+        {
+          "id": "f1000_m3",
+          "label": "1000 Hz · −3 dB"
+        },
+        {
+          "id": "f4000_m3",
+          "label": "4000 Hz · −3 dB"
+        }
+      ],
+      "correct": "f2000_m3",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 2000 Hz · −3 dB. El recorte está en los medios agudos.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "2000",
+        "gain": "-3"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_2000_M6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_2000_c6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f2000_m6",
+          "label": "2000 Hz · −6 dB"
+        },
+        {
+          "id": "f2000_m3",
+          "label": "2000 Hz · −3 dB"
+        },
+        {
+          "id": "f1000_m6",
+          "label": "1000 Hz · −6 dB"
+        },
+        {
+          "id": "f4000_m6",
+          "label": "4000 Hz · −6 dB"
+        }
+      ],
+      "correct": "f2000_m6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 2000 Hz · −6 dB. El recorte está en los medios agudos.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "2000",
+        "gain": "-6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_4000_P6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_4000_g6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f4000_p6",
+          "label": "4000 Hz · +6 dB"
+        },
+        {
+          "id": "f4000_p9",
+          "label": "4000 Hz · +9 dB"
+        },
+        {
+          "id": "f2000_p6",
+          "label": "2000 Hz · +6 dB"
+        },
+        {
+          "id": "f8000_p6",
+          "label": "8000 Hz · +6 dB"
+        }
+      ],
+      "correct": "f4000_p6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 4000 Hz · +6 dB. El realce está en la presencia.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "4000",
+        "gain": "6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_4000_P9",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_4000_g9_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f4000_p9",
+          "label": "4000 Hz · +9 dB"
+        },
+        {
+          "id": "f4000_p6",
+          "label": "4000 Hz · +6 dB"
+        },
+        {
+          "id": "f2000_p9",
+          "label": "2000 Hz · +9 dB"
+        },
+        {
+          "id": "f8000_p9",
+          "label": "8000 Hz · +9 dB"
+        }
+      ],
+      "correct": "f4000_p9",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 4000 Hz · +9 dB. El realce está en la presencia.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "4000",
+        "gain": "9"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_4000_M3",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_4000_c3_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f4000_m3",
+          "label": "4000 Hz · −3 dB"
+        },
+        {
+          "id": "f4000_m6",
+          "label": "4000 Hz · −6 dB"
+        },
+        {
+          "id": "f2000_m3",
+          "label": "2000 Hz · −3 dB"
+        },
+        {
+          "id": "f8000_m3",
+          "label": "8000 Hz · −3 dB"
+        }
+      ],
+      "correct": "f4000_m3",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 4000 Hz · −3 dB. El recorte está en la presencia.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "4000",
+        "gain": "-3"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_4000_M6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_4000_c6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f4000_m6",
+          "label": "4000 Hz · −6 dB"
+        },
+        {
+          "id": "f4000_m3",
+          "label": "4000 Hz · −3 dB"
+        },
+        {
+          "id": "f2000_m6",
+          "label": "2000 Hz · −6 dB"
+        },
+        {
+          "id": "f8000_m6",
+          "label": "8000 Hz · −6 dB"
+        }
+      ],
+      "correct": "f4000_m6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 4000 Hz · −6 dB. El recorte está en la presencia.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "4000",
+        "gain": "-6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_8000_P6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_8000_g6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f8000_p6",
+          "label": "8000 Hz · +6 dB"
+        },
+        {
+          "id": "f8000_p9",
+          "label": "8000 Hz · +9 dB"
+        },
+        {
+          "id": "f4000_p6",
+          "label": "4000 Hz · +6 dB"
+        },
+        {
+          "id": "f2000_p6",
+          "label": "2000 Hz · +6 dB"
+        }
+      ],
+      "correct": "f8000_p6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 8000 Hz · +6 dB. El realce está en el aire.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "8000",
+        "gain": "6"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_8000_P9",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_8000_g9_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f8000_p9",
+          "label": "8000 Hz · +9 dB"
+        },
+        {
+          "id": "f8000_p6",
+          "label": "8000 Hz · +6 dB"
+        },
+        {
+          "id": "f4000_p9",
+          "label": "4000 Hz · +9 dB"
+        },
+        {
+          "id": "f2000_p9",
+          "label": "2000 Hz · +9 dB"
+        }
+      ],
+      "correct": "f8000_p9",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 8000 Hz · +9 dB. El realce está en el aire.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "8000",
+        "gain": "9"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_8000_M3",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_8000_c3_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f8000_m3",
+          "label": "8000 Hz · −3 dB"
+        },
+        {
+          "id": "f8000_m6",
+          "label": "8000 Hz · −6 dB"
+        },
+        {
+          "id": "f4000_m3",
+          "label": "4000 Hz · −3 dB"
+        },
+        {
+          "id": "f2000_m3",
+          "label": "2000 Hz · −3 dB"
+        }
+      ],
+      "correct": "f8000_m3",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 8000 Hz · −3 dB. El recorte está en el aire.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "8000",
+        "gain": "-3"
+      },
+      "access": "free"
+    },
+    {
+      "id": "EQ_BAND_PINK_8000_M6",
+      "module": "ecualizacionFrecuencias",
+      "type": "eq_band",
+      "audio": {
+        "source": "asset",
+        "path": "assets/eq/eq_pink_noise/freq_pink_boost_8000_c6_01.wav"
+      },
+      "intro": "Escucha el ruido rosa. El ajuste ya está en el ejemplo.",
+      "question": "¿Qué frecuencia y ajuste escuchas?",
+      "options": [
+        {
+          "id": "f8000_m6",
+          "label": "8000 Hz · −6 dB"
+        },
+        {
+          "id": "f8000_m3",
+          "label": "8000 Hz · −3 dB"
+        },
+        {
+          "id": "f4000_m6",
+          "label": "4000 Hz · −6 dB"
+        },
+        {
+          "id": "f2000_m6",
+          "label": "2000 Hz · −6 dB"
+        }
+      ],
+      "correct": "f8000_m6",
+      "difficulty": "advanced",
+      "explanation": "El ajuste correcto es 8000 Hz · −6 dB. El recorte está en el aire.",
+      "tags": {
+        "skill": "band",
+        "source": "pink",
+        "frequency": "8000",
+        "gain": "-6"
+      },
+      "access": "free"
+    },
+    {
       "id": "chord_dom7_a3_01",
       "module": "entrenamientoMusical",
       "type": "chord_quality",

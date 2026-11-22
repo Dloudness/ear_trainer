@@ -1,10 +1,7 @@
 import 'dart:math';
 
 class ExerciseAudio {
-  const ExerciseAudio({
-    required this.source,
-    required this.path,
-  });
+  const ExerciseAudio({required this.source, required this.path});
 
   final String source;
   final String path;
@@ -24,11 +21,7 @@ class ExerciseAudio {
 }
 
 class ExerciseOption {
-  const ExerciseOption({
-    required this.id,
-    required this.label,
-    this.path,
-  });
+  const ExerciseOption({required this.id, required this.label, this.path});
 
   final String id;
   final String label;
@@ -63,6 +56,7 @@ class Exercise {
     this.introSubtitle,
     this.intro,
     this.tip,
+    this.referencePath,
     required this.tags,
     required this.access,
   });
@@ -81,6 +75,7 @@ class Exercise {
   final String? introSubtitle;
   final String? intro;
   final String? tip;
+  final String? referencePath;
   final Map<String, String> tags;
   final String access;
 
@@ -114,7 +109,9 @@ class Exercise {
 
     final correct = _requireString(json['correct'], 'correct');
     if (!optionIds.contains(correct)) {
-      throw FormatException('correct "$correct" no coincide con ninguna opción.');
+      throw FormatException(
+        'correct "$correct" no coincide con ninguna opción.',
+      );
     }
 
     final maxOptions = _optionalInt(json['maxOptions'], 'maxOptions');
@@ -137,6 +134,7 @@ class Exercise {
       introSubtitle: _optionalString(json['introSubtitle']),
       intro: _optionalString(json['intro']),
       tip: _optionalString(json['tip']),
+      referencePath: _optionalString(json['reference']),
       tags: _tagsFrom(json['tags']),
       access: _requireString(json['access'], 'access'),
     );
@@ -175,6 +173,10 @@ class Exercise {
 
   Iterable<String> get assetPaths sync* {
     if (audio.isAsset) yield audio.path;
+    final reference = referencePath;
+    if (reference != null && reference.isNotEmpty && !_isRemote(reference)) {
+      yield reference;
+    }
     for (final option in options) {
       final path = option.path;
       if (path == null || path.isEmpty || _isRemote(path)) continue;

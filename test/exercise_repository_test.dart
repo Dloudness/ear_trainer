@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:ear_trainer/core/session/mock_session.dart';
 import 'package:ear_trainer/features/demo/models/exercise_demo_mapper.dart';
 import 'package:ear_trainer/features/exercises/data/exercise_repository.dart';
 import 'package:ear_trainer/features/exercises/models/exercise.dart';
+import 'package:ear_trainer/features/modules/models/eq_practice.dart';
 import 'package:ear_trainer/features/modules/models/musical_sections.dart';
+import 'package:ear_trainer/features/modules/presentation/screens/eq_band_exercise_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/frecuencias_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/musical_training_screen.dart';
 import 'package:ear_trainer/features/onboarding/models/onboarding_option.dart';
@@ -25,42 +28,45 @@ void main() {
   });
 
   test('loads the five EQ exercises with their original copy', () {
-    expect(eqExercises.map((exercise) => exercise.id), [
+    final classic = eqExercises.where(
+      (exercise) => exercise.id.startsWith('EQ_0'),
+    );
+    expect(classic.map((exercise) => exercise.id), [
       'EQ_01',
       'EQ_02',
       'EQ_03',
       'EQ_04',
       'EQ_05',
     ]);
-    expect(
-      eqExercises.map((exercise) => exercise.question),
-      [
-        '¿Cuál conserva mejor su naturalidad?',
-        '¿Cuál suena más clara?',
-        '¿Cuál suena más equilibrada?',
-        '¿Cuál tiene mejor presencia?',
-        '¿Cuál perdió demasiado cuerpo?',
-      ],
-    );
+    expect(classic.map((exercise) => exercise.question), [
+      '¿Cuál conserva mejor su naturalidad?',
+      '¿Cuál suena más clara?',
+      '¿Cuál suena más equilibrada?',
+      '¿Cuál tiene mejor presencia?',
+      '¿Cuál perdió demasiado cuerpo?',
+    ]);
 
-    final thin = eqExercises.last;
+    final thin = classic.last;
     expect(thin.correct, 'processed');
     expect(
       thin.options.firstWhere((option) => option.id == 'processed').path,
       'assets/eq/guitar_acoustic_01_thin.wav',
     );
-    expect(ExerciseRepository.parse(_encodedExercises(eqExercises)).warnings, isEmpty);
+    expect(
+      ExerciseRepository.parse(_encodedExercises(classic.toList())).warnings,
+      isEmpty,
+    );
   });
 
   test('A/B assignment still follows a single nextBool swap', () {
-    for (final exercise in eqExercises) {
+    final comparisons = eqExercises.where(
+      (exercise) => exercise.type == 'ab_compare',
+    );
+    for (final exercise in comparisons) {
       final source = exercise.options.first;
       final variant = exercise.options[1];
       final swap = Random(7).nextBool();
-      final content = ExerciseDemoMapper.toContent(
-        exercise,
-        random: Random(7),
-      );
+      final content = ExerciseDemoMapper.toContent(exercise, random: Random(7));
       final assetA = swap ? variant.path : source.path;
       final assetB = swap ? source.path : variant.path;
 
@@ -89,7 +95,10 @@ void main() {
       id: 'INT_01',
       module: 'entrenamientoMusical',
       type: 'interval_quality',
-      audio: ExerciseAudio(source: 'asset', path: 'assets/musical/interval.wav'),
+      audio: ExerciseAudio(
+        source: 'asset',
+        path: 'assets/musical/interval.wav',
+      ),
       question: '¿Qué intervalo escuchas?',
       options: [
         ExerciseOption(id: 'min2', label: '2da menor'),
@@ -114,7 +123,10 @@ void main() {
       id: 'INT_01',
       module: 'entrenamientoMusical',
       type: 'interval_quality',
-      audio: ExerciseAudio(source: 'asset', path: 'assets/musical/interval.wav'),
+      audio: ExerciseAudio(
+        source: 'asset',
+        path: 'assets/musical/interval.wav',
+      ),
       question: '¿Qué intervalo escuchas?',
       options: [
         ExerciseOption(id: 'min2', label: '2da menor'),
@@ -128,14 +140,20 @@ void main() {
       tags: {},
       access: 'free',
     );
-    expect(
-      stored.present(random: Random(1)).map((option) => option.id),
-      ['min2', 'maj2', 'min3', 'maj3'],
-    );
+    expect(stored.present(random: Random(1)).map((option) => option.id), [
+      'min2',
+      'maj2',
+      'min3',
+      'maj3',
+    ]);
   });
 
   test('parse warns about duplicate ids and keeps the first entry', () {
-    final decoded = jsonDecode(_encodedExercises(eqExercises)) as Map<String, dynamic>;
+    final classic = eqExercises.where(
+      (exercise) => exercise.id.startsWith('EQ_0'),
+    );
+    final decoded =
+        jsonDecode(_encodedExercises(classic.toList())) as Map<String, dynamic>;
     final list = decoded['exercises'] as List<dynamic>;
     final parsed = ExerciseRepository.parse(
       jsonEncode({
@@ -156,7 +174,11 @@ void main() {
       audio: ExerciseAudio(source: 'asset', path: 'assets/eq/missing.wav'),
       question: '¿Cuál?',
       options: [
-        ExerciseOption(id: 'natural', label: 'Natural', path: 'assets/eq/missing.wav'),
+        ExerciseOption(
+          id: 'natural',
+          label: 'Natural',
+          path: 'assets/eq/missing.wav',
+        ),
         ExerciseOption(
           id: 'processed',
           label: 'Procesada',
@@ -212,18 +234,34 @@ void main() {
     );
   });
 
-  testWidgets('Frecuencias lists the five JSON questions', (tester) async {
+  testWidgets('Frecuencias opens Inicial and keeps the five comparisons', (
+    tester,
+  ) async {
     tester.view.physicalSize = const Size(800, 2400);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
+    SharedPreferences.setMockInitialValues({'progress.seenEqContext': true});
+    await MockSession.load();
 
     await tester.pumpWidget(const MaterialApp(home: FrecuenciasScreen()));
     await tester.pump();
 
+    expect(find.text('Inicial'), findsOneWidget);
+    expect(find.text('Avanzado'), findsOneWidget);
+    expect(find.text('¿Cuál conserva mejor su naturalidad?'), findsNothing);
+
+    await tester.tap(find.text('EMPEZAR').first);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(find.text('¿Cuál recorta los graves?'), findsOneWidget);
+    expect(find.text('¿Cuál recorta los agudos?'), findsOneWidget);
+    expect(find.text('¿Cuál suena más delgada?'), findsOneWidget);
+    expect(find.text('¿Cuál guitarra suena tapada?'), findsNothing);
     expect(find.text('¿Cuál conserva mejor su naturalidad?'), findsOneWidget);
     expect(find.text('¿Cuál perdió demasiado cuerpo?'), findsOneWidget);
-    expect(find.text('Ejercicio 5'), findsOneWidget);
+    expect(find.text('Comparación 5'), findsOneWidget);
 
     await tester.pumpWidget(const SizedBox.shrink());
   });
@@ -266,15 +304,16 @@ void main() {
       musical
           .where(
             (exercise) =>
-                exercise.type == 'interval_quality' && exercise.access == 'account',
+                exercise.type == 'interval_quality' &&
+                exercise.access == 'account',
           )
           .length,
       9,
     );
     expect(
-      musical.where((exercise) => exercise.type == 'chord_quality').every(
-            (exercise) => exercise.access == 'premium',
-          ),
+      musical
+          .where((exercise) => exercise.type == 'chord_quality')
+          .every((exercise) => exercise.access == 'premium'),
       isTrue,
     );
     expect(
@@ -292,12 +331,109 @@ void main() {
       {'Escucha el acorde y elige la opción que lo describe.'},
     );
     expect(
-      eqExercises.map((exercise) => exercise.access).toList(),
+      eqExercises
+          .where((exercise) => exercise.id.startsWith('EQ_0'))
+          .map((exercise) => exercise.access)
+          .toList(),
       ['free', 'free', 'free', 'account', 'account'],
+    );
+    expect(
+      eqExercises
+          .where(
+            (exercise) =>
+                exercise.id.startsWith('EQ_INIT_') ||
+                exercise.type == 'eq_band',
+          )
+          .every((exercise) => exercise.access == 'free'),
+      isTrue,
     );
   });
 
-  testWidgets('Musical module opens intervals and chords directly', (tester) async {
+  test('advanced EQ uses the prepared pink boosts', () async {
+    const frequencies = ['125', '250', '500', '1000', '2000', '4000', '8000'];
+    const gains = ['6', '9', '-3', '-6'];
+    const tokens = {'6': 'g6', '9': 'g9', '-3': 'c3', '-6': 'c6'};
+    final band = eqExercises
+        .where((exercise) => exercise.type == 'eq_band')
+        .toList();
+    expect(band, hasLength(28));
+    expect(EqPractice.of(EqSource.music), isEmpty);
+    expect(band.map((exercise) => exercise.tags['source']).toSet(), {'pink'});
+    expect(
+      band.map((exercise) => exercise.tags['frequency']).toSet(),
+      frequencies.toSet(),
+    );
+    expect(
+      band.map((exercise) => exercise.tags['gain']).toSet(),
+      gains.toSet(),
+    );
+    expect(band.map((exercise) => exercise.audio.path).toSet(), hasLength(28));
+
+    for (final exercise in band) {
+      expect(exercise.options, hasLength(4));
+      expect(exercise.options.map((option) => option.id).toSet(), hasLength(4));
+      expect(
+        exercise.options.map((option) => option.id),
+        contains(exercise.correct),
+      );
+      final correct = exercise.options.firstWhere(
+        (option) => option.id == exercise.correct,
+      );
+      final gain = int.parse(exercise.tags['gain']!);
+      final gainLabel = gain > 0 ? '+$gain dB' : '−${gain.abs()} dB';
+      expect(correct.label, '${exercise.tags['frequency']} Hz · $gainLabel');
+      expect(exercise.explanation, contains(correct.label));
+      expect(exercise.referencePath, isNull);
+      expect(
+        exercise.audio.path,
+        'assets/eq/eq_pink_noise/freq_pink_boost_'
+        '${exercise.tags['frequency']}_${tokens['${exercise.tags['gain']}']}_01.wav',
+      );
+      expect(exercise.audio.path, isNot(contains('eq_band')));
+      expect(exercise.audio.path, isNot(contains('music_instrumental_01')));
+    }
+
+    final lessons = eqExercises
+        .where((exercise) => exercise.id.startsWith('EQ_INIT_'))
+        .toList();
+    expect(lessons.map((exercise) => exercise.id), [
+      'EQ_INIT_HPF',
+      'EQ_INIT_LPF',
+      'EQ_INIT_LEAN',
+    ]);
+    expect(lessons.expand((exercise) => exercise.assetPaths).toSet(), {
+      'assets/eq/eq_music/filter_hpf_150_music_01.wav',
+      'assets/eq/eq_music/filter_hpf_500_music_01.wav',
+      'assets/eq/eq_music/filter_lpf_4000_music_01.wav',
+    });
+    for (final exercise in lessons) {
+      final paths = exercise.options.map((option) => option.path).toList();
+      expect(paths, hasLength(2));
+      expect(paths.toSet(), hasLength(2));
+      expect(
+        exercise.options
+            .firstWhere((option) => option.id == exercise.correct)
+            .path,
+        exercise.audio.path,
+      );
+    }
+
+    final first = EqPractice.pick(EqSource.pink, random: Random(3));
+    final again = EqPractice.pick(
+      EqSource.pink,
+      avoidId: first!.id,
+      random: Random(3),
+    );
+    expect(again!.id, isNot(first.id));
+    expect(
+      await ExerciseRepository.missingAudioWarnings([...band, ...lessons]),
+      isEmpty,
+    );
+  });
+
+  testWidgets('Musical module opens intervals and chords directly', (
+    tester,
+  ) async {
     tester.view.physicalSize = const Size(800, 1600);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
@@ -337,6 +473,52 @@ void main() {
 
     await tester.pumpWidget(const SizedBox.shrink());
   });
+
+  testWidgets('advanced band exercise records the adjustment', (tester) async {
+    tester.view.physicalSize = const Size(800, 1600);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    SharedPreferences.setMockInitialValues({});
+    await MockSession.load();
+
+    final exercise = eqExercises.firstWhere(
+      (item) => item.id == 'EQ_BAND_PINK_500_P6',
+    );
+    expect(
+      exercise.audio.path,
+      'assets/eq/eq_pink_noise/freq_pink_boost_500_g6_01.wav',
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: EqBandExerciseScreen(source: EqSource.pink, exercise: exercise),
+      ),
+    );
+    await tester.pump();
+
+    expect(find.text('¿Qué frecuencia y ajuste escuchas?'), findsOneWidget);
+    expect(find.text('REFERENCIA'), findsNothing);
+    expect(find.text('ESCUCHAR'), findsOneWidget);
+    expect(find.text('500 Hz · +6 dB'), findsOneWidget);
+
+    await tester.tap(find.text('500 Hz · +6 dB'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(find.text('Buen oído.'), findsOneWidget);
+    expect(
+      find.textContaining('El ajuste correcto es 500 Hz · +6 dB.'),
+      findsOneWidget,
+    );
+    expect(
+      MockSession.completedExercises.any(
+        (item) => item.id == 'EQ_BAND_PINK_500_P6' && item.correct,
+      ),
+      isTrue,
+    );
+
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
 }
 
 String _encodedExercises(List<Exercise> exercises) {
@@ -354,11 +536,7 @@ String _encodedExercises(List<Exercise> exercises) {
           'question': exercise.question,
           'options': [
             for (final option in exercise.options)
-              {
-                'id': option.id,
-                'label': option.label,
-                'path': option.path,
-              },
+              {'id': option.id, 'label': option.label, 'path': option.path},
           ],
           'correct': exercise.correct,
           'difficulty': exercise.difficulty,

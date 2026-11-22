@@ -69,6 +69,8 @@ flutter:
     - assets/icons/demo_listening.png
     - assets/source/
     - assets/eq/
+    - assets/eq/eq_music/
+    - assets/eq/eq_pink_noise/
     - assets/music/
     - assets/ambient/
     - assets/foley/

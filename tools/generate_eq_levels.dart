@@ -1,0 +1,326 @@
+import 'dart:convert';
+import 'dart:io';
+
+/// Links EQ lessons to the prepared files. It never reads, writes or
+/// reprocesses audio: a missing example is omitted and reported.
+void main() {
+  const musicDir = 'assets/eq/eq_music';
+  const pinkDir = 'assets/eq/eq_pink_noise';
+  const frequencies = [125, 250, 500, 1000, 2000, 4000, 8000];
+  const gains = [6, 9, -3, -6];
+  const module = 'ecualizacionFrecuencias';
+
+  final musicFiles = _wavs(musicDir);
+  final pinkFiles = _wavs(pinkDir);
+  final catalog =
+      jsonDecode(File('assets/data/exercises.json').readAsStringSync())
+          as Map<String, dynamic>;
+  final exercises = (catalog['exercises'] as List).cast<Map<String, dynamic>>();
+  final removed = [
+    for (final exercise in exercises)
+      if ((exercise['id'] as String).startsWith('EQ_INIT_') ||
+          (exercise['id'] as String).startsWith('EQ_BAND_'))
+        exercise['id'] as String,
+  ];
+  exercises.removeWhere((exercise) {
+    final id = exercise['id'] as String;
+    return id.startsWith('EQ_INIT_') || id.startsWith('EQ_BAND_');
+  });
+
+  final missing = <String>[];
+  final linked = <Map<String, dynamic>>[];
+
+  Map<String, dynamic>? lesson({
+    required String id,
+    required String question,
+    required String correct,
+    required String explanation,
+    required List<Map<String, String>> options,
+  }) {
+    final paths = [for (final option in options) option['path']!];
+    final absent = [
+      for (final path in paths)
+        if (!File(path).existsSync()) path,
+    ];
+    if (paths.toSet().length != paths.length) {
+      missing.add('$id: las opciones no pueden compartir el mismo archivo.');
+      return null;
+    }
+    if (absent.isNotEmpty) {
+      missing.add('$id: falta ${absent.join(', ')}');
+      return null;
+    }
+    final correctPath = options.firstWhere(
+      (option) => option['id'] == correct,
+    )['path']!;
+    return {
+      'id': id,
+      'module': module,
+      'type': 'ab_compare',
+      'audio': {'source': 'asset', 'path': correctPath},
+      'introSubtitle': 'Compara las dos versiones del mismo fragmento.',
+      'question': question,
+      'options': [
+        for (final option in options)
+          {
+            'id': option['id'],
+            'label': option['label'],
+            'path': option['path'],
+          },
+      ],
+      'correct': correct,
+      'difficulty': 'beginner',
+      'explanation': explanation,
+      'explanationIncorrect': explanation,
+      'tags': {'skill': 'filter'},
+      'access': 'free',
+    };
+  }
+
+  final hpf150 = '$musicDir/filter_hpf_150_music_01.wav';
+  final hpf500 = '$musicDir/filter_hpf_500_music_01.wav';
+  final lpf4000 = '$musicDir/filter_lpf_4000_music_01.wav';
+  for (final exercise in [
+    lesson(
+      id: 'EQ_INIT_HPF',
+      question: '¿Cuál recorta los graves?',
+      correct: 'highpass',
+      explanation:
+          'El pasa altos adelgaza el fragmento: pierde peso en los graves y conserva el brillo. La otra versión apaga los agudos.',
+      options: [
+        {
+          'id': 'highpass',
+          'label': 'Versión que adelgaza los graves',
+          'path': hpf500,
+        },
+        {
+          'id': 'lowpass',
+          'label': 'Versión que apaga los agudos',
+          'path': lpf4000,
+        },
+      ],
+    ),
+    lesson(
+      id: 'EQ_INIT_LPF',
+      question: '¿Cuál recorta los agudos?',
+      correct: 'lowpass',
+      explanation:
+          'El pasa bajos apaga el aire de los agudos y deja más peso abajo. La otra versión adelgaza los graves.',
+      options: [
+        {
+          'id': 'highpass',
+          'label': 'Versión que adelgaza los graves',
+          'path': hpf150,
+        },
+        {
+          'id': 'lowpass',
+          'label': 'Versión que apaga los agudos',
+          'path': lpf4000,
+        },
+      ],
+    ),
+    lesson(
+      id: 'EQ_INIT_LEAN',
+      question: '¿Cuál suena más delgada?',
+      correct: 'strong',
+      explanation:
+          'Esa versión recorta más los graves. La otra conserva más peso en la zona baja y el brillo es parecido.',
+      options: [
+        {'id': 'gentle', 'label': 'Versión con más cuerpo', 'path': hpf150},
+        {'id': 'strong', 'label': 'Versión más delgada', 'path': hpf500},
+      ],
+    ),
+  ]) {
+    if (exercise != null) linked.add(exercise);
+  }
+
+  missing.add(
+    'EQ_INIT_MUFFLED: no hay guitarra tapada en $musicDir ni en $pinkDir.',
+  );
+  missing.add(
+    'EQ_INIT_LOWMID: no hay guitarra con medios bajos en $musicDir ni en $pinkDir.',
+  );
+
+  String token(int gain) {
+    return switch (gain) {
+      6 => 'g6',
+      9 => 'g9',
+      -3 => 'c3',
+      -6 => 'c6',
+      _ => throw ArgumentError(gain),
+    };
+  }
+
+  String suffix(int gain) {
+    return switch (gain) {
+      6 => 'P6',
+      9 => 'P9',
+      -3 => 'M3',
+      -6 => 'M6',
+      _ => throw ArgumentError(gain),
+    };
+  }
+
+  String optionId(int frequency, int gain) =>
+      'f${frequency}_${suffix(gain).toLowerCase()}';
+
+  String label(int frequency, int gain) {
+    final gainLabel = gain > 0 ? '+$gain dB' : '−${gain.abs()} dB';
+    return '$frequency Hz · $gainLabel';
+  }
+
+  int paired(int gain) {
+    return switch (gain) {
+      6 => 9,
+      9 => 6,
+      -3 => -6,
+      -6 => -3,
+      _ => throw ArgumentError(gain),
+    };
+  }
+
+  String region(int frequency) {
+    return switch (frequency) {
+      125 => 'los subgraves',
+      250 => 'los graves',
+      500 => 'los medios graves',
+      1000 => 'los medios',
+      2000 => 'los medios agudos',
+      4000 => 'la presencia',
+      8000 => 'el aire',
+      _ => 'esa banda',
+    };
+  }
+
+  for (final frequency in frequencies) {
+    for (final gain in gains) {
+      final path =
+          '$pinkDir/freq_pink_boost_${frequency}_${token(gain)}_01.wav';
+      final id = 'EQ_BAND_PINK_${frequency}_${suffix(gain)}';
+      if (!File(path).existsSync()) {
+        missing.add('$id: falta $path');
+        continue;
+      }
+      final index = frequencies.indexOf(frequency);
+      final lower = index == 0 ? frequencies[1] : frequencies[index - 1];
+      final higher = index == 0
+          ? frequencies[2]
+          : index == frequencies.length - 1
+          ? frequencies[index - 2]
+          : frequencies[index + 1];
+      final choices = [
+        (frequency, gain),
+        (frequency, paired(gain)),
+        (lower, gain),
+        (higher, gain),
+      ];
+      if (choices.map((choice) => '${choice.$1}_${choice.$2}').toSet().length !=
+          4) {
+        missing.add('$id: las opciones no son distintas.');
+        continue;
+      }
+      final correct = label(frequency, gain);
+      final direction = gain > 0 ? 'El realce está en' : 'El recorte está en';
+      linked.add({
+        'id': id,
+        'module': module,
+        'type': 'eq_band',
+        'audio': {'source': 'asset', 'path': path},
+        'intro': 'Escucha el ruido rosa. El ajuste ya está en el ejemplo.',
+        'question': '¿Qué frecuencia y ajuste escuchas?',
+        'options': [
+          for (final choice in choices)
+            {
+              'id': optionId(choice.$1, choice.$2),
+              'label': label(choice.$1, choice.$2),
+            },
+        ],
+        'correct': optionId(frequency, gain),
+        'difficulty': 'advanced',
+        'explanation':
+            'El ajuste correcto es $correct. $direction ${region(frequency)}.',
+        'tags': {
+          'skill': 'band',
+          'source': 'pink',
+          'frequency': '$frequency',
+          'gain': '$gain',
+        },
+        'access': 'free',
+      });
+    }
+  }
+
+  for (final frequency in frequencies) {
+    for (final gain in gains) {
+      missing.add(
+        'EQ_BAND_MUSIC_${frequency}_${suffix(gain)}: $musicDir no tiene un ejemplo de ${label(frequency, gain)}.',
+      );
+    }
+  }
+
+  final insertAt = exercises.indexWhere(
+    (exercise) => !(exercise['id'] as String).startsWith('EQ_0'),
+  );
+  exercises.insertAll(insertAt < 0 ? exercises.length : insertAt, linked);
+
+  final usedMusic = {
+    for (final exercise in linked)
+      if ((exercise['id'] as String).startsWith('EQ_INIT_')) ...[
+        for (final option in exercise['options'] as List)
+          (option as Map)['path'] as String,
+      ],
+  };
+  final unusedMusic = [
+    for (final name in musicFiles)
+      if (!usedMusic.contains('$musicDir/$name')) '$musicDir/$name',
+  ];
+  final usedPink = {
+    for (final exercise in linked)
+      if (exercise['type'] == 'eq_band')
+        (exercise['audio'] as Map)['path'] as String,
+  };
+  final unusedPink = [
+    for (final name in pinkFiles)
+      if (!usedPink.contains('$pinkDir/$name')) '$pinkDir/$name',
+  ];
+
+  File('assets/data/exercises.json').writeAsStringSync(
+    '${const JsonEncoder.withIndent('  ').convert(catalog)}\n',
+  );
+
+  stdout.writeln('Retirados: ${removed.length}');
+  for (final id in removed) {
+    stdout.writeln('  - $id');
+  }
+  stdout.writeln('Conectados: ${linked.length}');
+  for (final exercise in linked) {
+    final id = exercise['id'];
+    if (exercise['type'] == 'eq_band') {
+      stdout.writeln('  $id -> ${(exercise['audio'] as Map)['path']}');
+    } else {
+      final correct = (exercise['options'] as List).firstWhere(
+        (option) => (option as Map)['id'] == exercise['correct'],
+      );
+      stdout.writeln('  $id -> ${(correct as Map)['path']}');
+    }
+  }
+  stdout.writeln('Fuera del catálogo: ${missing.length}');
+  for (final item in missing) {
+    stdout.writeln('  - $item');
+  }
+  if (unusedMusic.isNotEmpty || unusedPink.isNotEmpty) {
+    stdout.writeln(
+      'Archivos sin ejercicio: ${[...unusedMusic, ...unusedPink].join(', ')}',
+    );
+  }
+}
+
+List<String> _wavs(String directory) {
+  final dir = Directory(directory);
+  if (!dir.existsSync()) return const [];
+  return [
+    for (final entity in dir.listSync(recursive: true))
+      if (entity is File && entity.path.toLowerCase().endsWith('.wav'))
+        entity.uri.pathSegments.last,
+  ]..sort();
+}

@@ -12,6 +12,8 @@ Future<bool> showTrainingContext(
   BuildContext context,
   String contextId, {
   bool required = false,
+  String actionLabel = 'EMPEZAR',
+  bool shortWhenSeen = false,
 }) async {
   if (!_openingContext.add(contextId)) return false;
   try {
@@ -24,13 +26,15 @@ Future<bool> showTrainingContext(
     }
     if (!context.mounted) return false;
 
+    final seen = MockSession.hasSeenTrainingContext(contextId);
     final started = await showDialog<bool>(
       context: context,
       barrierDismissible: !required,
       barrierColor: Colors.black.withValues(alpha: 0.55),
       builder: (context) => TrainingContextDialog(
         copy: copy,
-        full: MockSession.usesFullTrainingContext,
+        full: MockSession.usesFullTrainingContext && !(shortWhenSeen && seen),
+        actionLabel: actionLabel,
       ),
     );
     if (started == true) {
@@ -72,10 +76,12 @@ class TrainingContextDialog extends StatelessWidget {
     super.key,
     required this.copy,
     required this.full,
+    this.actionLabel = 'EMPEZAR',
   });
 
   final TrainingContextCopy copy;
   final bool full;
+  final String actionLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +166,11 @@ class TrainingContextDialog extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: GradientButton(
-                  label: 'EMPEZAR',
+                  label: actionLabel,
+                  icon: actionLabel == 'ESCUCHAR'
+                      ? Icons.play_arrow_rounded
+                      : null,
+                  emphasized: actionLabel == 'ESCUCHAR',
                   compact: true,
                   onPressed: () => Navigator.pop(context, true),
                 ),

@@ -5,14 +5,23 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/app_motion.dart';
 import '../../../../core/widgets/glass_panel.dart';
 import '../../../../core/widgets/gradient_button.dart';
+import '../../data/training_context.dart';
 import '../../models/eq_practice.dart';
 import '../widgets/module_screen_layout.dart';
+import '../widgets/training_context_dialog.dart';
 import 'eq_band_exercise_screen.dart';
 
 class EqAdvancedScreen extends StatelessWidget {
   const EqAdvancedScreen({super.key});
 
   Future<void> _open(BuildContext context, EqSource source) async {
+    final started = await showTrainingContext(
+      context,
+      TrainingContextIds.eq,
+      actionLabel: 'ESCUCHAR',
+      shortWhenSeen: true,
+    );
+    if (!started || !context.mounted) return;
     final exercise = EqPractice.pick(source);
     if (exercise == null || !context.mounted) return;
     await Navigator.push(

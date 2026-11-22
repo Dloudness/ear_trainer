@@ -11,8 +11,8 @@ import '../../../../core/session/mock_session.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/theme/option_choice_palette.dart';
-import '../../../../core/widgets/exercise_listen_card.dart';
 import '../../../../core/widgets/exercise_typography.dart';
+import '../../../../core/widgets/orb_player.dart';
 import '../../../../core/widgets/option_choice_card.dart';
 import '../../../../core/widgets/cinematic_screen.dart';
 import '../../../home/presentation/widgets/module_neon_icon.dart';
@@ -22,8 +22,10 @@ import '../../../exercises/data/exercise_repository.dart';
 import '../../../exercises/models/exercise.dart';
 import '../../../onboarding/models/onboarding_option.dart';
 import '../../../modules/data/training_context.dart';
+import '../../../modules/models/eq_practice.dart';
 import '../../../modules/presentation/widgets/training_context_dialog.dart';
 import '../../models/category_demo_content.dart';
+import '../../models/demo_experience_args.dart';
 import '../../models/escucha_real_exercises.dart';
 import '../../models/exercise_demo_mapper.dart';
 
@@ -34,10 +36,12 @@ class DemoExperienceScreen extends StatefulWidget {
     super.key,
     this.category,
     this.exerciseIndex = 0,
+    this.practice = false,
   });
 
   final OnboardingOption? category;
   final int exerciseIndex;
+  final bool practice;
 
   @override
   State<DemoExperienceScreen> createState() => _DemoExperienceScreenState();
@@ -70,6 +74,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   bool _sharedEndArmed = false;
   bool _holdingSync = false;
   final Map<String, int> _listenCounts = {};
+  String _orbOption = 'A';
 
   bool get _listensUnlimited =>
       _selectedOption != null ||
@@ -92,6 +97,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     super.initState();
     _category = widget.category ?? OnboardingOption.escuchaReal;
     _exerciseIndex = widget.exerciseIndex;
+    if (widget.practice) _phase = _DemoPhase.listen;
     _random = Random();
     _content = _buildContentForCurrentExercise();
     _audioPlayer = ExerciseAudioPlayer()
@@ -397,36 +403,6 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     _startMockPlayback(option);
   }
 
-  Future<void> _seekOption(String option, double fraction) async {
-    if (!_canPlay(option)) return;
-    final asset = _assetFor(option);
-    try {
-      if (asset != null) {
-        if (_canSyncVideo) {
-          await _seekSynced(option, asset, fraction);
-        } else {
-          final action = await _audioPlayer.startIfIdle(option, asset);
-          if (action != null) _noteListen(option, action);
-          await _audioPlayer.seekToFraction(fraction);
-        }
-        if (mounted) setState(() {});
-        return;
-      }
-
-      final alreadyActive = _mockPlayingOption == option;
-      _mockPlaybackTimer?.cancel();
-      setState(() {
-        _mockPlayingOption = option;
-        _mockPaused = false;
-        _mockPositionMs = (_mockDurationMs * fraction).round();
-      });
-      if (!alreadyActive) _noteListen(option, ListenAction.started);
-      _startMockPlayback(option);
-    } catch (error) {
-      debugPrint('Audio: $error');
-    }
-  }
-
   Future<ListenAction> _playPauseSynced(String option, String asset) async {
     final video = _syncedVideo;
     if (video == null) {
@@ -451,42 +427,6 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
       _holdingSync = false;
       _scheduleVideoResync();
     }
-  }
-
-  Future<void> _seekSynced(String option, String asset, double fraction) async {
-    final video = _syncedVideo;
-    if (video == null) return;
-
-    _holdingSync = true;
-    _sharedEndArmed = true;
-    await _prepareSyncedVideo(video, play: false);
-    var reachedEnd = false;
-    try {
-      final action = await _audioPlayer.startIfIdle(option, asset);
-      if (action != null) {
-        _noteListen(option, action);
-        if (!video.value.isPlaying) unawaited(video.play());
-      }
-      await _audioPlayer.seekToFraction(fraction);
-      final target = _audioPlayer.snapshot.position;
-      final end = _sharedEnd();
-      if (end != null && target >= end - const Duration(milliseconds: 60)) {
-        reachedEnd = true;
-      } else {
-        final seeking = video.seekTo(target);
-        if (_audioPlayer.snapshot.isPlaying && !video.value.isPlaying) {
-          unawaited(video.play());
-        }
-        await seeking;
-      }
-    } finally {
-      _holdingSync = false;
-    }
-    if (reachedEnd) {
-      await _finishTogether();
-      return;
-    }
-    _scheduleVideoResync();
   }
 
   void _startMockPlayback(String option) {
@@ -586,6 +526,25 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     await _goToPhase(_DemoPhase.reveal);
   }
 
+  Future<void> _nextPractice() async {
+    await _stopAllPlayback();
+    if (!mounted) return;
+    final next = EqInitialPractice.pickIndex(avoidId: _currentExerciseId);
+    if (next == null) {
+      Navigator.maybePop(context);
+      return;
+    }
+    Navigator.pushReplacementNamed(
+      context,
+      AppRoutes.demo,
+      arguments: DemoExperienceArgs(
+        category: _category,
+        exerciseIndex: next,
+        practice: true,
+      ),
+    );
+  }
+
   Future<void> _enterLightHome() async {
     await MockSession.completeDemo();
     if (!mounted) return;
@@ -610,9 +569,15 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
                           case _DemoPhase.video:
                             _goToPhase(_DemoPhase.intro);
                           case _DemoPhase.listen:
-                            _goToPhase(
-                              _hasVideo ? _DemoPhase.video : _DemoPhase.intro,
-                            );
+                            if (widget.practice) {
+                              Navigator.maybePop(context);
+                            } else {
+                              _goToPhase(
+                                _hasVideo
+                                    ? _DemoPhase.video
+                                    : _DemoPhase.intro,
+                              );
+                            }
                           case _DemoPhase.feedback:
                             _goToPhase(_DemoPhase.listen);
                           case _DemoPhase.reveal:
@@ -635,36 +600,44 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     );
   }
 
-  Widget _listenCard(String option, OptionSlot slot, String label) {
-    return ExerciseListenCard(
-      slot: slot,
-      label: label,
-      isPlaying: _isPlaying(option),
-      isPaused: _isPaused(option),
-      progress: _progressFor(option),
-      pulse: _pulse,
-      listensUsed: _listensUnlimited ? null : (_listenCounts[option] ?? 0),
-      enabled: _canPlay(option),
-      onPlayPause: () => unawaited(_playPauseOption(option)),
-      onSeek: (fraction) => unawaited(_seekOption(option, fraction)),
-    );
+  Future<void> _selectOrbOption(String option) async {
+    if (option == _orbOption) return;
+    if (_isPlaying(option) || _isPaused(_orbOption) || _isPlaying(_orbOption)) {
+      await _stopAllPlayback();
+    }
+    if (mounted) setState(() => _orbOption = option);
   }
 
   Widget _listenStack() {
     final scene = _hasVideo ? _videoController : null;
+    final option = _content.singleListen ? 'A' : _orbOption;
+    final snap = _audioPlayer.snapshot;
+    final real = _assetFor(option) != null && snap.isActive(option);
+
     return Column(
       children: [
         if (scene != null) ...[
           _SceneVideoFrame(controller: scene, accent: _category.accent),
           const SizedBox(height: 20),
         ],
-        if (_content.singleListen)
-          _listenCard('A', OptionSlot.a, _content.optionALabel)
-        else ...[
-          _listenCard('A', OptionSlot.a, _content.optionALabel),
-          const SizedBox(height: 14),
-          _listenCard('B', OptionSlot.b, _content.optionBLabel),
-        ],
+        OrbPlayer(
+          sources: _content.singleListen
+              ? const [OrbSource(id: 'A', tab: 'A', title: 'Escucha el fragmento')]
+              : const [
+                  OrbSource(id: 'A', tab: 'A', title: 'Versión A'),
+                  OrbSource(id: 'B', tab: 'B', title: 'Versión B'),
+                ],
+          selectedId: option,
+          onSelect: (id) => unawaited(_selectOrbOption(id)),
+          isPlaying: _isPlaying(option),
+          isPaused: _isPaused(option),
+          progress: _progressFor(option),
+          position: real ? snap.position : null,
+          duration: real ? snap.duration : null,
+          listensUsed: _listensUnlimited ? null : (_listenCounts[option] ?? 0),
+          enabled: _canPlay(option),
+          onPlayPause: () => unawaited(_playPauseOption(option)),
+        ),
       ],
     );
   }
@@ -730,14 +703,31 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
     };
   }
 
+  Widget get _exitButton => widget.practice
+      ? GradientButton(
+          label: 'SIGUIENTE EJERCICIO',
+          compact: true,
+          onPressed: () => unawaited(_nextPractice()),
+        )
+      : GradientButton(
+          label: 'EXPLORAR APP',
+          compact: true,
+          onPressed: _enterLightHome,
+        );
+
   Widget _buildFeedbackActions() {
     if (_isCorrectAnswer) {
       return SizedBox(
         width: double.infinity,
-        child: GradientButton(
-          label: 'EXPLORAR APP',
-          onPressed: _enterLightHome,
-        ),
+        child: widget.practice
+            ? GradientButton(
+                label: 'SIGUIENTE EJERCICIO',
+                onPressed: () => unawaited(_nextPractice()),
+              )
+            : GradientButton(
+                label: 'EXPLORAR APP',
+                onPressed: _enterLightHome,
+              ),
       );
     }
 
@@ -774,14 +764,7 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
           ),
         ),
         const SizedBox(height: 12),
-        SizedBox(
-          width: double.infinity,
-          child: GradientButton(
-            label: 'EXPLORAR APP',
-            compact: true,
-            onPressed: _enterLightHome,
-          ),
-        ),
+        SizedBox(width: double.infinity, child: _exitButton),
       ],
     );
   }

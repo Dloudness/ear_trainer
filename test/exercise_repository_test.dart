@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:ear_trainer/core/session/mock_session.dart';
+import 'package:ear_trainer/features/demo/models/demo_experience_args.dart';
 import 'package:ear_trainer/features/demo/models/exercise_demo_mapper.dart';
+import 'package:ear_trainer/features/demo/presentation/screens/demo_experience_screen.dart';
 import 'package:ear_trainer/features/exercises/data/exercise_repository.dart';
 import 'package:ear_trainer/features/exercises/models/exercise.dart';
 import 'package:ear_trainer/features/modules/models/eq_practice.dart';
@@ -234,7 +236,7 @@ void main() {
     );
   });
 
-  testWidgets('Frecuencias opens Inicial and keeps the five comparisons', (
+  testWidgets('Frecuencias Inicial goes from the explanation to an exercise', (
     tester,
   ) async {
     tester.view.physicalSize = const Size(800, 2400);
@@ -244,26 +246,45 @@ void main() {
     SharedPreferences.setMockInitialValues({'progress.seenEqContext': true});
     await MockSession.load();
 
-    await tester.pumpWidget(const MaterialApp(home: FrecuenciasScreen()));
+    await tester.pumpWidget(
+      MaterialApp(
+        home: const FrecuenciasScreen(),
+        onGenerateRoute: (settings) {
+          final args = settings.arguments! as DemoExperienceArgs;
+          return MaterialPageRoute<void>(
+            settings: settings,
+            builder: (_) => DemoExperienceScreen(
+              category: args.category,
+              exerciseIndex: args.exerciseIndex,
+              practice: args.practice,
+            ),
+          );
+        },
+      ),
+    );
     await tester.pump();
 
     expect(find.text('Inicial'), findsOneWidget);
     expect(find.text('Avanzado'), findsOneWidget);
-    expect(find.text('¿Cuál conserva mejor su naturalidad?'), findsNothing);
+    expect(find.text('¿Por qué entrenar ecualización?'), findsNothing);
 
     await tester.tap(find.text('EMPEZAR').first);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
 
-    expect(find.text('¿Cuál recorta los graves?'), findsOneWidget);
-    expect(find.text('¿Cuál recorta los agudos?'), findsOneWidget);
-    expect(find.text('¿Cuál suena más delgada?'), findsOneWidget);
-    expect(find.text('¿Cuál guitarra suena tapada?'), findsNothing);
-    expect(find.text('¿Cuál conserva mejor su naturalidad?'), findsOneWidget);
-    expect(find.text('¿Cuál perdió demasiado cuerpo?'), findsOneWidget);
-    expect(find.text('Comparación 5'), findsOneWidget);
+    expect(find.text('¿Por qué entrenar ecualización?'), findsOneWidget);
+    expect(find.text('Comparación 5'), findsNothing);
+
+    await tester.tap(find.text('ESCUCHAR'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 800));
+
+    expect(find.text('Versión A'), findsOneWidget);
+    expect(find.text('Tu respuesta'), findsOneWidget);
+    expect(find.text('Quedan 3 escuchas'), findsOneWidget);
 
     await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(seconds: 1));
   });
 
   test('access is free, account or premium without revealing intros', () {
@@ -497,8 +518,8 @@ void main() {
     await tester.pump();
 
     expect(find.text('¿Qué frecuencia y ajuste escuchas?'), findsOneWidget);
-    expect(find.text('REFERENCIA'), findsNothing);
-    expect(find.text('ESCUCHAR'), findsOneWidget);
+    expect(find.text('Referencia'), findsNothing);
+    expect(find.text('Escucha el ejemplo'), findsOneWidget);
     expect(find.text('500 Hz · +6 dB'), findsOneWidget);
 
     await tester.tap(find.text('500 Hz · +6 dB'));

@@ -11,10 +11,10 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../core/theme/option_choice_palette.dart';
 import '../../../../core/widgets/app_motion.dart';
 import '../../../../core/widgets/cinematic_screen.dart';
-import '../../../../core/widgets/exercise_listen_card.dart';
 import '../../../../core/widgets/exercise_typography.dart';
 import '../../../../core/widgets/gradient_button.dart';
 import '../../../../core/widgets/option_choice_card.dart';
+import '../../../../core/widgets/orb_player.dart';
 import '../../../../core/widgets/premium_back_button.dart';
 import '../../../exercises/models/exercise.dart';
 import '../../models/musical_pool.dart';
@@ -93,33 +93,23 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
     }
   }
 
-  Future<void> _seek(double fraction) async {
-    final exercise = _exercise;
-    if (exercise == null || !_canPlay) return;
-    final path = exercise.audio.path;
-    try {
-      final action = await _audioPlayer.startIfIdle('listen', path);
-      if (action == ListenAction.started && !_unlimited && mounted) {
-        setState(() => _listens += 1);
-      }
-      await _audioPlayer.seekToFraction(fraction);
-    } catch (error) {
-      debugPrint('ExerciseRepository: no se pudo buscar en el audio ($error)');
-    }
-  }
-
   Widget _listenCard() {
     final snap = _audioPlayer.snapshot;
-    return ExerciseListenCard(
-      slot: OptionSlot.a,
-      label: 'ESCUCHAR',
+    final active = snap.isActive('listen');
+    return OrbPlayer(
+      sources: const [
+        OrbSource(id: 'listen', tab: 'Escuchar', title: 'Escucha con atención'),
+      ],
+      selectedId: 'listen',
+      onSelect: (_) {},
       isPlaying: snap.isPlayingOption('listen'),
       isPaused: snap.isPausedOption('listen'),
-      progress: snap.isActive('listen') ? snap.progress : 0,
+      progress: active ? snap.progress : 0,
+      position: active ? snap.position : null,
+      duration: active ? snap.duration : null,
       listensUsed: _unlimited ? null : _listens,
       enabled: _canPlay,
       onPlayPause: () => unawaited(_play()),
-      onSeek: (fraction) => unawaited(_seek(fraction)),
     );
   }
 

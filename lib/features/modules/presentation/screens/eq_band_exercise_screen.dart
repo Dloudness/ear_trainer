@@ -10,10 +10,10 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../core/theme/option_choice_palette.dart';
 import '../../../../core/widgets/app_motion.dart';
 import '../../../../core/widgets/cinematic_screen.dart';
-import '../../../../core/widgets/exercise_listen_card.dart';
 import '../../../../core/widgets/exercise_typography.dart';
 import '../../../../core/widgets/gradient_button.dart';
 import '../../../../core/widgets/option_choice_card.dart';
+import '../../../../core/widgets/orb_player.dart';
 import '../../../../core/widgets/premium_back_button.dart';
 import '../../../exercises/models/exercise.dart';
 import '../../models/eq_practice.dart';
@@ -41,6 +41,7 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
   String? _selectedId;
   var _showFeedback = false;
   final Map<String, int> _listens = {};
+  String _orbSlot = 'reference';
 
   bool get _unlimited => _selectedId != null;
 
@@ -88,36 +89,41 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
     }
   }
 
-  Future<void> _seek(String slot, String? path, double fraction) async {
-    if (path == null || path.isEmpty || !_canPlay(slot)) return;
-    try {
-      final action = await _audioPlayer.startIfIdle(slot, path);
-      if (action == ListenAction.started && !_unlimited && mounted) {
-        setState(() => _listens[slot] = (_listens[slot] ?? 0) + 1);
-      }
-      await _audioPlayer.seekToFraction(fraction);
-    } catch (error) {
-      debugPrint('ExerciseRepository: no se pudo buscar en el audio ($error)');
-    }
+  Future<void> _selectSlot(String slot) async {
+    if (slot == _orbSlot) return;
+    final snap = _audioPlayer.snapshot;
+    if (snap.isPlaying || snap.isPaused) await _audioPlayer.stop();
+    if (mounted) setState(() => _orbSlot = slot);
   }
 
-  Widget _listenCard({
-    required String slot,
-    required OptionSlot color,
-    required String label,
-    required String? path,
-  }) {
+  Widget _player(Exercise exercise) {
+    final withReference = _hasDistinctReference(exercise);
+    final slot = withReference ? _orbSlot : 'processed';
+    final path = slot == 'reference'
+        ? exercise.referencePath
+        : exercise.audio.path;
     final snap = _audioPlayer.snapshot;
-    return ExerciseListenCard(
-      slot: color,
-      label: label,
+    final active = snap.isActive(slot);
+
+    return OrbPlayer(
+      sources: withReference
+          ? const [
+              OrbSource(id: 'reference', tab: 'Referencia', title: 'Referencia'),
+              OrbSource(id: 'processed', tab: 'Procesado', title: 'Procesado'),
+            ]
+          : const [
+              OrbSource(id: 'processed', tab: 'Ejemplo', title: 'Escucha el ejemplo'),
+            ],
+      selectedId: slot,
+      onSelect: (id) => unawaited(_selectSlot(id)),
       isPlaying: snap.isPlayingOption(slot),
       isPaused: snap.isPausedOption(slot),
-      progress: snap.isActive(slot) ? snap.progress : 0,
+      progress: active ? snap.progress : 0,
+      position: active ? snap.position : null,
+      duration: active ? snap.duration : null,
       listensUsed: _unlimited ? null : (_listens[slot] ?? 0),
-      enabled: path != null && _canPlay(slot),
+      enabled: path != null && path.isNotEmpty && _canPlay(slot),
       onPlayPause: () => unawaited(_play(slot, path)),
-      onSeek: (fraction) => unawaited(_seek(slot, path, fraction)),
     );
   }
 
@@ -173,15 +179,14 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
                   ? _FeedbackView(
                       exercise: exercise,
                       correct: _selectedId == exercise.correct,
-                      reference: _referencePlayer(exercise),
-                      example: _examplePlayer(exercise),
+                      player: _player(exercise),
                     )
                   : _ListenView(
                       exercise: exercise,
                       options: _options,
                       selectedId: _selectedId,
-                      reference: _referencePlayer(exercise),
-                      example: _examplePlayer(exercise),
+                      withReference: _hasDistinctReference(exercise),
+                      player: _player(exercise),
                       onSelect: (id) => unawaited(_answer(id)),
                     ),
             ),
@@ -207,25 +212,6 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
         reference.isNotEmpty &&
         reference != exercise.audio.path;
   }
-
-  Widget? _referencePlayer(Exercise exercise) {
-    if (!_hasDistinctReference(exercise)) return null;
-    return _listenCard(
-      slot: 'reference',
-      color: OptionSlot.a,
-      label: 'REFERENCIA',
-      path: exercise.referencePath,
-    );
-  }
-
-  Widget _examplePlayer(Exercise exercise) {
-    return _listenCard(
-      slot: 'processed',
-      color: OptionSlot.b,
-      label: _hasDistinctReference(exercise) ? 'PROCESADO' : 'ESCUCHAR',
-      path: exercise.audio.path,
-    );
-  }
 }
 
 class _ListenView extends StatelessWidget {
@@ -233,16 +219,16 @@ class _ListenView extends StatelessWidget {
     required this.exercise,
     required this.options,
     required this.selectedId,
-    required this.reference,
-    required this.example,
+    required this.withReference,
+    required this.player,
     required this.onSelect,
   });
 
   final Exercise exercise;
   final List<ExerciseOption> options;
   final String? selectedId;
-  final Widget? reference;
-  final Widget example;
+  final bool withReference;
+  final Widget player;
   final ValueChanged<String> onSelect;
 
   @override
@@ -264,14 +250,13 @@ class _ListenView extends StatelessWidget {
         ExerciseFocusHeader(
           instruction: 'Escucha atentamente.',
           question: exercise.question,
-          hint: reference == null
-              ? 'Identifica la frecuencia y el ajuste de este ejemplo.'
-              : 'El nivel general es el mismo. Cambia una sola banda.',
+          hint: withReference
+              ? 'El nivel general es el mismo. Cambia una sola banda.'
+              : 'Identifica la frecuencia y el ajuste de este ejemplo.',
           questionSize: 24,
         ),
-        const SizedBox(height: 28),
-        if (reference != null) ...[reference!, const SizedBox(height: 12)],
-        example,
+        const SizedBox(height: 24),
+        player,
         const SizedBox(height: 28),
         Text('Tu respuesta', style: AppTypography.exerciseInstruction),
         const SizedBox(height: 12),
@@ -300,14 +285,12 @@ class _FeedbackView extends StatelessWidget {
   const _FeedbackView({
     required this.exercise,
     required this.correct,
-    required this.reference,
-    required this.example,
+    required this.player,
   });
 
   final Exercise exercise;
   final bool correct;
-  final Widget? reference;
-  final Widget example;
+  final Widget player;
 
   @override
   Widget build(BuildContext context) {
@@ -334,8 +317,7 @@ class _FeedbackView extends StatelessWidget {
           ).copyWith(color: AppColors.textSecondary),
         ),
         const SizedBox(height: 28),
-        if (reference != null) ...[reference!, const SizedBox(height: 12)],
-        example,
+        player,
       ],
     );
   }

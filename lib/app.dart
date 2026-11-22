@@ -44,6 +44,7 @@ class EarTrainerApp extends StatelessWidget {
             return DemoExperienceScreen(
               category: args.category,
               exerciseIndex: args.exerciseIndex,
+              practice: args.practice,
             );
           }
           if (args is OnboardingOption) {

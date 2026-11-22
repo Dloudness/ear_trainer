@@ -1,16 +1,21 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-import '../../../../core/session/mock_session.dart';
+import '../../../../core/auth/account_prompt.dart';
+import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/app_motion.dart';
 import '../../../../core/widgets/glass_panel.dart';
 import '../../../../core/widgets/gradient_button.dart';
+import '../../../demo/models/demo_experience_args.dart';
+import '../../../onboarding/models/onboarding_option.dart';
 import '../../data/training_context.dart';
+import '../../models/eq_practice.dart';
 import '../widgets/module_screen_layout.dart';
 import '../widgets/training_context_dialog.dart';
 import 'eq_advanced_screen.dart';
-import 'eq_initial_screen.dart';
 
 class FrecuenciasScreen extends StatefulWidget {
   const FrecuenciasScreen({super.key});
@@ -20,19 +25,31 @@ class FrecuenciasScreen extends StatefulWidget {
 }
 
 class _FrecuenciasScreenState extends State<FrecuenciasScreen> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _offerContext();
-    });
-  }
+  /// Inicial: explanation, then straight into a random unlocked comparison.
+  Future<void> _startInitial() async {
+    final started = await showTrainingContext(
+      context,
+      TrainingContextIds.eq,
+      actionLabel: 'ESCUCHAR',
+      shortWhenSeen: true,
+    );
+    if (!mounted || !started) return;
 
-  Future<void> _offerContext() async {
-    if (!mounted || MockSession.hasSeenTrainingContext(TrainingContextIds.eq)) {
+    final index = EqInitialPractice.pickIndex();
+    if (index == null) {
+      final registered = await promptRegister(context);
+      if (registered && mounted) unawaited(_startInitial());
       return;
     }
-    await showTrainingContext(context, TrainingContextIds.eq, required: true);
+    await Navigator.pushNamed(
+      context,
+      AppRoutes.demo,
+      arguments: DemoExperienceArgs(
+        category: OnboardingOption.ecualizacionFrecuencias,
+        exerciseIndex: index,
+        practice: true,
+      ),
+    );
   }
 
   Future<void> _open(Widget screen, String routeName) {
@@ -57,8 +74,7 @@ class _FrecuenciasScreenState extends State<FrecuenciasScreen> {
           title: 'Inicial',
           detail:
               'Graves, agudos y una guitarra fuera de balance, en lenguaje cotidiano.',
-          onOpen: () =>
-              _open(const EqInitialScreen(), '/module/frecuencias/inicial'),
+          onOpen: () => unawaited(_startInitial()),
         ),
         _LevelCard(
           title: 'Avanzado',

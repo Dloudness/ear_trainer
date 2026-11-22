@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/cinematic_screen.dart';
-import '../../../home/presentation/painters/ear_logo_painter.dart';
+import '../../../../core/widgets/orb_logo.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -31,13 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 52,
-              height: 52,
-              child: CustomPaint(
-                painter: EarLogoPainter(),
-              ),
-            ),
+            const OrbLogo(size: 120),
             const SizedBox(height: 24),
             Text(
               'EAR TRAINER',

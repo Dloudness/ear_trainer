@@ -175,6 +175,15 @@ class MockSession {
     await _progressRepository.save(_progress);
   }
 
+  /// Whether the listening introduction [id] (e.g. 'pink') was shown.
+  static bool hasSeenIntro(String id) => _progress.seenIntros.contains(id);
+
+  static Future<void> markIntroSeen(String id) async {
+    if (hasSeenIntro(id)) return;
+    _progress = _progress.copyWith(seenIntros: {..._progress.seenIntros, id});
+    await _progressRepository.save(_progress);
+  }
+
   /// Answers counted to unlock the next level of a ladder, and how many of
   /// them must be correct.
   static const levelWindow = 6;

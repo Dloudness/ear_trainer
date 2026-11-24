@@ -15,6 +15,7 @@ import 'package:ear_trainer/features/modules/models/practice_levels.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/eq_band_exercise_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/frecuencias_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/musical_training_screen.dart';
+import 'package:ear_trainer/features/modules/presentation/screens/pink_intro_screen.dart';
 import 'package:ear_trainer/features/onboarding/models/onboarding_option.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -787,6 +788,51 @@ void main() {
         '$level',
       );
     }
+  });
+
+  test('pink noise reference: every example exists', () {
+    expect(File(PinkIntroScreen.reference).existsSync(), isTrue);
+    for (final frequency in PinkIntroScreen.frequencies) {
+      for (final gain in [9, -6]) {
+        final path = PinkIntroScreen.sweep(frequency, gain);
+        expect(File(path).existsSync(), isTrue, reason: path);
+      }
+    }
+  });
+
+  testWidgets('pink noise reference can be skipped', (tester) async {
+    tester.view.physicalSize = const Size(800, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    SharedPreferences.setMockInitialValues({});
+    await MockSession.load();
+
+    bool? result;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Builder(
+          builder: (context) => TextButton(
+            onPressed: () async {
+              result = await Navigator.push<bool>(
+                context,
+                MaterialPageRoute(builder: (_) => const PinkIntroScreen()),
+              );
+            },
+            child: const Text('abrir'),
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.text('abrir'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.text('Referencia: ruido rosa'), findsOneWidget);
+    expect(find.text('Realce +9 dB'), findsNWidgets(7));
+    await tester.tap(find.text('Omitir e ir al ejercicio'));
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(result, isTrue);
+    await tester.pumpWidget(const SizedBox.shrink());
   });
 }
 

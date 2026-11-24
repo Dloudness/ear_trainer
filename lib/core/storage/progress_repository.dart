@@ -66,6 +66,7 @@ class ProgressSnapshot {
     this.seenTuningContext = false,
     this.levels = const {},
     this.levelRecent = const {},
+    this.seenIntros = const {},
   });
 
   final List<CompletedExerciseRecord> exercises;
@@ -92,6 +93,9 @@ class ProgressSnapshot {
   /// oldest first.
   final Map<String, List<bool>> levelRecent;
 
+  /// Introductions (listening references) already shown, by id.
+  final Set<String> seenIntros;
+
   ProgressSnapshot copyWith({
     List<CompletedExerciseRecord>? exercises,
     int? xp,
@@ -110,6 +114,7 @@ class ProgressSnapshot {
     bool? seenTuningContext,
     Map<String, int>? levels,
     Map<String, List<bool>>? levelRecent,
+    Set<String>? seenIntros,
   }) {
     return ProgressSnapshot(
       exercises: exercises ?? this.exercises,
@@ -129,6 +134,7 @@ class ProgressSnapshot {
       seenTuningContext: seenTuningContext ?? this.seenTuningContext,
       levels: levels ?? this.levels,
       levelRecent: levelRecent ?? this.levelRecent,
+      seenIntros: seenIntros ?? this.seenIntros,
     );
   }
 }
@@ -154,6 +160,7 @@ class ProgressRepository {
   static const _kSeenTuningContext = 'progress.seenTuningContext';
   static const _kLevelPrefix = 'progress.level.';
   static const _kLevelRecentPrefix = 'progress.levelRecent.';
+  static const _kSeenIntros = 'progress.seenIntros';
 
   Future<ProgressSnapshot> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -205,6 +212,7 @@ class ProgressRepository {
                 mark == '1',
             ],
       },
+      seenIntros: {...?prefs.getStringList(_kSeenIntros)},
     );
   }
 
@@ -235,6 +243,7 @@ class ProgressRepository {
     await prefs.setBool(_kSeenEqContext, snapshot.seenEqContext);
     await prefs.setBool(_kSeenToneContext, snapshot.seenToneContext);
     await prefs.setBool(_kSeenTuningContext, snapshot.seenTuningContext);
+    await prefs.setStringList(_kSeenIntros, snapshot.seenIntros.toList());
     for (final entry in snapshot.levels.entries) {
       await prefs.setInt('$_kLevelPrefix${entry.key}', entry.value);
     }

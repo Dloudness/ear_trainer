@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/auth/account_prompt.dart';
+import '../../../../core/session/mock_session.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/app_motion.dart';
@@ -13,6 +14,7 @@ import '../widgets/level_selector.dart';
 import '../widgets/module_screen_layout.dart';
 import '../widgets/training_context_dialog.dart';
 import 'eq_band_exercise_screen.dart';
+import 'pink_intro_screen.dart';
 
 class EqAdvancedScreen extends StatefulWidget {
   const EqAdvancedScreen({super.key});
@@ -25,6 +27,20 @@ class _EqAdvancedScreenState extends State<EqAdvancedScreen> {
   /// Pink-noise level chosen on the card; starts at the highest unlocked.
   int _pinkLevel = LevelLadder.pink.unlocked;
 
+  static const _pinkIntro = 'pink';
+
+  Future<bool?> _openPinkIntro({required bool beforePractice}) async {
+    await MockSession.markIntroSeen(_pinkIntro);
+    if (!mounted) return null;
+    return Navigator.push<bool>(
+      context,
+      AppTransitions.cinematicRoute<bool>(
+        settings: const RouteSettings(name: '/module/frecuencias/referencia'),
+        screen: PinkIntroScreen(beforePractice: beforePractice),
+      ),
+    );
+  }
+
   Future<void> _open(EqSource source) async {
     if (!await ensureCanPractice(context) || !mounted) return;
     final started = await showTrainingContext(
@@ -34,6 +50,12 @@ class _EqAdvancedScreenState extends State<EqAdvancedScreen> {
       shortWhenSeen: true,
     );
     if (!started || !mounted) return;
+    // First time in pink noise: the listening reference, which can be
+    // skipped. It stays available from the card.
+    if (source == EqSource.pink && !MockSession.hasSeenIntro(_pinkIntro)) {
+      final go = await _openPinkIntro(beforePractice: true);
+      if (go != true || !mounted) return;
+    }
     final exercise = EqPractice.pick(source);
     if (exercise == null || !mounted) return;
     final before = LevelLadder.pink.unlocked;
@@ -70,6 +92,9 @@ class _EqAdvancedScreenState extends State<EqAdvancedScreen> {
               onOpen: () => _open(source),
               pinkLevel: source == EqSource.pink ? _pinkLevel : null,
               onPinkLevel: (level) => setState(() => _pinkLevel = level),
+              onReference: source == EqSource.pink
+                  ? () => _openPinkIntro(beforePractice: false)
+                  : null,
             ),
       ],
     );
@@ -82,12 +107,16 @@ class _SourceCard extends StatelessWidget {
     required this.onOpen,
     required this.onPinkLevel,
     this.pinkLevel,
+    this.onReference,
   });
 
   final EqSource source;
   final VoidCallback onOpen;
   final int? pinkLevel;
   final ValueChanged<int> onPinkLevel;
+
+  /// Opens the listening reference (pink noise).
+  final VoidCallback? onReference;
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +145,16 @@ class _SourceCard extends StatelessWidget {
               onSelect: onPinkLevel,
             ),
           ],
+          if (onReference != null)
+            TextButton.icon(
+              onPressed: onReference,
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                foregroundColor: AppColors.cyan,
+              ),
+              icon: const Icon(Icons.headphones_rounded, size: 16),
+              label: const Text('Escuchar la referencia'),
+            ),
           const SizedBox(height: 10),
           GradientButton(
             label: 'PRACTICAR',

@@ -4,13 +4,24 @@ import '../../../core/session/mock_session.dart';
 import '../../exercises/data/exercise_repository.dart';
 import '../../exercises/models/exercise.dart';
 import '../../onboarding/models/onboarding_option.dart';
+import 'practice_levels.dart';
 
-enum MusicalPool { intervals, chords, tuning }
+enum MusicalPool { intervals, chords, tuning, tuningContext }
 
 abstract final class MusicalPools {
   static const intervalsTitle = 'Intervalos';
   static const chordsTitle = 'Acordes';
   static const tuningTitle = 'Afinación';
+  static const tuningContextTitle = 'Afinación en contexto';
+
+  /// "¿Por qué entrenar...?" window for the pool. Both tuning cards share
+  /// the tuning one.
+  static String contextId(MusicalPool pool) {
+    return pool == MusicalPool.tuningContext
+        ? MusicalPool.tuning.name
+        : pool.name;
+  }
+
   static const freeIntervalOrder = [
     'interval_perf8_asc_c4_01',
     'interval_perf5_asc_c4_01',
@@ -22,6 +33,7 @@ abstract final class MusicalPools {
       MusicalPool.intervals => intervalsTitle,
       MusicalPool.chords => chordsTitle,
       MusicalPool.tuning => tuningTitle,
+      MusicalPool.tuningContext => tuningContextTitle,
     };
   }
 
@@ -30,6 +42,7 @@ abstract final class MusicalPools {
       MusicalPool.intervals => 'Se desbloquea con una cuenta.',
       MusicalPool.chords => 'Se desbloquea con premium.',
       MusicalPool.tuning => 'Se desbloquea con una cuenta.',
+      MusicalPool.tuningContext => 'Se desbloquea con una cuenta.',
     };
   }
 
@@ -38,6 +51,7 @@ abstract final class MusicalPools {
       MusicalPool.intervals => 'interval_quality',
       MusicalPool.chords => 'chord_quality',
       MusicalPool.tuning => 'pitch_tuning',
+      MusicalPool.tuningContext => 'pitch_context',
     };
     final module = OnboardingOption.entrenamientoMusical.name;
     return [
@@ -74,17 +88,29 @@ abstract final class MusicalPools {
         drawable(pool).isEmpty;
   }
 
+  /// Levels of the pool, if it has them (tuning in context).
+  static LevelLadder? ladder(MusicalPool pool) =>
+      pool == MusicalPool.tuningContext ? LevelLadder.tuning : null;
+
+  static String levelDetail(int level) => switch (level) {
+    1 => 'Una nota fuera de la escala o un acorde con una nota equivocada.',
+    2 => 'Notas desafinadas medio semitono (50 cents).',
+    _ => 'Desafinaciones finas: 25, 15 y 10 cents.',
+  };
+
+  /// Next exercise (at [level] when the pool has levels); none repeats
+  /// until the rest have come out.
   static Exercise? pick(
     MusicalPool pool, {
+    int? level,
     String? avoidId,
     Random? random,
   }) {
-    final rng = random ?? Random();
     var list = drawable(pool);
-    if (avoidId != null && list.length > 1) {
+    if (level != null && ladder(pool) != null) {
       list = [
         for (final exercise in list)
-          if (exercise.id != avoidId) exercise,
+          if (exercise.tags['level'] == '$level') exercise,
       ];
     }
     if (list.isEmpty) return null;
@@ -92,10 +118,15 @@ abstract final class MusicalPools {
         list.every((exercise) => exercise.access == 'free')) {
       for (final id in freeIntervalOrder) {
         for (final exercise in list) {
-          if (exercise.id == id) return exercise;
+          if (exercise.id == id && exercise.id != avoidId) return exercise;
         }
       }
     }
-    return list[rng.nextInt(list.length)];
+    return NoRepeatPicker.pick(
+      'musical_${pool.name}_${level ?? 0}',
+      list,
+      avoidId: avoidId,
+      random: random,
+    );
   }
 }

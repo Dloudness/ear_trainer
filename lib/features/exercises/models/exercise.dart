@@ -57,6 +57,7 @@ class Exercise {
     this.intro,
     this.tip,
     this.referencePath,
+    this.sweepPath,
     required this.tags,
     required this.access,
   });
@@ -76,6 +77,10 @@ class Exercise {
   final String? intro;
   final String? tip;
   final String? referencePath;
+
+  /// Same example, moving from the reference to the processed sound and
+  /// back (pink noise, easier levels). Optional.
+  final String? sweepPath;
   final Map<String, String> tags;
   final String access;
 
@@ -135,6 +140,7 @@ class Exercise {
       intro: _optionalString(json['intro']),
       tip: _optionalString(json['tip']),
       referencePath: _optionalString(json['reference']),
+      sweepPath: _optionalString(json['sweep']),
       tags: _tagsFrom(json['tags']),
       access: _requireString(json['access'], 'access'),
     );
@@ -176,6 +182,10 @@ class Exercise {
     final reference = referencePath;
     if (reference != null && reference.isNotEmpty && !_isRemote(reference)) {
       yield reference;
+    }
+    final sweep = sweepPath;
+    if (sweep != null && sweep.isNotEmpty && !_isRemote(sweep)) {
+      yield sweep;
     }
     for (final option in options) {
       final path = option.path;

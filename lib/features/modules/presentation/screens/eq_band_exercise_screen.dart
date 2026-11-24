@@ -18,6 +18,7 @@ import '../../../../core/widgets/orb_player.dart';
 import '../../../../core/widgets/premium_back_button.dart';
 import '../../../exercises/models/exercise.dart';
 import '../../models/eq_practice.dart';
+import '../../models/practice_levels.dart';
 
 /// One listen, several answers: advanced EQ bands and pure tones.
 class EqBandExerciseScreen extends StatefulWidget {
@@ -26,24 +27,42 @@ class EqBandExerciseScreen extends StatefulWidget {
     required this.exercise,
     required this.pickNext,
     this.routeName = '/module/frecuencias/banda',
+    this.ladder,
+    this.level,
+    this.pink = false,
   });
 
   final Exercise exercise;
 
-  /// Draws the following exercise of the same practice, avoiding [avoidId].
-  final Exercise? Function(String? avoidId) pickNext;
+  /// Draws the following exercise of the same practice at [level],
+  /// avoiding [avoidId].
+  final Exercise? Function(String? avoidId, int? level) pickNext;
   final String routeName;
+
+  /// Levels of this practice, if it has them, and the one being played.
+  /// Answers count toward unlocking the next level.
+  final LevelLadder? ladder;
+  final int? level;
+
+  /// Pink noise: the level limits the clean reference and picks the
+  /// example with or without the clean → EQ → clean transition.
+  final bool pink;
 
   /// Advanced EQ practice for one [source].
   factory EqBandExerciseScreen.band({
     Key? key,
     required EqSource source,
     required Exercise exercise,
+    int? pinkLevel,
   }) {
+    final pink = source == EqSource.pink && pinkLevel != null;
     return EqBandExerciseScreen(
       key: key,
       exercise: exercise,
-      pickNext: (avoidId) => EqPractice.pick(source, avoidId: avoidId),
+      pickNext: (avoidId, _) => EqPractice.pick(source, avoidId: avoidId),
+      ladder: pink ? LevelLadder.pink : null,
+      level: pink ? pinkLevel : null,
+      pink: pink,
     );
   }
 
@@ -52,12 +71,17 @@ class EqBandExerciseScreen extends StatefulWidget {
     Key? key,
     required ToneDrill drill,
     required Exercise exercise,
+    int? level,
   }) {
+    final ladder = TonePractice.ladder(drill);
     return EqBandExerciseScreen(
       key: key,
       exercise: exercise,
-      pickNext: (avoidId) => TonePractice.pick(drill, avoidId: avoidId),
+      pickNext: (avoidId, level) =>
+          TonePractice.pick(drill, level: level, avoidId: avoidId),
       routeName: '/module/frecuencias/tonos',
+      ladder: ladder,
+      level: ladder == null ? null : level,
     );
   }
 
@@ -74,9 +98,45 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
   String? _selectedId;
   var _showFeedback = false;
   final Map<String, int> _listens = {};
-  String _orbSlot = 'reference';
+
+  /// The example (processed sound) comes first; the reference is the
+  /// second tab.
+  String _orbSlot = 'processed';
+
+  /// Level unlocked by the latest answer, if any.
+  int? _unlockedLevel;
 
   bool get _unlimited => _selectedId != null;
+
+  /// Listens to the clean pink noise at this level (null: not pink noise).
+  int? get _pinkReferenceListens {
+    final level = widget.level;
+    return widget.pink && level != null
+        ? EqPractice.pinkReferenceListens(level)
+        : null;
+  }
+
+  /// Example to play: with the clean → EQ → clean transition on the
+  /// easier pink-noise levels, the plain processed file otherwise.
+  String _examplePath(Exercise exercise) {
+    final level = widget.level;
+    final sweep = exercise.sweepPath;
+    if (widget.pink &&
+        level != null &&
+        EqPractice.pinkUsesSweep(level) &&
+        sweep != null &&
+        sweep.isNotEmpty) {
+      return sweep;
+    }
+    return exercise.audio.path;
+  }
+
+  int _maxListens(String slot) {
+    if (slot == 'reference') {
+      return _pinkReferenceListens ?? ExerciseAudioPlayer.maxListens;
+    }
+    return ExerciseAudioPlayer.maxListens;
+  }
 
   @override
   void initState() {
@@ -94,7 +154,9 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
   }
 
   void _load(Exercise exercise) {
-    final presented = List<ExerciseOption>.of(exercise.present(random: _random));
+    final presented = List<ExerciseOption>.of(
+      exercise.present(random: _random),
+    );
     // Tone answers read best in their natural order (low to high, or
     // higher/lower); band answers are shuffled.
     final ordered = exercise.type.startsWith('tone_');
@@ -116,7 +178,7 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
     final snap = _audioPlayer.snapshot;
     if (_unlimited) return true;
     if (snap.isPlayingOption(slot) || snap.isPausedOption(slot)) return true;
-    return (_listens[slot] ?? 0) < ExerciseAudioPlayer.maxListens;
+    return (_listens[slot] ?? 0) < _maxListens(slot);
   }
 
   Future<void> _play(String slot, String? path) async {
@@ -144,18 +206,32 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
     final slot = withReference ? _orbSlot : 'processed';
     final path = slot == 'reference'
         ? exercise.referencePath
-        : exercise.audio.path;
+        : _examplePath(exercise);
     final snap = _audioPlayer.snapshot;
     final active = snap.isActive(slot);
 
+    final pink = widget.pink;
+
     return OrbPlayer(
       sources: withReference
-          ? const [
-              OrbSource(id: 'reference', tab: 'Referencia', title: 'Referencia'),
-              OrbSource(id: 'processed', tab: 'Procesado', title: 'Procesado'),
+          ? [
+              OrbSource(
+                id: 'processed',
+                tab: pink ? 'Ecualizado' : 'Procesado',
+                title: pink ? 'Ruido rosa ecualizado' : 'Procesado',
+              ),
+              OrbSource(
+                id: 'reference',
+                tab: pink ? 'Limpio' : 'Referencia',
+                title: pink ? 'Ruido rosa limpio' : 'Referencia',
+              ),
             ]
           : const [
-              OrbSource(id: 'processed', tab: 'Ejemplo', title: 'Escucha el ejemplo'),
+              OrbSource(
+                id: 'processed',
+                tab: 'Ejemplo',
+                title: 'Escucha el ejemplo',
+              ),
             ],
       selectedId: slot,
       onSelect: (id) => unawaited(_selectSlot(id)),
@@ -165,6 +241,7 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
       position: active ? snap.position : null,
       duration: active ? snap.duration : null,
       listensUsed: _unlimited ? null : (_listens[slot] ?? 0),
+      maxListens: _maxListens(slot),
       enabled: path != null && path.isNotEmpty && _canPlay(slot),
       onPlayPause: () => unawaited(_play(slot, path)),
     );
@@ -175,13 +252,34 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
     if (exercise == null || _selectedId != null) return;
     setState(() => _selectedId = optionId);
     unawaited(_audioPlayer.stop());
+    final correct = optionId == exercise.correct;
     await MockSession.recordExerciseResult(
       exerciseId: exercise.id,
-      correct: optionId == exercise.correct,
+      correct: correct,
     );
+    final ladder = widget.ladder, level = widget.level;
+    if (ladder != null && level != null) {
+      _unlockedLevel = await ladder.record(level: level, correct: correct);
+    }
     await Future<void>.delayed(const Duration(milliseconds: 420));
     if (!mounted) return;
     setState(() => _showFeedback = true);
+  }
+
+  /// Shown under the question: the level and what it means.
+  String? get _levelNote {
+    final ladder = widget.ladder, level = widget.level;
+    if (ladder == null || level == null) return null;
+    final detail = widget.pink
+        ? EqPractice.pinkLevelDetail(level)
+        : TonePractice.levelDetail(level);
+    return '${ladder.name(level)} · $detail';
+  }
+
+  /// Shown after answering when the answer unlocked a new level.
+  String? get _unlockNote {
+    final level = _unlockedLevel;
+    return level == null ? null : widget.ladder?.unlockedNote(level);
   }
 
   Future<void> _goNext() async {
@@ -190,7 +288,8 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
       if (mounted) Navigator.pop(context);
       return;
     }
-    final next = widget.pickNext(_exercise?.id);
+    final level = _unlockedLevel ?? widget.level;
+    final next = widget.pickNext(_exercise?.id, level);
     if (!mounted) return;
     if (next == null) {
       Navigator.pop(context);
@@ -204,6 +303,9 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
           exercise: next,
           pickNext: widget.pickNext,
           routeName: widget.routeName,
+          ladder: widget.ladder,
+          level: level,
+          pink: widget.pink,
         ),
       ),
     );
@@ -231,6 +333,7 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
                   ? _FeedbackView(
                       exercise: exercise,
                       correct: _selectedId == exercise.correct,
+                      note: _unlockNote,
                       player: _player(exercise),
                     )
                   : _ListenView(
@@ -238,6 +341,7 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
                       options: _options,
                       selectedId: _selectedId,
                       withReference: _hasDistinctReference(exercise),
+                      levelNote: _levelNote,
                       player: _player(exercise),
                       onSelect: (id) => unawaited(_answer(id)),
                     ),
@@ -259,6 +363,9 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
   }
 
   bool _hasDistinctReference(Exercise exercise) {
+    // At the level without reference, the clean noise appears only after
+    // answering, to compare.
+    if (_pinkReferenceListens == 0 && !_unlimited) return false;
     final reference = exercise.referencePath;
     return reference != null &&
         reference.isNotEmpty &&
@@ -274,6 +381,7 @@ class _ListenView extends StatelessWidget {
     required this.withReference,
     required this.player,
     required this.onSelect,
+    this.levelNote,
   });
 
   final Exercise exercise;
@@ -282,10 +390,12 @@ class _ListenView extends StatelessWidget {
   final bool withReference;
   final Widget player;
   final ValueChanged<String> onSelect;
+  final String? levelNote;
 
   @override
   Widget build(BuildContext context) {
     final intro = exercise.intro;
+    final note = levelNote;
 
     return ListView(
       children: [
@@ -296,6 +406,14 @@ class _ListenView extends StatelessWidget {
             style: AppTypography.tagline(
               15,
             ).copyWith(color: AppColors.textSecondary),
+          ),
+          SizedBox(height: note == null ? 20 : 8),
+        ],
+        if (note != null) ...[
+          Text(
+            note,
+            textAlign: TextAlign.center,
+            style: AppTypography.caption.copyWith(color: AppColors.cyan),
           ),
           const SizedBox(height: 20),
         ],
@@ -342,14 +460,19 @@ class _FeedbackView extends StatelessWidget {
     required this.exercise,
     required this.correct,
     required this.player,
+    this.note,
   });
 
   final Exercise exercise;
   final bool correct;
   final Widget player;
 
+  /// Extra line, e.g. a newly unlocked level.
+  final String? note;
+
   @override
   Widget build(BuildContext context) {
+    final extra = note;
     return ListView(
       children: [
         const SizedBox(height: 24),
@@ -372,6 +495,14 @@ class _FeedbackView extends StatelessWidget {
             15,
           ).copyWith(color: AppColors.textSecondary),
         ),
+        if (extra != null) ...[
+          const SizedBox(height: 16),
+          Text(
+            extra,
+            textAlign: TextAlign.center,
+            style: AppTypography.tagline(15).copyWith(color: AppColors.cyan),
+          ),
+        ],
         const SizedBox(height: 28),
         player,
       ],

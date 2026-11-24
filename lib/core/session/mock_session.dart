@@ -175,6 +175,40 @@ class MockSession {
     await _progressRepository.save(_progress);
   }
 
+  /// Answers counted to unlock the next level of a ladder, and how many of
+  /// them must be correct.
+  static const levelWindow = 6;
+  static const levelNeeded = 5;
+
+  /// Highest level unlocked in [ladder] (see `LevelLadder`); 1 at first.
+  static int levelOf(String ladder) => _progress.levels[ladder] ?? 1;
+
+  /// Records an answer given at [level] of [ladder]. Only answers at the
+  /// highest unlocked level count. Returns the newly unlocked level, if any.
+  static Future<int?> recordLevelResult({
+    required String ladder,
+    required int maxLevel,
+    required int level,
+    required bool correct,
+  }) async {
+    final top = levelOf(ladder);
+    if (level != top || top >= maxLevel) return null;
+    var recent = [...?_progress.levelRecent[ladder], correct];
+    if (recent.length > levelWindow) {
+      recent = recent.sublist(recent.length - levelWindow);
+    }
+    final unlocked = recent.where((item) => item).length >= levelNeeded;
+    _progress = _progress.copyWith(
+      levels: {..._progress.levels, ladder: unlocked ? top + 1 : top},
+      levelRecent: {
+        ..._progress.levelRecent,
+        ladder: unlocked ? const [] : recent,
+      },
+    );
+    await _progressRepository.save(_progress);
+    return unlocked ? top + 1 : null;
+  }
+
   static bool get dinamicaUnlocked => _progress.exercises.any(
     (item) => moduleIdForExercise(item.id) != 'dinamica',
   );

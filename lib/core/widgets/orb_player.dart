@@ -34,6 +34,7 @@ class OrbPlayer extends StatefulWidget {
     this.position,
     this.duration,
     this.listensUsed,
+    this.maxListens = ExerciseAudioPlayer.maxListens,
     this.enabled = true,
   });
 
@@ -47,8 +48,12 @@ class OrbPlayer extends StatefulWidget {
   final Duration? position;
   final Duration? duration;
 
-  /// Listens spent on the selected clip, out of 3. Null hides the counter.
+  /// Listens spent on the selected clip, out of [maxListens]. Null hides
+  /// the counter.
   final int? listensUsed;
+
+  /// Listens allowed for the selected clip (3 unless a level limits it).
+  final int maxListens;
   final bool enabled;
 
   @override
@@ -150,7 +155,7 @@ class _OrbPlayerState extends State<OrbPlayer>
             ],
             if (widget.listensUsed != null) ...[
               const SizedBox(height: 14),
-              _ListenPills(used: widget.listensUsed!),
+              _ListenPills(used: widget.listensUsed!, max: widget.maxListens),
             ],
           ],
         );
@@ -271,7 +276,11 @@ class _PlayButtonState extends State<_PlayButton> {
                   gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [AppColors.cyan, AppColors.blue, AppColors.purpleDeep],
+                    colors: [
+                      AppColors.cyan,
+                      AppColors.blue,
+                      AppColors.purpleDeep,
+                    ],
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -460,13 +469,13 @@ class _OrbSwitch extends StatelessWidget {
 }
 
 class _ListenPills extends StatelessWidget {
-  const _ListenPills({required this.used});
+  const _ListenPills({required this.used, required this.max});
 
   final int used;
+  final int max;
 
   @override
   Widget build(BuildContext context) {
-    const max = ExerciseAudioPlayer.maxListens;
     final left = (max - used).clamp(0, max);
     final label = switch (left) {
       0 => 'Sin escuchas',

@@ -5,7 +5,8 @@ import 'dart:typed_data';
 
 /// Generates the synthetic exercises that need no recording:
 ///
-/// * T1 `tone_frequency`: which octave band is this pure tone?
+/// * T1 `tone_frequency`: which band is this pure tone? Level 1: octaves
+///   (63 Hz to 16 kHz); level 2: third-octave bands, closer together.
 /// * T2 `tone_compare`: is the second tone higher or lower?
 /// * A1 `pitch_tuning`: is the second note in tune, sharp or flat?
 ///
@@ -48,48 +49,104 @@ void main() {
 
 // ---------------------------------------------------------------- T1
 
-const _bands = [125, 250, 500, 1000, 2000, 4000, 8000];
+/// Level 1: octave bands, 63 Hz to 16 kHz.
+const _bands = [63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
 
-String _hz(int frequency) =>
-    frequency >= 1000 ? '${frequency ~/ 1000} kHz' : '$frequency Hz';
+/// Level 2: third-octave bands (ISO nominal), 50 Hz to 16 kHz.
+const _thirds = [
+  50, 63, 80, 100, 125, 160, 200, 250, 315, 400, 500, 630, 800, 1000, //
+  1250, 1600, 2000, 2500, 3150, 4000, 5000, 6300, 8000, 10000, 12500, 16000,
+];
+
+String _hz(int frequency) {
+  if (frequency < 1000) return '$frequency Hz';
+  final khz = (frequency / 1000).toString().replaceAll(RegExp(r'\.0$'), '');
+  return '${khz.replaceAll('.', ',')} kHz';
+}
 
 String _region(int frequency) => switch (frequency) {
-  125 => 'los subgraves y graves profundos',
-  250 => 'los graves',
-  500 => 'los medios graves',
-  1000 => 'los medios',
-  2000 => 'los medios agudos',
-  4000 => 'la presencia',
-  8000 => 'el brillo y el aire',
-  _ => 'esa banda',
+  <= 80 => 'los subgraves',
+  <= 200 => 'los graves',
+  <= 400 => 'los medios graves',
+  <= 1250 => 'los medios',
+  <= 3150 => 'los medios agudos',
+  <= 6300 => 'la presencia',
+  <= 12500 => 'el brillo y el aire',
+  _ => 'el aire más alto (no todos lo oyen)',
 };
 
 List<Map<String, dynamic>> _toneFrequency() {
-  // Two loudness levels per band so volume never gives the answer away.
-  const levels = {'01': 0.30, '02': 0.14};
+  // Several loudness levels per band so volume never gives the answer away.
+  const loudness = {'01': 0.30, '02': 0.14, '03': 0.21};
   final result = <Map<String, dynamic>>[];
+  final written = <String>{};
+  String tone(int frequency, String take) {
+    final path = '$tonesDir/tone_pure_${frequency}_$take.wav';
+    if (written.add(path)) {
+      _writeWav(path, _sine(frequency.toDouble(), 2.5, loudness[take]!));
+    }
+    return path;
+  }
+
+  Map<String, dynamic> entry({
+    required String id,
+    required int level,
+    required int frequency,
+    required String path,
+    required List<int> choices,
+    int? maxOptions,
+  }) => {
+    'id': id,
+    'module': 'ecualizacionFrecuencias',
+    'type': 'tone_frequency',
+    'audio': {'source': 'asset', 'path': path},
+    'intro': 'Escucha el tono puro e identifica su frecuencia.',
+    'question': '¿Qué frecuencia escuchas?',
+    'options': [
+      for (final band in choices) {'id': 'f$band', 'label': _hz(band)},
+    ],
+    'maxOptions': ?maxOptions,
+    'correct': 'f$frequency',
+    'difficulty': level == 1 ? 'beginner' : 'intermediate',
+    'explanation': 'Es un tono de ${_hz(frequency)}, en ${_region(frequency)}.',
+    'tags': {
+      'skill': 'pure_tone',
+      'level': '$level',
+      'frequency': '$frequency',
+    },
+    'access': 'free',
+  };
+
+  // Level 1: any four octave bands, one of them the answer.
   for (final frequency in _bands) {
-    for (final entry in levels.entries) {
-      final path = '$tonesDir/tone_pure_${frequency}_${entry.key}.wav';
-      _writeWav(path, _sine(frequency.toDouble(), 2.5, entry.value));
-      result.add({
-        'id': 'TONE_FREQ_${frequency}_${entry.key}',
-        'module': 'ecualizacionFrecuencias',
-        'type': 'tone_frequency',
-        'audio': {'source': 'asset', 'path': path},
-        'intro': 'Escucha el tono puro e identifica su frecuencia.',
-        'question': '¿Qué frecuencia escuchas?',
-        'options': [
-          for (final band in _bands) {'id': 'f$band', 'label': _hz(band)},
-        ],
-        'maxOptions': 4,
-        'correct': 'f$frequency',
-        'difficulty': 'beginner',
-        'explanation':
-            'Es un tono de ${_hz(frequency)}, en ${_region(frequency)}.',
-        'tags': {'skill': 'pure_tone', 'frequency': '$frequency'},
-        'access': 'free',
-      });
+    for (final take in loudness.keys) {
+      result.add(
+        entry(
+          id: 'TONE_FREQ_${frequency}_$take',
+          level: 1,
+          frequency: frequency,
+          path: tone(frequency, take),
+          choices: _bands,
+          maxOptions: 4,
+        ),
+      );
+    }
+  }
+  // Level 2: the answer and its closest third-octave neighbours.
+  for (var i = 0; i < _thirds.length; i++) {
+    final frequency = _thirds[i];
+    final start = (i - 1).clamp(0, _thirds.length - 4);
+    final choices = _thirds.sublist(start, start + 4);
+    for (final take in ['01', '02']) {
+      result.add(
+        entry(
+          id: 'TONE_THIRD_${frequency}_$take',
+          level: 2,
+          frequency: frequency,
+          path: tone(frequency, take),
+          choices: choices,
+        ),
+      );
     }
   }
   return result;

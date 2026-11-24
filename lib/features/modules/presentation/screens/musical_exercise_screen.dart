@@ -26,10 +26,14 @@ class MusicalExerciseScreen extends StatefulWidget {
     super.key,
     required this.pool,
     required this.exercise,
+    this.level,
   });
 
   final MusicalPool pool;
   final Exercise exercise;
+
+  /// Level being played when the pool has levels (tuning in context).
+  final int? level;
 
   @override
   State<MusicalExerciseScreen> createState() => _MusicalExerciseScreenState();
@@ -74,7 +78,10 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
 
   List<ExerciseOption> _rolledOptions(Exercise exercise) {
     final presented = exercise.present(random: _random);
-    if (exercise.access == 'free') return List<ExerciseOption>.of(presented);
+    if (exercise.access == 'free' || exercise.type == 'pitch_context') {
+      // Free lessons and "Nota 1-4" / "Afinada, Alta, Baja" read in order.
+      return List<ExerciseOption>.of(presented);
+    }
     return List<ExerciseOption>.of(presented)..shuffle(_random);
   }
 
@@ -118,13 +125,27 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
     if (exercise == null || _selectedId != null) return;
     setState(() => _selectedId = optionId);
     await _audioPlayer.stop();
+    final correct = optionId == exercise.correct;
     await MockSession.recordExerciseResult(
       exerciseId: exercise.id,
-      correct: optionId == exercise.correct,
+      correct: correct,
     );
+    final ladder = MusicalPools.ladder(widget.pool), level = widget.level;
+    if (ladder != null && level != null) {
+      _unlockedLevel = await ladder.record(level: level, correct: correct);
+    }
     await Future<void>.delayed(const Duration(milliseconds: 420));
     if (!mounted) return;
     setState(() => _showFeedback = true);
+  }
+
+  /// Level unlocked by the latest answer, if any.
+  int? _unlockedLevel;
+
+  String? get _levelNote {
+    final ladder = MusicalPools.ladder(widget.pool), level = widget.level;
+    if (ladder == null || level == null) return null;
+    return '${ladder.name(level)} · ${MusicalPools.levelDetail(level)}';
   }
 
   Future<void> _goNext() async {
@@ -132,11 +153,20 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
       if (mounted) Navigator.pop(context);
       return;
     }
-    var next = MusicalPools.pick(widget.pool, avoidId: _exercise?.id);
+    final level = _unlockedLevel ?? widget.level;
+    var next = MusicalPools.pick(
+      widget.pool,
+      level: level,
+      avoidId: _exercise?.id,
+    );
     if (next == null && MusicalPools.needsAccountPrompt(widget.pool)) {
       final registered = await promptRegister(context);
       if (!registered || !mounted) return;
-      next = MusicalPools.pick(widget.pool, avoidId: _exercise?.id);
+      next = MusicalPools.pick(
+        widget.pool,
+        level: level,
+        avoidId: _exercise?.id,
+      );
     }
     if (!mounted) return;
     if (next == null) {
@@ -147,7 +177,11 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
       context,
       AppTransitions.cinematicRoute<void>(
         settings: const RouteSettings(name: '/module/musical/exercise'),
-        screen: MusicalExerciseScreen(pool: widget.pool, exercise: next),
+        screen: MusicalExerciseScreen(
+          pool: widget.pool,
+          exercise: next,
+          level: level,
+        ),
       ),
     );
   }
@@ -164,7 +198,7 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
               backLabel: 'Back',
               onBack: () => Navigator.maybePop(context),
             ),
-            TrainingContextLink(contextId: widget.pool.name),
+            TrainingContextLink(contextId: MusicalPools.contextId(widget.pool)),
             const SizedBox(height: 8),
             Expanded(
               child: exercise == null
@@ -175,12 +209,18 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
                   ? _FeedbackView(
                       exercise: exercise,
                       correct: _selectedId == exercise.correct,
+                      note: _unlockedLevel == null
+                          ? null
+                          : MusicalPools.ladder(
+                              widget.pool,
+                            )?.unlockedNote(_unlockedLevel!),
                       player: _listenCard(),
                     )
                   : _ListenView(
                       exercise: exercise,
                       options: _options,
                       selectedId: _selectedId,
+                      levelNote: _levelNote,
                       player: _listenCard(),
                       onSelect: (id) => unawaited(_answer(id)),
                     ),
@@ -209,6 +249,7 @@ class _ListenView extends StatelessWidget {
     required this.selectedId,
     required this.player,
     required this.onSelect,
+    this.levelNote,
   });
 
   final Exercise exercise;
@@ -216,10 +257,12 @@ class _ListenView extends StatelessWidget {
   final String? selectedId;
   final Widget player;
   final ValueChanged<String> onSelect;
+  final String? levelNote;
 
   @override
   Widget build(BuildContext context) {
     final intro = exercise.intro;
+    final note = levelNote;
 
     return ListView(
       children: [
@@ -230,6 +273,14 @@ class _ListenView extends StatelessWidget {
             style: AppTypography.tagline(
               15,
             ).copyWith(color: AppColors.textSecondary),
+          ),
+          SizedBox(height: note == null ? 20 : 8),
+        ],
+        if (note != null) ...[
+          Text(
+            note,
+            textAlign: TextAlign.center,
+            style: AppTypography.caption.copyWith(color: AppColors.cyan),
           ),
           const SizedBox(height: 20),
         ],
@@ -270,16 +321,21 @@ class _FeedbackView extends StatelessWidget {
     required this.exercise,
     required this.correct,
     required this.player,
+    this.note,
   });
 
   final Exercise exercise;
   final bool correct;
   final Widget player;
 
+  /// Extra line, e.g. a newly unlocked level.
+  final String? note;
+
   @override
   Widget build(BuildContext context) {
     final accent = MusicalSections.accent;
     final tip = exercise.tip;
+    final extra = note;
 
     return ListView(
       children: [
@@ -303,6 +359,14 @@ class _FeedbackView extends StatelessWidget {
             15,
           ).copyWith(color: AppColors.textSecondary),
         ),
+        if (extra != null) ...[
+          const SizedBox(height: 16),
+          Text(
+            extra,
+            textAlign: TextAlign.center,
+            style: AppTypography.tagline(15).copyWith(color: AppColors.cyan),
+          ),
+        ],
         if (tip != null && tip.isNotEmpty) ...[
           const SizedBox(height: 20),
           Text(

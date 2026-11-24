@@ -64,6 +64,8 @@ class ProgressSnapshot {
     this.seenEqContext = false,
     this.seenToneContext = false,
     this.seenTuningContext = false,
+    this.levels = const {},
+    this.levelRecent = const {},
   });
 
   final List<CompletedExerciseRecord> exercises;
@@ -82,6 +84,14 @@ class ProgressSnapshot {
   final bool seenToneContext;
   final bool seenTuningContext;
 
+  /// Highest level unlocked per ladder (pink noise, tuning, tones…).
+  /// A missing ladder is at level 1.
+  final Map<String, int> levels;
+
+  /// Latest answers (up to 6) given at the highest level of each ladder,
+  /// oldest first.
+  final Map<String, List<bool>> levelRecent;
+
   ProgressSnapshot copyWith({
     List<CompletedExerciseRecord>? exercises,
     int? xp,
@@ -98,6 +108,8 @@ class ProgressSnapshot {
     bool? seenEqContext,
     bool? seenToneContext,
     bool? seenTuningContext,
+    Map<String, int>? levels,
+    Map<String, List<bool>>? levelRecent,
   }) {
     return ProgressSnapshot(
       exercises: exercises ?? this.exercises,
@@ -115,6 +127,8 @@ class ProgressSnapshot {
       seenEqContext: seenEqContext ?? this.seenEqContext,
       seenToneContext: seenToneContext ?? this.seenToneContext,
       seenTuningContext: seenTuningContext ?? this.seenTuningContext,
+      levels: levels ?? this.levels,
+      levelRecent: levelRecent ?? this.levelRecent,
     );
   }
 }
@@ -138,6 +152,8 @@ class ProgressRepository {
   static const _kSeenEqContext = 'progress.seenEqContext';
   static const _kSeenToneContext = 'progress.seenToneContext';
   static const _kSeenTuningContext = 'progress.seenTuningContext';
+  static const _kLevelPrefix = 'progress.level.';
+  static const _kLevelRecentPrefix = 'progress.levelRecent.';
 
   Future<ProgressSnapshot> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -176,6 +192,19 @@ class ProgressRepository {
       seenEqContext: prefs.getBool(_kSeenEqContext) ?? false,
       seenToneContext: prefs.getBool(_kSeenToneContext) ?? false,
       seenTuningContext: prefs.getBool(_kSeenTuningContext) ?? false,
+      levels: {
+        for (final key in prefs.getKeys())
+          if (key.startsWith(_kLevelPrefix))
+            key.substring(_kLevelPrefix.length): prefs.getInt(key) ?? 1,
+      },
+      levelRecent: {
+        for (final key in prefs.getKeys())
+          if (key.startsWith(_kLevelRecentPrefix))
+            key.substring(_kLevelRecentPrefix.length): [
+              for (final mark in (prefs.getString(key) ?? '').split(''))
+                mark == '1',
+            ],
+      },
     );
   }
 
@@ -206,6 +235,15 @@ class ProgressRepository {
     await prefs.setBool(_kSeenEqContext, snapshot.seenEqContext);
     await prefs.setBool(_kSeenToneContext, snapshot.seenToneContext);
     await prefs.setBool(_kSeenTuningContext, snapshot.seenTuningContext);
+    for (final entry in snapshot.levels.entries) {
+      await prefs.setInt('$_kLevelPrefix${entry.key}', entry.value);
+    }
+    for (final entry in snapshot.levelRecent.entries) {
+      await prefs.setString(
+        '$_kLevelRecentPrefix${entry.key}',
+        entry.value.map((correct) => correct ? '1' : '0').join(),
+      );
+    }
     if (snapshot.trainingFocus == null) {
       await prefs.remove(_kTrainingFocus);
     } else {

@@ -9,6 +9,7 @@ import '../../../../core/widgets/gradient_button.dart';
 import '../../../../core/session/mock_session.dart';
 import '../../models/musical_pool.dart';
 import '../../models/musical_sections.dart';
+import '../widgets/level_selector.dart';
 import '../widgets/module_screen_layout.dart';
 import '../widgets/training_context_dialog.dart';
 import 'musical_exercise_screen.dart';
@@ -40,26 +41,42 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
 
     if (!await ensureCanPractice(context) || !mounted) return;
 
-    if (!MockSession.hasSeenTrainingContext(pool.name)) {
+    if (!MockSession.hasSeenTrainingContext(MusicalPools.contextId(pool))) {
       final started = await showTrainingContext(
         context,
-        pool.name,
+        MusicalPools.contextId(pool),
         required: true,
       );
       if (!mounted || !started) return;
     }
 
-    final exercise = MusicalPools.pick(pool);
+    final ladder = MusicalPools.ladder(pool);
+    final level = ladder == null ? null : (_levels[pool] ?? ladder.unlocked);
+    final exercise = MusicalPools.pick(pool, level: level);
     if (exercise == null || !mounted) return;
+    final before = ladder?.unlocked;
     await Navigator.push(
       context,
       AppTransitions.cinematicRoute<void>(
         settings: const RouteSettings(name: '/module/musical/exercise'),
-        screen: MusicalExerciseScreen(pool: pool, exercise: exercise),
+        screen: MusicalExerciseScreen(
+          pool: pool,
+          exercise: exercise,
+          level: level,
+        ),
       ),
     );
-    if (mounted) setState(() {});
+    if (!mounted) return;
+    // A level unlocked during the practice becomes the selected one.
+    setState(() {
+      if (ladder != null && ladder.unlocked != before) {
+        _levels[pool] = ladder.unlocked;
+      }
+    });
   }
+
+  /// Level chosen per pool with levels; defaults to the highest unlocked.
+  final Map<MusicalPool, int> _levels = {};
 
   @override
   Widget build(BuildContext context) {
@@ -68,17 +85,32 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
       subtitle: 'Intervalos, acordes y percepción armónica.',
       children: [
         for (final pool in MusicalPool.values)
-          _PoolCard(pool: pool, onOpen: () => _open(pool)),
+          _PoolCard(
+            pool: pool,
+            onOpen: () => _open(pool),
+            level: switch (MusicalPools.ladder(pool)) {
+              final ladder? => _levels[pool] ?? ladder.unlocked,
+              null => null,
+            },
+            onLevel: (level) => setState(() => _levels[pool] = level),
+          ),
       ],
     );
   }
 }
 
 class _PoolCard extends StatelessWidget {
-  const _PoolCard({required this.pool, required this.onOpen});
+  const _PoolCard({
+    required this.pool,
+    required this.onOpen,
+    required this.onLevel,
+    this.level,
+  });
 
   final MusicalPool pool;
   final VoidCallback onOpen;
+  final int? level;
+  final ValueChanged<int> onLevel;
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +149,17 @@ class _PoolCard extends StatelessWidget {
             ),
           ],
           const SizedBox(height: 8),
-          TrainingContextLink(contextId: pool.name),
+          TrainingContextLink(contextId: MusicalPools.contextId(pool)),
+          if (!locked && level != null)
+            if (MusicalPools.ladder(pool) case final ladder?) ...[
+              const SizedBox(height: 10),
+              LevelSelector(
+                ladder: ladder,
+                selected: level!,
+                detail: MusicalPools.levelDetail(level!),
+                onSelect: onLevel,
+              ),
+            ],
           const SizedBox(height: 10),
           GradientButton(
             label: locked ? 'BLOQUEADO' : 'ESCUCHAR',

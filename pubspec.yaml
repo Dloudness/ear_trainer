@@ -73,6 +73,7 @@ flutter:
     - assets/eq/eq_pink_noise/
     - assets/tones/
     - assets/pitch/
+    - assets/pitch_context/
     - assets/music/
     - assets/ambient/
     - assets/foley/

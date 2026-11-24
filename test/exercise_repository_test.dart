@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:ear_trainer/core/session/mock_session.dart';
@@ -10,6 +11,7 @@ import 'package:ear_trainer/features/exercises/models/exercise.dart';
 import 'package:ear_trainer/features/modules/models/eq_practice.dart';
 import 'package:ear_trainer/features/modules/models/musical_pool.dart';
 import 'package:ear_trainer/features/modules/models/musical_sections.dart';
+import 'package:ear_trainer/features/modules/models/practice_levels.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/eq_band_exercise_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/frecuencias_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/musical_training_screen.dart';
@@ -301,7 +303,10 @@ void main() {
       await MockSession.recordExerciseResult(exerciseId: id, correct: false);
     }
     expect(MockSession.reachedFreeLimit, isFalse);
-    await MockSession.recordExerciseResult(exerciseId: 'EQ_INIT_LPF', correct: true);
+    await MockSession.recordExerciseResult(
+      exerciseId: 'EQ_INIT_LPF',
+      correct: true,
+    );
     expect(MockSession.reachedFreeLimit, isTrue);
 
     await tester.pumpWidget(const MaterialApp(home: FrecuenciasScreen()));
@@ -324,17 +329,16 @@ void main() {
     final tones = eqExercises
         .where((exercise) => exercise.type.startsWith('tone_'))
         .toList();
-    expect(tones.where((e) => e.type == 'tone_frequency'), hasLength(14));
+    // Octaves 63 Hz-16 kHz × 3 loudness levels, then 26 thirds × 2.
+    expect(tones.where((e) => e.tags['level'] == '1'), hasLength(27));
+    expect(tones.where((e) => e.tags['level'] == '2'), hasLength(52));
     expect(tones.where((e) => e.type == 'tone_compare'), hasLength(30));
     final tuning = ExerciseRepository.instance
         .byModule(OnboardingOption.entrenamientoMusical.name)
         .where((exercise) => exercise.type == 'pitch_tuning')
         .toList();
     expect(tuning, hasLength(28));
-    expect(
-      tuning.map((e) => e.correct).toSet(),
-      {'in_tune', 'sharp', 'flat'},
-    );
+    expect(tuning.map((e) => e.correct).toSet(), {'in_tune', 'sharp', 'flat'});
 
     for (final exercise in tones.where((e) => e.type == 'tone_frequency')) {
       final shown = exercise.present(random: Random(1));
@@ -476,10 +480,13 @@ void main() {
       final gainLabel = gain > 0 ? '+$gain dB' : '−${gain.abs()} dB';
       expect(correct.label, '${exercise.tags['frequency']} Hz · $gainLabel');
       expect(exercise.explanation, contains(correct.label));
-      expect(exercise.referencePath, isNull);
+      expect(
+        exercise.referencePath,
+        'assets/eq/eq_pink_noise/pink_reference_01.wav',
+      );
       expect(
         exercise.audio.path,
-        'assets/eq/eq_pink_noise/freq_pink_boost_'
+        'assets/eq/eq_pink_noise/freq_pink_${gain > 0 ? 'boost' : 'cut'}_'
         '${exercise.tags['frequency']}_${tokens['${exercise.tags['gain']}']}_01.wav',
       );
       expect(exercise.audio.path, isNot(contains('eq_band')));
@@ -589,14 +596,23 @@ void main() {
         home: EqBandExerciseScreen.band(
           source: EqSource.pink,
           exercise: exercise,
+          pinkLevel: 1,
         ),
       ),
     );
     await tester.pump();
 
     expect(find.text('¿Qué frecuencia y ajuste escuchas?'), findsOneWidget);
-    expect(find.text('Referencia'), findsNothing);
-    expect(find.text('Escucha el ejemplo'), findsOneWidget);
+    // Level 1: the example comes first; the clean pink noise is the second
+    // tab and can be heard twice.
+    expect(find.text('Ecualizado'), findsOneWidget);
+    expect(find.text('Limpio'), findsOneWidget);
+    expect(find.text('Ruido rosa ecualizado'), findsOneWidget);
+    expect(find.text('Quedan 3 escuchas'), findsOneWidget);
+    expect(find.textContaining('Nivel 1 ·'), findsOneWidget);
+    await tester.tap(find.text('Limpio'));
+    await tester.pump();
+    expect(find.text('Quedan 2 escuchas'), findsOneWidget);
     expect(find.text('500 Hz · +6 dB'), findsOneWidget);
 
     await tester.tap(find.text('500 Hz · +6 dB'));
@@ -616,6 +632,161 @@ void main() {
     );
 
     await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('pink noise level 3 hides the clean reference', (tester) async {
+    tester.view.physicalSize = const Size(800, 1600);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    SharedPreferences.setMockInitialValues({});
+    await MockSession.load();
+
+    final exercise = eqExercises.firstWhere(
+      (item) => item.id == 'EQ_BAND_PINK_500_P6',
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: EqBandExerciseScreen.band(
+          source: EqSource.pink,
+          exercise: exercise,
+          pinkLevel: 3,
+        ),
+      ),
+    );
+    await tester.pump();
+
+    expect(find.text('Limpio'), findsNothing);
+    expect(find.text('Escucha el ejemplo'), findsOneWidget);
+    expect(find.text('Quedan 3 escuchas'), findsOneWidget);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  test('levels unlock with 5 of the last 6 right, per ladder', () async {
+    SharedPreferences.setMockInitialValues({});
+    await MockSession.load();
+    const pink = LevelLadder.pink;
+    expect(pink.unlocked, 1);
+
+    for (final correct in [true, false, true, true, true]) {
+      expect(await pink.record(level: 1, correct: correct), isNull);
+    }
+    expect(await pink.record(level: 1, correct: true), 2);
+    expect(pink.unlocked, 2);
+    // Answers at a lower level never count.
+    expect(await pink.record(level: 1, correct: true), isNull);
+
+    for (var i = 0; i < 4; i++) {
+      await pink.record(level: 2, correct: true);
+    }
+    expect(pink.unlocked, 2);
+    expect(await pink.record(level: 2, correct: true), 3);
+    // The top level unlocks nothing more.
+    for (var i = 0; i < 6; i++) {
+      expect(await pink.record(level: 3, correct: true), isNull);
+    }
+
+    // Each ladder keeps its own level, and it survives a reload.
+    expect(LevelLadder.tuning.unlocked, 1);
+    await MockSession.load();
+    expect(pink.unlocked, 3);
+    expect(LevelLadder.tones.unlocked, 1);
+  });
+
+  test('no exercise repeats until the rest have come out', () {
+    final all = TonePractice.of(ToneDrill.frequency, level: 1);
+    final seen = <String>{};
+    String? last;
+    for (var i = 0; i < all.length; i++) {
+      last = TonePractice.pick(
+        ToneDrill.frequency,
+        level: 1,
+        avoidId: last,
+      )!.id;
+      expect(seen.add(last), isTrue, reason: 'repetido: $last');
+    }
+    expect(seen, hasLength(all.length));
+  });
+
+  test('tuning in context: answers match and audio exists', () async {
+    final context = ExerciseRepository.instance
+        .byModule('entrenamientoMusical')
+        .where((exercise) => exercise.type == 'pitch_context')
+        .toList();
+    expect(context, hasLength(552));
+    final byDrill = <String, int>{};
+    for (final exercise in context) {
+      final key = 'L${exercise.tags['level']} ${exercise.tags['drill']}';
+      byDrill.update(key, (n) => n + 1, ifAbsent: () => 1);
+      expect(File(exercise.audio.path).existsSync(), isTrue);
+      // The answer is never readable from the file name.
+      // ("csharp" is a key, not the answer, so whole words are compared.)
+      final words = exercise.audio.path.split('/').last.split(RegExp(r'[_.]'));
+      for (final answer in [
+        'in',
+        'tune',
+        'sharp',
+        'flat',
+        'n1',
+        'n2',
+        'n3',
+        'n4',
+        'ok',
+        'wrong',
+      ]) {
+        expect(words, isNot(contains(answer)));
+      }
+      final cents = int.parse(exercise.tags['cents']!);
+      // Básico moves notes by a semitone; Intermedio 50; Profesional less.
+      final allowed = switch (exercise.tags['level']) {
+        '1' => {0, 100},
+        '2' => {0, 50},
+        _ => {0, 25, 15, 10},
+      };
+      expect(allowed, contains(cents.abs()));
+      switch (exercise.tags['drill']) {
+        case 'melody':
+          expect(cents, isNot(0));
+          expect(exercise.options.map((option) => option.label), [
+            'Nota 1',
+            'Nota 2',
+            'Nota 3',
+            'Nota 4',
+          ]);
+        case 'chord':
+          expect(exercise.correct, cents == 0 ? 'ok' : 'wrong');
+        default:
+          expect(
+            exercise.correct,
+            cents == 0 ? 'in_tune' : (cents > 0 ? 'sharp' : 'flat'),
+          );
+      }
+    }
+    expect(byDrill, {
+      'L1 melody': 48,
+      'L1 final': 72,
+      'L1 chord': 48,
+      'L2 melody': 48,
+      'L2 final': 72,
+      'L2 third': 72,
+      'L3 melody': 48,
+      'L3 final': 72,
+      'L3 third': 72,
+    });
+    // The card needs an account; each level draws only its own exercises.
+    SharedPreferences.setMockInitialValues({});
+    await MockSession.load();
+    await MockSession.signIn();
+    for (var level = 1; level <= 3; level++) {
+      expect(
+        MusicalPools.pick(
+          MusicalPool.tuningContext,
+          level: level,
+        )!.tags['level'],
+        '$level',
+      );
+    }
   });
 }
 

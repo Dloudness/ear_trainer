@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math' as math;
-import 'dart:typed_data';
+
+import 'audio_kit.dart';
 
 /// Builds the "afinación en contexto" exercises from the owner's recorded
 /// notes (piano C3-C6, guitar E2-E5), as planned in
@@ -39,7 +40,7 @@ void main(List<String> args) {
   Directory(outDir).createSync(recursive: true);
   final rng = math.Random(20261124);
   final instruments = [
-    _Instrument.load(
+    Instrument.load(
       'piano',
       'piano',
       '${args[0]}/piano_notas',
@@ -50,7 +51,7 @@ void main(List<String> args) {
       melody: 67,
       strumMs: 0,
     ),
-    _Instrument.load(
+    Instrument.load(
       'guitar',
       'guitarra',
       '${args[0]}/guitarra_notas',
@@ -147,20 +148,6 @@ const _keyNames = [
   'La♯',
   'Si',
 ];
-const _keyTokens = [
-  'c',
-  'csharp',
-  'd',
-  'dsharp',
-  'e',
-  'f',
-  'fsharp',
-  'g',
-  'gsharp',
-  'a',
-  'asharp',
-  'b',
-];
 
 /// Melodies as scale degrees (0 = tonic, 7 = tonic an octave up).
 const _melodies = [
@@ -188,7 +175,7 @@ const _difficulties = ['beginner', 'intermediate', 'advanced'];
 class _Spec {
   _Spec(this.inst, this.level, this.key, this.rng, this.dir);
 
-  final _Instrument inst;
+  final Instrument inst;
   final int level, key;
   final math.Random rng;
   final String dir;
@@ -197,10 +184,10 @@ class _Spec {
   String get keyName => '${_keyNames[key]} mayor';
 
   String file(String drill, int n) =>
-      '$dir/pitch_ctx_l${level}_${drill}_${inst.id}_${_keyTokens[key]}_${n.toString().padLeft(2, '0')}.wav';
+      '$dir/pitch_ctx_l${level}_${drill}_${inst.id}_${keyTokens[key]}_${n.toString().padLeft(2, '0')}.wav';
 
   String id(String drill, int n) =>
-      'PCTX_L${level}_${drill.toUpperCase()}_${inst.id.toUpperCase()}_${_keyTokens[key].toUpperCase()}_0$n';
+      'PCTX_L${level}_${drill.toUpperCase()}_${inst.id.toUpperCase()}_${keyTokens[key].toUpperCase()}_0$n';
 }
 
 String _direction(int cents) =>
@@ -233,7 +220,7 @@ Map<String, dynamic> _entry(
     'level': '${s.level}',
     'drill': drill,
     'instrument': s.inst.id,
-    'key': _keyTokens[s.key],
+    'key': keyTokens[s.key],
     'cents': '$cents',
     ...extraTags,
   },
@@ -250,7 +237,7 @@ String _tuneAnswer(int cents) =>
     cents == 0 ? 'in_tune' : (cents > 0 ? 'sharp' : 'flat');
 
 /// Tonic chord (bass + close triad).
-List<int> _triad(_Instrument inst, int rootPc, {bool minor = false}) => [
+List<int> _triad(Instrument inst, int rootPc, {bool minor = false}) => [
   _at(rootPc, inst.bass),
   _at(rootPc, inst.chord),
   _at(rootPc + (minor ? 3 : 4), inst.chord),
@@ -265,7 +252,7 @@ String _pitchName(int midi) => _keyNames[midi % 12];
 /// semitone out of the key. Otherwise: one note is detuned by [cents].
 Map<String, dynamic> _melody(_Spec s, int n, int cents) {
   final inst = s.inst, rng = s.rng;
-  final mix = _Mix();
+  final mix = Mix();
   // keep the melody inside the instrument's range (one semitone of margin)
   var tonic = _at(s.key, inst.melody);
   var fitting = <List<int>>[];
@@ -330,7 +317,7 @@ Map<String, dynamic> _melody(_Spec s, int n, int cents) {
 /// land a semitone above or below the tonic. Otherwise: detuned by [cents].
 Map<String, dynamic> _final(_Spec s, int n, int cents) {
   final inst = s.inst, rng = s.rng;
-  final mix = _Mix();
+  final mix = Mix();
   final tonic = _at(s.key, inst.melody);
   // soprano mi - fa - re - do over I - IV - V - I
   final soprano = [
@@ -398,7 +385,7 @@ Map<String, dynamic> _wrongNote(
   required bool minor,
 }) {
   final inst = s.inst;
-  final mix = _Mix();
+  final mix = Mix();
   final notes = _triad(inst, s.key, minor: minor);
   final top = _at(s.key, inst.chord) + 12;
   notes.add(wrong ? top + 1 : top);
@@ -428,7 +415,7 @@ Map<String, dynamic> _wrongNote(
 /// A5 · major or minor triad whose third is in tune or detuned by [cents].
 Map<String, dynamic> _third(_Spec s, int n, int cents, bool minor) {
   final inst = s.inst;
-  final mix = _Mix();
+  final mix = Mix();
   final notes = _triad(inst, s.key, minor: minor);
   // Guitar E3-G#3 samples have a fundamental and harmonics that disagree
   // by 13-17 cents: fine as accompaniment, not as the note to judge.
@@ -457,278 +444,3 @@ Map<String, dynamic> _third(_Spec s, int n, int cents, bool minor) {
   );
 }
 
-// -------------------------------------------------------------- instrument
-
-class _Instrument {
-  _Instrument(
-    this.id,
-    this.label,
-    this.dir,
-    this.low,
-    this.high,
-    this.cents, {
-    required this.bass,
-    required this.chord,
-    required this.melody,
-    required this.strumMs,
-  });
-
-  final String id, label, dir;
-  final int low, high, bass, chord, melody, strumMs;
-  final Map<String, double> cents; // file -> measured cents
-
-  final _cache = <String, Float64List>{};
-
-  static _Instrument load(
-    String id,
-    String label,
-    String dir,
-    int low,
-    int high, {
-    required int bass,
-    required int chord,
-    required int melody,
-    required int strumMs,
-  }) {
-    final lines = File(
-      '$dir/analisis_${label}_notas.csv',
-    ).readAsLinesSync().skip(1);
-    final cents = {
-      for (final l in lines) l.split(',')[0]: double.parse(l.split(',')[3]),
-    };
-    return _Instrument(
-      id,
-      label,
-      dir,
-      low,
-      high,
-      cents,
-      bass: bass,
-      chord: chord,
-      melody: melody,
-      strumMs: strumMs,
-    );
-  }
-
-  /// A note at [midi], retuned to 0 cents and then shifted by [detune],
-  /// starting at its attack and level-matched (RMS of the first 300 ms).
-  Float64List note(int midi, math.Random rng, int detune) {
-    if (midi < low || midi > high) {
-      throw RangeError('$id: $midi fuera de rango');
-    }
-    final take = rng.nextBool() ? '01' : '02';
-    return _cache.putIfAbsent('$midi$take$detune', () {
-      final file = 'sample_${id}_${_noteName(midi)}_$take.wav';
-      final measured = cents[file] ?? (throw StateError('sin medición: $file'));
-      var y = _shift(_readMono('$dir/cortes/$file'), measured - detune);
-      var on = 0;
-      while (on < y.length && y[on].abs() < 0.001) {
-        on++;
-      }
-      y = Float64List.sublistView(y, on);
-      var acc = 0.0;
-      final m = math.min(y.length, 14400);
-      for (var i = 0; i < m; i++) {
-        acc += y[i] * y[i];
-      }
-      final g = 1 / math.sqrt(acc / m);
-      return Float64List.fromList([for (final v in y) v * g]);
-    });
-  }
-
-  /// Chord notes from low to high, strummed (guitar) or slightly spread.
-  void chordAt(
-    _Mix mix,
-    List<int> notes,
-    double t,
-    double dur,
-    double gain,
-    math.Random rng, {
-    Map<int, int> detune = const {},
-  }) {
-    for (var i = 0; i < notes.length; i++) {
-      final offset = strumMs > 0
-          ? i * strumMs / 1000
-          : rng.nextDouble() * 0.012;
-      mix.add(
-        note(notes[i], rng, detune[notes[i]] ?? 0),
-        t + offset,
-        dur - offset,
-        gain * (i == 0 ? 1.2 : 1.0),
-      );
-    }
-  }
-}
-
-String _noteName(int midi) => '${_keyTokens[midi % 12]}${midi ~/ 12 - 1}';
-
-// --------------------------------------------------------------------- mix
-
-const _targetLufs = -25.0;
-final peaks = <String, double>{};
-
-class _Mix {
-  static const sr = 48000;
-  final _buf = <double>[];
-
-  /// Adds [x] at [t] seconds, held [dur] seconds then released in 150 ms.
-  void add(Float64List x, double t, double dur, double gain) {
-    final st = (t * sr).round();
-    final hold = (dur * sr).round(), rel = (0.15 * sr).round();
-    final len = math.min(x.length, hold + rel);
-    if (_buf.length < st + len) {
-      _buf.addAll(List.filled(st + len - _buf.length, 0.0));
-    }
-    for (var i = 0; i < len; i++) {
-      var g = gain;
-      if (i >= hold) g *= 0.5 + 0.5 * math.cos(math.pi * (i - hold) / rel);
-      _buf[st + i] += x[i] * g;
-    }
-  }
-
-  void write(String path) {
-    final tail = List.filled((0.1 * sr).round(), 0.0);
-    final x = Float64List.fromList([..._buf, ...tail]);
-    final scale = math.pow(10, (_targetLufs - _lufs(x)) / 20).toDouble();
-    var peak = 0.0;
-    for (var i = 0; i < x.length; i++) {
-      x[i] *= scale;
-      peak = math.max(peak, x[i].abs());
-    }
-    peaks[path] = peak;
-    if (peak > 0.89) {
-      stderr.writeln(
-        'ALTO: $path ${(20 * math.log(peak) / math.ln10).toStringAsFixed(1)} dBFS',
-      );
-    }
-    _writeMono16(path, x);
-  }
-}
-
-/// BS.1770 integrated loudness (48 kHz K-weighting, 400 ms blocks, gated).
-double _lufs(Float64List x) {
-  List<double> filt(List<double> s, List<double> b, List<double> a) {
-    final y = List<double>.filled(s.length, 0);
-    var x1 = 0.0, x2 = 0.0, y1 = 0.0, y2 = 0.0;
-    for (var i = 0; i < s.length; i++) {
-      final v = b[0] * s[i] + b[1] * x1 + b[2] * x2 - a[1] * y1 - a[2] * y2;
-      x2 = x1;
-      x1 = s[i];
-      y2 = y1;
-      y1 = v;
-      y[i] = v;
-    }
-    return y;
-  }
-
-  var k = filt(
-    x,
-    [1.53512485958697, -2.69169618940638, 1.19839281085285],
-    [1.0, -1.69065929318241, 0.73248077421585],
-  );
-  k = filt(k, [1.0, -2.0, 1.0], [1.0, -1.99004745483398, 0.99007225036621]);
-  const block = 19200, hop = 4800;
-  final blocks = <double>[];
-  for (var s = 0; s + block <= k.length; s += hop) {
-    var ms = 0.0;
-    for (var i = s; i < s + block; i++) {
-      ms += k[i] * k[i];
-    }
-    blocks.add(ms / block);
-  }
-  double loud(double ms) => -0.691 + 10 * math.log(ms) / math.ln10;
-  var gated = blocks.where((b) => loud(b) > -70).toList();
-  final rel = loud(gated.reduce((a, b) => a + b) / gated.length) - 10;
-  gated = gated.where((b) => loud(b) > rel).toList();
-  return loud(gated.reduce((a, b) => a + b) / gated.length);
-}
-
-// ------------------------------------------------------------------- audio
-
-Float64List _readMono(String path) {
-  final b = File(path).readAsBytesSync();
-  final d = ByteData.sublistView(b);
-  var p = 12, bits = 16, ch = 1;
-  while (p + 8 <= b.length) {
-    final idTag = String.fromCharCodes(b.sublist(p, p + 4));
-    final size = d.getUint32(p + 4, Endian.little);
-    if (idTag == 'fmt ') {
-      ch = d.getUint16(p + 10, Endian.little);
-      bits = d.getUint16(p + 22, Endian.little);
-    } else if (idTag == 'data') {
-      final bytes = bits ~/ 8, frames = size ~/ (bytes * ch);
-      final x = Float64List(frames);
-      for (var i = 0; i < frames; i++) {
-        final o = p + 8 + i * bytes * ch;
-        if (bits == 24) {
-          var v = b[o] | (b[o + 1] << 8) | (b[o + 2] << 16);
-          if (v & 0x800000 != 0) v -= 0x1000000;
-          x[i] = v / 8388608;
-        } else {
-          x[i] = d.getInt16(o, Endian.little) / 32768;
-        }
-      }
-      return x;
-    }
-    p += 8 + size + (size & 1);
-  }
-  throw FormatException('sin datos: $path');
-}
-
-/// Shifts the pitch DOWN by [cents] (negative raises it) with windowed-sinc
-/// resampling (Blackman-Harris, 64 zero crossings per side).
-Float64List _shift(Float64List x, double cents) {
-  final step = math.pow(2, -cents / 1200).toDouble();
-  final out = Float64List(((x.length - 1) / step).floor() + 1);
-  const half = 64;
-  final fc = step > 1 ? 1 / step : 1.0;
-  for (var n = 0; n < out.length; n++) {
-    final t = n * step, i0 = t.floor();
-    var acc = 0.0;
-    for (var k = i0 - half + 1; k <= i0 + half; k++) {
-      if (k < 0 || k >= x.length) continue;
-      final d = t - k;
-      final u = (d + half) / (2 * half);
-      final win =
-          0.35875 -
-          0.48829 * math.cos(2 * math.pi * u) +
-          0.14128 * math.cos(4 * math.pi * u) -
-          0.01168 * math.cos(6 * math.pi * u);
-      final arg = math.pi * d * fc;
-      acc += x[k] * fc * (d.abs() < 1e-12 ? 1.0 : math.sin(arg) / arg) * win;
-    }
-    out[n] = acc;
-  }
-  return out;
-}
-
-void _writeMono16(String path, Float64List x) {
-  final rng = math.Random(path.hashCode);
-  final n = x.length * 2;
-  final d = ByteData(44 + n);
-  void tag(int o, String s) {
-    for (var i = 0; i < 4; i++) {
-      d.setUint8(o + i, s.codeUnitAt(i));
-    }
-  }
-
-  tag(0, 'RIFF');
-  d.setUint32(4, 36 + n, Endian.little);
-  tag(8, 'WAVE');
-  tag(12, 'fmt ');
-  d.setUint32(16, 16, Endian.little);
-  d.setUint16(20, 1, Endian.little);
-  d.setUint16(22, 1, Endian.little);
-  d.setUint32(24, 48000, Endian.little);
-  d.setUint32(28, 96000, Endian.little);
-  d.setUint16(32, 2, Endian.little);
-  d.setUint16(34, 16, Endian.little);
-  tag(36, 'data');
-  d.setUint32(40, n, Endian.little);
-  for (var i = 0; i < x.length; i++) {
-    final dither = rng.nextDouble() - rng.nextDouble(); // TPDF, ±1 LSB
-    final v = (x[i] * 32767 + dither).round().clamp(-32768, 32767);
-    d.setInt16(44 + i * 2, v, Endian.little);
-  }
-  File(path).writeAsBytesSync(d.buffer.asUint8List());
-}

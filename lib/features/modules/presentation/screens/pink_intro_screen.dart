@@ -7,6 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/glass_panel.dart';
 import '../../../../core/widgets/gradient_button.dart';
+import '../widgets/listen_chip.dart';
 import '../widgets/module_screen_layout.dart';
 
 /// Listening reference before the pink-noise drill: the clean noise, then
@@ -85,7 +86,7 @@ class _PinkIntroScreenState extends State<PinkIntroScreen> {
     final snap = _player.snapshot;
     final playing = snap.isPlayingOption(path);
     final active = snap.isActive(path);
-    return _ListenChip(
+    return ListenChip(
       label: label,
       playing: playing,
       progress: active ? snap.progress : 0,
@@ -270,81 +271,6 @@ class _FrequencyRow extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-}
-
-/// Play/pause button with a thin progress line, for reference clips.
-class _ListenChip extends StatelessWidget {
-  const _ListenChip({
-    required this.label,
-    required this.playing,
-    required this.progress,
-    required this.onTap,
-    this.wide = false,
-  });
-
-  final String label;
-  final bool playing;
-  final double progress;
-  final VoidCallback onTap;
-  final bool wide;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = playing ? AppColors.cyan : AppColors.textSecondary;
-    return Semantics(
-      button: true,
-      label: playing ? 'Pausar $label' : 'Escuchar $label',
-      child: InkWell(
-        borderRadius: BorderRadius.circular(10),
-        onTap: onTap,
-        child: Container(
-          width: wide ? double.infinity : null,
-          padding: const EdgeInsets.fromLTRB(10, 8, 10, 6),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: color.withValues(alpha: 0.45)),
-            color: playing ? AppColors.cyan.withValues(alpha: 0.10) : null,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                    size: 18,
-                    color: color,
-                  ),
-                  const SizedBox(width: 6),
-                  Flexible(
-                    child: Text(
-                      label,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTypography.caption.copyWith(
-                        fontSize: 12,
-                        color: color,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 6),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(2),
-                child: LinearProgressIndicator(
-                  value: progress,
-                  minHeight: 2,
-                  backgroundColor: Colors.white.withValues(alpha: 0.08),
-                  color: AppColors.cyan,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

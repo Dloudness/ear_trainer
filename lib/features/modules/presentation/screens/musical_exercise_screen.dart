@@ -82,6 +82,13 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
       // Free lessons and "Nota 1-4" / "Afinada, Alta, Baja" read in order.
       return List<ExerciseOption>.of(presented);
     }
+    if (exercise.type == 'interval_quality') {
+      // Intervals read from small to large, as stored.
+      return List<ExerciseOption>.of(presented)..sort(
+        (a, b) =>
+            exercise.options.indexOf(a).compareTo(exercise.options.indexOf(b)),
+      );
+    }
     return List<ExerciseOption>.of(presented)..shuffle(_random);
   }
 
@@ -145,7 +152,7 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
   String? get _levelNote {
     final ladder = MusicalPools.ladder(widget.pool), level = widget.level;
     if (ladder == null || level == null) return null;
-    return '${ladder.name(level)} · ${MusicalPools.levelDetail(level)}';
+    return '${ladder.name(level)} · ${MusicalPools.levelDetail(widget.pool, level)}';
   }
 
   Future<void> _goNext() async {

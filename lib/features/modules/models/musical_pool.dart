@@ -88,15 +88,32 @@ abstract final class MusicalPools {
         drawable(pool).isEmpty;
   }
 
-  /// Levels of the pool, if it has them (tuning in context).
-  static LevelLadder? ladder(MusicalPool pool) =>
-      pool == MusicalPool.tuningContext ? LevelLadder.tuning : null;
-
-  static String levelDetail(int level) => switch (level) {
-    1 => 'Una nota fuera de la escala o un acorde con una nota equivocada.',
-    2 => 'Notas desafinadas medio semitono (50 cents).',
-    _ => 'Desafinaciones finas: 25, 15 y 10 cents.',
+  /// Levels of the pool, if it has them (intervals, tuning in context).
+  static LevelLadder? ladder(MusicalPool pool) => switch (pool) {
+    MusicalPool.intervals => LevelLadder.intervals,
+    MusicalPool.tuningContext => LevelLadder.tuning,
+    _ => null,
   };
+
+  static String levelDetail(MusicalPool pool, int level) {
+    if (pool == MusicalPool.intervals) {
+      return switch (level) {
+        1 => '2da menor, 3ra mayor, 4ta, 5ta y octava, subiendo y bajando.',
+        2 => 'Los 12 intervalos de la octava, también con las notas juntas.',
+        _ => 'Hasta la 10ma, con opciones que se parecen entre sí.',
+      };
+    }
+    return switch (level) {
+      1 => 'Una nota fuera de la escala o un acorde con una nota equivocada.',
+      2 => 'Notas desafinadas medio semitono (50 cents).',
+      _ => 'Desafinaciones finas: 25, 15 y 10 cents.',
+    };
+  }
+
+  /// Listening introduction shown before the first exercise, if the pool
+  /// has one.
+  static String? introId(MusicalPool pool) =>
+      pool == MusicalPool.intervals ? 'intervals' : null;
 
   /// Next exercise (at [level] when the pool has levels); none repeats
   /// until the rest have come out.

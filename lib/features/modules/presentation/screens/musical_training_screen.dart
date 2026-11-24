@@ -12,6 +12,7 @@ import '../../models/musical_sections.dart';
 import '../widgets/level_selector.dart';
 import '../widgets/module_screen_layout.dart';
 import '../widgets/training_context_dialog.dart';
+import 'interval_intro_screen.dart';
 import 'musical_exercise_screen.dart';
 
 class MusicalTrainingScreen extends StatefulWidget {
@@ -50,6 +51,14 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
       if (!mounted || !started) return;
     }
 
+    // First time: the listening reference, which can be skipped. It stays
+    // available from the card.
+    final intro = MusicalPools.introId(pool);
+    if (intro != null && !MockSession.hasSeenIntro(intro)) {
+      final go = await _openIntro(pool, beforePractice: true);
+      if (go != true || !mounted) return;
+    }
+
     final ladder = MusicalPools.ladder(pool);
     final level = ladder == null ? null : (_levels[pool] ?? ladder.unlocked);
     final exercise = MusicalPools.pick(pool, level: level);
@@ -75,6 +84,23 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
     });
   }
 
+  Future<bool?> _openIntro(
+    MusicalPool pool, {
+    required bool beforePractice,
+  }) async {
+    final intro = MusicalPools.introId(pool);
+    if (intro == null) return true;
+    await MockSession.markIntroSeen(intro);
+    if (!mounted) return null;
+    return Navigator.push<bool>(
+      context,
+      AppTransitions.cinematicRoute<bool>(
+        settings: const RouteSettings(name: '/module/musical/referencia'),
+        screen: IntervalIntroScreen(beforePractice: beforePractice),
+      ),
+    );
+  }
+
   /// Level chosen per pool with levels; defaults to the highest unlocked.
   final Map<MusicalPool, int> _levels = {};
 
@@ -93,6 +119,9 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
               null => null,
             },
             onLevel: (level) => setState(() => _levels[pool] = level),
+            onReference: MusicalPools.introId(pool) == null
+                ? null
+                : () => _openIntro(pool, beforePractice: false),
           ),
       ],
     );
@@ -105,12 +134,16 @@ class _PoolCard extends StatelessWidget {
     required this.onOpen,
     required this.onLevel,
     this.level,
+    this.onReference,
   });
 
   final MusicalPool pool;
   final VoidCallback onOpen;
   final int? level;
   final ValueChanged<int> onLevel;
+
+  /// Opens the listening reference, when the pool has one.
+  final VoidCallback? onReference;
 
   @override
   Widget build(BuildContext context) {
@@ -156,10 +189,20 @@ class _PoolCard extends StatelessWidget {
               LevelSelector(
                 ladder: ladder,
                 selected: level!,
-                detail: MusicalPools.levelDetail(level!),
+                detail: MusicalPools.levelDetail(pool, level!),
                 onSelect: onLevel,
               ),
             ],
+          if (!locked && onReference != null)
+            TextButton.icon(
+              onPressed: onReference,
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                foregroundColor: AppColors.cyan,
+              ),
+              icon: const Icon(Icons.headphones_rounded, size: 16),
+              label: const Text('Escuchar la referencia'),
+            ),
           const SizedBox(height: 10),
           GradientButton(
             label: locked ? 'BLOQUEADO' : 'ESCUCHAR',

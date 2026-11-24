@@ -1,18 +1,16 @@
-// One-shot generator. Re-running replaces chord_quality and interval_quality
-// and leaves every other exercise, including the five EQ entries, unchanged.
+// One-shot generator. Re-running replaces chord_quality and leaves every
+// other exercise, including the five EQ entries, unchanged. Intervals are
+// built by tools/generate_intervals.dart.
 import 'dart:convert';
 import 'dart:io';
 
-const _generatedTypes = {'chord_quality', 'interval_quality'};
+const _generatedTypes = {'chord_quality'};
 
 const _folders = [
   'chords_min_maj',
   'chords_maj7_min7_dom7',
   'triadas_inversiones',
   'inversiones_chords',
-  'intervalos_ascendentes',
-  'intervalos_descendentes',
-  'intervalos_armonicos',
 ];
 
 const _triadOptions = [

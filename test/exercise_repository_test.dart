@@ -14,6 +14,7 @@ import 'package:ear_trainer/features/modules/models/musical_sections.dart';
 import 'package:ear_trainer/features/modules/models/practice_levels.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/eq_band_exercise_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/frecuencias_screen.dart';
+import 'package:ear_trainer/features/modules/presentation/screens/interval_intro_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/musical_training_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/pink_intro_screen.dart';
 import 'package:ear_trainer/features/onboarding/models/onboarding_option.dart';
@@ -215,10 +216,11 @@ void main() {
       MusicalSectionId.sevenths,
       MusicalSectionId.inversions,
     ]);
+    // Intervals: three levels, piano and guitar (tools/generate_intervals.dart).
     expect(sections.map((section) => section.exercises.length), [
-      12,
-      12,
-      12,
+      198,
+      198,
+      168,
       24,
       12,
       25,
@@ -406,7 +408,7 @@ void main() {
                 exercise.access == 'account',
           )
           .length,
-      9,
+      561,
     );
     expect(
       musical
@@ -562,6 +564,12 @@ void main() {
     expect(find.text('¿Por qué entrenar intervalos?'), findsOneWidget);
     expect(find.text('2da mayor'), findsNothing);
     await tester.tap(find.text('EMPEZAR'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    // First time: the listening reference, which can be skipped.
+    expect(find.text('Referencia: intervalos'), findsOneWidget);
+    await tester.tap(find.text('Omitir e ir al ejercicio'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
 
@@ -787,6 +795,60 @@ void main() {
         )!.tags['level'],
         '$level',
       );
+    }
+  });
+
+  test('intervals: three levels built from the recorded notes', () {
+    final intervals = ExerciseRepository.instance
+        .byModule('entrenamientoMusical')
+        .where((exercise) => exercise.type == 'interval_quality')
+        .toList();
+    const basic = {'min2', 'maj3', 'perf4', 'perf5', 'perf8'};
+    const octave = {
+      'min2', 'maj2', 'min3', 'maj3', 'perf4', 'tritone', //
+      'perf5', 'min6', 'maj6', 'min7', 'maj7', 'perf8',
+    };
+    const compound = {'min9', 'maj9', 'min10', 'maj10'};
+    Set<String> kinds(String level) => {
+      for (final e in intervals)
+        if (e.tags['level'] == level) e.correct,
+    };
+    Set<String> modes(String level) => {
+      for (final e in intervals)
+        if (e.tags['level'] == level) e.tags['mode']!,
+    };
+    expect(kinds('1'), basic);
+    expect(modes('1'), {'asc', 'desc'});
+    expect(kinds('2'), octave);
+    expect(kinds('3'), {...octave, ...compound});
+    expect(modes('3'), {'asc', 'desc', 'harm'});
+
+    for (final exercise in intervals) {
+      expect(File(exercise.audio.path).existsSync(), isTrue);
+      expect(
+        exercise.options.map((option) => option.id),
+        contains(exercise.correct),
+      );
+      expect({'piano', 'guitar'}, contains(exercise.tags['instrument']));
+      if (exercise.tags['level'] != '1') {
+        expect(exercise.options, hasLength(4));
+      }
+    }
+    // Both instruments in every level.
+    for (final level in ['1', '2', '3']) {
+      expect(
+        {
+          for (final e in intervals)
+            if (e.tags['level'] == level) e.tags['instrument'],
+        },
+        {'piano', 'guitar'},
+      );
+    }
+    // Listening reference: every interval rising, falling and together.
+    for (final kind in [...octave, ...compound]) {
+      for (final mode in IntervalIntroScreen.modes.keys) {
+        expect(File(IntervalIntroScreen.clip(kind, mode)).existsSync(), isTrue);
+      }
     }
   });
 

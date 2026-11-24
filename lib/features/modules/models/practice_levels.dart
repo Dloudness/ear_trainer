@@ -26,6 +26,11 @@ class LevelLadder {
     names: ['Básico', 'Intermedio', 'Profesional'],
   );
 
+  static const intervals = LevelLadder(
+    id: 'intervals',
+    names: ['Básico', 'Intermedio', 'Profesional'],
+  );
+
   static const tones = LevelLadder(
     id: 'tone_frequency',
     names: ['Octavas', 'Tercios'],

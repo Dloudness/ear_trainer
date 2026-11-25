@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+
 import '../../../core/session/mock_session.dart';
 import '../../exercises/models/exercise.dart';
 
@@ -31,6 +33,11 @@ class LevelLadder {
     names: ['Básico', 'Intermedio', 'Profesional'],
   );
 
+  static const filters = LevelLadder(
+    id: 'eq_filters',
+    names: ['Básico', 'Intermedio', 'Profesional'],
+  );
+
   static const tones = LevelLadder(
     id: 'tone_frequency',
     names: ['Octavas', 'Tercios'],
@@ -39,6 +46,17 @@ class LevelLadder {
   int get maxLevel => names.length;
 
   int get unlocked => MockSession.levelOf(id).clamp(1, maxLevel);
+
+  /// Levels above the first need Premium (Básico is free with an account).
+  static bool isPremium(int level) => level > 1;
+
+  /// Whether [level] can be practised now: earned and, above the first
+  /// level, with Premium.
+  bool canPlay(int level) =>
+      level <= unlocked && (!isPremium(level) || MockSession.hasPremium);
+
+  /// Highest level that can be practised now.
+  int get playable => MockSession.hasPremium ? unlocked : 1;
 
   String name(int level) => names[level - 1];
 
@@ -59,15 +77,21 @@ class LevelLadder {
         '${MockSession.levelWindow} para desbloquear ${name(top + 1)}.';
   }
 
-  /// Shown after the answer that unlocked [level].
-  String unlockedNote(int level) =>
-      'Desbloqueaste ${name(level)}. El siguiente ejercicio ya es de ese nivel.';
+  /// Shown after the answer that unlocked [level]. Without Premium it is a
+  /// congratulation that points to the plans, not a wall.
+  String unlockedNote(int level) => MockSession.hasPremium
+      ? 'Desbloqueaste ${name(level)}. El siguiente ejercicio ya es de ese nivel.'
+      : '¡Lo lograste! El nivel ${name(level)} te espera en Premium.';
 }
 
 /// Draws exercises without repeating one until the rest of the list has
 /// come out (per [key], for as long as the app is open).
 abstract final class NoRepeatPicker {
   static final _seen = <String, Set<String>>{};
+
+  /// Forgets what came out, so the next picks start a fresh round.
+  @visibleForTesting
+  static void reset() => _seen.clear();
 
   static Exercise? pick(
     String key,

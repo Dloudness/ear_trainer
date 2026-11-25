@@ -36,7 +36,7 @@ void main(List<String> args) {
     );
     exit(64);
   }
-  const outDir = 'assets/pitch_context';
+  const outDir = 'audio_masters/pitch_context';
   Directory(outDir).createSync(recursive: true);
   final rng = math.Random(20261124);
   final instruments = [

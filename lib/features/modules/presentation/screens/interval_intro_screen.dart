@@ -23,7 +23,7 @@ class IntervalIntroScreen extends StatefulWidget {
   static const _dir = 'assets/musical/intervalos_referencia';
 
   static String clip(String kind, String mode) =>
-      '$_dir/interval_ref_${kind}_$mode.wav';
+      '$_dir/interval_ref_${kind}_$mode.m4a';
 
   static const modes = {'asc': 'Sube', 'desc': 'Baja', 'harm': 'Juntas'};
 

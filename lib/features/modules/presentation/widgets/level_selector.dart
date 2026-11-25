@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/router/app_routes.dart';
+import '../../../../core/session/mock_session.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../models/practice_levels.dart';
@@ -36,12 +38,24 @@ class LevelSelector extends StatelessWidget {
             for (var level = 1; level <= ladder.maxLevel; level++) ...[
               if (level > 1) const SizedBox(width: 8),
               Expanded(
-                child: _LevelChip(
-                  label: ladder.name(level),
-                  selected: level == selected,
-                  locked: level > unlocked,
-                  onTap: level > unlocked ? null : () => onSelect(level),
-                ),
+                child: () {
+                  final premium =
+                      LevelLadder.isPremium(level) && !MockSession.hasPremium;
+                  final earned = level <= unlocked;
+                  return _LevelChip(
+                    label: ladder.name(level),
+                    selected: level == selected,
+                    locked: premium || !earned,
+                    premium: premium,
+                    // A Premium level opens the plans; a level not yet
+                    // earned does nothing.
+                    onTap: premium
+                        ? () => Navigator.pushNamed(context, AppRoutes.plans)
+                        : earned
+                        ? () => onSelect(level)
+                        : null,
+                  );
+                }(),
               ),
             ],
           ],
@@ -67,25 +81,35 @@ class _LevelChip extends StatelessWidget {
     required this.label,
     required this.selected,
     required this.locked,
+    this.premium = false,
     this.onTap,
   });
 
   final String label;
   final bool selected;
   final bool locked;
+
+  /// Locked because it needs Premium (discreet amber lock).
+  final bool premium;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    final color = locked
+    final color = premium
+        ? AppColors.amber.withValues(alpha: 0.85)
+        : locked
         ? AppColors.textSecondary.withValues(alpha: 0.5)
         : selected
         ? AppColors.cyan
         : AppColors.textSecondary;
     return Semantics(
-      button: !locked,
+      button: onTap != null,
       selected: selected,
-      label: locked ? '$label, bloqueado' : label,
+      label: premium
+          ? '$label, Premium'
+          : locked
+          ? '$label, bloqueado'
+          : label,
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
         onTap: onTap,

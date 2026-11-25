@@ -30,6 +30,7 @@ class EqBandExerciseScreen extends StatefulWidget {
     this.ladder,
     this.level,
     this.pink = false,
+    this.levelDetail,
   });
 
   final Exercise exercise;
@@ -48,21 +49,26 @@ class EqBandExerciseScreen extends StatefulWidget {
   /// example with or without the clean → EQ → clean transition.
   final bool pink;
 
-  /// Advanced EQ practice for one [source].
+  /// What the level asks, shown under the question (null: by drill).
+  final String Function(int level)? levelDetail;
+
+  /// Advanced EQ practice for one [source], at [level] when it has levels.
   factory EqBandExerciseScreen.band({
     Key? key,
     required EqSource source,
     required Exercise exercise,
-    int? pinkLevel,
+    int? level,
   }) {
-    final pink = source == EqSource.pink && pinkLevel != null;
+    final ladder = level == null ? null : EqPractice.ladder(source);
     return EqBandExerciseScreen(
       key: key,
       exercise: exercise,
-      pickNext: (avoidId, _) => EqPractice.pick(source, avoidId: avoidId),
-      ladder: pink ? LevelLadder.pink : null,
-      level: pink ? pinkLevel : null,
-      pink: pink,
+      pickNext: (avoidId, level) =>
+          EqPractice.pick(source, level: level, avoidId: avoidId),
+      ladder: ladder,
+      level: ladder == null ? null : level,
+      pink: source == EqSource.pink && ladder != null,
+      levelDetail: (level) => EqPractice.levelDetail(source, level),
     );
   }
 
@@ -157,9 +163,10 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
     final presented = List<ExerciseOption>.of(
       exercise.present(random: _random),
     );
-    // Tone answers read best in their natural order (low to high, or
-    // higher/lower); band answers are shuffled.
-    final ordered = exercise.type.startsWith('tone_');
+    // Tone and filter answers read best in their natural order (low to
+    // high, or higher/lower); band answers are shuffled.
+    final ordered =
+        exercise.type.startsWith('tone_') || exercise.tags['ordered'] == 'true';
     final options = ordered
         ? (presented..sort(
             (a, b) => exercise.options
@@ -172,6 +179,8 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
     _selectedId = null;
     _showFeedback = false;
     _listens.clear();
+    // The example tab is heard first: start loading it now.
+    _audioPlayer.preload(_examplePath(exercise));
   }
 
   bool _canPlay(String slot) {
@@ -270,9 +279,8 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
   String? get _levelNote {
     final ladder = widget.ladder, level = widget.level;
     if (ladder == null || level == null) return null;
-    final detail = widget.pink
-        ? EqPractice.pinkLevelDetail(level)
-        : TonePractice.levelDetail(level);
+    final detail =
+        widget.levelDetail?.call(level) ?? TonePractice.levelDetail(level);
     return '${ladder.name(level)} · $detail';
   }
 
@@ -284,11 +292,12 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
 
   Future<void> _goNext() async {
     unawaited(_audioPlayer.stop());
-    if (!await ensureCanPractice(context) || !mounted) {
-      if (mounted) Navigator.pop(context);
-      return;
-    }
-    final level = _unlockedLevel ?? widget.level;
+    // Registered at the limit: the gate already went home. "Ahora no":
+    // stay on the result.
+    if (!await ensureCanPractice(context) || !mounted) return;
+    // A newly earned level is used only with Premium.
+    final level =
+        (MockSession.hasPremium ? _unlockedLevel : null) ?? widget.level;
     final next = widget.pickNext(_exercise?.id, level);
     if (!mounted) return;
     if (next == null) {
@@ -306,6 +315,7 @@ class _EqBandExerciseScreenState extends State<EqBandExerciseScreen> {
           ladder: widget.ladder,
           level: level,
           pink: widget.pink,
+          levelDetail: widget.levelDetail,
         ),
       ),
     );
@@ -423,6 +433,8 @@ class _ListenView extends StatelessWidget {
           hint: switch (exercise.type) {
             'tone_frequency' => 'Un solo tono, sin nada más.',
             'tone_compare' => 'El primer tono es la referencia.',
+            _ when exercise.tags['skill'] == 'filter' =>
+              'El nivel general es el mismo. Solo cambia el filtro.',
             _ when withReference =>
               'El nivel general es el mismo. Cambia una sola banda.',
             _ => 'Identifica la frecuencia y el ajuste de este ejemplo.',

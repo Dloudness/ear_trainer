@@ -7,27 +7,27 @@ abstract final class AppAssets {
   static const demoMusical = 'assets/icons/demo_musical.png';
   static const demoListening = 'assets/icons/demo_listening.png';
 
-  static const guitarAcoustic01 = 'assets/source/guitar_acoustic_01.wav';
-  static const voiceNarration01 = 'assets/source/voice_narration_01.wav';
-  static const musicInstrumental01 = 'assets/source/music_instrumental_01.wav';
+  static const guitarAcoustic01 = 'assets/source/guitar_acoustic_01.m4a';
+  static const voiceNarration01 = 'assets/source/voice_narration_01.m4a';
+  static const musicInstrumental01 = 'assets/source/music_instrumental_01.m4a';
 
   static const guitarAcoustic01BoomyDark =
-      'assets/eq/guitar_acoustic_01_boomy_dark.wav';
-  static const guitarAcoustic01Thin = 'assets/eq/guitar_acoustic_01_thin.wav';
-  static const voiceNarration01Muddy = 'assets/eq/voice_narration_01_muddy.wav';
+      'assets/eq/guitar_acoustic_01_boomy_dark.m4a';
+  static const guitarAcoustic01Thin = 'assets/eq/guitar_acoustic_01_thin.m4a';
+  static const voiceNarration01Muddy = 'assets/eq/voice_narration_01_muddy.m4a';
   static const voiceNarration01Scooped =
-      'assets/eq/voice_narration_01_scooped.wav';
+      'assets/eq/voice_narration_01_scooped.m4a';
   static const musicInstrumental01Harsh =
-      'assets/eq/music_instrumental_01_harsh.wav';
+      'assets/eq/music_instrumental_01_harsh.m4a';
 
-  static const musicEpicStrings01 = 'assets/music/music_epic_strings_01.wav';
+  static const musicEpicStrings01 = 'assets/music/music_epic_strings_01.m4a';
   static const musicTensionStrings01 =
-      'assets/music/music_tension_strings_01.wav';
+      'assets/music/music_tension_strings_01.m4a';
 
   static const ambientFieldBirds01 =
-      'assets/ambient/ambient_field_birds_01.wav';
+      'assets/ambient/ambient_field_birds_01.m4a';
   static const ambientFieldColdRain01 =
-      'assets/ambient/ambient_field_cold_rain_01.wav';
+      'assets/ambient/ambient_field_cold_rain_01.m4a';
 
   static const sceneGymDark = 'assets/video/source/scene_gym_dark.mp4';
   static const sceneGirlField01 = 'assets/video/source/scene_girl_field_01.mp4';

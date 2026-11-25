@@ -17,6 +17,7 @@ import 'features/modules/presentation/screens/placeholder_exercise_screen.dart';
 import 'features/onboarding/models/onboarding_option.dart';
 import 'features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'features/splash/presentation/screens/splash_screen.dart';
+import 'features/subscription/presentation/screens/plans_screen.dart';
 import 'features/welcome/presentation/screens/welcome_screen.dart';
 
 class EarTrainerApp extends StatelessWidget {
@@ -55,6 +56,7 @@ class EarTrainerApp extends StatelessWidget {
       AppRoutes.login => const LoginScreen(),
       AppRoutes.home => const HomeScreen(),
       AppRoutes.dailyChallenge => const DailyChallengeScreen(),
+      AppRoutes.plans => const PlansScreen(),
       AppRoutes.exercise => PlaceholderExerciseScreen(
           args: settings.arguments! as PlaceholderExerciseArgs,
         ),

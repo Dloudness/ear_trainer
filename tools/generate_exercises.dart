@@ -112,7 +112,7 @@ void main() {
   final seenIds = <String>{...keptIds};
 
   for (final folder in _folders) {
-    final dir = Directory(_join([root.path, 'assets', 'musical', folder]));
+    final dir = Directory(_join([root.path, 'audio_masters', 'musical', folder]));
     if (!dir.existsSync()) {
       skipped.add('$folder/ — la carpeta no existe');
       continue;

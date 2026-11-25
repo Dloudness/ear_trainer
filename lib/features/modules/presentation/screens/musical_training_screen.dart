@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/auth/account_prompt.dart';
+import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/app_motion.dart';
@@ -25,12 +26,15 @@ class MusicalTrainingScreen extends StatefulWidget {
 class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
   Future<void> _open(MusicalPool pool) async {
     if (MusicalPools.isCardLocked(pool)) {
-      final unlocked = pool == MusicalPool.chords
-          ? await promptPremiumCode(context)
-          : await promptRegister(context);
+      // Premium pools open the plans; the others ask for the free account.
+      if (pool == MusicalPool.chords) {
+        await Navigator.pushNamed(context, AppRoutes.plans);
+      } else {
+        await promptRegister(context);
+      }
       if (!mounted) return;
-      if (unlocked) setState(() {});
-      if (!unlocked || MusicalPools.isCardLocked(pool)) return;
+      setState(() {});
+      if (MusicalPools.isCardLocked(pool)) return;
     }
 
     if (MusicalPools.needsAccountPrompt(pool)) {
@@ -60,10 +64,13 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
     }
 
     final ladder = MusicalPools.ladder(pool);
-    final level = ladder == null ? null : (_levels[pool] ?? ladder.unlocked);
+    var level = ladder == null ? null : (_levels[pool] ?? ladder.playable);
+    if (ladder != null && level != null && !ladder.canPlay(level)) {
+      level = ladder.playable;
+    }
     final exercise = MusicalPools.pick(pool, level: level);
     if (exercise == null || !mounted) return;
-    final before = ladder?.unlocked;
+    final before = ladder?.playable;
     await Navigator.push(
       context,
       AppTransitions.cinematicRoute<void>(
@@ -76,10 +83,11 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
       ),
     );
     if (!mounted) return;
-    // A level unlocked during the practice becomes the selected one.
+    // A level unlocked during the practice becomes the selected one (with
+    // Premium; without it the listener stays at Básico).
     setState(() {
-      if (ladder != null && ladder.unlocked != before) {
-        _levels[pool] = ladder.unlocked;
+      if (ladder != null && ladder.playable != before) {
+        _levels[pool] = ladder.playable;
       }
     });
   }
@@ -115,7 +123,7 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
             pool: pool,
             onOpen: () => _open(pool),
             level: switch (MusicalPools.ladder(pool)) {
-              final ladder? => _levels[pool] ?? ladder.unlocked,
+              final ladder? => _levels[pool] ?? ladder.playable,
               null => null,
             },
             onLevel: (level) => setState(() => _levels[pool] = level),

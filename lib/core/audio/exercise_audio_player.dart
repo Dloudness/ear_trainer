@@ -123,6 +123,30 @@ class ExerciseAudioPlayer {
     return ListenAction.started;
   }
 
+  /// Loads a clip without playing it, so the first Play sounds at once.
+  ///
+  /// On the web this creates the audio element and starts downloading the
+  /// file. A later Play of the same asset reuses that element. Does nothing
+  /// while another clip is playing or paused.
+  Future<void> preload(String assetPath) {
+    return _run(() async {
+      await _ready;
+      if (_disposed) return;
+      final active =
+          _player.state == PlayerState.playing ||
+          _player.state == PlayerState.paused;
+      if (active || _currentAssetPath == assetPath) return;
+      try {
+        await _player.setSource(
+          AssetSource(AppAssets.audioSourcePath(assetPath)),
+        );
+        _currentAssetPath = assetPath;
+      } catch (_) {
+        // Preloading is only a speed-up; Play loads the clip anyway.
+      }
+    });
+  }
+
   /// Starts a stopped clip without toggling one that is already playing.
   /// A scrub can fire several times before the first start finishes; those
   /// later calls must not turn into a pause.

@@ -38,7 +38,12 @@ class MockSession {
   static bool hasUsedFreeDailyChallenge = false;
   static bool showLoginPromptAfterChallenge = false;
   static String? trainingFocus;
-  static String displayName = 'Diego';
+
+  /// Name given when registering; empty until then.
+  static String get displayName => _progress.userName?.trim() ?? '';
+
+  /// Answer records, oldest and newest alike, for the progress advisor.
+  static List<CompletedExerciseRecord> get records => _progress.exercises;
 
   static bool loginPromptDismissed = false;
 
@@ -49,13 +54,18 @@ class MockSession {
 
   static int get completedExerciseCount => _progress.exercises.length;
 
-  /// Different exercises a visitor without an account may complete.
+  /// Answers a visitor without an account may give. Every answer counts,
+  /// also when an exercise comes out again.
   static const freeExerciseLimit = 5;
+
+  /// Every answer given, repeats included.
+  static int get answersGiven =>
+      _progress.exercises.fold(0, (sum, record) => sum + record.attempts);
 
   /// True once a visitor without an account has used up the free
   /// exercises; the next one asks them to register.
   static bool get reachedFreeLimit =>
-      !hasAccount && !hasPremium && completedExerciseCount >= freeExerciseLimit;
+      !hasAccount && !hasPremium && answersGiven >= freeExerciseLimit;
 
   static int get globalAccuracyPercent => _accuracyPercent(_progress.exercises);
 
@@ -322,12 +332,24 @@ class MockSession {
     await _saveAccount();
   }
 
-  static Future<void> signIn() async {
+  static Future<void> signIn({String? name, String? email}) async {
     isLoggedIn = true;
     isGuest = false;
     loginPromptDismissed = true;
     showLoginPromptAfterChallenge = false;
+    hasCompletedDemo = true;
+    _progress = _progress.copyWith(
+      hasCompletedDemo: true,
+      userName: name,
+      userEmail: email,
+    );
     await _saveAccount();
+  }
+
+  /// Sets or changes the name used to greet the listener.
+  static Future<void> setUserName(String name) async {
+    _progress = _progress.copyWith(userName: name.trim());
+    await _progressRepository.save(_progress);
   }
 
   static Future<bool> redeemPremiumCode(String code) async {

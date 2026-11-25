@@ -14,8 +14,8 @@ import 'dart:typed_data';
 /// PITCH_ entries of assets/data/exercises.json. Run from the project root:
 /// `dart tools/generate_tones.dart`.
 const sampleRate = 44100;
-const tonesDir = 'assets/tones';
-const pitchDir = 'assets/pitch';
+const tonesDir = 'audio_masters/tones';
+const pitchDir = 'audio_masters/pitch';
 const catalogPath = 'assets/data/exercises.json';
 
 void main() {

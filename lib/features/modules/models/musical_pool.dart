@@ -46,6 +46,13 @@ abstract final class MusicalPools {
     };
   }
 
+  /// Instruments left out of tuning in context. Some guitar one-shots sound
+  /// out of tune even after retuning (a note heard ~30 cents off in a
+  /// Fa♯ mayor melody), which makes the "which note is detuned" answer
+  /// ambiguous. They stay out until each guitar note is re-audited against
+  /// the original recordings. Remove 'guitar' here to bring them back.
+  static const tuningContextExcluded = {'guitar'};
+
   static List<Exercise> ofType(MusicalPool pool) {
     final type = switch (pool) {
       MusicalPool.intervals => 'interval_quality',
@@ -57,7 +64,9 @@ abstract final class MusicalPools {
     return [
       for (final exercise in ExerciseRepository.instance.byModule(module))
         if (exercise.type == type &&
-            ExerciseRepository.instance.isPlayable(exercise))
+            ExerciseRepository.instance.isPlayable(exercise) &&
+            !(pool == MusicalPool.tuningContext &&
+                tuningContextExcluded.contains(exercise.tags['instrument'])))
           exercise,
     ];
   }

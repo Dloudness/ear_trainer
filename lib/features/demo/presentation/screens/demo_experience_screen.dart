@@ -127,6 +127,9 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
     _fadeController.forward();
+    // Version A is heard first: start loading it now.
+    final first = _content.audioAssetA;
+    if (first != null) unawaited(_audioPlayer.preload(first));
   }
 
   @override
@@ -523,10 +526,9 @@ class _DemoExperienceScreenState extends State<DemoExperienceScreen>
   Future<void> _nextPractice() async {
     await _stopAllPlayback();
     if (!mounted) return;
-    if (!await ensureCanPractice(context) || !mounted) {
-      if (mounted) Navigator.maybePop(context);
-      return;
-    }
+    // Registered at the limit: the gate already went home. "Ahora no":
+    // stay on the result.
+    if (!await ensureCanPractice(context) || !mounted) return;
     final next = EqInitialPractice.pickIndex(avoidId: _currentExerciseId);
     if (next == null) {
       Navigator.maybePop(context);

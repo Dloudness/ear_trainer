@@ -24,13 +24,13 @@ class PinkIntroScreen extends StatefulWidget {
   final bool beforePractice;
 
   static const _dir = 'assets/eq/eq_pink_noise';
-  static const reference = '$_dir/pink_reference_01.wav';
+  static const reference = '$_dir/pink_reference_01.m4a';
 
   /// Clean → band → clean examples (the same files the easier levels use).
   static String sweep(int frequency, int gain) {
     final kind = gain > 0 ? 'boost' : 'cut';
     final token = gain > 0 ? 'g$gain' : 'c${-gain}';
-    return '$_dir/freq_pink_${kind}_${frequency}_${token}_sweep_01.wav';
+    return '$_dir/freq_pink_${kind}_${frequency}_${token}_sweep_01.m4a';
   }
 
   static const frequencies = [125, 250, 500, 1000, 2000, 4000, 8000];

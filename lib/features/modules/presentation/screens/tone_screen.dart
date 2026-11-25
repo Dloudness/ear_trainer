@@ -25,7 +25,7 @@ class _ToneScreenState extends State<ToneScreen> {
   /// Level chosen per drill; starts at the highest unlocked.
   final Map<ToneDrill, int> _levels = {
     for (final drill in ToneDrill.values)
-      if (TonePractice.ladder(drill) case final ladder?) drill: ladder.unlocked,
+      if (TonePractice.ladder(drill) case final ladder?) drill: ladder.playable,
   };
 
   Future<void> _open(ToneDrill drill) async {
@@ -41,7 +41,7 @@ class _ToneScreenState extends State<ToneScreen> {
     final exercise = TonePractice.pick(drill, level: level);
     if (exercise == null || !mounted) return;
     final ladder = TonePractice.ladder(drill);
-    final before = ladder?.unlocked;
+    final before = ladder?.playable;
     await Navigator.push(
       context,
       AppTransitions.cinematicRoute<void>(
@@ -56,8 +56,8 @@ class _ToneScreenState extends State<ToneScreen> {
     if (!mounted) return;
     // A level unlocked during the practice becomes the selected one.
     setState(() {
-      if (ladder != null && ladder.unlocked != before) {
-        _levels[drill] = ladder.unlocked;
+      if (ladder != null && ladder.playable != before) {
+        _levels[drill] = ladder.playable;
       }
     });
   }

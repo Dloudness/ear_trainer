@@ -34,6 +34,69 @@ void main() {
     );
   });
 
+  test('every catalog sound is compressed and exists', () {
+    // WAV masters live in audio_masters/; the app plays only .m4a.
+    // After a generator, run: dart run tools/compress_audio.dart
+    final catalog =
+        jsonDecode(File('assets/data/exercises.json').readAsStringSync());
+    final paths = <String>[];
+    void walk(Object? node) {
+      if (node is Map) node.values.forEach(walk);
+      if (node is List) node.forEach(walk);
+      if (node is String && node.startsWith('assets/') && node.contains('.')) {
+        final ext = node.substring(node.lastIndexOf('.'));
+        if (ext != '.json' && ext != '.mp4' && ext != '.png') paths.add(node);
+      }
+    }
+
+    walk(catalog);
+    expect(paths, isNotEmpty);
+    for (final path in paths) {
+      expect(path, endsWith('.m4a'), reason: path);
+      expect(File(path).existsSync(), isTrue, reason: path);
+    }
+  });
+
+  test('filters: three levels, answers in the options, one variable', () {
+    final all = EqPractice.of(EqSource.filter);
+    expect(all.length, 60);
+    final byLevel = {
+      for (final level in [1, 2, 3])
+        level: EqPractice.of(EqSource.filter, level: level),
+    };
+    expect(byLevel[1]!.length, 12);
+    expect(byLevel[2]!.length, 16);
+    expect(byLevel[3]!.length, 32);
+    for (final exercise in all) {
+      expect(exercise.id, startsWith('EQ_FILT_'));
+      expect(exercise.options.map((o) => o.id), contains(exercise.correct));
+      expect(exercise.referencePath, isNotNull);
+      expect(exercise.referencePath, isNot(exercise.audio.path));
+      expect(exercise.access, 'free', reason: 'el nivel decide Premium');
+      // The intro never gives the answer away.
+      for (final option in exercise.options) {
+        expect(exercise.intro ?? '', isNot(contains(option.label)));
+      }
+    }
+    // Level 1 is high-pass or low-pass at 12 dB/oct.
+    for (final exercise in byLevel[1]!) {
+      expect(exercise.options.length, 2);
+      expect(exercise.tags['slope'], '12');
+      expect(exercise.correct, exercise.tags['kind']);
+    }
+    // The slope drill keeps the cutoff and changes only the slope.
+    final slopes = byLevel[3]!.where((e) => e.tags['drill'] == 'slope');
+    expect(slopes.length, 16);
+    for (final exercise in slopes) {
+      expect(exercise.correct, 's${exercise.tags['slope']}');
+      expect(exercise.tags['frequency'], exercise.tags['kind'] == 'hpf' ? '400' : '2000');
+    }
+    // A level only draws its own exercises.
+    final picked = EqPractice.pick(EqSource.filter, level: 2)!;
+    expect(picked.tags['level'], '2');
+    expect(LevelLadder.filters.maxLevel, 3);
+  });
+
   test('loads the five EQ exercises with their original copy', () {
     final classic = eqExercises.where(
       (exercise) => exercise.id.startsWith('EQ_0'),
@@ -57,7 +120,7 @@ void main() {
     expect(thin.correct, 'processed');
     expect(
       thin.options.firstWhere((option) => option.id == 'processed').path,
-      'assets/eq/guitar_acoustic_01_thin.wav',
+      'assets/eq/guitar_acoustic_01_thin.m4a',
     );
     expect(
       ExerciseRepository.parse(_encodedExercises(classic.toList())).warnings,
@@ -104,7 +167,7 @@ void main() {
       type: 'interval_quality',
       audio: ExerciseAudio(
         source: 'asset',
-        path: 'assets/musical/interval.wav',
+        path: 'assets/musical/interval.m4a',
       ),
       question: '¿Qué intervalo escuchas?',
       options: [
@@ -132,7 +195,7 @@ void main() {
       type: 'interval_quality',
       audio: ExerciseAudio(
         source: 'asset',
-        path: 'assets/musical/interval.wav',
+        path: 'assets/musical/interval.m4a',
       ),
       question: '¿Qué intervalo escuchas?',
       options: [
@@ -178,18 +241,18 @@ void main() {
       id: 'EQ_MISSING',
       module: 'ecualizacionFrecuencias',
       type: 'ab_compare',
-      audio: ExerciseAudio(source: 'asset', path: 'assets/eq/missing.wav'),
+      audio: ExerciseAudio(source: 'asset', path: 'assets/eq/missing.m4a'),
       question: '¿Cuál?',
       options: [
         ExerciseOption(
           id: 'natural',
           label: 'Natural',
-          path: 'assets/eq/missing.wav',
+          path: 'assets/eq/missing.m4a',
         ),
         ExerciseOption(
           id: 'processed',
           label: 'Procesada',
-          path: 'assets/eq/also_missing.wav',
+          path: 'assets/eq/also_missing.m4a',
         ),
       ],
       correct: 'natural',
@@ -202,8 +265,8 @@ void main() {
     final warnings = await ExerciseRepository.missingAudioWarnings([exercise]);
     expect(warnings, hasLength(2));
     expect(warnings.first, contains('EQ_MISSING'));
-    expect(warnings.first, contains('assets/eq/missing.wav'));
-    expect(warnings.last, contains('assets/eq/also_missing.wav'));
+    expect(warnings.first, contains('assets/eq/missing.m4a'));
+    expect(warnings.last, contains('assets/eq/also_missing.m4a'));
   });
 
   test('musical exercises are grouped and the mock MUS_01 is gone', () {
@@ -293,6 +356,40 @@ void main() {
     await tester.pump(const Duration(seconds: 1));
   });
 
+  test('the free limit counts every answer, repeats included', () async {
+    SharedPreferences.setMockInitialValues({});
+    await MockSession.load();
+    for (var i = 0; i < 4; i++) {
+      await MockSession.recordExerciseResult(exerciseId: 'EQ_01', correct: true);
+    }
+    expect(MockSession.answersGiven, 4);
+    expect(MockSession.reachedFreeLimit, isFalse);
+    await MockSession.recordExerciseResult(exerciseId: 'EQ_01', correct: false);
+    expect(MockSession.reachedFreeLimit, isTrue);
+    SharedPreferences.setMockInitialValues({});
+    await MockSession.load();
+  });
+
+  test('EQ inicial does not repeat an exercise until all have come out', () {
+    // Earlier tests may have drawn some already.
+    NoRepeatPicker.reset();
+    final ids = EqInitialPractice.unlocked().map((e) => e.id).toSet();
+    final module = ExerciseRepository.instance.byModule(
+      OnboardingOption.ecualizacionFrecuencias.name,
+    );
+    final drawn = <String>{};
+    String? last;
+    for (var i = 0; i < ids.length; i++) {
+      final index = EqInitialPractice.pickIndex(
+        avoidId: last,
+        random: Random(i),
+      )!;
+      last = module[index].id;
+      expect(drawn.add(last), isTrue, reason: '$last salió dos veces');
+    }
+    expect(drawn, ids);
+  });
+
   testWidgets('after five free exercises the next one asks to register', (
     tester,
   ) async {
@@ -312,7 +409,15 @@ void main() {
     );
     expect(MockSession.reachedFreeLimit, isTrue);
 
-    await tester.pumpWidget(const MaterialApp(home: FrecuenciasScreen()));
+    await tester.pumpWidget(
+      MaterialApp(
+        home: const FrecuenciasScreen(),
+        onGenerateRoute: (settings) => MaterialPageRoute<void>(
+          settings: settings,
+          builder: (_) => Text('ruta ${settings.name}'),
+        ),
+      ),
+    );
     await tester.pump();
     await tester.tap(find.text('EMPEZAR').first);
     await tester.pump();
@@ -321,7 +426,10 @@ void main() {
     expect(find.text('Completaste tus ejercicios gratis'), findsOneWidget);
     await tester.tap(find.text('Ahora no'));
     await tester.pump(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 500));
+    // No exercise opens; the visitor lands on the (guest) home instead.
     expect(find.text('¿Por qué entrenar ecualización?'), findsNothing);
+    expect(find.text('ruta /home'), findsOneWidget);
 
     await tester.pumpWidget(const SizedBox.shrink());
     SharedPreferences.setMockInitialValues({});
@@ -454,7 +562,10 @@ void main() {
     const gains = ['6', '9', '-3', '-6'];
     const tokens = {'6': 'g6', '9': 'g9', '-3': 'c3', '-6': 'c6'};
     final band = eqExercises
-        .where((exercise) => exercise.type == 'eq_band')
+        .where(
+          (exercise) =>
+              exercise.type == 'eq_band' && exercise.tags['source'] == 'pink',
+        )
         .toList();
     expect(band, hasLength(28));
     expect(EqPractice.of(EqSource.music), isEmpty);
@@ -485,12 +596,12 @@ void main() {
       expect(exercise.explanation, contains(correct.label));
       expect(
         exercise.referencePath,
-        'assets/eq/eq_pink_noise/pink_reference_01.wav',
+        'assets/eq/eq_pink_noise/pink_reference_01.m4a',
       );
       expect(
         exercise.audio.path,
         'assets/eq/eq_pink_noise/freq_pink_${gain > 0 ? 'boost' : 'cut'}_'
-        '${exercise.tags['frequency']}_${tokens['${exercise.tags['gain']}']}_01.wav',
+        '${exercise.tags['frequency']}_${tokens['${exercise.tags['gain']}']}_01.m4a',
       );
       expect(exercise.audio.path, isNot(contains('eq_band')));
       expect(exercise.audio.path, isNot(contains('music_instrumental_01')));
@@ -505,9 +616,9 @@ void main() {
       'EQ_INIT_LEAN',
     ]);
     expect(lessons.expand((exercise) => exercise.assetPaths).toSet(), {
-      'assets/eq/eq_music/filter_hpf_150_music_01.wav',
-      'assets/eq/eq_music/filter_hpf_500_music_01.wav',
-      'assets/eq/eq_music/filter_lpf_4000_music_01.wav',
+      'assets/eq/eq_music/filter_hpf_150_music_01.m4a',
+      'assets/eq/eq_music/filter_hpf_500_music_01.m4a',
+      'assets/eq/eq_music/filter_lpf_4000_music_01.m4a',
     });
     for (final exercise in lessons) {
       final paths = exercise.options.map((option) => option.path).toList();
@@ -598,14 +709,14 @@ void main() {
     );
     expect(
       exercise.audio.path,
-      'assets/eq/eq_pink_noise/freq_pink_boost_500_g6_01.wav',
+      'assets/eq/eq_pink_noise/freq_pink_boost_500_g6_01.m4a',
     );
     await tester.pumpWidget(
       MaterialApp(
         home: EqBandExerciseScreen.band(
           source: EqSource.pink,
           exercise: exercise,
-          pinkLevel: 1,
+          level: 1,
         ),
       ),
     );
@@ -659,7 +770,7 @@ void main() {
         home: EqBandExerciseScreen.band(
           source: EqSource.pink,
           exercise: exercise,
-          pinkLevel: 3,
+          level: 3,
         ),
       ),
     );
@@ -701,6 +812,31 @@ void main() {
     await MockSession.load();
     expect(pink.unlocked, 3);
     expect(LevelLadder.tones.unlocked, 1);
+  });
+
+  test('Intermedio and Profesional need Premium even when earned', () async {
+    SharedPreferences.setMockInitialValues({});
+    await MockSession.load();
+    const pink = LevelLadder.pink;
+    for (var i = 0; i < 6; i++) {
+      await pink.record(level: 1, correct: true);
+    }
+    expect(pink.unlocked, 2);
+
+    MockSession.hasPremium = false;
+    expect(pink.canPlay(1), isTrue);
+    expect(pink.canPlay(2), isFalse);
+    expect(pink.playable, 1);
+    expect(pink.unlockedNote(2), contains('te espera en Premium'));
+
+    MockSession.hasPremium = true;
+    expect(pink.canPlay(2), isTrue);
+    expect(pink.canPlay(3), isFalse, reason: 'aún no lo ha ganado');
+    expect(pink.playable, 2);
+
+    MockSession.hasPremium = false;
+    SharedPreferences.setMockInitialValues({});
+    await MockSession.load();
   });
 
   test('no exercise repeats until the rest have come out', () {
@@ -796,6 +932,11 @@ void main() {
         '$level',
       );
     }
+    // Guitar stays out until its notes are re-audited (see
+    // MusicalPools.tuningContextExcluded); the piano covers every level.
+    final playable = MusicalPools.ofType(MusicalPool.tuningContext);
+    expect(playable, hasLength(276));
+    expect(playable.map((e) => e.tags['instrument']).toSet(), {'piano'});
   });
 
   test('intervals: three levels built from the recorded notes', () {

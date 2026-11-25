@@ -67,6 +67,8 @@ class ProgressSnapshot {
     this.levels = const {},
     this.levelRecent = const {},
     this.seenIntros = const {},
+    this.userName,
+    this.userEmail,
   });
 
   final List<CompletedExerciseRecord> exercises;
@@ -96,6 +98,10 @@ class ProgressSnapshot {
   /// Introductions (listening references) already shown, by id.
   final Set<String> seenIntros;
 
+  /// Name and email given when registering (mock account, local only).
+  final String? userName;
+  final String? userEmail;
+
   ProgressSnapshot copyWith({
     List<CompletedExerciseRecord>? exercises,
     int? xp,
@@ -115,6 +121,8 @@ class ProgressSnapshot {
     Map<String, int>? levels,
     Map<String, List<bool>>? levelRecent,
     Set<String>? seenIntros,
+    String? userName,
+    String? userEmail,
   }) {
     return ProgressSnapshot(
       exercises: exercises ?? this.exercises,
@@ -135,6 +143,8 @@ class ProgressSnapshot {
       levels: levels ?? this.levels,
       levelRecent: levelRecent ?? this.levelRecent,
       seenIntros: seenIntros ?? this.seenIntros,
+      userName: userName ?? this.userName,
+      userEmail: userEmail ?? this.userEmail,
     );
   }
 }
@@ -161,6 +171,8 @@ class ProgressRepository {
   static const _kLevelPrefix = 'progress.level.';
   static const _kLevelRecentPrefix = 'progress.levelRecent.';
   static const _kSeenIntros = 'progress.seenIntros';
+  static const _kUserName = 'progress.userName';
+  static const _kUserEmail = 'progress.userEmail';
 
   Future<ProgressSnapshot> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -213,6 +225,8 @@ class ProgressRepository {
             ],
       },
       seenIntros: {...?prefs.getStringList(_kSeenIntros)},
+      userName: prefs.getString(_kUserName),
+      userEmail: prefs.getString(_kUserEmail),
     );
   }
 
@@ -257,6 +271,12 @@ class ProgressRepository {
       await prefs.remove(_kTrainingFocus);
     } else {
       await prefs.setString(_kTrainingFocus, snapshot.trainingFocus!);
+    }
+    if (snapshot.userName != null) {
+      await prefs.setString(_kUserName, snapshot.userName!);
+    }
+    if (snapshot.userEmail != null) {
+      await prefs.setString(_kUserEmail, snapshot.userEmail!);
     }
   }
 }

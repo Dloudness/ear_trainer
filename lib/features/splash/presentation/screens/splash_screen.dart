@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/router/app_routes.dart';
+import '../../../../core/session/mock_session.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/cinematic_screen.dart';
 import '../../../../core/widgets/orb_logo.dart';
@@ -21,7 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _goNext() {
     if (!mounted) return;
-    Navigator.pushReplacementNamed(context, AppRoutes.welcome);
+    // A registered listener goes straight to their progress.
+    Navigator.pushReplacementNamed(
+      context,
+      MockSession.hasAccount ? AppRoutes.home : AppRoutes.welcome,
+    );
   }
 
   @override

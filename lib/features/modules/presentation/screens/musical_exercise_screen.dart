@@ -68,6 +68,8 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
     };
     _exercise = widget.exercise;
     _options = _rolledOptions(widget.exercise);
+    // Start loading the sound now so Play answers at once.
+    _audioPlayer.preload(widget.exercise.audio.path);
   }
 
   @override
@@ -156,11 +158,12 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
   }
 
   Future<void> _goNext() async {
-    if (!await ensureCanPractice(context) || !mounted) {
-      if (mounted) Navigator.pop(context);
-      return;
-    }
-    final level = _unlockedLevel ?? widget.level;
+    // Registered at the limit: the gate already went home. "Ahora no":
+    // stay on the result.
+    if (!await ensureCanPractice(context) || !mounted) return;
+    // A newly earned level is used only with Premium.
+    final level =
+        (MockSession.hasPremium ? _unlockedLevel : null) ?? widget.level;
     var next = MusicalPools.pick(
       widget.pool,
       level: level,

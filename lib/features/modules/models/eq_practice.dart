@@ -6,7 +6,7 @@ import '../../exercises/models/exercise.dart';
 import '../../onboarding/models/onboarding_option.dart';
 import 'practice_levels.dart';
 
-enum EqSource { music, pink }
+enum EqSource { music, pink, filter }
 
 /// Random practice for one advanced EQ source.
 ///
@@ -16,10 +16,13 @@ abstract final class EqPractice {
   static const musicTitle = 'Música';
   static const pinkTitle = 'Ruido rosa';
 
+  static const filterTitle = 'Filtros';
+
   static String title(EqSource source) {
     return switch (source) {
       EqSource.music => musicTitle,
       EqSource.pink => pinkTitle,
+      EqSource.filter => filterTitle,
     };
   }
 
@@ -29,6 +32,25 @@ abstract final class EqPractice {
         'Fragmento con una sola banda identificable en el ejemplo.',
       EqSource.pink =>
         'Ruido rosa con una banda realzada o recortada. Compáralo con el ruido rosa limpio.',
+      EqSource.filter =>
+        'Pasa altos y pasa bajos sobre música real, con pendientes de 6 a 24 dB por octava.',
+    };
+  }
+
+  /// Levels of each source, when it has them.
+  static LevelLadder? ladder(EqSource source) => switch (source) {
+    EqSource.pink => LevelLadder.pink,
+    EqSource.filter => LevelLadder.filters,
+    EqSource.music => null,
+  };
+
+  /// What [level] asks, for the level selector and the exercise screen.
+  static String levelDetail(EqSource source, int level) {
+    if (source == EqSource.pink) return pinkLevelDetail(level);
+    return switch (level) {
+      1 => '¿Pasa altos o pasa bajos? Descubre qué se recorta.',
+      2 => '¿Dónde está el corte? Frecuencias separadas por octavas.',
+      _ => 'La pendiente (6 a 24 dB/oct) y el corte por tercios de octava.',
     };
   }
 
@@ -54,22 +76,32 @@ abstract final class EqPractice {
   /// Levels 1 and 2 play the example that moves clean → EQ → clean.
   static bool pinkUsesSweep(int level) => pinkReferenceListens(level) > 0;
 
-  static List<Exercise> of(EqSource source) {
+  /// Exercises of [source]. With [level], only that level (filters; the
+  /// pink-noise level changes how it is heard, not which exercises).
+  static List<Exercise> of(EqSource source, {int? level}) {
     final module = OnboardingOption.ecualizacionFrecuencias.name;
+    final byLevel = source == EqSource.filter && level != null;
     return [
       for (final exercise in ExerciseRepository.instance.byModule(module))
         if (exercise.type == 'eq_band' &&
             exercise.tags['source'] == source.name &&
+            (!byLevel || exercise.tags['level'] == '$level') &&
             ExerciseRepository.instance.isPlayable(exercise))
           exercise,
     ];
   }
 
   /// Next exercise; none repeats until the rest have come out.
-  static Exercise? pick(EqSource source, {String? avoidId, Random? random}) {
+  static Exercise? pick(
+    EqSource source, {
+    int? level,
+    String? avoidId,
+    Random? random,
+  }) {
+    final byLevel = source == EqSource.filter && level != null;
     return NoRepeatPicker.pick(
-      'eq_${source.name}',
-      of(source),
+      'eq_${source.name}_${byLevel ? level : 0}',
+      of(source, level: level),
       avoidId: avoidId,
       random: random,
     );
@@ -154,17 +186,15 @@ abstract final class EqInitialPractice {
   }
 
   /// Index inside the EQ module, which is what the exercise screen reads.
+  /// None repeats until the rest have come out.
   static int? pickIndex({String? avoidId, Random? random}) {
-    final rng = random ?? Random();
-    var list = unlocked();
-    if (avoidId != null && list.length > 1) {
-      list = [
-        for (final exercise in list)
-          if (exercise.id != avoidId) exercise,
-      ];
-    }
-    if (list.isEmpty) return null;
-    final picked = list[rng.nextInt(list.length)];
+    final picked = NoRepeatPicker.pick(
+      'eq_initial',
+      unlocked(),
+      avoidId: avoidId,
+      random: random,
+    );
+    if (picked == null) return null;
     final index = _module().indexWhere((item) => item.id == picked.id);
     return index < 0 ? null : index;
   }

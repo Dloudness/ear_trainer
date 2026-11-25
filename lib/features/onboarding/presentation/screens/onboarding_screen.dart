@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/router/app_routes.dart';
 import '../../../../core/session/mock_session.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
@@ -22,11 +23,10 @@ extension on _Profile {
   String get hint => switch (this) {
     _Profile.all => 'Todas las áreas de entrenamiento.',
     _Profile.producer =>
-      'Para mezclar mejor: frecuencias, dinámica y referencias.',
+      'Para mezclar mejor: frecuencias, dinámica y diseño sonoro.',
     _Profile.musician => 'Para tocar y cantar con mejor oído.',
     _Profile.audiovisual =>
-      'Para cine, video y podcast: frecuencias y dinámica, y pronto '
-          'ejercicios propios.',
+      'Para cine, video y podcast: frecuencias, dinámica y diseño sonoro.',
   };
 }
 
@@ -40,9 +40,14 @@ class _Area {
     required this.colors,
     required this.profiles,
     this.option,
+    this.premium = false,
   });
 
   final OnboardingOption? option;
+
+  /// Needs Premium: without it, opening the area shows the plans.
+  final bool premium;
+  bool get locked => premium && !MockSession.hasPremium;
   final String title;
   final String description;
   final CategoryGlyph glyph;
@@ -56,7 +61,7 @@ const _areas = [
   _Area(
     option: OnboardingOption.ecualizacionFrecuencias,
     title: 'Frecuencias',
-    description: 'Ecualización y bandas de frecuencia.',
+    description: 'Ecualización, ruido rosa y tonos puros.',
     glyph: CategoryGlyph.frequency,
     colors: [Color(0xFFA5F3FC), Color(0xFF3B82F6)],
     profiles: {_Profile.producer, _Profile.musician, _Profile.audiovisual},
@@ -78,20 +83,14 @@ const _areas = [
     profiles: {_Profile.musician},
   ),
   _Area(
-    title: 'Audio para video',
-    description: 'Diálogo, ruido, música y sincronía.',
+    title: 'Diseño sonoro',
+    description: 'Sonido para cine, video y podcast.',
     glyph: CategoryGlyph.video,
-    colors: [Color(0xFFFBCFE8), Color(0xFFDB2777)],
-    profiles: {_Profile.audiovisual},
+    colors: [Color(0xFFFED7AA), Color(0xFFEA580C)],
+    profiles: {_Profile.audiovisual, _Profile.producer},
+    premium: true,
   ),
-  _Area(
-    option: OnboardingOption.escuchaReal,
-    title: 'Escucha real',
-    description: 'Mezclas y referencias profesionales.',
-    glyph: CategoryGlyph.listening,
-    colors: [Color(0xFFBFDBFE), Color(0xFF2563EB)],
-    profiles: {_Profile.producer},
-  ),
+  // Escucha real is retired: it has no objective exercises.
 ];
 
 class OnboardingScreen extends StatefulWidget {
@@ -105,6 +104,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   _Profile _profile = _Profile.all;
 
   Future<void> _open(_Area area) async {
+    if (area.locked) {
+      await Navigator.pushNamed(context, AppRoutes.plans);
+      if (mounted) setState(() {});
+      return;
+    }
     final option = area.option;
     if (option == null) {
       ScaffoldMessenger.of(context)
@@ -282,7 +286,9 @@ class _AreaCardState extends State<_AreaCard> {
   Widget build(BuildContext context) {
     final area = widget.area;
     final glow = area.colors.last;
-    final lit = _hovered && !area.comingSoon;
+    // Premium areas look like the rest (no shading), only a discreet lock.
+    final soon = area.comingSoon && !area.locked;
+    final lit = _hovered && !soon;
 
     return Semantics(
       button: true,
@@ -331,7 +337,7 @@ class _AreaCardState extends State<_AreaCard> {
                     : null,
               ),
               child: Opacity(
-                opacity: area.comingSoon ? 0.75 : 1,
+                opacity: soon ? 0.75 : 1,
                 child: Row(
                   children: [
                     CategoryIcon(
@@ -354,7 +360,14 @@ class _AreaCardState extends State<_AreaCard> {
                                   ),
                                 ),
                               ),
-                              if (area.comingSoon) ...[
+                              if (area.locked) ...[
+                                const SizedBox(width: 8),
+                                const _Badge(
+                                  label: 'Premium',
+                                  color: [AppColors.amber, AppColors.amber],
+                                  icon: Icons.lock_rounded,
+                                ),
+                              ] else if (soon) ...[
                                 const SizedBox(width: 8),
                                 _Badge(label: 'Próximamente', color: area.colors),
                               ],
@@ -386,10 +399,11 @@ class _AreaCardState extends State<_AreaCard> {
 }
 
 class _Badge extends StatelessWidget {
-  const _Badge({required this.label, required this.color});
+  const _Badge({required this.label, required this.color, this.icon});
 
   final String label;
   final List<Color> color;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -400,13 +414,22 @@ class _Badge extends StatelessWidget {
         color: color.last.withValues(alpha: 0.14),
         border: Border.all(color: color.last.withValues(alpha: 0.4)),
       ),
-      child: Text(
-        label,
-        style: TextStyle(
-          fontSize: 10.5,
-          fontWeight: FontWeight.w600,
-          color: color.first,
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (icon != null) ...[
+            Icon(icon, size: 11, color: color.first),
+            const SizedBox(width: 4),
+          ],
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 10.5,
+              fontWeight: FontWeight.w600,
+              color: color.first,
+            ),
+          ),
+        ],
       ),
     );
   }

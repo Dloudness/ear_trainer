@@ -9,7 +9,6 @@ import '../../../../core/widgets/glass_panel.dart';
 import '../../../../core/widgets/gradient_button.dart';
 import '../../data/training_context.dart';
 import '../../models/eq_practice.dart';
-import '../../models/practice_levels.dart';
 import '../widgets/level_selector.dart';
 import '../widgets/module_screen_layout.dart';
 import '../widgets/training_context_dialog.dart';
@@ -24,8 +23,12 @@ class EqAdvancedScreen extends StatefulWidget {
 }
 
 class _EqAdvancedScreenState extends State<EqAdvancedScreen> {
-  /// Pink-noise level chosen on the card; starts at the highest unlocked.
-  int _pinkLevel = LevelLadder.pink.unlocked;
+  /// Level chosen on each card with levels; starts at the highest that
+  /// can be played.
+  final Map<EqSource, int> _levels = {
+    for (final source in EqSource.values)
+      if (EqPractice.ladder(source) case final ladder?) source: ladder.playable,
+  };
 
   static const _pinkIntro = 'pink';
 
@@ -56,9 +59,11 @@ class _EqAdvancedScreenState extends State<EqAdvancedScreen> {
       final go = await _openPinkIntro(beforePractice: true);
       if (go != true || !mounted) return;
     }
-    final exercise = EqPractice.pick(source);
+    final ladder = EqPractice.ladder(source);
+    final level = _levels[source];
+    final exercise = EqPractice.pick(source, level: level);
     if (exercise == null || !mounted) return;
-    final before = LevelLadder.pink.unlocked;
+    final before = ladder?.playable;
     await Navigator.push(
       context,
       AppTransitions.cinematicRoute<void>(
@@ -66,15 +71,15 @@ class _EqAdvancedScreenState extends State<EqAdvancedScreen> {
         screen: EqBandExerciseScreen.band(
           source: source,
           exercise: exercise,
-          pinkLevel: _pinkLevel,
+          level: level,
         ),
       ),
     );
-    if (!mounted) return;
+    if (!mounted || ladder == null) return;
     // A level unlocked during the practice becomes the selected one.
     setState(() {
-      final now = LevelLadder.pink.unlocked;
-      if (now != before) _pinkLevel = now;
+      final now = ladder.playable;
+      if (now != before) _levels[source] = now;
     });
   }
 
@@ -90,8 +95,8 @@ class _EqAdvancedScreenState extends State<EqAdvancedScreen> {
             _SourceCard(
               source: source,
               onOpen: () => _open(source),
-              pinkLevel: source == EqSource.pink ? _pinkLevel : null,
-              onPinkLevel: (level) => setState(() => _pinkLevel = level),
+              level: _levels[source],
+              onLevel: (level) => setState(() => _levels[source] = level),
               onReference: source == EqSource.pink
                   ? () => _openPinkIntro(beforePractice: false)
                   : null,
@@ -105,22 +110,23 @@ class _SourceCard extends StatelessWidget {
   const _SourceCard({
     required this.source,
     required this.onOpen,
-    required this.onPinkLevel,
-    this.pinkLevel,
+    required this.onLevel,
+    this.level,
     this.onReference,
   });
 
   final EqSource source;
   final VoidCallback onOpen;
-  final int? pinkLevel;
-  final ValueChanged<int> onPinkLevel;
+  final int? level;
+  final ValueChanged<int> onLevel;
 
   /// Opens the listening reference (pink noise).
   final VoidCallback? onReference;
 
   @override
   Widget build(BuildContext context) {
-    final level = pinkLevel;
+    final level = this.level;
+    final ladder = EqPractice.ladder(source);
     return GlassPanel(
       accent: AppColors.cyan,
       padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
@@ -136,13 +142,13 @@ class _SourceCard extends StatelessWidget {
             EqPractice.detail(source),
             style: AppTypography.caption.copyWith(fontSize: 12, height: 1.35),
           ),
-          if (level != null) ...[
+          if (level != null && ladder != null) ...[
             const SizedBox(height: 10),
             LevelSelector(
-              ladder: LevelLadder.pink,
+              ladder: ladder,
               selected: level,
-              detail: EqPractice.pinkLevelDetail(level),
-              onSelect: onPinkLevel,
+              detail: EqPractice.levelDetail(source, level),
+              onSelect: onLevel,
             ),
           ],
           if (onReference != null)

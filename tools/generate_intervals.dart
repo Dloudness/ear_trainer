@@ -30,8 +30,8 @@ void main(List<String> args) {
     );
     exit(64);
   }
-  const outDir = 'assets/musical/intervalos';
-  const refDir = 'assets/musical/intervalos_referencia';
+  const outDir = 'audio_masters/musical/intervalos';
+  const refDir = 'audio_masters/musical/intervalos_referencia';
   Directory(outDir).createSync(recursive: true);
   Directory(refDir).createSync(recursive: true);
   final rng = math.Random(20261124);

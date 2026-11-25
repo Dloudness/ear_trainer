@@ -19,7 +19,7 @@ import 'dart:typed_data';
 ///
 /// Usage: dart run tools/generate_pink_noise.dart [outDir]
 void main(List<String> args) {
-  final outDir = args.isNotEmpty ? args[0] : 'assets/eq/eq_pink_noise';
+  final outDir = args.isNotEmpty ? args[0] : 'audio_masters/eq/eq_pink_noise';
   Directory(outDir).createSync(recursive: true);
   const sr = 48000, n = 1 << 19, q = 1.4, targetLufs = -20.0;
   const frequencies = [125, 250, 500, 1000, 2000, 4000, 8000];

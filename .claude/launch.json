@@ -6,6 +6,12 @@
       "runtimeExecutable": "flutter",
       "runtimeArgs": ["run", "-d", "web-server", "--web-port=5000", "--release"],
       "port": 5000
+    },
+    {
+      "name": "ear-trainer-lan",
+      "runtimeExecutable": "flutter",
+      "runtimeArgs": ["run", "-d", "web-server", "--web-hostname=0.0.0.0", "--web-port=5050", "--release"],
+      "port": 5050
     }
   ]
 }

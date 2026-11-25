@@ -4,11 +4,16 @@ App de entrenamiento auditivo para productores, ingenieros de sonido y músicos.
 
 ## Estado del proyecto (verificar contra el código)
 - Estructura: lib/core/* y lib/features/* (auth, challenge, demo, exercises, home, modules, onboarding, splash, welcome).
-- Ejercicios leídos de assets/data/exercises.json mediante ExerciseRepository. Hecho: EQ (A/B), intervalos y acordes (una sola escucha). Pendiente o parcial: Dinámica, Escucha Real (aún hardcodeado y subjetivo).
+- Ejercicios leídos de assets/data/exercises.json mediante ExerciseRepository. Hecho: Frecuencias (EQ Inicial A/B, EQ Avanzado con ruido rosa y Filtros, tonos puros), intervalos, acordes y afinación. Pendiente: Diseño sonoro (área Premium creada, aún sin ejercicios: "llega muy pronto"), Dinámica (necesita grabaciones). Escucha real se retiró.
+- Informe para continuar entre computadores (portátil y estudio, vía GitHub): docs/ESTADO_DEL_PROYECTO.md. Leerlo al empezar y actualizarlo al pausar.
 - EQ avanzado > Filtros (tools/generate_filters.dart): pasa altos/bajos Butterworth 6-24 dB/oct sobre la salsa (source/music_instrumental_01, primeros 10 s) y music_attention_competing_01, todo a -23 LUFS (a -20 el pasa altos pasaba de 0 dBFS). Niveles LevelLadder.filters: Básico (¿HPF o LPF?), Intermedio (corte por octavas), Profesional (pendiente y corte por tercios). 60 ejercicios EQ_FILT_*.
-- EQ avanzado: ejercicios de banda con ruido rosa y música (assets/eq/eq_band, eq_music, eq_pink_noise), generados con tools/generate_eq_levels.dart.
+- EQ avanzado > Shelves (56, salsa y música), Resonancias (50, voz y guitarra) y Problemas de voz y guitarra (46): tools/generate_eq_practice.dart, a -24 LUFS (un shelf de +9 dB pasaba de -1 dBFS a -23). Cada una con LevelLadder propia (shelves, resonances, problems): Básico / Intermedio / Profesional. Pendiente: ancho de Q. Los nombres de los problemas y las explicaciones los escribió Claude: el dueño debe revisarlos.
+- Intervalos por niveles: Básico solo ascendentes, Intermedio ascendentes y descendentes, Profesional con armónicos y compuestos. Referencia guiada por nivel (assets/data/interval_reference.json), nunca suena sola: el estudiante le da play; botón "Repasar la referencia" en Básico.
+- EQ avanzado > Ruido rosa: 28 ejercicios de banda (assets/eq/eq_pink_noise), con tools/generate_pink_noise.dart y tools/generate_eq_levels.dart (este también enlaza EQ_INIT_* de assets/eq/eq_music). audio_masters/eq/eq_band (168 MB) no la usa ningún ejercicio ni está en pubspec: pendiente decidir si se borra.
+- Fluidez: ExerciseAudioPlayer.preload carga el audio al abrir cada ejercicio para que Play suene al instante.
 - Progreso (XP, racha, resultados) persistido con shared_preferences. Login y membresía son maqueta (MockSession), sin backend.
 - Corre en Chrome: flutter run -d chrome --web-port=5000 (puerto fijo para que el almacenamiento del navegador persista).
+- Celular en la misma Wi-Fi: flutter run -d web-server --web-hostname=0.0.0.0 --web-port=5050 --release (configuración "ear-trainer-lan" en .claude/launch.json) y abrir http://IP-DEL-PC:5050. Si no aparece algo nuevo, recargar: el navegador guarda el catálogo viejo.
 
 ## Decisiones de producto ya tomadas
 - Audiencia: móvil primero, pero la versión web debe ser buena en escritorio con monitores de estudio.
@@ -18,13 +23,16 @@ App de entrenamiento auditivo para productores, ingenieros de sonido y músicos.
 - NO revelar la respuesta antes de responder: el "intro" es genérico por tipo; "explanation" y "tip" solo se ven después.
 - Sin cuenta: máximo 5 respuestas, contando repeticiones (MockSession.freeExerciseLimit / answersGiven); al pedir el siguiente se exige registro y no se puede continuar sin él (ensureCanPractice).
 - Al registrarse (nombre y correo, aún de maqueta) por el límite gratis, el usuario va al Home. Si dice "Ahora no", va a un Home de invitado que muestra su avance e invita a crear la cuenta (gratis); sin cuenta no hay más ejercicios. Un usuario registrado abre la app directo en el Home.
-- Premium: pantalla de planes (lib/features/subscription/presentation/screens/plans_screen.dart) con Anual (destacado), Mensual y Estudiante; precios aún sin definir (Plans.all). Home muestra tarjeta "Lleva tu oído más lejos" y candado Premium en áreas premium (hoy Acordes). Qué contenido es premium además de Acordes está por decidir. Pagos aún no implementados.
-- Home = consejero educativo, no juego: recomienda qué reforzar según las últimas 10 respuestas por área (Ecualización, Tonos puros, Intervalos, Acordes, Afinación), felicita logros y da un consejo del día (lib/features/home/models/mentor.dart). Sin XP ni retos tipo juego.
+- Acceso por niveles: con cuenta gratis, el nivel Básico es ilimitado en las 3 secciones gratis (Frecuencias = EQ + ruido rosa + tonos puros, Intervalos, Afinación). Premium: niveles Intermedio y Profesional (LevelLadder.isPremium / canPlay / playable), y las secciones Acordes y Diseño sonoro; Dinámica será Premium. Al ganar un nivel sin Premium: "¡Lo lograste! El nivel X te espera en Premium" (felicitación, no muro).
+- Premium se marca solo con un candado discreto ámbar, sin sombrear ni oscurecer. Tocar algo Premium abre la pantalla de planes.
+- Premium: pantalla de planes (lib/features/subscription/presentation/screens/plans_screen.dart) con Anual (destacado), Mensual y Estudiante; precios aún sin definir (Plans.all). Incluye el mensaje "la app se actualiza constantemente" (también en la tarjeta "Lleva tu oído más lejos" del Home). Pagos aún no implementados; "Tengo un código de invitación" activa Premium de maqueta.
+- Home = consejero educativo, no juego: recomienda qué reforzar según las últimas 10 respuestas por área (Frecuencias, Intervalos, Acordes, Afinación, Diseño sonoro), nunca sugiere un área Premium bloqueada, felicita logros y da un consejo del día (lib/features/home/models/mentor.dart). Sin XP ni retos tipo juego.
+- Nombre de la app por decidir ("Ear Trainer" es genérico). Propuestas: Loudness Ear, Loudness EarLab, EarLab, Oído Pro, Escucha Activa, Sonic Mentor, TrueEar (nombre artístico del dueño: Diego Loudness).
 - Afinación en contexto: solo piano por ahora. La guitarra está excluida (MusicalPools.tuningContextExcluded) porque algunas notas suenan desafinadas tras el reafinado; volver a activarla solo tras auditar nota por nota con las grabaciones originales.
 - Sin bucle de reintento: si falla, puede ver la respuesta (opcional) y pasa al siguiente ejercicio. Nunca "Volver a intentar" (evita memorizar ejercicios).
 - Máximo 3 escuchas por ejercicio (en A/B, 3 por clip). Play siempre reinicia desde cero. Sin botón Repetir. Tras responder, el audio es ilimitado.
 - Ventanas de contexto "¿Por qué entrenar...?" (intervalos, acordes, EQ) con versión "full" (principiante) y "short". Incluyen "Con este entrenamiento aprenderás a:".
-- Dinámica bloqueada por progreso en el Home (candado distinto al de membresía) hasta tener contenido real.
+- Dinámica: aparece en "¿Qué quieres entrenar hoy?" (onboarding) con su demo DYN_01, pero no en el consejero del Home hasta tener contenido real (grabaciones del estudio). Será Premium.
 - Regla de ejercicios objetivos: se cambia UNA variable conocida; la respuesta correcta vive en el JSON ("correct"), nunca se deduce del nombre del archivo.
 - Precios iniciales (suscripción mensual, por validar): estudiantes 8.000 COP; público general en Colombia 15.000-16.000 COP; internacional en USD con precio propio. Habrá licencias para cursos e instituciones (universidades). Aún no implementado en la app.
 - Afinación en contexto (A2-A5): se construirá por código a partir de muestras reales grabadas por el dueño (piano, guitarra, voz). Guía: docs/Ear_Trainer_guia_de_grabacion_afinacion.docx.
@@ -32,8 +40,8 @@ App de entrenamiento auditivo para productores, ingenieros de sonido y músicos.
 
 ## Convenciones de audio
 - Nombres solo en minúscula, números y guion bajo; sin espacios, tildes, # ni paréntesis. Sostenido = "sharp". Patrón: intervalos interval_{intervalo}_{asc|desc|harm}_{nota}_{NN}; acordes chord_{calidad}_{root|inv1|inv2|inv3}_{raíz}_{NN}; EQ freq_/filter_ con frecuencia y ganancia.
-- Masters en WAV sin compresión dentro de audio_masters/ (mismas carpetas que assets/, fuera de la app). La app usa solo AAC .m4a (192k mono, 256k estéreo) en assets/. Los generadores escriben en audio_masters/; después de cualquier generador o audio nuevo correr: dart run tools/compress_audio.dart (convierte y pasa las rutas del JSON a .m4a; necesita ffmpeg). Una prueba falla si el catálogo apunta a algo que no es .m4a o no existe.
-- Nivel igualado (~-20 LUFS) entre original y procesado en EQ.
+- Masters en WAV sin compresión dentro de audio_masters/ (mismas carpetas que assets/, fuera de la app). La app usa solo AAC .m4a (192k mono, 256k estéreo) en assets/. Los generadores escriben en audio_masters/; después de cualquier generador o audio nuevo correr: dart run tools/compress_audio.dart (convierte y pasa las rutas del JSON a .m4a; necesita ffmpeg). Una prueba falla si el catálogo apunta a algo que no es .m4a o no existe. Ojo: compress_audio decide por fecha de archivo, y tras un git pull puede volver a convertir .m4a que no cambiaron; antes del commit revisar git status y restaurar con git los .m4a que no correspondan.
+- Nivel igualado entre original y procesado en EQ (~-20 LUFS; los Filtros a -23 LUFS para que ningún pico pase de -1 dBFS). Nunca usar limitador para ganar nivel: altera el sonido.
 - Cada subcarpeta de assets debe declararse en pubspec.yaml con barra final (Flutter no incluye subcarpetas automáticamente).
 - Los audios del piloto van en assets/ (descargables); los premium reales irán a almacenamiento protegido.
 

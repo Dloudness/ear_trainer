@@ -107,9 +107,9 @@ abstract final class MusicalPools {
   static String levelDetail(MusicalPool pool, int level) {
     if (pool == MusicalPool.intervals) {
       return switch (level) {
-        1 => '2da menor, 3ra mayor, 4ta, 5ta y octava, subiendo y bajando.',
-        2 => 'Los 12 intervalos de la octava, también con las notas juntas.',
-        _ => 'Hasta la 10ma, con opciones que se parecen entre sí.',
+        1 => '2da menor, 3ra mayor, 4ta, 5ta y octava, solo subiendo.',
+        2 => 'Los 12 intervalos de la octava, subiendo y bajando.',
+        _ => 'Hasta la 10ma, también con las notas juntas y opciones que se parecen.',
       };
     }
     return switch (level) {

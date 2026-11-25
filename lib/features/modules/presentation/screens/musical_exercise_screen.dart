@@ -20,6 +20,7 @@ import '../../../exercises/models/exercise.dart';
 import '../../models/musical_pool.dart';
 import '../../models/musical_sections.dart';
 import '../widgets/training_context_dialog.dart';
+import 'interval_intro_screen.dart';
 
 class MusicalExerciseScreen extends StatefulWidget {
   const MusicalExerciseScreen({
@@ -196,6 +197,18 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
     );
   }
 
+  Future<void> _openReference() async {
+    await _audioPlayer.stop();
+    if (!mounted) return;
+    await Navigator.push<bool>(
+      context,
+      AppTransitions.cinematicRoute<bool>(
+        settings: const RouteSettings(name: '/module/musical/referencia'),
+        screen: const IntervalIntroScreen(beforePractice: false),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final exercise = _exercise;
@@ -209,6 +222,15 @@ class _MusicalExerciseScreenState extends State<MusicalExerciseScreen> {
               onBack: () => Navigator.maybePop(context),
             ),
             TrainingContextLink(contextId: MusicalPools.contextId(widget.pool)),
+            // In Básico the guided reference is one tap away, to review the
+            // intervals between exercises.
+            if (widget.pool == MusicalPool.intervals && widget.level == 1)
+              TextButton.icon(
+                onPressed: _openReference,
+                style: TextButton.styleFrom(foregroundColor: AppColors.cyan),
+                icon: const Icon(Icons.headphones_rounded, size: 16),
+                label: const Text('Repasar la referencia'),
+              ),
             const SizedBox(height: 8),
             Expanded(
               child: exercise == null

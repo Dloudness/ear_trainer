@@ -435,6 +435,12 @@ class _ListenView extends StatelessWidget {
             'tone_compare' => 'El primer tono es la referencia.',
             _ when exercise.tags['skill'] == 'filter' =>
               'El nivel general es el mismo. Solo cambia el filtro.',
+            _ when exercise.tags['skill'] == 'shelf' =>
+              'El nivel general es el mismo. Solo cambia un shelf.',
+            _ when exercise.tags['skill'] == 'resonance' =>
+              'El nivel general es el mismo. Hay un solo pico angosto.',
+            _ when exercise.tags['skill'] == 'problem' =>
+              'El nivel general es el mismo. La referencia es la toma limpia.',
             _ when withReference =>
               'El nivel general es el mismo. Cambia una sola banda.',
             _ => 'Identifica la frecuencia y el ajuste de este ejemplo.',

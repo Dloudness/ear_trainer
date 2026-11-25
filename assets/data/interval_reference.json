@@ -1,0 +1,641 @@
+{
+  "tracks": [
+    {
+      "level": 1,
+      "audio": "assets/musical/intervalos_referencia/interval_guide_l1.m4a",
+      "seconds": 17.8,
+      "cues": [
+        {
+          "start": 0.3,
+          "end": 3.0,
+          "interval": "min2",
+          "mode": "asc",
+          "label": "2da menor",
+          "semitones": 1
+        },
+        {
+          "start": 3.8,
+          "end": 6.5,
+          "interval": "maj3",
+          "mode": "asc",
+          "label": "3ra mayor",
+          "semitones": 4
+        },
+        {
+          "start": 7.3,
+          "end": 10.0,
+          "interval": "perf4",
+          "mode": "asc",
+          "label": "4ta justa",
+          "semitones": 5
+        },
+        {
+          "start": 10.8,
+          "end": 13.5,
+          "interval": "perf5",
+          "mode": "asc",
+          "label": "5ta justa",
+          "semitones": 7
+        },
+        {
+          "start": 14.3,
+          "end": 17.0,
+          "interval": "perf8",
+          "mode": "asc",
+          "label": "octava",
+          "semitones": 12
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "audio": "assets/musical/intervalos_referencia/interval_guide_l2.m4a",
+      "seconds": 84.3,
+      "cues": [
+        {
+          "start": 0.3,
+          "end": 3.0,
+          "interval": "min2",
+          "mode": "asc",
+          "label": "2da menor",
+          "semitones": 1
+        },
+        {
+          "start": 3.8,
+          "end": 6.5,
+          "interval": "min2",
+          "mode": "desc",
+          "label": "2da menor",
+          "semitones": 1
+        },
+        {
+          "start": 7.3,
+          "end": 10.0,
+          "interval": "maj2",
+          "mode": "asc",
+          "label": "2da mayor",
+          "semitones": 2
+        },
+        {
+          "start": 10.8,
+          "end": 13.5,
+          "interval": "maj2",
+          "mode": "desc",
+          "label": "2da mayor",
+          "semitones": 2
+        },
+        {
+          "start": 14.3,
+          "end": 17.0,
+          "interval": "min3",
+          "mode": "asc",
+          "label": "3ra menor",
+          "semitones": 3
+        },
+        {
+          "start": 17.8,
+          "end": 20.5,
+          "interval": "min3",
+          "mode": "desc",
+          "label": "3ra menor",
+          "semitones": 3
+        },
+        {
+          "start": 21.3,
+          "end": 24.0,
+          "interval": "maj3",
+          "mode": "asc",
+          "label": "3ra mayor",
+          "semitones": 4
+        },
+        {
+          "start": 24.8,
+          "end": 27.5,
+          "interval": "maj3",
+          "mode": "desc",
+          "label": "3ra mayor",
+          "semitones": 4
+        },
+        {
+          "start": 28.3,
+          "end": 31.0,
+          "interval": "perf4",
+          "mode": "asc",
+          "label": "4ta justa",
+          "semitones": 5
+        },
+        {
+          "start": 31.8,
+          "end": 34.5,
+          "interval": "perf4",
+          "mode": "desc",
+          "label": "4ta justa",
+          "semitones": 5
+        },
+        {
+          "start": 35.3,
+          "end": 38.0,
+          "interval": "tritone",
+          "mode": "asc",
+          "label": "tritono",
+          "semitones": 6
+        },
+        {
+          "start": 38.8,
+          "end": 41.5,
+          "interval": "tritone",
+          "mode": "desc",
+          "label": "tritono",
+          "semitones": 6
+        },
+        {
+          "start": 42.3,
+          "end": 45.0,
+          "interval": "perf5",
+          "mode": "asc",
+          "label": "5ta justa",
+          "semitones": 7
+        },
+        {
+          "start": 45.8,
+          "end": 48.5,
+          "interval": "perf5",
+          "mode": "desc",
+          "label": "5ta justa",
+          "semitones": 7
+        },
+        {
+          "start": 49.3,
+          "end": 52.0,
+          "interval": "min6",
+          "mode": "asc",
+          "label": "6ta menor",
+          "semitones": 8
+        },
+        {
+          "start": 52.8,
+          "end": 55.5,
+          "interval": "min6",
+          "mode": "desc",
+          "label": "6ta menor",
+          "semitones": 8
+        },
+        {
+          "start": 56.3,
+          "end": 59.0,
+          "interval": "maj6",
+          "mode": "asc",
+          "label": "6ta mayor",
+          "semitones": 9
+        },
+        {
+          "start": 59.8,
+          "end": 62.5,
+          "interval": "maj6",
+          "mode": "desc",
+          "label": "6ta mayor",
+          "semitones": 9
+        },
+        {
+          "start": 63.3,
+          "end": 66.0,
+          "interval": "min7",
+          "mode": "asc",
+          "label": "7ma menor",
+          "semitones": 10
+        },
+        {
+          "start": 66.8,
+          "end": 69.5,
+          "interval": "min7",
+          "mode": "desc",
+          "label": "7ma menor",
+          "semitones": 10
+        },
+        {
+          "start": 70.3,
+          "end": 73.0,
+          "interval": "maj7",
+          "mode": "asc",
+          "label": "7ma mayor",
+          "semitones": 11
+        },
+        {
+          "start": 73.8,
+          "end": 76.5,
+          "interval": "maj7",
+          "mode": "desc",
+          "label": "7ma mayor",
+          "semitones": 11
+        },
+        {
+          "start": 77.3,
+          "end": 80.0,
+          "interval": "perf8",
+          "mode": "asc",
+          "label": "octava",
+          "semitones": 12
+        },
+        {
+          "start": 80.8,
+          "end": 83.5,
+          "interval": "perf8",
+          "mode": "desc",
+          "label": "octava",
+          "semitones": 12
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "audio": "assets/musical/intervalos_referencia/interval_guide_l3.m4a",
+      "seconds": 161.9,
+      "cues": [
+        {
+          "start": 0.3,
+          "end": 3.0,
+          "interval": "min2",
+          "mode": "asc",
+          "label": "2da menor",
+          "semitones": 1
+        },
+        {
+          "start": 3.8,
+          "end": 6.5,
+          "interval": "min2",
+          "mode": "desc",
+          "label": "2da menor",
+          "semitones": 1
+        },
+        {
+          "start": 7.3,
+          "end": 9.6,
+          "interval": "min2",
+          "mode": "harm",
+          "label": "2da menor",
+          "semitones": 1
+        },
+        {
+          "start": 10.4,
+          "end": 13.1,
+          "interval": "maj2",
+          "mode": "asc",
+          "label": "2da mayor",
+          "semitones": 2
+        },
+        {
+          "start": 13.9,
+          "end": 16.6,
+          "interval": "maj2",
+          "mode": "desc",
+          "label": "2da mayor",
+          "semitones": 2
+        },
+        {
+          "start": 17.4,
+          "end": 19.7,
+          "interval": "maj2",
+          "mode": "harm",
+          "label": "2da mayor",
+          "semitones": 2
+        },
+        {
+          "start": 20.5,
+          "end": 23.2,
+          "interval": "min3",
+          "mode": "asc",
+          "label": "3ra menor",
+          "semitones": 3
+        },
+        {
+          "start": 24.0,
+          "end": 26.7,
+          "interval": "min3",
+          "mode": "desc",
+          "label": "3ra menor",
+          "semitones": 3
+        },
+        {
+          "start": 27.5,
+          "end": 29.8,
+          "interval": "min3",
+          "mode": "harm",
+          "label": "3ra menor",
+          "semitones": 3
+        },
+        {
+          "start": 30.6,
+          "end": 33.3,
+          "interval": "maj3",
+          "mode": "asc",
+          "label": "3ra mayor",
+          "semitones": 4
+        },
+        {
+          "start": 34.1,
+          "end": 36.8,
+          "interval": "maj3",
+          "mode": "desc",
+          "label": "3ra mayor",
+          "semitones": 4
+        },
+        {
+          "start": 37.6,
+          "end": 39.9,
+          "interval": "maj3",
+          "mode": "harm",
+          "label": "3ra mayor",
+          "semitones": 4
+        },
+        {
+          "start": 40.7,
+          "end": 43.4,
+          "interval": "perf4",
+          "mode": "asc",
+          "label": "4ta justa",
+          "semitones": 5
+        },
+        {
+          "start": 44.2,
+          "end": 46.9,
+          "interval": "perf4",
+          "mode": "desc",
+          "label": "4ta justa",
+          "semitones": 5
+        },
+        {
+          "start": 47.7,
+          "end": 50.0,
+          "interval": "perf4",
+          "mode": "harm",
+          "label": "4ta justa",
+          "semitones": 5
+        },
+        {
+          "start": 50.8,
+          "end": 53.5,
+          "interval": "tritone",
+          "mode": "asc",
+          "label": "tritono",
+          "semitones": 6
+        },
+        {
+          "start": 54.3,
+          "end": 57.0,
+          "interval": "tritone",
+          "mode": "desc",
+          "label": "tritono",
+          "semitones": 6
+        },
+        {
+          "start": 57.8,
+          "end": 60.1,
+          "interval": "tritone",
+          "mode": "harm",
+          "label": "tritono",
+          "semitones": 6
+        },
+        {
+          "start": 60.9,
+          "end": 63.6,
+          "interval": "perf5",
+          "mode": "asc",
+          "label": "5ta justa",
+          "semitones": 7
+        },
+        {
+          "start": 64.4,
+          "end": 67.1,
+          "interval": "perf5",
+          "mode": "desc",
+          "label": "5ta justa",
+          "semitones": 7
+        },
+        {
+          "start": 67.9,
+          "end": 70.2,
+          "interval": "perf5",
+          "mode": "harm",
+          "label": "5ta justa",
+          "semitones": 7
+        },
+        {
+          "start": 71.0,
+          "end": 73.7,
+          "interval": "min6",
+          "mode": "asc",
+          "label": "6ta menor",
+          "semitones": 8
+        },
+        {
+          "start": 74.5,
+          "end": 77.2,
+          "interval": "min6",
+          "mode": "desc",
+          "label": "6ta menor",
+          "semitones": 8
+        },
+        {
+          "start": 78.0,
+          "end": 80.3,
+          "interval": "min6",
+          "mode": "harm",
+          "label": "6ta menor",
+          "semitones": 8
+        },
+        {
+          "start": 81.1,
+          "end": 83.8,
+          "interval": "maj6",
+          "mode": "asc",
+          "label": "6ta mayor",
+          "semitones": 9
+        },
+        {
+          "start": 84.6,
+          "end": 87.3,
+          "interval": "maj6",
+          "mode": "desc",
+          "label": "6ta mayor",
+          "semitones": 9
+        },
+        {
+          "start": 88.1,
+          "end": 90.4,
+          "interval": "maj6",
+          "mode": "harm",
+          "label": "6ta mayor",
+          "semitones": 9
+        },
+        {
+          "start": 91.2,
+          "end": 93.9,
+          "interval": "min7",
+          "mode": "asc",
+          "label": "7ma menor",
+          "semitones": 10
+        },
+        {
+          "start": 94.7,
+          "end": 97.4,
+          "interval": "min7",
+          "mode": "desc",
+          "label": "7ma menor",
+          "semitones": 10
+        },
+        {
+          "start": 98.2,
+          "end": 100.5,
+          "interval": "min7",
+          "mode": "harm",
+          "label": "7ma menor",
+          "semitones": 10
+        },
+        {
+          "start": 101.3,
+          "end": 104.0,
+          "interval": "maj7",
+          "mode": "asc",
+          "label": "7ma mayor",
+          "semitones": 11
+        },
+        {
+          "start": 104.8,
+          "end": 107.5,
+          "interval": "maj7",
+          "mode": "desc",
+          "label": "7ma mayor",
+          "semitones": 11
+        },
+        {
+          "start": 108.3,
+          "end": 110.6,
+          "interval": "maj7",
+          "mode": "harm",
+          "label": "7ma mayor",
+          "semitones": 11
+        },
+        {
+          "start": 111.4,
+          "end": 114.1,
+          "interval": "perf8",
+          "mode": "asc",
+          "label": "octava",
+          "semitones": 12
+        },
+        {
+          "start": 114.9,
+          "end": 117.6,
+          "interval": "perf8",
+          "mode": "desc",
+          "label": "octava",
+          "semitones": 12
+        },
+        {
+          "start": 118.4,
+          "end": 120.7,
+          "interval": "perf8",
+          "mode": "harm",
+          "label": "octava",
+          "semitones": 12
+        },
+        {
+          "start": 121.5,
+          "end": 124.2,
+          "interval": "min9",
+          "mode": "asc",
+          "label": "9na menor",
+          "semitones": 13
+        },
+        {
+          "start": 125.0,
+          "end": 127.7,
+          "interval": "min9",
+          "mode": "desc",
+          "label": "9na menor",
+          "semitones": 13
+        },
+        {
+          "start": 128.5,
+          "end": 130.8,
+          "interval": "min9",
+          "mode": "harm",
+          "label": "9na menor",
+          "semitones": 13
+        },
+        {
+          "start": 131.6,
+          "end": 134.3,
+          "interval": "maj9",
+          "mode": "asc",
+          "label": "9na mayor",
+          "semitones": 14
+        },
+        {
+          "start": 135.1,
+          "end": 137.8,
+          "interval": "maj9",
+          "mode": "desc",
+          "label": "9na mayor",
+          "semitones": 14
+        },
+        {
+          "start": 138.6,
+          "end": 140.9,
+          "interval": "maj9",
+          "mode": "harm",
+          "label": "9na mayor",
+          "semitones": 14
+        },
+        {
+          "start": 141.7,
+          "end": 144.4,
+          "interval": "min10",
+          "mode": "asc",
+          "label": "10ma menor",
+          "semitones": 15
+        },
+        {
+          "start": 145.2,
+          "end": 147.9,
+          "interval": "min10",
+          "mode": "desc",
+          "label": "10ma menor",
+          "semitones": 15
+        },
+        {
+          "start": 148.7,
+          "end": 151.0,
+          "interval": "min10",
+          "mode": "harm",
+          "label": "10ma menor",
+          "semitones": 15
+        },
+        {
+          "start": 151.8,
+          "end": 154.5,
+          "interval": "maj10",
+          "mode": "asc",
+          "label": "10ma mayor",
+          "semitones": 16
+        },
+        {
+          "start": 155.3,
+          "end": 158.0,
+          "interval": "maj10",
+          "mode": "desc",
+          "label": "10ma mayor",
+          "semitones": 16
+        },
+        {
+          "start": 158.8,
+          "end": 161.1,
+          "interval": "maj10",
+          "mode": "harm",
+          "label": "10ma mayor",
+          "semitones": 16
+        }
+      ]
+    }
+  ]
+}

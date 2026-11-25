@@ -1,7 +1,28 @@
 # Ear Trainer: estado del proyecto
 
-**Última sesión:** 24 de noviembre de 2026, en el portátil.
-**Próxima sesión:** computador del estudio.
+**Última sesión:** 25 de noviembre de 2026, en el computador de la casa (ffmpeg ya instalado ahí).
+
+## Sesión del 25 de noviembre
+
+- **Filtros:** explicaciones corregidas (corte por octavas, pendiente de 12 dB y corte por tercios con lo que se pierde en cada banda).
+- **EQ Avanzado, tres prácticas nuevas** (`tools/generate_eq_practice.dart`, 152 ejercicios, 130 audios, 40 MB en `.m4a`):
+
+| Práctica | Material | Básico | Intermedio | Profesional |
+|---|---|---|---|---|
+| Shelves (56) | salsa y música | ¿Qué cambió? (más/menos graves o agudos) | ¿Cuánto? ±3, ±6, ±9 dB | ¿En qué frecuencia está el shelf? |
+| Resonancias (50) | voz y guitarra | ¿Graves, medios o agudos? | Frecuencia por octavas | Frecuencia por tercios |
+| Problemas de voz y guitarra (46) | voz y guitarra | Dos problemas opuestos | Cuatro problemas | ¿En qué frecuencia está el exceso? |
+
+  - Todo a **-24 LUFS** (un shelf de +9 dB superaba -1 dBFS a -23). Pico máximo: -1,9 dBFS.
+  - Se midió cada audio contra su referencia: shelves y problemas dentro de 1 dB de lo esperado; resonancias de +12 dB, Q 8.
+  - **Revisar:** las explicaciones, los nombres de los problemas ("embarrada", "encajonada", "nasal", "sibilante", "apagada", "delgada", "retumbante", "chillona") y los pares opuestos del nivel Básico los escribió Claude.
+- **Intervalos:**
+  - **Niveles nuevos:** Básico solo ascendentes (30 ejercicios); Intermedio ascendentes y descendentes (144); Profesional suma armónicos y compuestos (288).
+  - **Referencia guiada:** una pista por nivel (18 s, 84 s y 2 min 42 s), que no suena hasta que el estudiante le da play. El nombre del intervalo que suena se ilumina. Los tiempos están en `assets/data/interval_reference.json`.
+  - **Repaso:** en los ejercicios de Básico hay un botón "Repasar la referencia".
+  - **Generador:** ya no vuelve a crear los audios que existen, así que cambiar los niveles no cambia lo que se escucha.
+  - **Pendiente:** si el profesor graba su voz o un video explicando, se puede reemplazar o complementar la pista. Falta hacer lo mismo con la referencia del ruido rosa.
+- **Cuidado con `compress_audio.dart` después de un `git pull`:** en esta sesión volvió a convertir unos 64 `.m4a` que no habían cambiado (por las fechas de los archivos). Se restauraron con git. Antes de hacer commit, revisa con `git status` que solo cambien los audios nuevos.
 
 ---
 
@@ -99,11 +120,7 @@ Abre PowerShell en la carpeta del proyecto y ejecuta, en este orden:
 ## 4. Pendientes, en orden sugerido
 
 1. **Probar los Filtros en el celular** y revisar las explicaciones.
-2. **Más ejercicios de EQ por código** con el material actual:
-   - Shelves (graves y agudos).
-   - Ancho de Q.
-   - Resonancias.
-   - Problemas típicos de voz y guitarra.
+2. **Más ejercicios de EQ por código:** hechos shelves, resonancias y problemas de voz y guitarra (25 de noviembre). Falta: **ancho de Q**.
 3. **Diseño sonoro (Premium):** unos 150 ejercicios con los ambientes, la voz y los videos que ya existen:
    - Identificar el ambiente.
    - Ruido en la toma.

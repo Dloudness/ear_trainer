@@ -72,6 +72,9 @@ flutter:
     - assets/eq/eq_music/
     - assets/eq/eq_pink_noise/
     - assets/eq/eq_filters/
+    - assets/eq/eq_shelves/
+    - assets/eq/eq_resonances/
+    - assets/eq/eq_problems/
     - assets/tones/
     - assets/pitch/
     - assets/pitch_context/
@@ -82,6 +85,7 @@ flutter:
     - assets/video/source/
     - assets/data/exercises.json
     - assets/data/training_context.json
+    - assets/data/interval_reference.json
     - assets/musical/chords_min_maj/
     - assets/musical/chords_maj7_min7_dom7/
     - assets/musical/triadas_inversiones/

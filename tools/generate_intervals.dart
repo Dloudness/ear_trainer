@@ -8,12 +8,15 @@ import 'audio_kit.dart';
 /// C3-C6, guitar E2-E5), every note retuned to exactly 0 cents.
 ///
 /// Levels (tags.level):
-/// * 1 Básico: 2ª m, 3ª M, 4ª J, 5ª J and 8ª, ascending and descending.
+/// * 1 Básico: 2ª m, 3ª M, 4ª J, 5ª J and 8ª, ascending only.
 ///   Includes the three free lessons (8ª, 5ª, 2ª m ascending from C4).
-/// * 2 Intermedio: the 12 intervals of the octave, ascending, descending
-///   and harmonic.
-/// * 3 Profesional: the 12 plus 9ª m, 9ª M, 10ª m and 10ª M, with the
-///   closest (most confusable) intervals as options.
+/// * 2 Intermedio: the 12 intervals of the octave, ascending and
+///   descending mixed.
+/// * 3 Profesional: the 12 plus 9ª m, 9ª M, 10ª m and 10ª M, ascending,
+///   descending and harmonic, with the closest (most confusable)
+///   intervals as options.
+/// Plus a guided reference track per level (interval_guide_l{1,2,3}) and
+/// its cue times in assets/data/interval_reference.json.
 ///
 /// Each interval, direction and instrument is built on three starting
 /// notes that keep both notes inside the instrument's range. Guitar E3-G#3
@@ -80,7 +83,9 @@ void main(List<String> args) {
     String mode,
     String path,
   ) {
-    if (written.add(path)) {
+    // Masters already made are kept as they are, so re-running the
+    // generator (e.g. to change the levels) never changes a heard audio.
+    if (written.add(path) && !File(path).existsSync()) {
       final mix = Mix();
       if (mode == 'harm') {
         mix.add(inst.note(root, rng, 0), 0.05, 2.4, 1.0);
@@ -102,9 +107,7 @@ void main(List<String> args) {
   final exercises = <Map<String, dynamic>>[];
   for (var level = 1; level <= 3; level++) {
     final kinds = _levelKinds[level - 1];
-    final modes = level == 1
-        ? const ['asc', 'desc']
-        : const ['asc', 'desc', 'harm'];
+    final modes = _levelModes[level - 1];
     for (final kind in kinds) {
       for (final mode in modes) {
         for (final inst in [piano, guitar]) {
@@ -182,6 +185,56 @@ void main(List<String> args) {
     }
   }
 
+  // Guided reference, one track per level: every interval of the level,
+  // from small to large, in the directions the level practises, on piano
+  // from C4 (falling from C5). The app shows each name while it sounds,
+  // from the cue times written to assets/data/interval_reference.json.
+  final tracks = <Map<String, dynamic>>[];
+  for (var level = 1; level <= 3; level++) {
+    final mix = Mix();
+    final cues = <Map<String, dynamic>>[];
+    var t = 0.3;
+    for (final kind in _levelKinds[level - 1]) {
+      final semis = _semitones[kind]!;
+      for (final mode in _levelModes[level - 1]) {
+        final root = mode == 'desc' ? 72 : 60;
+        final second = mode == 'desc' ? root - semis : root + semis;
+        final double length;
+        if (mode == 'harm') {
+          mix.add(piano.note(root, rng, 0), t, 2.0, 1.0);
+          mix.add(piano.note(second, rng, 0), t, 2.0, 1.0);
+          length = 2.3;
+        } else {
+          mix.add(piano.note(root, rng, 0), t, 0.85, 1.0);
+          mix.add(piano.note(second, rng, 0), t + 0.95, 1.6, 1.0);
+          length = 2.7;
+        }
+        cues.add({
+          'start': double.parse(t.toStringAsFixed(2)),
+          'end': double.parse((t + length).toStringAsFixed(2)),
+          'interval': kind,
+          'mode': mode,
+          'label': _labels[kind],
+          'semitones': semis,
+        });
+        t += length + 0.8;
+      }
+    }
+    final path = '$refDir/interval_guide_l$level.wav';
+    mix.write(path);
+    tracks.add({
+      'level': level,
+      'audio': path
+          .replaceFirst('audio_masters/', 'assets/')
+          .replaceFirst('.wav', '.m4a'),
+      'seconds': double.parse(t.toStringAsFixed(1)),
+      'cues': cues,
+    });
+  }
+  File('assets/data/interval_reference.json').writeAsStringSync(
+    '${const JsonEncoder.withIndent('  ').convert({'tracks': tracks})}\n',
+  );
+
   final removed = list.where((e) => e['type'] == 'interval_quality').length;
   list.removeWhere((e) => e['type'] == 'interval_quality');
   list.addAll(exercises);
@@ -190,12 +243,22 @@ void main(List<String> args) {
   );
   final top = peaks.values.reduce(math.max);
   stdout.writeln(
-    'Pico máximo: ${(20 * math.log(top) / math.ln10).toStringAsFixed(1)} dBFS',
+    'Pico máximo de lo nuevo: ${(20 * math.log(top) / math.ln10).toStringAsFixed(1)} dBFS',
+  );
+  stdout.writeln(
+    'Guías: ${[for (final t in tracks) 'nivel ${t['level']} ${t['seconds']} s'].join(', ')}',
   );
   stdout.writeln(
     'Retirados: $removed · Conectados: ${exercises.length} · Audios: ${written.length}',
   );
 }
+
+/// Directions practised at each level.
+const _levelModes = [
+  ['asc'],
+  ['asc', 'desc'],
+  ['asc', 'desc', 'harm'],
+];
 
 const _semitones = {
   'min2': 1,

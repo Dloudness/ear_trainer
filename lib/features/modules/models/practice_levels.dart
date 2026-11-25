@@ -33,6 +33,21 @@ class LevelLadder {
     names: ['Básico', 'Intermedio', 'Profesional'],
   );
 
+  static const shelves = LevelLadder(
+    id: 'eq_shelves',
+    names: ['Básico', 'Intermedio', 'Profesional'],
+  );
+
+  static const resonances = LevelLadder(
+    id: 'eq_resonances',
+    names: ['Básico', 'Intermedio', 'Profesional'],
+  );
+
+  static const problems = LevelLadder(
+    id: 'eq_problems',
+    names: ['Básico', 'Intermedio', 'Profesional'],
+  );
+
   static const filters = LevelLadder(
     id: 'eq_filters',
     names: ['Básico', 'Intermedio', 'Profesional'],

@@ -6,7 +6,7 @@ import '../../exercises/models/exercise.dart';
 import '../../onboarding/models/onboarding_option.dart';
 import 'practice_levels.dart';
 
-enum EqSource { music, pink, filter }
+enum EqSource { music, pink, filter, shelf, resonance, problem }
 
 /// Random practice for one advanced EQ source.
 ///
@@ -23,6 +23,9 @@ abstract final class EqPractice {
       EqSource.music => musicTitle,
       EqSource.pink => pinkTitle,
       EqSource.filter => filterTitle,
+      EqSource.shelf => 'Shelves',
+      EqSource.resonance => 'Resonancias',
+      EqSource.problem => 'Problemas de voz y guitarra',
     };
   }
 
@@ -34,6 +37,12 @@ abstract final class EqPractice {
         'Ruido rosa con una banda realzada o recortada. Compáralo con el ruido rosa limpio.',
       EqSource.filter =>
         'Pasa altos y pasa bajos sobre música real, con pendientes de 6 a 24 dB por octava.',
+      EqSource.shelf =>
+        'Graves y agudos subidos o bajados como un escalón, sobre música real.',
+      EqSource.resonance =>
+        'Una nota que zumba o silba por encima del resto, en voz y guitarra.',
+      EqSource.problem =>
+        'Voz embarrada, nasal o sibilante; guitarra retumbante o chillona. Ponle nombre al problema.',
     };
   }
 
@@ -41,17 +50,38 @@ abstract final class EqPractice {
   static LevelLadder? ladder(EqSource source) => switch (source) {
     EqSource.pink => LevelLadder.pink,
     EqSource.filter => LevelLadder.filters,
+    EqSource.shelf => LevelLadder.shelves,
+    EqSource.resonance => LevelLadder.resonances,
+    EqSource.problem => LevelLadder.problems,
     EqSource.music => null,
   };
 
   /// What [level] asks, for the level selector and the exercise screen.
   static String levelDetail(EqSource source, int level) {
     if (source == EqSource.pink) return pinkLevelDetail(level);
-    return switch (level) {
-      1 => '¿Pasa altos o pasa bajos? Descubre qué se recorta.',
-      2 => '¿Dónde está el corte? Frecuencias separadas por octavas.',
-      _ => 'La pendiente (6 a 24 dB/oct) y el corte por tercios de octava.',
+    final details = switch (source) {
+      EqSource.shelf => const [
+        '¿Qué cambió? Más o menos graves, más o menos agudos.',
+        '¿Cuánto? ±3, ±6 o ±9 dB.',
+        '¿En qué frecuencia está el shelf?',
+      ],
+      EqSource.resonance => const [
+        '¿Está en los graves, los medios o los agudos?',
+        '¿En qué frecuencia? Separadas por octavas.',
+        '¿En qué frecuencia? Por tercios de octava.',
+      ],
+      EqSource.problem => const [
+        '¿Cuál de los dos problemas tiene?',
+        '¿Cuál de los cuatro problemas tiene?',
+        '¿En qué frecuencia está el exceso?',
+      ],
+      _ => const [
+        '¿Pasa altos o pasa bajos? Descubre qué se recorta.',
+        '¿Dónde está el corte? Frecuencias separadas por octavas.',
+        'La pendiente (6 a 24 dB/oct) y el corte por tercios de octava.',
+      ],
     };
+    return details[(level - 1).clamp(0, 2)];
   }
 
   /// Listens to the clean pink noise allowed at each level (0 hides it).
@@ -76,11 +106,11 @@ abstract final class EqPractice {
   /// Levels 1 and 2 play the example that moves clean → EQ → clean.
   static bool pinkUsesSweep(int level) => pinkReferenceListens(level) > 0;
 
-  /// Exercises of [source]. With [level], only that level (filters; the
-  /// pink-noise level changes how it is heard, not which exercises).
+  /// Exercises of [source]. With [level], only that level (every source but
+  /// pink noise, whose level changes how it is heard, not which exercises).
   static List<Exercise> of(EqSource source, {int? level}) {
     final module = OnboardingOption.ecualizacionFrecuencias.name;
-    final byLevel = source == EqSource.filter && level != null;
+    final byLevel = source != EqSource.pink && level != null;
     return [
       for (final exercise in ExerciseRepository.instance.byModule(module))
         if (exercise.type == 'eq_band' &&
@@ -98,7 +128,7 @@ abstract final class EqPractice {
     String? avoidId,
     Random? random,
   }) {
-    final byLevel = source == EqSource.filter && level != null;
+    final byLevel = source != EqSource.pink && level != null;
     return NoRepeatPicker.pick(
       'eq_${source.name}_${byLevel ? level : 0}',
       of(source, level: level),

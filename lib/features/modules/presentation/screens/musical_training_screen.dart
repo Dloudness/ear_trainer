@@ -100,11 +100,17 @@ class _MusicalTrainingScreenState extends State<MusicalTrainingScreen> {
     if (intro == null) return true;
     await MockSession.markIntroSeen(intro);
     if (!mounted) return null;
+    // The guide of the level chosen on the card.
+    final ladder = MusicalPools.ladder(pool);
+    final level = ladder == null ? 1 : (_levels[pool] ?? ladder.playable);
     return Navigator.push<bool>(
       context,
       AppTransitions.cinematicRoute<bool>(
         settings: const RouteSettings(name: '/module/musical/referencia'),
-        screen: IntervalIntroScreen(beforePractice: beforePractice),
+        screen: IntervalIntroScreen(
+          beforePractice: beforePractice,
+          level: level,
+        ),
       ),
     );
   }

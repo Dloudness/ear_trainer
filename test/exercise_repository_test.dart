@@ -37,8 +37,9 @@ void main() {
   test('every catalog sound is compressed and exists', () {
     // WAV masters live in audio_masters/; the app plays only .m4a.
     // After a generator, run: dart run tools/compress_audio.dart
-    final catalog =
-        jsonDecode(File('assets/data/exercises.json').readAsStringSync());
+    final catalog = jsonDecode(
+      File('assets/data/exercises.json').readAsStringSync(),
+    );
     final paths = <String>[];
     void walk(Object? node) {
       if (node is Map) node.values.forEach(walk);
@@ -89,12 +90,56 @@ void main() {
     expect(slopes.length, 16);
     for (final exercise in slopes) {
       expect(exercise.correct, 's${exercise.tags['slope']}');
-      expect(exercise.tags['frequency'], exercise.tags['kind'] == 'hpf' ? '400' : '2000');
+      expect(
+        exercise.tags['frequency'],
+        exercise.tags['kind'] == 'hpf' ? '400' : '2000',
+      );
     }
     // A level only draws its own exercises.
     final picked = EqPractice.pick(EqSource.filter, level: 2)!;
     expect(picked.tags['level'], '2');
     expect(LevelLadder.filters.maxLevel, 3);
+  });
+
+  test('shelves, resonances and problems: three levels each', () {
+    const expected = {
+      EqSource.shelf: (56, [16, 24, 16]),
+      EqSource.resonance: (50, [12, 14, 24]),
+      EqSource.problem: (46, [11, 11, 24]),
+    };
+    for (final MapEntry(key: source, value: (total, levels))
+        in expected.entries) {
+      final all = EqPractice.of(source);
+      expect(all.length, total, reason: source.name);
+      for (var level = 1; level <= 3; level++) {
+        final list = EqPractice.of(source, level: level);
+        expect(list.length, levels[level - 1], reason: '${source.name} $level');
+        expect(EqPractice.pick(source, level: level)!.tags['level'], '$level');
+      }
+      expect(EqPractice.ladder(source)!.maxLevel, 3);
+      for (final exercise in all) {
+        expect(exercise.options.map((o) => o.id), contains(exercise.correct));
+        expect(exercise.audio.path, endsWith('.m4a'));
+        expect(exercise.referencePath, isNotNull);
+        expect(exercise.referencePath, isNot(exercise.audio.path));
+        expect(exercise.access, 'free', reason: 'el nivel decide Premium');
+        for (final option in exercise.options) {
+          expect(exercise.intro ?? '', isNot(contains(option.label)));
+        }
+      }
+    }
+    // Resonances are always one narrow +12 dB peak.
+    for (final exercise in EqPractice.of(EqSource.resonance)) {
+      expect(exercise.tags['type'], 'bell');
+      expect(exercise.tags['gain'], '12');
+    }
+    // Problems: level 1 offers two choices, level 2 four.
+    for (final exercise in EqPractice.of(EqSource.problem, level: 1)) {
+      expect(exercise.options.length, 2);
+    }
+    for (final exercise in EqPractice.of(EqSource.problem, level: 2)) {
+      expect(exercise.options.length, 4);
+    }
   });
 
   test('loads the five EQ exercises with their original copy', () {
@@ -282,8 +327,8 @@ void main() {
     // Intervals: three levels, piano and guitar (tools/generate_intervals.dart).
     expect(sections.map((section) => section.exercises.length), [
       198,
-      198,
       168,
+      96,
       24,
       12,
       25,
@@ -360,7 +405,10 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     await MockSession.load();
     for (var i = 0; i < 4; i++) {
-      await MockSession.recordExerciseResult(exerciseId: 'EQ_01', correct: true);
+      await MockSession.recordExerciseResult(
+        exerciseId: 'EQ_01',
+        correct: true,
+      );
     }
     expect(MockSession.answersGiven, 4);
     expect(MockSession.reachedFreeLimit, isFalse);
@@ -516,7 +564,7 @@ void main() {
                 exercise.access == 'account',
           )
           .length,
-      561,
+      459,
     );
     expect(
       musical
@@ -959,7 +1007,8 @@ void main() {
         if (e.tags['level'] == level) e.tags['mode']!,
     };
     expect(kinds('1'), basic);
-    expect(modes('1'), {'asc', 'desc'});
+    expect(modes('1'), {'asc'});
+    expect(modes('2'), {'asc', 'desc'});
     expect(kinds('2'), octave);
     expect(kinds('3'), {...octave, ...compound});
     expect(modes('3'), {'asc', 'desc', 'harm'});
@@ -990,6 +1039,35 @@ void main() {
       for (final mode in IntervalIntroScreen.modes.keys) {
         expect(File(IntervalIntroScreen.clip(kind, mode)).existsSync(), isTrue);
       }
+    }
+  });
+
+  test('intervals: one guided reference track per level', () {
+    final tracks = GuideTrack.parse(
+      File(IntervalIntroScreen.cuesPath).readAsStringSync(),
+    );
+    expect(tracks.map((t) => t.level), [1, 2, 3]);
+    // Básico rises; Intermedio rises and falls; Profesional adds harmonic.
+    expect(tracks[0].cues.length, 5);
+    expect(tracks[0].cues.map((c) => c.mode).toSet(), {'asc'});
+    expect(tracks[1].cues.length, 24);
+    expect(tracks[1].cues.map((c) => c.mode).toSet(), {'asc', 'desc'});
+    expect(tracks[2].cues.length, 48);
+    for (final track in tracks) {
+      expect(File(track.audio).existsSync(), isTrue, reason: track.audio);
+      // Small to large, one after the other, inside the track.
+      for (var i = 1; i < track.cues.length; i++) {
+        expect(track.cues[i].start, greaterThan(track.cues[i - 1].end));
+        expect(
+          track.cues[i].semitones,
+          greaterThanOrEqualTo(track.cues[i - 1].semitones),
+        );
+      }
+      expect(track.cues.last.end, lessThanOrEqualTo(track.seconds));
+      // The label shown is the cue sounding.
+      final third = track.cues[1];
+      expect(track.at((third.start + third.end) / 2), third);
+      expect(track.at(0), isNull);
     }
   });
 

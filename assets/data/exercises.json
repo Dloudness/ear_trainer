@@ -53497,7 +53497,7 @@
       ],
       "correct": "f100",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 100 Hz. Se pierde lo que está por debajo: los subgraves: el bombo y el bajo pierden profundidad.",
+      "explanation": "El corte está en 100 Hz. Se pierde lo que está por debajo, es decir, los subgraves: el bombo y el bajo pierden profundidad.",
       "tip": "Escucha el bajo y el bombo: cuanto más alto el corte, más se adelgazan, hasta que también se afinan las voces y la caja.",
       "tags": {
         "skill": "filter",
@@ -53543,7 +53543,7 @@
       ],
       "correct": "f200",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 200 Hz. Se pierde lo que está por debajo: los graves: el bajo queda delgado.",
+      "explanation": "El corte está en 200 Hz. Se pierde lo que está por debajo, es decir, los graves: el bajo queda delgado.",
       "tip": "Escucha el bajo y el bombo: cuanto más alto el corte, más se adelgazan, hasta que también se afinan las voces y la caja.",
       "tags": {
         "skill": "filter",
@@ -53589,7 +53589,7 @@
       ],
       "correct": "f400",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 400 Hz. Se pierde lo que está por debajo: el cuerpo de los instrumentos: todo suena más liviano.",
+      "explanation": "El corte está en 400 Hz. Se pierde lo que está por debajo, es decir, el cuerpo de los instrumentos: todo suena más liviano.",
       "tip": "Escucha el bajo y el bombo: cuanto más alto el corte, más se adelgazan, hasta que también se afinan las voces y la caja.",
       "tags": {
         "skill": "filter",
@@ -53635,7 +53635,7 @@
       ],
       "correct": "f800",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 800 Hz. Se pierde lo que está por debajo: casi todo el cuerpo: suena como una radio pequeña.",
+      "explanation": "El corte está en 800 Hz. Se pierde lo que está por debajo, es decir, casi todo el cuerpo: suena como una radio pequeña.",
       "tip": "Escucha el bajo y el bombo: cuanto más alto el corte, más se adelgazan, hasta que también se afinan las voces y la caja.",
       "tags": {
         "skill": "filter",
@@ -53681,7 +53681,7 @@
       ],
       "correct": "f1000",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 1 kHz. Se pierde lo que está por encima: casi todo el brillo: suena como detrás de una pared.",
+      "explanation": "El corte está en 1 kHz. Se pierde lo que está por encima, es decir, casi todo el brillo: suena como detrás de una pared.",
       "tip": "Escucha los platillos y las consonantes: cuanto más bajo el corte, antes se apagan, hasta que todo suena detrás de una pared.",
       "tags": {
         "skill": "filter",
@@ -53727,7 +53727,7 @@
       ],
       "correct": "f2000",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 2 kHz. Se pierde lo que está por encima: la presencia: las voces y la percusión se alejan.",
+      "explanation": "El corte está en 2 kHz. Se pierde lo que está por encima, es decir, la presencia: las voces y la percusión se alejan.",
       "tip": "Escucha los platillos y las consonantes: cuanto más bajo el corte, antes se apagan, hasta que todo suena detrás de una pared.",
       "tags": {
         "skill": "filter",
@@ -53773,7 +53773,7 @@
       ],
       "correct": "f4000",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 4 kHz. Se pierde lo que está por encima: el brillo: los platillos pierden definición.",
+      "explanation": "El corte está en 4 kHz. Se pierde lo que está por encima, es decir, el brillo: los platillos pierden definición.",
       "tip": "Escucha los platillos y las consonantes: cuanto más bajo el corte, antes se apagan, hasta que todo suena detrás de una pared.",
       "tags": {
         "skill": "filter",
@@ -53819,7 +53819,7 @@
       ],
       "correct": "f8000",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 8 kHz. Se pierde lo que está por encima: solo el aire: el cambio es sutil, en los platillos.",
+      "explanation": "El corte está en 8 kHz. Se pierde lo que está por encima, es decir, solo el aire: el cambio es sutil, en los platillos.",
       "tip": "Escucha los platillos y las consonantes: cuanto más bajo el corte, antes se apagan, hasta que todo suena detrás de una pared.",
       "tags": {
         "skill": "filter",
@@ -53911,7 +53911,7 @@
       ],
       "correct": "s12",
       "difficulty": "advanced",
-      "explanation": "La pendiente es de 12 dB por octava: un corte moderado, el más común para limpiar sin que se note.",
+      "explanation": "La pendiente es de 12 dB por octava: un corte moderado. Junto con la de 18 dB, es de las más usadas en mezcla.",
       "tip": "Fíjate en lo que queda justo más allá del corte: con 6 dB/oct aún se escucha bastante; con 24 dB/oct casi desaparece.",
       "tags": {
         "skill": "filter",
@@ -54095,7 +54095,7 @@
       ],
       "correct": "s12",
       "difficulty": "advanced",
-      "explanation": "La pendiente es de 12 dB por octava: un corte moderado, el más común para limpiar sin que se note.",
+      "explanation": "La pendiente es de 12 dB por octava: un corte moderado. Junto con la de 18 dB, es de las más usadas en mezcla.",
       "tip": "Fíjate en lo que queda justo más allá del corte: con 6 dB/oct aún se escucha bastante; con 24 dB/oct casi desaparece.",
       "tags": {
         "skill": "filter",
@@ -54233,7 +54233,7 @@
       ],
       "correct": "f160",
       "difficulty": "advanced",
-      "explanation": "El corte está en 160 Hz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 160 Hz. Se pierde lo que está por debajo, es decir, el retumbe del bombo y la base del bajo. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánto cuerpo le queda al instrumento más grave que aún suena: entre tercios cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -54279,7 +54279,7 @@
       ],
       "correct": "f200",
       "difficulty": "advanced",
-      "explanation": "El corte está en 200 Hz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 200 Hz. Se pierde lo que está por debajo, es decir, los graves del bajo, que queda más delgado. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánto cuerpo le queda al instrumento más grave que aún suena: entre tercios cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -54325,7 +54325,7 @@
       ],
       "correct": "f250",
       "difficulty": "advanced",
-      "explanation": "El corte está en 250 Hz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 250 Hz. Se pierde lo que está por debajo, es decir, el calor de los graves: el piano y las voces empiezan a adelgazarse. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánto cuerpo le queda al instrumento más grave que aún suena: entre tercios cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -54371,7 +54371,7 @@
       ],
       "correct": "f315",
       "difficulty": "advanced",
-      "explanation": "El corte está en 315 Hz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 315 Hz. Se pierde lo que está por debajo, es decir, parte del cuerpo: los instrumentos de registro medio suenan más livianos. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánto cuerpo le queda al instrumento más grave que aún suena: entre tercios cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -54417,7 +54417,7 @@
       ],
       "correct": "f2000",
       "difficulty": "advanced",
-      "explanation": "El corte está en 2 kHz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 2 kHz. Se pierde lo que está por encima, es decir, la presencia: las voces y la percusión se alejan. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánta definición le queda a la percusión: entre tercios el brillo cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -54463,7 +54463,7 @@
       ],
       "correct": "f2500",
       "difficulty": "advanced",
-      "explanation": "El corte está en 2,5 kHz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 2,5 kHz. Se pierde lo que está por encima, es decir, parte de la presencia: las consonantes pierden filo. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánta definición le queda a la percusión: entre tercios el brillo cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -54509,7 +54509,7 @@
       ],
       "correct": "f3150",
       "difficulty": "advanced",
-      "explanation": "El corte está en 3,15 kHz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 3,15 kHz. Se pierde lo que está por encima, es decir, el filo del ataque: la percusión suena más suave. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánta definición le queda a la percusión: entre tercios el brillo cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -54555,7 +54555,7 @@
       ],
       "correct": "f4000",
       "difficulty": "advanced",
-      "explanation": "El corte está en 4 kHz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 4 kHz. Se pierde lo que está por encima, es decir, el brillo: los platillos pierden definición. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánta definición le queda a la percusión: entre tercios el brillo cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -54829,7 +54829,7 @@
       ],
       "correct": "f100",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 100 Hz. Se pierde lo que está por debajo: los subgraves: el bombo y el bajo pierden profundidad.",
+      "explanation": "El corte está en 100 Hz. Se pierde lo que está por debajo, es decir, los subgraves: el bombo y el bajo pierden profundidad.",
       "tip": "Escucha el bajo y el bombo: cuanto más alto el corte, más se adelgazan, hasta que también se afinan las voces y la caja.",
       "tags": {
         "skill": "filter",
@@ -54875,7 +54875,7 @@
       ],
       "correct": "f200",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 200 Hz. Se pierde lo que está por debajo: los graves: el bajo queda delgado.",
+      "explanation": "El corte está en 200 Hz. Se pierde lo que está por debajo, es decir, los graves: el bajo queda delgado.",
       "tip": "Escucha el bajo y el bombo: cuanto más alto el corte, más se adelgazan, hasta que también se afinan las voces y la caja.",
       "tags": {
         "skill": "filter",
@@ -54921,7 +54921,7 @@
       ],
       "correct": "f400",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 400 Hz. Se pierde lo que está por debajo: el cuerpo de los instrumentos: todo suena más liviano.",
+      "explanation": "El corte está en 400 Hz. Se pierde lo que está por debajo, es decir, el cuerpo de los instrumentos: todo suena más liviano.",
       "tip": "Escucha el bajo y el bombo: cuanto más alto el corte, más se adelgazan, hasta que también se afinan las voces y la caja.",
       "tags": {
         "skill": "filter",
@@ -54967,7 +54967,7 @@
       ],
       "correct": "f800",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 800 Hz. Se pierde lo que está por debajo: casi todo el cuerpo: suena como una radio pequeña.",
+      "explanation": "El corte está en 800 Hz. Se pierde lo que está por debajo, es decir, casi todo el cuerpo: suena como una radio pequeña.",
       "tip": "Escucha el bajo y el bombo: cuanto más alto el corte, más se adelgazan, hasta que también se afinan las voces y la caja.",
       "tags": {
         "skill": "filter",
@@ -55013,7 +55013,7 @@
       ],
       "correct": "f1000",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 1 kHz. Se pierde lo que está por encima: casi todo el brillo: suena como detrás de una pared.",
+      "explanation": "El corte está en 1 kHz. Se pierde lo que está por encima, es decir, casi todo el brillo: suena como detrás de una pared.",
       "tip": "Escucha los platillos y las consonantes: cuanto más bajo el corte, antes se apagan, hasta que todo suena detrás de una pared.",
       "tags": {
         "skill": "filter",
@@ -55059,7 +55059,7 @@
       ],
       "correct": "f2000",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 2 kHz. Se pierde lo que está por encima: la presencia: las voces y la percusión se alejan.",
+      "explanation": "El corte está en 2 kHz. Se pierde lo que está por encima, es decir, la presencia: las voces y la percusión se alejan.",
       "tip": "Escucha los platillos y las consonantes: cuanto más bajo el corte, antes se apagan, hasta que todo suena detrás de una pared.",
       "tags": {
         "skill": "filter",
@@ -55105,7 +55105,7 @@
       ],
       "correct": "f4000",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 4 kHz. Se pierde lo que está por encima: el brillo: los platillos pierden definición.",
+      "explanation": "El corte está en 4 kHz. Se pierde lo que está por encima, es decir, el brillo: los platillos pierden definición.",
       "tip": "Escucha los platillos y las consonantes: cuanto más bajo el corte, antes se apagan, hasta que todo suena detrás de una pared.",
       "tags": {
         "skill": "filter",
@@ -55151,7 +55151,7 @@
       ],
       "correct": "f8000",
       "difficulty": "intermediate",
-      "explanation": "El corte está en 8 kHz. Se pierde lo que está por encima: solo el aire: el cambio es sutil, en los platillos.",
+      "explanation": "El corte está en 8 kHz. Se pierde lo que está por encima, es decir, solo el aire: el cambio es sutil, en los platillos.",
       "tip": "Escucha los platillos y las consonantes: cuanto más bajo el corte, antes se apagan, hasta que todo suena detrás de una pared.",
       "tags": {
         "skill": "filter",
@@ -55243,7 +55243,7 @@
       ],
       "correct": "s12",
       "difficulty": "advanced",
-      "explanation": "La pendiente es de 12 dB por octava: un corte moderado, el más común para limpiar sin que se note.",
+      "explanation": "La pendiente es de 12 dB por octava: un corte moderado. Junto con la de 18 dB, es de las más usadas en mezcla.",
       "tip": "Fíjate en lo que queda justo más allá del corte: con 6 dB/oct aún se escucha bastante; con 24 dB/oct casi desaparece.",
       "tags": {
         "skill": "filter",
@@ -55427,7 +55427,7 @@
       ],
       "correct": "s12",
       "difficulty": "advanced",
-      "explanation": "La pendiente es de 12 dB por octava: un corte moderado, el más común para limpiar sin que se note.",
+      "explanation": "La pendiente es de 12 dB por octava: un corte moderado. Junto con la de 18 dB, es de las más usadas en mezcla.",
       "tip": "Fíjate en lo que queda justo más allá del corte: con 6 dB/oct aún se escucha bastante; con 24 dB/oct casi desaparece.",
       "tags": {
         "skill": "filter",
@@ -55565,7 +55565,7 @@
       ],
       "correct": "f160",
       "difficulty": "advanced",
-      "explanation": "El corte está en 160 Hz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 160 Hz. Se pierde lo que está por debajo, es decir, el retumbe del bombo y la base del bajo. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánto cuerpo le queda al instrumento más grave que aún suena: entre tercios cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -55611,7 +55611,7 @@
       ],
       "correct": "f200",
       "difficulty": "advanced",
-      "explanation": "El corte está en 200 Hz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 200 Hz. Se pierde lo que está por debajo, es decir, los graves del bajo, que queda más delgado. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánto cuerpo le queda al instrumento más grave que aún suena: entre tercios cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -55657,7 +55657,7 @@
       ],
       "correct": "f250",
       "difficulty": "advanced",
-      "explanation": "El corte está en 250 Hz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 250 Hz. Se pierde lo que está por debajo, es decir, el calor de los graves: el piano y las voces empiezan a adelgazarse. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánto cuerpo le queda al instrumento más grave que aún suena: entre tercios cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -55703,7 +55703,7 @@
       ],
       "correct": "f315",
       "difficulty": "advanced",
-      "explanation": "El corte está en 315 Hz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 315 Hz. Se pierde lo que está por debajo, es decir, parte del cuerpo: los instrumentos de registro medio suenan más livianos. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánto cuerpo le queda al instrumento más grave que aún suena: entre tercios cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -55749,7 +55749,7 @@
       ],
       "correct": "f2000",
       "difficulty": "advanced",
-      "explanation": "El corte está en 2 kHz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 2 kHz. Se pierde lo que está por encima, es decir, la presencia: las voces y la percusión se alejan. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánta definición le queda a la percusión: entre tercios el brillo cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -55795,7 +55795,7 @@
       ],
       "correct": "f2500",
       "difficulty": "advanced",
-      "explanation": "El corte está en 2,5 kHz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 2,5 kHz. Se pierde lo que está por encima, es decir, parte de la presencia: las consonantes pierden filo. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánta definición le queda a la percusión: entre tercios el brillo cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -55841,7 +55841,7 @@
       ],
       "correct": "f3150",
       "difficulty": "advanced",
-      "explanation": "El corte está en 3,15 kHz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 3,15 kHz. Se pierde lo que está por encima, es decir, el filo del ataque: la percusión suena más suave. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánta definición le queda a la percusión: entre tercios el brillo cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",
@@ -55887,7 +55887,7 @@
       ],
       "correct": "f4000",
       "difficulty": "advanced",
-      "explanation": "El corte está en 4 kHz. Entre tercios de octava vecinos la diferencia es pequeña: es un ajuste de precisión.",
+      "explanation": "El corte está en 4 kHz. Se pierde lo que está por encima, es decir, el brillo: los platillos pierden definición. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.",
       "tip": "Escucha cuánta definición le queda a la percusión: entre tercios el brillo cambia poco, pero cambia.",
       "tags": {
         "skill": "filter",

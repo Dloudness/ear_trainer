@@ -22,6 +22,7 @@ const outDir = 'audio_masters/eq/eq_filters';
 const appDir = 'assets/eq/eq_filters';
 const catalogPath = 'assets/data/exercises.json';
 const module = 'ecualizacionFrecuencias';
+
 /// EBU R128 level. At -20 LUFS a high-pass raises the peaks above 0 dBFS
 /// (its phase shift changes the waveform); -23 keeps every file below -1.
 const targetLufs = -23.0;
@@ -37,7 +38,12 @@ class Source {
 }
 
 const sources = [
-  Source('salsa', 'audio_masters/source/music_instrumental_01.wav', 10, 'salsa'),
+  Source(
+    'salsa',
+    'audio_masters/source/music_instrumental_01.wav',
+    10,
+    'salsa',
+  ),
   Source(
     'music',
     'audio_masters/music/music_attention_competing_01.wav',
@@ -73,7 +79,9 @@ void main() {
 
     /// Writes one version and returns its app path (.m4a).
     String render(String name, List<Float64List> audio) {
-      final shaped = [for (final c in audio) fade(Float64List.fromList(c), wav.rate)];
+      final shaped = [
+        for (final c in audio) fade(Float64List.fromList(c), wav.rate),
+      ];
       final loud = lufs(shaped, wav.rate);
       final gain = pow(10, (targetLufs - loud) / 20).toDouble();
       var peak = 0.0;
@@ -90,7 +98,9 @@ void main() {
       );
       if (peakDb > -1) {
         // Never write a file that could clip after AAC encoding.
-        stderr.writeln('${file(name)} supera -1 dBFS ($peakDb). Baja targetLufs.');
+        stderr.writeln(
+          '${file(name)} supera -1 dBFS ($peakDb). Baja targetLufs.',
+        );
         exit(1);
       }
       writeWav24('$outDir/${file(name)}.wav', shaped, wav.rate);
@@ -102,7 +112,8 @@ void main() {
     String filtered(Kind kind, int freq, int slope) {
       final name = 'filter_${kind.name}_${freq}_${slope}db';
       return rendered[name] ??= render(name, [
-        for (final c in channels) butterworth(c, wav.rate, kind, freq, slope ~/ 6),
+        for (final c in channels)
+          butterworth(c, wav.rate, kind, freq, slope ~/ 6),
       ]);
     }
 
@@ -123,10 +134,12 @@ void main() {
       'type': 'eq_band',
       'audio': {'source': 'asset', 'path': path},
       'reference': reference,
-      'intro': 'Compara el procesado con la referencia. El filtro ya está en el ejemplo.',
+      'intro':
+          'Compara el procesado con la referencia. El filtro ya está en el ejemplo.',
       'question': question,
       'options': [
-        for (final (optionId, label) in options) {'id': optionId, 'label': label},
+        for (final (optionId, label) in options)
+          {'id': optionId, 'label': label},
       ],
       'correct': correct,
       'difficulty': switch (level) {
@@ -159,48 +172,54 @@ void main() {
       (Kind.lpf, 2000),
       (Kind.lpf, 4000),
     ]) {
-      exercises.add(exercise(
-        id: 'EQ_FILT_L1_${kind.name.toUpperCase()}_${freq}_$src',
-        level: 1,
-        drill: 'type',
-        path: filtered(kind, freq, 12),
-        question: '¿Qué filtro escuchas?',
-        options: const [
-          ('hpf', 'Pasa altos (recorta graves)'),
-          ('lpf', 'Pasa bajos (recorta agudos)'),
-        ],
-        correct: kind.name,
-        explanation: kind == Kind.hpf
-            ? 'Es un pasa altos en ${hz(freq)}: recorta lo que está por debajo. '
-                  'El sonido pierde peso y cuerpo, pero conserva el brillo.'
-            : 'Es un pasa bajos en ${hz(freq)}: recorta lo que está por encima. '
-                  'El sonido pierde brillo y aire, pero conserva el cuerpo.',
-        tip: 'Compara con la referencia y pregúntate qué se fue: '
-            '¿el piso (los graves) o el techo (los agudos)?',
-        tags: {'kind': kind.name, 'frequency': '$freq', 'slope': '12'},
-      ));
+      exercises.add(
+        exercise(
+          id: 'EQ_FILT_L1_${kind.name.toUpperCase()}_${freq}_$src',
+          level: 1,
+          drill: 'type',
+          path: filtered(kind, freq, 12),
+          question: '¿Qué filtro escuchas?',
+          options: const [
+            ('hpf', 'Pasa altos (recorta graves)'),
+            ('lpf', 'Pasa bajos (recorta agudos)'),
+          ],
+          correct: kind.name,
+          explanation: kind == Kind.hpf
+              ? 'Es un pasa altos en ${hz(freq)}: recorta lo que está por debajo. '
+                    'El sonido pierde peso y cuerpo, pero conserva el brillo.'
+              : 'Es un pasa bajos en ${hz(freq)}: recorta lo que está por encima. '
+                    'El sonido pierde brillo y aire, pero conserva el cuerpo.',
+          tip:
+              'Compara con la referencia y pregúntate qué se fue: '
+              '¿el piso (los graves) o el techo (los agudos)?',
+          tags: {'kind': kind.name, 'frequency': '$freq', 'slope': '12'},
+        ),
+      );
     }
 
     // Level 2: cutoff by octaves, 12 dB/oct.
     for (final kind in Kind.values) {
       final freqs = kind == Kind.hpf ? octaveHpf : octaveLpf;
       for (final freq in freqs) {
-        exercises.add(exercise(
-          id: 'EQ_FILT_L2_${kind.name.toUpperCase()}_${freq}_$src',
-          level: 2,
-          drill: 'cutoff_octave',
-          path: filtered(kind, freq, 12),
-          question: '${kindName(kind)} de 12 dB por octava. ¿Dónde está el corte?',
-          options: [for (final f in freqs) ('f$f', hz(f))],
-          correct: 'f$freq',
-          explanation: cutoffExplanation(kind, freq),
-          tip: kind == Kind.hpf
-              ? 'Escucha el bajo y el bombo: cuanto más alto el corte, más se '
-                    'adelgazan, hasta que también se afinan las voces y la caja.'
-              : 'Escucha los platillos y las consonantes: cuanto más bajo el '
-                    'corte, antes se apagan, hasta que todo suena detrás de una pared.',
-          tags: {'kind': kind.name, 'frequency': '$freq', 'slope': '12'},
-        ));
+        exercises.add(
+          exercise(
+            id: 'EQ_FILT_L2_${kind.name.toUpperCase()}_${freq}_$src',
+            level: 2,
+            drill: 'cutoff_octave',
+            path: filtered(kind, freq, 12),
+            question:
+                '${kindName(kind)} de 12 dB por octava. ¿Dónde está el corte?',
+            options: [for (final f in freqs) ('f$f', hz(f))],
+            correct: 'f$freq',
+            explanation: cutoffExplanation(kind, freq),
+            tip: kind == Kind.hpf
+                ? 'Escucha el bajo y el bombo: cuanto más alto el corte, más se '
+                      'adelgazan, hasta que también se afinan las voces y la caja.'
+                : 'Escucha los platillos y las consonantes: cuanto más bajo el '
+                      'corte, antes se apagan, hasta que todo suena detrás de una pared.',
+            tags: {'kind': kind.name, 'frequency': '$freq', 'slope': '12'},
+          ),
+        );
       }
     }
 
@@ -208,19 +227,22 @@ void main() {
     for (final kind in Kind.values) {
       final freq = kind == Kind.hpf ? slopeHpf : slopeLpf;
       for (final slope in slopes) {
-        exercises.add(exercise(
-          id: 'EQ_FILT_L3_SLOPE_${kind.name.toUpperCase()}_${slope}DB_$src',
-          level: 3,
-          drill: 'slope',
-          path: filtered(kind, freq, slope),
-          question: '${kindName(kind)} en ${hz(freq)}. ¿Qué pendiente tiene?',
-          options: [for (final s in slopes) ('s$s', '$s dB/oct')],
-          correct: 's$slope',
-          explanation: slopeExplanation(slope),
-          tip: 'Fíjate en lo que queda justo más allá del corte: con 6 dB/oct '
-              'aún se escucha bastante; con 24 dB/oct casi desaparece.',
-          tags: {'kind': kind.name, 'frequency': '$freq', 'slope': '$slope'},
-        ));
+        exercises.add(
+          exercise(
+            id: 'EQ_FILT_L3_SLOPE_${kind.name.toUpperCase()}_${slope}DB_$src',
+            level: 3,
+            drill: 'slope',
+            path: filtered(kind, freq, slope),
+            question: '${kindName(kind)} en ${hz(freq)}. ¿Qué pendiente tiene?',
+            options: [for (final s in slopes) ('s$s', '$s dB/oct')],
+            correct: 's$slope',
+            explanation: slopeExplanation(slope),
+            tip:
+                'Fíjate en lo que queda justo más allá del corte: con 6 dB/oct '
+                'aún se escucha bastante; con 24 dB/oct casi desaparece.',
+            tags: {'kind': kind.name, 'frequency': '$freq', 'slope': '$slope'},
+          ),
+        );
       }
     }
 
@@ -228,23 +250,25 @@ void main() {
     for (final kind in Kind.values) {
       final freqs = kind == Kind.hpf ? thirdHpf : thirdLpf;
       for (final freq in freqs) {
-        exercises.add(exercise(
-          id: 'EQ_FILT_L3_THIRD_${kind.name.toUpperCase()}_${freq}_$src',
-          level: 3,
-          drill: 'cutoff_third',
-          path: filtered(kind, freq, 24),
-          question: '${kindName(kind)} de 24 dB por octava. ¿Dónde está el corte?',
-          options: [for (final f in freqs) ('f$f', hz(f))],
-          correct: 'f$freq',
-          explanation: 'El corte está en ${hz(freq)}. Entre tercios de octava '
-              'vecinos la diferencia es pequeña: es un ajuste de precisión.',
-          tip: kind == Kind.hpf
-              ? 'Escucha cuánto cuerpo le queda al instrumento más grave que '
-                    'aún suena: entre tercios cambia poco, pero cambia.'
-              : 'Escucha cuánta definición le queda a la percusión: entre '
-                    'tercios el brillo cambia poco, pero cambia.',
-          tags: {'kind': kind.name, 'frequency': '$freq', 'slope': '24'},
-        ));
+        exercises.add(
+          exercise(
+            id: 'EQ_FILT_L3_THIRD_${kind.name.toUpperCase()}_${freq}_$src',
+            level: 3,
+            drill: 'cutoff_third',
+            path: filtered(kind, freq, 24),
+            question:
+                '${kindName(kind)} de 24 dB por octava. ¿Dónde está el corte?',
+            options: [for (final f in freqs) ('f$f', hz(f))],
+            correct: 'f$freq',
+            explanation: thirdExplanation(kind, freq),
+            tip: kind == Kind.hpf
+                ? 'Escucha cuánto cuerpo le queda al instrumento más grave que '
+                      'aún suena: entre tercios cambia poco, pero cambia.'
+                : 'Escucha cuánta definición le queda a la percusión: entre '
+                      'tercios el brillo cambia poco, pero cambia.',
+            tags: {'kind': kind.name, 'frequency': '$freq', 'slope': '24'},
+          ),
+        );
       }
     }
   }
@@ -285,25 +309,56 @@ String cutoffExplanation(Kind kind, int freq) {
     _ => 'esa zona',
   };
   final side = kind == Kind.hpf ? 'por debajo' : 'por encima';
-  return 'El corte está en ${hz(freq)}. Se pierde lo que está $side: $lost.';
+  return 'El corte está en ${hz(freq)}. Se pierde lo que está $side, es decir, $lost.';
+}
+
+/// Third-octave cutoffs (24 dB/oct): what goes away at each band, and that
+/// the neighbouring band sounds only slightly different.
+String thirdExplanation(Kind kind, int freq) {
+  final lost = switch ((kind, freq)) {
+    (Kind.hpf, 160) => 'el retumbe del bombo y la base del bajo',
+    (Kind.hpf, 200) => 'los graves del bajo, que queda más delgado',
+    (Kind.hpf, 250) =>
+      'el calor de los graves: el piano y las voces empiezan a adelgazarse',
+    (Kind.hpf, 315) =>
+      'parte del cuerpo: los instrumentos de registro medio suenan más livianos',
+    (Kind.lpf, 2000) => 'la presencia: las voces y la percusión se alejan',
+    (Kind.lpf, 2500) => 'parte de la presencia: las consonantes pierden filo',
+    (Kind.lpf, 3150) => 'el filo del ataque: la percusión suena más suave',
+    (Kind.lpf, 4000) => 'el brillo: los platillos pierden definición',
+    _ => 'esa zona',
+  };
+  final side = kind == Kind.hpf ? 'por debajo' : 'por encima';
+  return 'El corte está en ${hz(freq)}. Se pierde lo que está $side, es decir, '
+      '$lost. Frente al tercio vecino el cambio es pequeño: es un ajuste de precisión.';
 }
 
 String slopeExplanation(int slope) => switch (slope) {
-  6 => 'La pendiente es de 6 dB por octava: un corte muy suave que deja pasar '
-      'bastante de lo que está más allá de la frecuencia.',
-  12 => 'La pendiente es de 12 dB por octava: un corte moderado, el más común '
-      'para limpiar sin que se note.',
-  18 => 'La pendiente es de 18 dB por octava: un corte firme, ya se siente el '
-      'límite.',
-  _ => 'La pendiente es de 24 dB por octava: un corte casi de pared, lo que '
-      'está más allá desaparece rápido.',
+  6 =>
+    'La pendiente es de 6 dB por octava: un corte muy suave que deja pasar '
+        'bastante de lo que está más allá de la frecuencia.',
+  12 =>
+    'La pendiente es de 12 dB por octava: un corte moderado. Junto con la de '
+        '18 dB, es de las más usadas en mezcla.',
+  18 =>
+    'La pendiente es de 18 dB por octava: un corte firme, ya se siente el '
+        'límite.',
+  _ =>
+    'La pendiente es de 24 dB por octava: un corte casi de pared, lo que '
+        'está más allá desaparece rápido.',
 };
 
 // ---------------------------------------------------------------- DSP
 
 /// Butterworth high-pass or low-pass of [order] (1-4), as cascaded
 /// sections. Each order adds 6 dB per octave.
-Float64List butterworth(Float64List x, int rate, Kind kind, int freq, int order) {
+Float64List butterworth(
+  Float64List x,
+  int rate,
+  Kind kind,
+  int freq,
+  int order,
+) {
   final sections = <List<double>>[];
   if (order.isOdd) sections.add(firstOrder(rate, kind, freq));
   // Q of each pole pair of the Butterworth prototype:
@@ -495,7 +550,10 @@ void writeWav24(String path, List<Float64List> channels, int rate) {
   for (var f = 0; f < frames; f++) {
     for (var c = 0; c < n; c++) {
       final dither = (rng.nextDouble() - rng.nextDouble());
-      final v = (channels[c][f] * 8388607 + dither).round().clamp(-8388608, 8388607);
+      final v = (channels[c][f] * 8388607 + dither).round().clamp(
+        -8388608,
+        8388607,
+      );
       d.setUint8(p, v & 0xFF);
       d.setUint8(p + 1, (v >> 8) & 0xFF);
       d.setUint8(p + 2, (v >> 16) & 0xFF);

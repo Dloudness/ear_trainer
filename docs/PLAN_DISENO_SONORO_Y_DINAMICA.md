@@ -13,6 +13,90 @@ Sale de tres documentos anteriores:
 
 ---
 
+## 0. PUNTO DE PARTIDA PARA LA PRÓXIMA SESIÓN
+
+### 0.1 Lo que dijo el profesor al probar (25 de noviembre, noche)
+
+| Ejercicio | Resultado |
+|---|---|
+| ¿Qué ambiente es? | Mejoró: las opciones tentadoras funcionan |
+| ¿Qué le pasa a esta toma? | Bien |
+| ¿Qué ajustarías en esta mezcla? | Bien |
+| ¿Cuánta reverberación tiene? | **No sonó en su Android.** En el navegador del computador sí suena: hay que revisarlo con él (ver 0.4) |
+| ¿Se pueden pegar estas tomas? | **No se entendió** el ejercicio |
+
+**El problema de fondo:** los ejercicios **suenan iguales**. Después de acertar dos, el resto se vuelve evidente: se memorizan o se deduce el truco, y no hay una variación real.
+
+**La causa:** hay muy poco material.
+- Una sola voz, con una sola frase.
+- 9 ambientes.
+- 4 músicas.
+- 3 foleys de puertas.
+
+Por eso cada ejercicio repite la misma base con un solo cambio.
+
+### 0.2 Cómo hacerlos más profesionales y con más criterio
+
+1. **Mucho más material distinto.** La meta para el nivel Básico:
+   - De 6 a 10 voces.
+   - De 25 a 30 ambientes.
+   - De 10 a 15 músicas.
+   - De 8 a 10 ruidos de rodaje reales.
+   - De 4 a 5 salas reales.
+2. **Combinar al azar al generar.** Voz × ruido × nivel × fragmento. Con 8 voces, 10 frases y 10 ruidos salen cientos de tomas distintas, y ninguna se repite lo suficiente como para memorizarla.
+3. **Variar la dificultad dentro de cada nivel, sin perder objetividad.** Por ejemplo, el ruido entre 18 y 26 dB por debajo de la voz, en vez de siempre a la misma distancia.
+4. **Que las opciones tentadoras también existan como audio.** Si "río" o "fritura" aparecen como opción falsa de la lluvia, también deben aparecer como respuesta correcta en otros ejercicios. Así el estudiante aprende a distinguirlos de verdad.
+5. **Material real en lugar de simulado.** La reverberación sale de salas reales y los ruidos de grabaciones reales. Lo simulado por código queda solo para lo que es exacto, como el zumbido de 60 Hz o los niveles.
+6. **Cada explicación dice cuál es la pista para distinguir**, no solo cuál era la respuesta.
+
+### 0.3 Qué grabar o conseguir (en orden de prioridad)
+
+Carpeta de entrega: `Documentos\ear_trainer_grabaciones\`, con una subcarpeta por bloque. WAV a 48 kHz y 24 bits si se puede (con los DJI, lo que den), **sin procesar**: sin compresor, EQ ni reducción de ruido. Junto a cada carpeta, un archivo de texto corto que diga qué es cada archivo, dónde se grabó y con qué micrófono.
+
+| # | Bloque | Qué | Para qué ejercicio |
+|---|---|---|---|
+| 1 | `voces` | Las 10 frases de la guía de grabación, dichas por **4 a 6 personas** (hombres y mujeres, distintas edades). Micrófono cerca (20-30 cm), en una sala lo más seca posible. Nombre: `voz_{persona}_{frase}.wav` | Toma, mezcla, reverberación, continuidad |
+| 2 | `ruidos` | 60-90 s de cada uno, **sin voces**, con el micrófono a 1-2 m como en un rodaje: nevera (que se oiga el motor arrancar o apagarse), lavadora, aire acondicionado, ventilador, bus o tráfico, construcción, gente hablando lejos, **viento en el micrófono sin peludo**, zumbido real de luces o dimmer y la **interferencia de celular** (el "tit-tit-tit" en el micrófono) | ¿Qué le pasa a esta toma? |
+| 3 | `toma_problemas` | Problemas reales de rodaje con una sola frase: **roce de ropa en el micrófono de solapa**, **plosivas** (pops en la P y la B), micrófono mal orientado y **saturación real** (con la ganancia muy alta) | ¿Qué le pasa a esta toma? |
+| 4 | `salas` | La **misma frase grabada a la vez** cerca (30 cm), a 1 m y a 3 m, en 4 o 5 espacios: baño, sala, pasillo o escalera, salón grande o auditorio, y exterior. Más **un aplauso o un globo** en cada espacio, que sirve como respuesta al impulso de la sala | ¿Cuánta reverberación tiene?; luego, ¿dónde se grabó? y ¿cerca o lejos? |
+| 5 | `ambientes` | De 1 a 2 minutos de **20 a 30 lugares**, en estéreo. Incluye los que hoy son opciones falsas: río o quebrada, **cocina con fritura**, mar con oleaje, tráfico lejano, oficina, aula, estación, mercado, parque de ciudad, iglesia, y lluvia sobre techo, ventana y carpa | ¿Qué ambiente es? |
+| 6 | `room_tone` | 30 s de "silencio" de cada locación donde grabes, con el mismo micrófono y la misma ganancia | ¿Se pueden pegar estas tomas? |
+| 7 | `musica` | De 10 a 15 piezas de cine **sin máster ni limitador**, de 30 a 60 s: tensión, drama, acción, suspenso, piano emotivo y ambiente o pads | ¿Qué ajustarías en esta mezcla? |
+
+**Bancos de sonido:** sirven, pero **revisa la licencia antes de usarlos**. La app redistribuye los sonidos, y muchas licencias lo prohíben.
+- Sirven:
+  - **Freesound**, solo con licencia CC0 o CC-BY (dando el crédito); nunca las "NC" (no comerciales).
+  - **Pixabay**, efectos y música.
+  - **Sonniss**, los paquetes gratuitos del GDC, libres de regalías.
+- **No sirven** tal cual:
+  - **BBC Sound Effects**: su licencia es solo para uso personal y educativo no comercial.
+  - **Splice**: no permite distribuir los samples sueltos, solo dentro de una obra propia.
+
+### 0.4 Qué hago yo con eso
+
+1. **Generador por combinaciones:** un listado de tus grabaciones, y el programa arma cientos de ejercicios cruzando voces, ruidos, niveles y fragmentos al azar, siempre a -23 LUFS y sin limitador.
+2. **Reverberación con salas reales:**
+   - Uso tus tomas a distintas distancias.
+   - Aplico las respuestas al impulso de cada sala a las voces secas (convolución).
+   - Así salen nuevos ejercicios: ¿dónde se grabó? y ¿cerca o lejos?
+3. **Continuidad rehecha para que se entienda:**
+   - Pregunta más clara: "¿Se nota el corte entre las dos tomas?"
+   - Un texto que avisa en qué segundo está el corte.
+   - Una referencia guiada antes del primer ejercicio, que explica qué es el room tone.
+   - Probablemente pase al nivel Intermedio.
+4. **Revisar el audio que no sonó en Android:**
+   - Que el profesor diga en cuál ejercicio de reverberación pasó, y si el tiempo avanzaba.
+   - Sospecha: los de puertas secas duran 1,4 s más silencio y pueden parecer mudos.
+   - Probar ese ejercicio en su Android y, si hace falta, quitar las puertas cortas.
+5. **Un nivel Intermedio por práctica:** ruidos más sutiles, más opciones parecidas y reverberación por tipo de sala.
+
+### 0.5 Por dónde arrancar mañana
+1. Probar en el Android el ejercicio de reverberación que no sonó.
+2. Decidir el rediseño de continuidad: ¿se queda en Básico, pasa a Intermedio o se reemplaza?
+3. Si ya hay grabaciones (aunque sean solo la nevera y 2 o 3 voces), armar el generador por combinaciones con ellas.
+
+---
+
 ## 1. Decisiones de hoy
 
 - **Dinámica sale de la app por ahora.** Ya no aparece en "¿Qué quieres entrenar hoy?" ni en el texto de bienvenida. Su pantalla, su ruta y su demo (DYN_01) siguen guardadas en el código, sin mostrarse, para volver a activarla cuando tenga ejercicios.

@@ -1,8 +1,35 @@
 # Ear Trainer: estado del proyecto
 
-**Última sesión:** 25 de noviembre de 2026, en el computador de la casa (ffmpeg ya instalado ahí).
+**Última sesión:** 25 de noviembre de 2026 (noche), en el computador de la casa (ffmpeg ya instalado ahí).
 
-## Sesión del 25 de noviembre
+## >>> PARA ARRANCAR MAÑANA <<<
+
+Lee **`docs/PLAN_DISENO_SONORO_Y_DINAMICA.md`, sección 0**. Tiene lo que dijo el profesor al probar, qué grabar y cómo mejorar los ejercicios.
+
+**Resumen de la noche del 25 de noviembre:**
+
+- **Diseño sonoro, nivel Básico (Premium):** 95 ejercicios en 5 prácticas, generados con `tools/generate_sound_design.dart`. Están en GitHub (commit `4f13ba2`).
+
+  | Práctica | Cómo quedó |
+  |---|---|
+  | Ambientes, la toma y la mezcla | Funcionan, pero **suenan iguales**: hay poco material, se memorizan rápido |
+  | Reverberación | **No sonó en el Android** del profesor. En el computador sí suena: revisar |
+  | Continuidad ("¿se pueden pegar estas tomas?") | **No se entendió**: rediseñar |
+
+- **Audio en Android (versión web):** el reproductor ya no usa el AudioContext de `audioplayers`, que se suspendía. Ahora usa un elemento de audio simple. Ninguna orden puede bloquear el reproductor.
+- **Dinámica:** salió de la app hasta tener ejercicios, y no será Premium.
+- **Escena con video y paneo:** descartados.
+- **El profesor va a grabar:**
+  - Ruidos con los DJI: nevera, lavadora, bus, aire acondicionado.
+  - Voces de varias personas.
+  - Ambientes.
+  - Salas.
+  - Bancos de sonido con licencia que permita usarlos.
+
+  La lista completa está en la sección 0.3 del plan.
+- **Al abrir la app en el celular:** recargar la página, porque el navegador guarda la versión anterior.
+
+## Sesión del 25 de noviembre (día)
 
 - **Filtros:** explicaciones corregidas (corte por octavas, pendiente de 12 dB y corte por tercios con lo que se pierde en cada banda).
 - **EQ Avanzado, tres prácticas nuevas** (`tools/generate_eq_practice.dart`, 152 ejercicios, 130 audios, 40 MB en `.m4a`):
@@ -43,7 +70,7 @@ Abre PowerShell en la carpeta del proyecto y ejecuta, en este orden:
    ```powershell
    flutter pub get
    ```
-4. Comprobar que todo está bien. Deben salir 0 problemas y 31 pruebas aprobadas:
+4. Comprobar que todo está bien. Deben salir 0 problemas y 34 pruebas aprobadas:
    ```powershell
    flutter analyze
    flutter test

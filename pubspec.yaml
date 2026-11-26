@@ -37,6 +37,7 @@ dependencies:
   audioplayers: ^6.5.0
   video_player: ^2.10.0
   shared_preferences: ^2.5.3
+  web: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,11 @@ flutter:
     - assets/eq/eq_shelves/
     - assets/eq/eq_resonances/
     - assets/eq/eq_problems/
+    - assets/sound_design/ambience/
+    - assets/sound_design/take/
+    - assets/sound_design/mix/
+    - assets/sound_design/reverb/
+    - assets/sound_design/continuity/
     - assets/tones/
     - assets/pitch/
     - assets/pitch_context/

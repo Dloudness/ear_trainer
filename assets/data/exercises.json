@@ -58617,6 +58617,3667 @@
         "semitones": "16"
       },
       "access": "account"
+    },
+    {
+      "id": "SD_AMB_01",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_coffe_shop_01.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "cafe",
+          "label": "Cafetería con gente"
+        },
+        {
+          "id": "alt0",
+          "label": "Oficina con gente"
+        },
+        {
+          "id": "alt1",
+          "label": "Aula de clase"
+        },
+        {
+          "id": "alt2",
+          "label": "Estación de bus"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "cafe",
+      "difficulty": "beginner",
+      "explanation": "Es una cafetería: murmullo de conversaciones mezclado con loza, tazas y cubiertos. Una oficina tendría teclados y teléfonos; un aula, una voz que domina.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_coffe_shop"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_02",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_coffe_shop_02.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "cafe",
+          "label": "Cafetería con gente"
+        },
+        {
+          "id": "alt0",
+          "label": "Oficina con gente"
+        },
+        {
+          "id": "alt1",
+          "label": "Aula de clase"
+        },
+        {
+          "id": "alt2",
+          "label": "Estación de bus"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "cafe",
+      "difficulty": "beginner",
+      "explanation": "Es una cafetería: murmullo de conversaciones mezclado con loza, tazas y cubiertos. Una oficina tendría teclados y teléfonos; un aula, una voz que domina.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_coffe_shop"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_03",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_coffe_shop_03.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "cafe",
+          "label": "Cafetería con gente"
+        },
+        {
+          "id": "alt0",
+          "label": "Oficina con gente"
+        },
+        {
+          "id": "alt1",
+          "label": "Aula de clase"
+        },
+        {
+          "id": "alt2",
+          "label": "Estación de bus"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "cafe",
+      "difficulty": "beginner",
+      "explanation": "Es una cafetería: murmullo de conversaciones mezclado con loza, tazas y cubiertos. Una oficina tendría teclados y teléfonos; un aula, una voz que domina.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_coffe_shop"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_04",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_coffe_shop_04.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "cafe",
+          "label": "Cafetería con gente"
+        },
+        {
+          "id": "alt0",
+          "label": "Oficina con gente"
+        },
+        {
+          "id": "alt1",
+          "label": "Aula de clase"
+        },
+        {
+          "id": "alt2",
+          "label": "Estación de bus"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "cafe",
+      "difficulty": "beginner",
+      "explanation": "Es una cafetería: murmullo de conversaciones mezclado con loza, tazas y cubiertos. Una oficina tendría teclados y teléfonos; un aula, una voz que domina.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_coffe_shop"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_05",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_rain_street_neighborhood_01_01.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "rain_city",
+          "label": "Lluvia en la ciudad"
+        },
+        {
+          "id": "alt0",
+          "label": "Río o quebrada"
+        },
+        {
+          "id": "alt1",
+          "label": "Fritura en una sartén"
+        },
+        {
+          "id": "alt2",
+          "label": "Viento helado"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "rain_city",
+      "difficulty": "beginner",
+      "explanation": "Es lluvia en la ciudad: miles de gotas pequeñas sobre superficies duras, con la calle de fondo. Un río fluye más parejo y grave; una fritura chisporrotea más agudo y seco.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "Rain_Street_Neighborhood_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_06",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_rain_street_neighborhood_01_02.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "rain_city",
+          "label": "Lluvia en la ciudad"
+        },
+        {
+          "id": "alt0",
+          "label": "Río o quebrada"
+        },
+        {
+          "id": "alt1",
+          "label": "Fritura en una sartén"
+        },
+        {
+          "id": "alt2",
+          "label": "Viento helado"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "rain_city",
+      "difficulty": "beginner",
+      "explanation": "Es lluvia en la ciudad: miles de gotas pequeñas sobre superficies duras, con la calle de fondo. Un río fluye más parejo y grave; una fritura chisporrotea más agudo y seco.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "Rain_Street_Neighborhood_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_07",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_rain_street_neighborhood_01_03.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "rain_city",
+          "label": "Lluvia en la ciudad"
+        },
+        {
+          "id": "alt0",
+          "label": "Río o quebrada"
+        },
+        {
+          "id": "alt1",
+          "label": "Fritura en una sartén"
+        },
+        {
+          "id": "alt2",
+          "label": "Viento helado"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "rain_city",
+      "difficulty": "beginner",
+      "explanation": "Es lluvia en la ciudad: miles de gotas pequeñas sobre superficies duras, con la calle de fondo. Un río fluye más parejo y grave; una fritura chisporrotea más agudo y seco.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "Rain_Street_Neighborhood_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_08",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_rain_street_neighborhood_01_04.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "rain_city",
+          "label": "Lluvia en la ciudad"
+        },
+        {
+          "id": "alt0",
+          "label": "Río o quebrada"
+        },
+        {
+          "id": "alt1",
+          "label": "Fritura en una sartén"
+        },
+        {
+          "id": "alt2",
+          "label": "Viento helado"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "rain_city",
+      "difficulty": "beginner",
+      "explanation": "Es lluvia en la ciudad: miles de gotas pequeñas sobre superficies duras, con la calle de fondo. Un río fluye más parejo y grave; una fritura chisporrotea más agudo y seco.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "Rain_Street_Neighborhood_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_09",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_field_cold_rain_01_01.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "rain_field",
+          "label": "Lluvia en el campo"
+        },
+        {
+          "id": "alt0",
+          "label": "Río o quebrada"
+        },
+        {
+          "id": "alt1",
+          "label": "Fritura en una sartén"
+        },
+        {
+          "id": "alt2",
+          "label": "Viento helado"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "rain_field",
+      "difficulty": "beginner",
+      "explanation": "Es lluvia en el campo: gotas sobre hojas y tierra, más suaves que sobre la calle. Un río fluye parejo y grave; una fritura chisporrotea más agudo y seco.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_field_cold_rain_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_10",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_field_birds_01_01.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "birds",
+          "label": "Campo con pájaros"
+        },
+        {
+          "id": "alt0",
+          "label": "Parque en la ciudad"
+        },
+        {
+          "id": "alt1",
+          "label": "Noche con insectos"
+        },
+        {
+          "id": "alt2",
+          "label": "Jaula de aves en un zoológico"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "birds",
+      "difficulty": "beginner",
+      "explanation": "Es un campo con pájaros: cantos que aparecen y se alejan sobre un fondo abierto y tranquilo. En un parque de ciudad se oirían tráfico y gente lejos.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_field_birds_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_11",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_wind_birds_01_01.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "wind_birds",
+          "label": "Bosque con viento y pájaros"
+        },
+        {
+          "id": "alt0",
+          "label": "Parque en la ciudad"
+        },
+        {
+          "id": "alt1",
+          "label": "Playa con gaviotas"
+        },
+        {
+          "id": "alt2",
+          "label": "Noche con insectos"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "wind_birds",
+      "difficulty": "beginner",
+      "explanation": "Es un bosque con viento: ráfagas entre los árboles y pájaros a lo lejos. En la playa se oiría el ritmo de las olas; en un parque de ciudad, tráfico y gente.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "Wind_birds_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_12",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_wind_birds_01_02.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "wind_birds",
+          "label": "Bosque con viento y pájaros"
+        },
+        {
+          "id": "alt0",
+          "label": "Parque en la ciudad"
+        },
+        {
+          "id": "alt1",
+          "label": "Playa con gaviotas"
+        },
+        {
+          "id": "alt2",
+          "label": "Noche con insectos"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "wind_birds",
+      "difficulty": "beginner",
+      "explanation": "Es un bosque con viento: ráfagas entre los árboles y pájaros a lo lejos. En la playa se oiría el ritmo de las olas; en un parque de ciudad, tráfico y gente.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "Wind_birds_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_13",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_wind_birds_01_03.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "wind_birds",
+          "label": "Bosque con viento y pájaros"
+        },
+        {
+          "id": "alt0",
+          "label": "Parque en la ciudad"
+        },
+        {
+          "id": "alt1",
+          "label": "Playa con gaviotas"
+        },
+        {
+          "id": "alt2",
+          "label": "Noche con insectos"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "wind_birds",
+      "difficulty": "beginner",
+      "explanation": "Es un bosque con viento: ráfagas entre los árboles y pájaros a lo lejos. En la playa se oiría el ritmo de las olas; en un parque de ciudad, tráfico y gente.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "Wind_birds_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_14",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_insects_nigth_01_01.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "night",
+          "label": "Noche con insectos"
+        },
+        {
+          "id": "alt0",
+          "label": "Campo con pájaros"
+        },
+        {
+          "id": "alt1",
+          "label": "Zumbido eléctrico de una lámpara"
+        },
+        {
+          "id": "alt2",
+          "label": "Lluvia suave"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "night",
+      "difficulty": "beginner",
+      "explanation": "Es una noche con insectos: grillos y chicharras que repiten un patrón agudo y constante. Un zumbido eléctrico sería un tono fijo, sin ese pulso.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_insects_nigth_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_15",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_insects_nigth_01_02.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "night",
+          "label": "Noche con insectos"
+        },
+        {
+          "id": "alt0",
+          "label": "Campo con pájaros"
+        },
+        {
+          "id": "alt1",
+          "label": "Zumbido eléctrico de una lámpara"
+        },
+        {
+          "id": "alt2",
+          "label": "Lluvia suave"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "night",
+      "difficulty": "beginner",
+      "explanation": "Es una noche con insectos: grillos y chicharras que repiten un patrón agudo y constante. Un zumbido eléctrico sería un tono fijo, sin ese pulso.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_insects_nigth_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_16",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_insects_nigth_01_03.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "night",
+          "label": "Noche con insectos"
+        },
+        {
+          "id": "alt0",
+          "label": "Campo con pájaros"
+        },
+        {
+          "id": "alt1",
+          "label": "Zumbido eléctrico de una lámpara"
+        },
+        {
+          "id": "alt2",
+          "label": "Lluvia suave"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "night",
+      "difficulty": "beginner",
+      "explanation": "Es una noche con insectos: grillos y chicharras que repiten un patrón agudo y constante. Un zumbido eléctrico sería un tono fijo, sin ese pulso.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_insects_nigth_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_17",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_insects_nigth_01_04.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "night",
+          "label": "Noche con insectos"
+        },
+        {
+          "id": "alt0",
+          "label": "Campo con pájaros"
+        },
+        {
+          "id": "alt1",
+          "label": "Zumbido eléctrico de una lámpara"
+        },
+        {
+          "id": "alt2",
+          "label": "Lluvia suave"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "night",
+      "difficulty": "beginner",
+      "explanation": "Es una noche con insectos: grillos y chicharras que repiten un patrón agudo y constante. Un zumbido eléctrico sería un tono fijo, sin ese pulso.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_insects_nigth_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_18",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_insects_nigth_02_01.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "night",
+          "label": "Noche con insectos"
+        },
+        {
+          "id": "alt0",
+          "label": "Campo con pájaros"
+        },
+        {
+          "id": "alt1",
+          "label": "Zumbido eléctrico de una lámpara"
+        },
+        {
+          "id": "alt2",
+          "label": "Lluvia suave"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "night",
+      "difficulty": "beginner",
+      "explanation": "Es una noche con insectos: grillos y chicharras que repiten un patrón agudo y constante. Un zumbido eléctrico sería un tono fijo, sin ese pulso.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_insects_nigth_02"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_19",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_insects_nigth_02_02.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "night",
+          "label": "Noche con insectos"
+        },
+        {
+          "id": "alt0",
+          "label": "Campo con pájaros"
+        },
+        {
+          "id": "alt1",
+          "label": "Zumbido eléctrico de una lámpara"
+        },
+        {
+          "id": "alt2",
+          "label": "Lluvia suave"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "night",
+      "difficulty": "beginner",
+      "explanation": "Es una noche con insectos: grillos y chicharras que repiten un patrón agudo y constante. Un zumbido eléctrico sería un tono fijo, sin ese pulso.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_insects_nigth_02"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_20",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_insects_nigth_02_03.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "night",
+          "label": "Noche con insectos"
+        },
+        {
+          "id": "alt0",
+          "label": "Campo con pájaros"
+        },
+        {
+          "id": "alt1",
+          "label": "Zumbido eléctrico de una lámpara"
+        },
+        {
+          "id": "alt2",
+          "label": "Lluvia suave"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "night",
+      "difficulty": "beginner",
+      "explanation": "Es una noche con insectos: grillos y chicharras que repiten un patrón agudo y constante. Un zumbido eléctrico sería un tono fijo, sin ese pulso.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_insects_nigth_02"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_21",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_ambient_insects_nigth_02_04.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "night",
+          "label": "Noche con insectos"
+        },
+        {
+          "id": "alt0",
+          "label": "Campo con pájaros"
+        },
+        {
+          "id": "alt1",
+          "label": "Zumbido eléctrico de una lámpara"
+        },
+        {
+          "id": "alt2",
+          "label": "Lluvia suave"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "night",
+      "difficulty": "beginner",
+      "explanation": "Es una noche con insectos: grillos y chicharras que repiten un patrón agudo y constante. Un zumbido eléctrico sería un tono fijo, sin ese pulso.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "ambient_insects_nigth_02"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_22",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_wind_snow_cold_01_01.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "wind",
+          "label": "Viento helado"
+        },
+        {
+          "id": "alt0",
+          "label": "Mar con oleaje"
+        },
+        {
+          "id": "alt1",
+          "label": "Tráfico lejano"
+        },
+        {
+          "id": "alt2",
+          "label": "Lluvia en la ciudad"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "wind",
+      "difficulty": "beginner",
+      "explanation": "Es viento: ráfagas que crecen y bajan, sin gotas ni cantos. El mar tendría el ritmo de las olas; el tráfico, motores que pasan.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "wind_snow_cold_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_AMB_23",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/ambience/sd_ambience_wind_snow_cold_01_02.m4a"
+      },
+      "intro": "Cierra los ojos. Escucha el lugar.",
+      "question": "¿Qué ambiente es?",
+      "options": [
+        {
+          "id": "wind",
+          "label": "Viento helado"
+        },
+        {
+          "id": "alt0",
+          "label": "Mar con oleaje"
+        },
+        {
+          "id": "alt1",
+          "label": "Tráfico lejano"
+        },
+        {
+          "id": "alt2",
+          "label": "Lluvia en la ciudad"
+        }
+      ],
+      "maxOptions": 3,
+      "correct": "wind",
+      "difficulty": "beginner",
+      "explanation": "Es viento: ráfagas que crecen y bajan, sin gotas ni cantos. El mar tendría el ritmo de las olas; el tráfico, motores que pasan.",
+      "tip": "Busca el detalle que delata el lugar: loza, motores, gotas sobre una superficie, el pulso de un insecto.",
+      "tags": {
+        "drill": "ambience",
+        "skill": "ambience",
+        "level": "1",
+        "material": "wind_snow_cold_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_01",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_hum_soft.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "hum",
+          "label": "Zumbido eléctrico"
+        },
+        {
+          "id": "boomy",
+          "label": "Voz retumbante: le sobran graves"
+        },
+        {
+          "id": "dull",
+          "label": "Voz apagada: le faltan agudos"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "hum",
+      "difficulty": "beginner",
+      "explanation": "Hay un zumbido grave y constante de 60 Hz, el de la red eléctrica: un tono fijo que no cambia con la voz. Suele venir de cables, luces o una mala tierra. La voz retumbante también suena grave, pero solo cuando la persona habla.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_02",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_hum_buzz.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "hum",
+          "label": "Zumbido eléctrico"
+        },
+        {
+          "id": "boomy",
+          "label": "Voz retumbante: le sobran graves"
+        },
+        {
+          "id": "distorted",
+          "label": "Voz saturada (distorsión)"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "hum",
+      "difficulty": "beginner",
+      "explanation": "Hay un zumbido grave y constante de 60 Hz, el de la red eléctrica: un tono fijo que no cambia con la voz. Suele venir de cables, luces o una mala tierra. La voz retumbante también suena grave, pero solo cuando la persona habla.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_03",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_boomy_180.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "boomy",
+          "label": "Voz retumbante: le sobran graves"
+        },
+        {
+          "id": "hum",
+          "label": "Zumbido eléctrico"
+        },
+        {
+          "id": "rain",
+          "label": "Lluvia de fondo"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "boomy",
+      "difficulty": "beginner",
+      "explanation": "A la voz le sobran graves (alrededor de 200 Hz): suena embarrada y retumba, como si el micrófono estuviera muy cerca o en una sala pequeña. A diferencia del zumbido, el exceso desaparece cuando la persona calla.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_04",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_boomy_250.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "boomy",
+          "label": "Voz retumbante: le sobran graves"
+        },
+        {
+          "id": "hum",
+          "label": "Zumbido eléctrico"
+        },
+        {
+          "id": "air",
+          "label": "Ruido de aire acondicionado"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "boomy",
+      "difficulty": "beginner",
+      "explanation": "A la voz le sobran graves (alrededor de 200 Hz): suena embarrada y retumba, como si el micrófono estuviera muy cerca o en una sala pequeña. A diferencia del zumbido, el exceso desaparece cuando la persona calla.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_05",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_air_a.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "air",
+          "label": "Ruido de aire acondicionado"
+        },
+        {
+          "id": "rain",
+          "label": "Lluvia de fondo"
+        },
+        {
+          "id": "hum",
+          "label": "Zumbido eléctrico"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "air",
+      "difficulty": "beginner",
+      "explanation": "Hay un ruido continuo de aire acondicionado: un soplido parejo con un leve tono de motor. Se nota en las pausas. La lluvia tendría gotas, pequeños golpes irregulares.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_06",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_air_b.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "air",
+          "label": "Ruido de aire acondicionado"
+        },
+        {
+          "id": "rain",
+          "label": "Lluvia de fondo"
+        },
+        {
+          "id": "boomy",
+          "label": "Voz retumbante: le sobran graves"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "air",
+      "difficulty": "beginner",
+      "explanation": "Hay un ruido continuo de aire acondicionado: un soplido parejo con un leve tono de motor. Se nota en las pausas. La lluvia tendría gotas, pequeños golpes irregulares.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_07",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_rain_a.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "rain",
+          "label": "Lluvia de fondo"
+        },
+        {
+          "id": "air",
+          "label": "Ruido de aire acondicionado"
+        },
+        {
+          "id": "dull",
+          "label": "Voz apagada: le faltan agudos"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "rain",
+      "difficulty": "beginner",
+      "explanation": "Hay lluvia de fondo: un ruido ancho hecho de miles de gotas pequeñas e irregulares. El aire acondicionado sería un soplido parejo, sin gotas.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_08",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_rain_b.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "rain",
+          "label": "Lluvia de fondo"
+        },
+        {
+          "id": "air",
+          "label": "Ruido de aire acondicionado"
+        },
+        {
+          "id": "boomy",
+          "label": "Voz retumbante: le sobran graves"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "rain",
+      "difficulty": "beginner",
+      "explanation": "Hay lluvia de fondo: un ruido ancho hecho de miles de gotas pequeñas e irregulares. El aire acondicionado sería un soplido parejo, sin gotas.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_09",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_dull_2500.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "dull",
+          "label": "Voz apagada: le faltan agudos"
+        },
+        {
+          "id": "distorted",
+          "label": "Voz saturada (distorsión)"
+        },
+        {
+          "id": "air",
+          "label": "Ruido de aire acondicionado"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "dull",
+      "difficulty": "beginner",
+      "explanation": "A la voz le faltan agudos: suena apagada, como detrás de una tela o con el micrófono mal orientado. No hay distorsión: el sonido es limpio, solo opaco.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_10",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_dull_shelf.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "dull",
+          "label": "Voz apagada: le faltan agudos"
+        },
+        {
+          "id": "distorted",
+          "label": "Voz saturada (distorsión)"
+        },
+        {
+          "id": "boomy",
+          "label": "Voz retumbante: le sobran graves"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "dull",
+      "difficulty": "beginner",
+      "explanation": "A la voz le faltan agudos: suena apagada, como detrás de una tela o con el micrófono mal orientado. No hay distorsión: el sonido es limpio, solo opaco.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_11",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_distorted_light.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "distorted",
+          "label": "Voz saturada (distorsión)"
+        },
+        {
+          "id": "dull",
+          "label": "Voz apagada: le faltan agudos"
+        },
+        {
+          "id": "hum",
+          "label": "Zumbido eléctrico"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "distorted",
+      "difficulty": "beginner",
+      "explanation": "La voz está saturada: en las sílabas fuertes aparece una aspereza, el sonido \"se rompe\". Pasa cuando la ganancia de entrada está muy alta. Una voz apagada pierde brillo, pero no se rompe.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_12",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_distorted_strong.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "distorted",
+          "label": "Voz saturada (distorsión)"
+        },
+        {
+          "id": "dull",
+          "label": "Voz apagada: le faltan agudos"
+        },
+        {
+          "id": "air",
+          "label": "Ruido de aire acondicionado"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "distorted",
+      "difficulty": "beginner",
+      "explanation": "La voz está saturada: en las sílabas fuertes aparece una aspereza, el sonido \"se rompe\". Pasa cuando la ganancia de entrada está muy alta. Una voz apagada pierde brillo, pero no se rompe.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_13",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_clean.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "hum",
+          "label": "Zumbido eléctrico"
+        },
+        {
+          "id": "boomy",
+          "label": "Voz retumbante: le sobran graves"
+        },
+        {
+          "id": "air",
+          "label": "Ruido de aire acondicionado"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "clean",
+      "difficulty": "beginner",
+      "explanation": "La toma está limpia: no hay ruidos debajo y la voz tiene sus graves y agudos naturales. Saber reconocer una toma buena es tan importante como detectar un problema.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_14",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_clean.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "air",
+          "label": "Ruido de aire acondicionado"
+        },
+        {
+          "id": "rain",
+          "label": "Lluvia de fondo"
+        },
+        {
+          "id": "dull",
+          "label": "Voz apagada: le faltan agudos"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "clean",
+      "difficulty": "beginner",
+      "explanation": "La toma está limpia: no hay ruidos debajo y la voz tiene sus graves y agudos naturales. Saber reconocer una toma buena es tan importante como detectar un problema.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_15",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_clean.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "dull",
+          "label": "Voz apagada: le faltan agudos"
+        },
+        {
+          "id": "distorted",
+          "label": "Voz saturada (distorsión)"
+        },
+        {
+          "id": "hum",
+          "label": "Zumbido eléctrico"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "clean",
+      "difficulty": "beginner",
+      "explanation": "La toma está limpia: no hay ruidos debajo y la voz tiene sus graves y agudos naturales. Saber reconocer una toma buena es tan importante como detectar un problema.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_16",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_clean.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "hum",
+          "label": "Zumbido eléctrico"
+        },
+        {
+          "id": "boomy",
+          "label": "Voz retumbante: le sobran graves"
+        },
+        {
+          "id": "distorted",
+          "label": "Voz saturada (distorsión)"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "clean",
+      "difficulty": "beginner",
+      "explanation": "La toma está limpia: no hay ruidos debajo y la voz tiene sus graves y agudos naturales. Saber reconocer una toma buena es tan importante como detectar un problema.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_17",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_clean.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "air",
+          "label": "Ruido de aire acondicionado"
+        },
+        {
+          "id": "rain",
+          "label": "Lluvia de fondo"
+        },
+        {
+          "id": "boomy",
+          "label": "Voz retumbante: le sobran graves"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "clean",
+      "difficulty": "beginner",
+      "explanation": "La toma está limpia: no hay ruidos debajo y la voz tiene sus graves y agudos naturales. Saber reconocer una toma buena es tan importante como detectar un problema.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_TAKE_18",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/take/sd_take_clean.m4a"
+      },
+      "intro": "Una toma de diálogo recién grabada. Escúchala como sonidista.",
+      "question": "¿Qué le pasa a esta toma?",
+      "options": [
+        {
+          "id": "dull",
+          "label": "Voz apagada: le faltan agudos"
+        },
+        {
+          "id": "distorted",
+          "label": "Voz saturada (distorsión)"
+        },
+        {
+          "id": "rain",
+          "label": "Lluvia de fondo"
+        },
+        {
+          "id": "clean",
+          "label": "Nada, la toma está limpia"
+        }
+      ],
+      "correct": "clean",
+      "difficulty": "beginner",
+      "explanation": "La toma está limpia: no hay ruidos debajo y la voz tiene sus graves y agudos naturales. Saber reconocer una toma buena es tan importante como detectar un problema.",
+      "tip": "Escucha las pausas entre frases: lo que sigue sonando cuando nadie habla es ruido; lo que cambia con la voz es la voz misma.",
+      "tags": {
+        "drill": "take",
+        "skill": "take",
+        "level": "1",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_01",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_epic_strings_01_01_lower.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "La música está solo 3 dB por debajo de la voz: compite con las palabras y hay que esforzarse para entender. En cine y TV, la música bajo el diálogo suele ir entre 12 y 18 dB por debajo de la voz. Había que bajarla unos 12 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_epic_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_02",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_epic_strings_01_01_fine.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "fine",
+      "difficulty": "beginner",
+      "explanation": "La música está 15 dB por debajo de la voz, dentro del rango habitual en cine y TV (entre 12 y 18 dB por debajo del diálogo): acompaña la escena y la voz se entiende sin esfuerzo.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_epic_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_03",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_epic_strings_01_01_raise.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "raise",
+      "difficulty": "beginner",
+      "explanation": "La música está 26 dB por debajo de la voz: casi desaparece y la escena pierde emoción. En cine y TV suele ir entre 12 y 18 dB por debajo del diálogo. Había que subirla unos 10 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_epic_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_04",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_epic_strings_01_02_lower.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "La música está solo 3 dB por debajo de la voz: compite con las palabras y hay que esforzarse para entender. En cine y TV, la música bajo el diálogo suele ir entre 12 y 18 dB por debajo de la voz. Había que bajarla unos 12 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_epic_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_05",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_epic_strings_01_02_fine.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "fine",
+      "difficulty": "beginner",
+      "explanation": "La música está 15 dB por debajo de la voz, dentro del rango habitual en cine y TV (entre 12 y 18 dB por debajo del diálogo): acompaña la escena y la voz se entiende sin esfuerzo.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_epic_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_06",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_epic_strings_01_02_raise.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "raise",
+      "difficulty": "beginner",
+      "explanation": "La música está 26 dB por debajo de la voz: casi desaparece y la escena pierde emoción. En cine y TV suele ir entre 12 y 18 dB por debajo del diálogo. Había que subirla unos 10 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_epic_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_07",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_tension_strings_01_01_lower.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "La música está solo 3 dB por debajo de la voz: compite con las palabras y hay que esforzarse para entender. En cine y TV, la música bajo el diálogo suele ir entre 12 y 18 dB por debajo de la voz. Había que bajarla unos 12 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_tension_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_08",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_tension_strings_01_01_fine.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "fine",
+      "difficulty": "beginner",
+      "explanation": "La música está 15 dB por debajo de la voz, dentro del rango habitual en cine y TV (entre 12 y 18 dB por debajo del diálogo): acompaña la escena y la voz se entiende sin esfuerzo.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_tension_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_09",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_tension_strings_01_01_raise.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "raise",
+      "difficulty": "beginner",
+      "explanation": "La música está 26 dB por debajo de la voz: casi desaparece y la escena pierde emoción. En cine y TV suele ir entre 12 y 18 dB por debajo del diálogo. Había que subirla unos 10 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_tension_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_10",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_tension_strings_01_02_lower.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "La música está solo 3 dB por debajo de la voz: compite con las palabras y hay que esforzarse para entender. En cine y TV, la música bajo el diálogo suele ir entre 12 y 18 dB por debajo de la voz. Había que bajarla unos 12 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_tension_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_11",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_tension_strings_01_02_fine.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "fine",
+      "difficulty": "beginner",
+      "explanation": "La música está 15 dB por debajo de la voz, dentro del rango habitual en cine y TV (entre 12 y 18 dB por debajo del diálogo): acompaña la escena y la voz se entiende sin esfuerzo.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_tension_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_12",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_music_tension_strings_01_02_raise.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "raise",
+      "difficulty": "beginner",
+      "explanation": "La música está 26 dB por debajo de la voz: casi desaparece y la escena pierde emoción. En cine y TV suele ir entre 12 y 18 dB por debajo del diálogo. Había que subirla unos 10 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "music_tension_strings_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_13",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_strings_epic_01_01_lower.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "La música está solo 3 dB por debajo de la voz: compite con las palabras y hay que esforzarse para entender. En cine y TV, la música bajo el diálogo suele ir entre 12 y 18 dB por debajo de la voz. Había que bajarla unos 12 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "strings_epic_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_14",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_strings_epic_01_01_fine.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "fine",
+      "difficulty": "beginner",
+      "explanation": "La música está 15 dB por debajo de la voz, dentro del rango habitual en cine y TV (entre 12 y 18 dB por debajo del diálogo): acompaña la escena y la voz se entiende sin esfuerzo.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "strings_epic_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_15",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_strings_epic_01_01_raise.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "raise",
+      "difficulty": "beginner",
+      "explanation": "La música está 26 dB por debajo de la voz: casi desaparece y la escena pierde emoción. En cine y TV suele ir entre 12 y 18 dB por debajo del diálogo. Había que subirla unos 10 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "strings_epic_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_16",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_strings_tesion_01_01_lower.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "La música está solo 3 dB por debajo de la voz: compite con las palabras y hay que esforzarse para entender. En cine y TV, la música bajo el diálogo suele ir entre 12 y 18 dB por debajo de la voz. Había que bajarla unos 12 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "strings_tesion_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_17",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_strings_tesion_01_01_fine.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "fine",
+      "difficulty": "beginner",
+      "explanation": "La música está 15 dB por debajo de la voz, dentro del rango habitual en cine y TV (entre 12 y 18 dB por debajo del diálogo): acompaña la escena y la voz se entiende sin esfuerzo.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "strings_tesion_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_18",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_strings_tesion_01_01_raise.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "raise",
+      "difficulty": "beginner",
+      "explanation": "La música está 26 dB por debajo de la voz: casi desaparece y la escena pierde emoción. En cine y TV suele ir entre 12 y 18 dB por debajo del diálogo. Había que subirla unos 10 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "strings_tesion_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_19",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_strings_tesion_01_02_lower.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "lower",
+      "difficulty": "beginner",
+      "explanation": "La música está solo 3 dB por debajo de la voz: compite con las palabras y hay que esforzarse para entender. En cine y TV, la música bajo el diálogo suele ir entre 12 y 18 dB por debajo de la voz. Había que bajarla unos 12 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "strings_tesion_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_20",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_strings_tesion_01_02_fine.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "fine",
+      "difficulty": "beginner",
+      "explanation": "La música está 15 dB por debajo de la voz, dentro del rango habitual en cine y TV (entre 12 y 18 dB por debajo del diálogo): acompaña la escena y la voz se entiende sin esfuerzo.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "strings_tesion_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_MIX_21",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/mix/sd_mix_strings_tesion_01_02_raise.m4a"
+      },
+      "intro": "Diálogo con música de fondo. Escúchalo como editor.",
+      "question": "¿Qué ajustarías en esta mezcla?",
+      "options": [
+        {
+          "id": "lower",
+          "label": "Bajar la música"
+        },
+        {
+          "id": "fine",
+          "label": "Está bien así"
+        },
+        {
+          "id": "raise",
+          "label": "Subir la música"
+        }
+      ],
+      "correct": "raise",
+      "difficulty": "beginner",
+      "explanation": "La música está 26 dB por debajo de la voz: casi desaparece y la escena pierde emoción. En cine y TV suele ir entre 12 y 18 dB por debajo del diálogo. Había que subirla unos 10 dB.",
+      "tip": "La voz manda: si tienes que esforzarte para entender una palabra, la música está muy alta. Si la música no se siente, no está aportando.",
+      "tags": {
+        "drill": "mix",
+        "skill": "mix",
+        "level": "1",
+        "ordered": "true",
+        "material": "strings_tesion_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_01",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_voice_dry_01.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "dry",
+      "difficulty": "beginner",
+      "explanation": "La toma está seca: se oye la fuente casi sin reflexiones de la sala, como en un estudio tratado o con el micrófono muy cerca.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_02",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_voice_dry_02.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "dry",
+      "difficulty": "beginner",
+      "explanation": "La toma está seca: se oye la fuente casi sin reflexiones de la sala, como en un estudio tratado o con el micrófono muy cerca.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_03",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_voice_some_03.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "some",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene un poco de sala: una cola corta (alrededor de medio segundo) que da sensación de espacio sin tapar las palabras.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_04",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_voice_some_04.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "some",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene un poco de sala: una cola corta (alrededor de medio segundo) que da sensación de espacio sin tapar las palabras.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_05",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_voice_lots_05.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "lots",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene mucha sala: una cola larga (casi dos segundos) que se monta sobre las sílabas siguientes y resta claridad. En rodaje se resuelve acercando el micrófono o tratando el lugar.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_06",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_voice_lots_06.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "lots",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene mucha sala: una cola larga (casi dos segundos) que se monta sobre las sílabas siguientes y resta claridad. En rodaje se resuelve acercando el micrófono o tratando el lugar.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_07",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_office_door_dry_01.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "dry",
+      "difficulty": "beginner",
+      "explanation": "La toma está seca: se oye la fuente casi sin reflexiones de la sala, como en un estudio tratado o con el micrófono muy cerca.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "office_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_08",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_office_door_dry_02.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "dry",
+      "difficulty": "beginner",
+      "explanation": "La toma está seca: se oye la fuente casi sin reflexiones de la sala, como en un estudio tratado o con el micrófono muy cerca.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "office_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_09",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_office_door_some_03.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "some",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene un poco de sala: una cola corta (alrededor de medio segundo) que da sensación de espacio sin tapar las palabras.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "office_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_10",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_office_door_some_04.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "some",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene un poco de sala: una cola corta (alrededor de medio segundo) que da sensación de espacio sin tapar las palabras.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "office_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_11",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_office_door_lots_05.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "lots",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene mucha sala: una cola larga (casi dos segundos) que se monta sobre las sílabas siguientes y resta claridad. En rodaje se resuelve acercando el micrófono o tratando el lugar.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "office_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_12",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_office_door_lots_06.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "lots",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene mucha sala: una cola larga (casi dos segundos) que se monta sobre las sílabas siguientes y resta claridad. En rodaje se resuelve acercando el micrófono o tratando el lugar.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "office_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_13",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_old_door_dry_01.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "dry",
+      "difficulty": "beginner",
+      "explanation": "La toma está seca: se oye la fuente casi sin reflexiones de la sala, como en un estudio tratado o con el micrófono muy cerca.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "old_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_14",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_old_door_dry_02.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "dry",
+      "difficulty": "beginner",
+      "explanation": "La toma está seca: se oye la fuente casi sin reflexiones de la sala, como en un estudio tratado o con el micrófono muy cerca.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "old_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_15",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_old_door_some_03.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "some",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene un poco de sala: una cola corta (alrededor de medio segundo) que da sensación de espacio sin tapar las palabras.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "old_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_16",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_old_door_some_04.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "some",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene un poco de sala: una cola corta (alrededor de medio segundo) que da sensación de espacio sin tapar las palabras.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "old_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_17",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_old_door_lots_05.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "lots",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene mucha sala: una cola larga (casi dos segundos) que se monta sobre las sílabas siguientes y resta claridad. En rodaje se resuelve acercando el micrófono o tratando el lugar.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "old_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_REV_18",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/reverb/sd_reverb_old_door_lots_06.m4a"
+      },
+      "intro": "Escucha la toma y el espacio donde suena.",
+      "question": "¿Cuánta reverberación tiene esta toma?",
+      "options": [
+        {
+          "id": "dry",
+          "label": "Seca: casi sin sala"
+        },
+        {
+          "id": "some",
+          "label": "Un poco de sala"
+        },
+        {
+          "id": "lots",
+          "label": "Mucha sala: se pierde la claridad"
+        }
+      ],
+      "correct": "lots",
+      "difficulty": "beginner",
+      "explanation": "La toma tiene mucha sala: una cola larga (casi dos segundos) que se monta sobre las sílabas siguientes y resta claridad. En rodaje se resuelve acercando el micrófono o tratando el lugar.",
+      "tip": "Escucha el final de cada palabra o golpe: ¿se corta en seco o queda una cola sonando en la sala?",
+      "tags": {
+        "drill": "reverb",
+        "skill": "reverb",
+        "level": "1",
+        "ordered": "true",
+        "material": "old_door"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_01",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_air_same1.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "yes",
+      "difficulty": "beginner",
+      "explanation": "Se pueden pegar: el fondo de las dos tomas tiene el mismo tipo de ruido y el mismo nivel, así que el corte no se nota.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_02",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_air_same2.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "yes",
+      "difficulty": "beginner",
+      "explanation": "Se pueden pegar: el fondo de las dos tomas tiene el mismo tipo de ruido y el mismo nivel, así que el corte no se nota.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_03",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_air_up.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "level",
+      "difficulty": "beginner",
+      "explanation": "No se pueden pegar así: el ruido de fondo de la segunda toma está 6 dB más alto o más bajo, y en el corte se oye un salto. Se corrige igualando el fondo o rellenando con room tone.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_04",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_air_down.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "level",
+      "difficulty": "beginner",
+      "explanation": "No se pueden pegar así: el ruido de fondo de la segunda toma está 6 dB más alto o más bajo, y en el corte se oye un salto. Se corrige igualando el fondo o rellenando con room tone.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_05",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_air_added.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "other",
+      "difficulty": "beginner",
+      "explanation": "No se pueden pegar así: en la segunda toma aparece otro ruido de fondo (por ejemplo, un aire acondicionado o un motor que se encendió). Por eso se graba room tone en cada locación.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_06",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_rain_same1.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "yes",
+      "difficulty": "beginner",
+      "explanation": "Se pueden pegar: el fondo de las dos tomas tiene el mismo tipo de ruido y el mismo nivel, así que el corte no se nota.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_07",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_rain_same2.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "yes",
+      "difficulty": "beginner",
+      "explanation": "Se pueden pegar: el fondo de las dos tomas tiene el mismo tipo de ruido y el mismo nivel, así que el corte no se nota.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_08",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_rain_up.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "level",
+      "difficulty": "beginner",
+      "explanation": "No se pueden pegar así: el ruido de fondo de la segunda toma está 6 dB más alto o más bajo, y en el corte se oye un salto. Se corrige igualando el fondo o rellenando con room tone.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_09",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_rain_down.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "level",
+      "difficulty": "beginner",
+      "explanation": "No se pueden pegar así: el ruido de fondo de la segunda toma está 6 dB más alto o más bajo, y en el corte se oye un salto. Se corrige igualando el fondo o rellenando con room tone.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_10",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_rain_added.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "other",
+      "difficulty": "beginner",
+      "explanation": "No se pueden pegar así: en la segunda toma aparece otro ruido de fondo (por ejemplo, un aire acondicionado o un motor que se encendió). Por eso se graba room tone en cada locación.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_11",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_cafe_same1.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "yes",
+      "difficulty": "beginner",
+      "explanation": "Se pueden pegar: el fondo de las dos tomas tiene el mismo tipo de ruido y el mismo nivel, así que el corte no se nota.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_12",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_cafe_same2.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "yes",
+      "difficulty": "beginner",
+      "explanation": "Se pueden pegar: el fondo de las dos tomas tiene el mismo tipo de ruido y el mismo nivel, así que el corte no se nota.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_13",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_cafe_up.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "level",
+      "difficulty": "beginner",
+      "explanation": "No se pueden pegar así: el ruido de fondo de la segunda toma está 6 dB más alto o más bajo, y en el corte se oye un salto. Se corrige igualando el fondo o rellenando con room tone.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_14",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_cafe_down.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "level",
+      "difficulty": "beginner",
+      "explanation": "No se pueden pegar así: el ruido de fondo de la segunda toma está 6 dB más alto o más bajo, y en el corte se oye un salto. Se corrige igualando el fondo o rellenando con room tone.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
+    },
+    {
+      "id": "SD_CONT_15",
+      "module": "disenoSonoro",
+      "type": "sd_choice",
+      "audio": {
+        "source": "asset",
+        "path": "assets/sound_design/continuity/sd_continuity_cafe_added.m4a"
+      },
+      "intro": "Dos tomas de la misma escena, pegadas en la edición. Escucha el fondo justo en el corte.",
+      "question": "¿Se pueden pegar estas dos tomas?",
+      "options": [
+        {
+          "id": "yes",
+          "label": "Sí, el fondo es continuo"
+        },
+        {
+          "id": "level",
+          "label": "No: el fondo cambia de volumen"
+        },
+        {
+          "id": "other",
+          "label": "No: aparece otro ruido de fondo"
+        }
+      ],
+      "correct": "other",
+      "difficulty": "beginner",
+      "explanation": "No se pueden pegar así: en la segunda toma aparece otro ruido de fondo (por ejemplo, un aire acondicionado o un motor que se encendió). Por eso se graba room tone en cada locación.",
+      "tip": "No escuches la voz: escucha el ruido que queda detrás, antes y después del corte. ¿Sigue igual?",
+      "tags": {
+        "drill": "continuity",
+        "skill": "continuity",
+        "level": "1",
+        "ordered": "true",
+        "material": "voice_narration_01"
+      },
+      "access": "premium"
     }
   ]
 }

@@ -23,10 +23,10 @@ extension on _Profile {
   String get hint => switch (this) {
     _Profile.all => 'Todas las áreas de entrenamiento.',
     _Profile.producer =>
-      'Para mezclar mejor: frecuencias, dinámica y diseño sonoro.',
+      'Para mezclar mejor: frecuencias y diseño sonoro.',
     _Profile.musician => 'Para tocar y cantar con mejor oído.',
     _Profile.audiovisual =>
-      'Para cine, video y podcast: frecuencias, dinámica y diseño sonoro.',
+      'Para cine, video y podcast: frecuencias y diseño sonoro.',
   };
 }
 
@@ -40,10 +40,14 @@ class _Area {
     required this.colors,
     required this.profiles,
     this.option,
+    this.route,
     this.premium = false,
   });
 
   final OnboardingOption? option;
+
+  /// Screen of an area that is not an [OnboardingOption] (Diseño sonoro).
+  final String? route;
 
   /// Needs Premium: without it, opening the area shows the plans.
   final bool premium;
@@ -54,7 +58,7 @@ class _Area {
   final List<Color> colors;
   final Set<_Profile> profiles;
 
-  bool get comingSoon => option == null;
+  bool get comingSoon => option == null && route == null;
 }
 
 const _areas = [
@@ -67,14 +71,6 @@ const _areas = [
     profiles: {_Profile.producer, _Profile.musician, _Profile.audiovisual},
   ),
   _Area(
-    option: OnboardingOption.dinamicaCompresion,
-    title: 'Dinámica',
-    description: 'Compresión, punch y control de nivel.',
-    glyph: CategoryGlyph.dynamics,
-    colors: [Color(0xFFFDE68A), Color(0xFFF97316)],
-    profiles: {_Profile.producer, _Profile.audiovisual},
-  ),
-  _Area(
     option: OnboardingOption.entrenamientoMusical,
     title: 'Musical',
     description: 'Intervalos, acordes y afinación.',
@@ -84,13 +80,15 @@ const _areas = [
   ),
   _Area(
     title: 'Diseño sonoro',
+    route: AppRoutes.moduleDisenoSonoro,
     description: 'Sonido para cine, video y podcast.',
     glyph: CategoryGlyph.video,
     colors: [Color(0xFFFED7AA), Color(0xFFEA580C)],
     profiles: {_Profile.audiovisual, _Profile.producer},
     premium: true,
   ),
-  // Escucha real is retired: it has no objective exercises.
+  // Escucha real is retired: it has no objective exercises. Dinámica is
+  // out until it has exercises (its route and demo stay in the code).
 ];
 
 class OnboardingScreen extends StatefulWidget {
@@ -107,6 +105,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (area.locked) {
       await Navigator.pushNamed(context, AppRoutes.plans);
       if (mounted) setState(() {});
+      return;
+    }
+    final route = area.route;
+    if (route != null) {
+      await MockSession.setTrainingFocus(area.title);
+      if (!mounted) return;
+      Navigator.pushNamed(context, route);
       return;
     }
     final option = area.option;

@@ -26,17 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
     if (mounted) setState(() {});
   }
 
-  void _soon(String area) {
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(
-          content: Text('Los ejercicios de $area llegan muy pronto.'),
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
-  }
-
   Future<void> _register() async {
     final ok = await promptRegister(context);
     if (ok && mounted) setState(() {});
@@ -154,8 +143,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   report: report,
                   onTap: () => report.area.locked
                       ? _go(AppRoutes.plans)
-                      : report.area == SkillArea.soundDesign
-                      ? _soon(report.area.title)
                       : _go(report.area.route),
                 ),
                 const SizedBox(height: 10),

@@ -19,8 +19,10 @@ import '../../../../core/widgets/premium_back_button.dart';
 import '../../../exercises/models/exercise.dart';
 import '../../models/eq_practice.dart';
 import '../../models/practice_levels.dart';
+import '../../models/sound_design_practice.dart';
 
-/// One listen, several answers: advanced EQ bands and pure tones.
+/// One listen, several answers: advanced EQ bands, pure tones and the
+/// Diseño sonoro practices that are only heard.
 class EqBandExerciseScreen extends StatefulWidget {
   const EqBandExerciseScreen({
     super.key,
@@ -88,6 +90,21 @@ class EqBandExerciseScreen extends StatefulWidget {
       routeName: '/module/frecuencias/tonos',
       ladder: ladder,
       level: ladder == null ? null : level,
+    );
+  }
+
+  /// Diseño sonoro practice.
+  factory EqBandExerciseScreen.soundDesign({
+    Key? key,
+    required SoundDesignDrill drill,
+    required Exercise exercise,
+  }) {
+    return EqBandExerciseScreen(
+      key: key,
+      exercise: exercise,
+      pickNext: (avoidId, _) =>
+          SoundDesignPractice.pick(drill, avoidId: avoidId),
+      routeName: '/module/diseno-sonoro/practica',
     );
   }
 
@@ -441,6 +458,16 @@ class _ListenView extends StatelessWidget {
               'El nivel general es el mismo. Hay un solo pico angosto.',
             _ when exercise.tags['skill'] == 'problem' =>
               'El nivel general es el mismo. La referencia es la toma limpia.',
+            _ when exercise.tags['skill'] == 'ambience' =>
+              'Solo el ambiente: no hay voz ni música.',
+            _ when exercise.tags['skill'] == 'take' =>
+              'Puede tener un problema, o estar limpia.',
+            _ when exercise.tags['skill'] == 'mix' =>
+              'La voz es siempre la misma. Solo cambia el volumen de la música.',
+            _ when exercise.tags['skill'] == 'reverb' =>
+              'El volumen es el mismo. Solo cambia la sala.',
+            _ when exercise.tags['skill'] == 'continuity' =>
+              'La voz es la misma toma partida en dos. Escucha el fondo.',
             _ when withReference =>
               'El nivel general es el mismo. Cambia una sola banda.',
             _ => 'Identifica la frecuencia y el ajuste de este ejemplo.',

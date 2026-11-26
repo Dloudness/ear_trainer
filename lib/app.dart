@@ -14,6 +14,7 @@ import 'features/modules/presentation/screens/escucha_real_screen.dart';
 import 'features/modules/presentation/screens/frecuencias_screen.dart';
 import 'features/modules/presentation/screens/musical_training_screen.dart';
 import 'features/modules/presentation/screens/placeholder_exercise_screen.dart';
+import 'features/modules/presentation/screens/sound_design_screen.dart';
 import 'features/onboarding/models/onboarding_option.dart';
 import 'features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'features/splash/presentation/screens/splash_screen.dart';
@@ -64,6 +65,7 @@ class EarTrainerApp extends StatelessWidget {
       AppRoutes.moduleDinamica => const DinamicaScreen(),
       AppRoutes.moduleMusical => const MusicalTrainingScreen(),
       AppRoutes.moduleEscuchaReal => const EscuchaRealScreen(),
+      AppRoutes.moduleDisenoSonoro => const SoundDesignScreen(),
       _ => const SplashScreen(),
     };
 

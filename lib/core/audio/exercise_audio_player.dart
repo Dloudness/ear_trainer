@@ -1,7 +1,11 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'dart:async';
+
+import 'package:audioplayers/audioplayers.dart' show PlayerState;
 import 'package:flutter/foundation.dart';
 
-import '../constants/app_assets.dart';
+import 'audio_backend.dart';
+import 'web_audio_backend_stub.dart'
+    if (dart.library.js_interop) 'web_audio_backend.dart';
 
 /// What a play-button tap did. Only [started] counts as a new listen.
 enum ListenAction { started, paused, resumed }
@@ -36,24 +40,25 @@ class ExercisePlaybackSnapshot {
 
 /// Lightweight asset playback for listening exercises.
 ///
-/// Commands run one at a time so a burst of taps cannot stack sounds.
+/// Commands run one at a time so a burst of taps cannot stack sounds. None
+/// can block the ones after it: a command that does not answer in a few
+/// seconds is dropped, so the next Play always works.
 class ExerciseAudioPlayer {
   ExerciseAudioPlayer() {
-    _ready = _player.setReleaseMode(ReleaseMode.stop);
-    _player.onPlayerComplete.listen((_) {
+    _backend.onComplete.listen((_) {
       _position = Duration.zero;
       _playingOption = null;
       onCompleted?.call();
       onPlaybackStateChanged?.call();
     });
-    _player.onPlayerStateChanged.listen((_) {
+    _backend.onStateChanged.listen((_) {
       onPlaybackStateChanged?.call();
     });
-    _player.onDurationChanged.listen((duration) {
+    _backend.onDuration.listen((duration) {
       _duration = duration;
       onPlaybackStateChanged?.call();
     });
-    _player.onPositionChanged.listen((position) {
+    _backend.onPosition.listen((position) {
       _position = position;
       onPlaybackStateChanged?.call();
     });
@@ -61,13 +66,15 @@ class ExerciseAudioPlayer {
 
   static const maxListens = 3;
 
-  final AudioPlayer _player = AudioPlayer();
+  /// Longest a command may take before the queue moves on.
+  static const _commandTimeout = Duration(seconds: 6);
+
+  final AudioBackend _backend = createAudioBackend();
   String? _playingOption;
   String? _currentAssetPath;
   Duration _duration = Duration.zero;
   Duration _position = Duration.zero;
   Future<void> _tail = Future<void>.value();
-  late final Future<void> _ready;
   var _disposed = false;
 
   VoidCallback? onPlaybackStateChanged;
@@ -75,8 +82,8 @@ class ExerciseAudioPlayer {
 
   ExercisePlaybackSnapshot get snapshot => ExercisePlaybackSnapshot(
     activeOption: _playingOption,
-    isPlaying: _player.state == PlayerState.playing,
-    isPaused: _player.state == PlayerState.paused,
+    isPlaying: _backend.state == PlayerState.playing,
+    isPaused: _backend.state == PlayerState.paused,
     progress: _progress,
     duration: _duration,
     position: _position,
@@ -90,10 +97,42 @@ class ExerciseAudioPlayer {
     );
   }
 
-  Future<T> _run<T>(Future<T> Function() action) {
-    final run = _tail.then((_) => action());
+  Future<T> _run<T>(
+    Future<T> Function() action, {
+    Duration timeout = _commandTimeout,
+  }) {
+    final run = _tail.then((_) => _limited(action(), timeout));
     _tail = run.then((_) {}, onError: (Object _) {});
     return run;
+  }
+
+  final _timers = <Timer>{};
+
+  /// [future], or a [TimeoutException] after [timeout]. The timer is
+  /// cancelled on [dispose], so a closed screen leaves nothing pending.
+  Future<T> _limited<T>(Future<T> future, Duration timeout) {
+    final completer = Completer<T>();
+    late final Timer timer;
+    timer = Timer(timeout, () {
+      _timers.remove(timer);
+      if (!completer.isCompleted) {
+        completer.completeError(TimeoutException('audio', timeout));
+      }
+    });
+    _timers.add(timer);
+    future.then(
+      (value) {
+        timer.cancel();
+        _timers.remove(timer);
+        if (!completer.isCompleted) completer.complete(value);
+      },
+      onError: (Object error, StackTrace stack) {
+        timer.cancel();
+        _timers.remove(timer);
+        if (!completer.isCompleted) completer.completeError(error, stack);
+      },
+    );
+    return completer.future;
   }
 
   /// Play toggles the current clip. A stopped or finished clip always
@@ -103,18 +142,17 @@ class ExerciseAudioPlayer {
   }
 
   Future<ListenAction> _playOption(String option, String assetPath) async {
-    await _ready;
     if (_disposed) return ListenAction.paused;
 
     final sameTrack =
         _playingOption == option && _currentAssetPath == assetPath;
-    if (sameTrack && _player.state == PlayerState.playing) {
-      await _player.pause();
+    if (sameTrack && _backend.state == PlayerState.playing) {
+      await _backend.pause();
       onPlaybackStateChanged?.call();
       return ListenAction.paused;
     }
-    if (sameTrack && _player.state == PlayerState.paused) {
-      await _player.resume();
+    if (sameTrack && _backend.state == PlayerState.paused) {
+      await _backend.resume();
       onPlaybackStateChanged?.call();
       return ListenAction.resumed;
     }
@@ -124,27 +162,22 @@ class ExerciseAudioPlayer {
   }
 
   /// Loads a clip without playing it, so the first Play sounds at once.
-  ///
-  /// On the web this creates the audio element and starts downloading the
-  /// file. A later Play of the same asset reuses that element. Does nothing
-  /// while another clip is playing or paused.
+  /// Does nothing while another clip is playing or paused, and never makes
+  /// a Play wait for long.
   Future<void> preload(String assetPath) {
     return _run(() async {
-      await _ready;
       if (_disposed) return;
       final active =
-          _player.state == PlayerState.playing ||
-          _player.state == PlayerState.paused;
+          _backend.state == PlayerState.playing ||
+          _backend.state == PlayerState.paused;
       if (active || _currentAssetPath == assetPath) return;
       try {
-        await _player.setSource(
-          AssetSource(AppAssets.audioSourcePath(assetPath)),
-        );
+        await _backend.prepare(assetPath);
         _currentAssetPath = assetPath;
       } catch (_) {
         // Preloading is only a speed-up; Play loads the clip anyway.
       }
-    });
+    }, timeout: const Duration(seconds: 2)).catchError((Object _) {});
   }
 
   /// Starts a stopped clip without toggling one that is already playing.
@@ -152,34 +185,24 @@ class ExerciseAudioPlayer {
   /// later calls must not turn into a pause.
   Future<ListenAction?> startIfIdle(String option, String assetPath) {
     return _run(() async {
-      await _ready;
       if (_disposed) return null;
       final sameTrack =
           _playingOption == option && _currentAssetPath == assetPath;
       final active =
-          _player.state == PlayerState.playing ||
-          _player.state == PlayerState.paused;
+          _backend.state == PlayerState.playing ||
+          _backend.state == PlayerState.paused;
       if (sameTrack && active) return null;
       await _startFromZero(option, assetPath);
       return ListenAction.started;
     });
   }
 
-  /// Stop, rewind and play. Do not pass `position` into [AudioPlayer.play].
-  ///
-  /// On Chrome, `ReleaseMode.release` (the plugin default) destroys the
-  /// HTML audio element on stop and on natural end, but keeps the URL.
-  /// `play(sameAsset, position: Duration.zero)` then waits for a `seeked`
-  /// event that never fires, so playback never starts. `stop()` already
-  /// rewinds the element when the release mode is [ReleaseMode.stop], and
-  /// `play` without a position starts that rewound element.
   Future<void> _startFromZero(String option, String assetPath) async {
-    await _player.stop();
     if (_disposed) return;
     _playingOption = option;
     _currentAssetPath = assetPath;
     _position = Duration.zero;
-    await _player.play(AssetSource(AppAssets.audioSourcePath(assetPath)));
+    await _backend.playFromStart(assetPath);
     onPlaybackStateChanged?.call();
   }
 
@@ -207,14 +230,14 @@ class ExerciseAudioPlayer {
         ? Duration.zero
         : (target > _duration ? _duration : target);
     if ((clamped - _position).inMilliseconds.abs() < 50) return;
-    await _player.seek(clamped);
+    await _backend.seek(clamped);
     _position = clamped;
     onPlaybackStateChanged?.call();
   }
 
   Future<void> stop() {
     return _run(() async {
-      await _player.stop();
+      await _backend.stop();
       _playingOption = null;
       _currentAssetPath = null;
       _duration = Duration.zero;
@@ -225,6 +248,10 @@ class ExerciseAudioPlayer {
 
   Future<void> dispose() async {
     _disposed = true;
-    await _player.dispose();
+    for (final timer in _timers) {
+      timer.cancel();
+    }
+    _timers.clear();
+    await _backend.dispose();
   }
 }

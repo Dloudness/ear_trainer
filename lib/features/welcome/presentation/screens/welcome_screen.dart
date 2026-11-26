@@ -45,7 +45,7 @@ class WelcomeScreen extends StatelessWidget {
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 300),
                       child: Text(
-                        'Frecuencias, dinámica e intervalos. Ejercicios cortos '
+                        'Frecuencias, intervalos y afinación. Ejercicios cortos '
                         'que entrenan cómo escuchas.',
                         textAlign: TextAlign.center,
                         style: AppTypography.tagline(15).copyWith(

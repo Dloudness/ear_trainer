@@ -13,4 +13,5 @@ abstract final class AppRoutes {
   static const moduleDinamica = '/module/dinamica';
   static const moduleMusical = '/module/musical';
   static const moduleEscuchaReal = '/module/escucha-real';
+  static const moduleDisenoSonoro = '/module/diseno-sonoro';
 }

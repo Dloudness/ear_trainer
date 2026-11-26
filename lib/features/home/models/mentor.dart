@@ -42,11 +42,11 @@ enum SkillArea {
     LevelLadder.tuning,
   ),
 
-  /// Sound for film, video and podcast. Premium; exercises on the way.
+  /// Sound for film, video and podcast. Premium.
   soundDesign(
     'Diseño sonoro',
     ['SD_'],
-    AppRoutes.onboarding,
+    AppRoutes.moduleDisenoSonoro,
     CategoryGlyph.video,
     [Color(0xFFFED7AA), Color(0xFFEA580C)],
     null,

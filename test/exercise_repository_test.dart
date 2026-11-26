@@ -12,6 +12,7 @@ import 'package:ear_trainer/features/modules/models/eq_practice.dart';
 import 'package:ear_trainer/features/modules/models/musical_pool.dart';
 import 'package:ear_trainer/features/modules/models/musical_sections.dart';
 import 'package:ear_trainer/features/modules/models/practice_levels.dart';
+import 'package:ear_trainer/features/modules/models/sound_design_practice.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/eq_band_exercise_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/frecuencias_screen.dart';
 import 'package:ear_trainer/features/modules/presentation/screens/interval_intro_screen.dart';
@@ -56,6 +57,62 @@ void main() {
       expect(path, endsWith('.m4a'), reason: path);
       expect(File(path).existsSync(), isTrue, reason: path);
     }
+  });
+
+  test('sound design: five Básico practices, all Premium', () {
+    final all = ExerciseRepository.instance.byModule(
+      SoundDesignPractice.module,
+    );
+    final byDrill = {
+      for (final drill in SoundDesignDrill.values)
+        drill: all.where((e) => e.tags['drill'] == drill.name).toList(),
+    };
+    expect(byDrill[SoundDesignDrill.ambience], hasLength(23));
+    expect(byDrill[SoundDesignDrill.take], hasLength(18));
+    expect(byDrill[SoundDesignDrill.mix], hasLength(21));
+    expect(byDrill[SoundDesignDrill.reverb], hasLength(18));
+    expect(byDrill[SoundDesignDrill.continuity], hasLength(15));
+    for (final exercise in all) {
+      expect(exercise.id, startsWith('SD_'));
+      expect(exercise.access, 'premium', reason: exercise.id);
+      expect(exercise.tags['level'], '1', reason: exercise.id);
+      expect(
+        exercise.options.map((o) => o.id),
+        contains(exercise.correct),
+        reason: exercise.id,
+      );
+    }
+    // Each music level appears once per piece and fragment.
+    final mix = byDrill[SoundDesignDrill.mix]!;
+    for (final level in ['lower', 'fine', 'raise']) {
+      expect(mix.where((e) => e.correct == level), hasLength(7));
+    }
+    // About a third of the takes are clean; each problem is shown next to
+    // the one it is easiest to confuse with, plus "clean".
+    final takes = byDrill[SoundDesignDrill.take]!;
+    expect(takes.where((e) => e.correct == 'clean'), hasLength(6));
+    const twins = {'hum': 'boomy', 'air': 'rain', 'dull': 'distorted'};
+    for (final exercise in takes) {
+      final ids = exercise.options.map((o) => o.id).toSet();
+      expect(ids, hasLength(4), reason: exercise.id);
+      expect(ids, contains('clean'), reason: exercise.id);
+      for (final MapEntry(:key, :value) in twins.entries) {
+        if (exercise.correct == key || exercise.correct == value) {
+          expect(ids, containsAll([key, value]), reason: exercise.id);
+        }
+      }
+    }
+    // Every ambience shows lookalikes, never only easy wrong answers.
+    for (final exercise in byDrill[SoundDesignDrill.ambience]!) {
+      expect(exercise.maxOptions, 3);
+      expect(exercise.options, hasLength(4));
+    }
+
+    MockSession.hasPremium = false;
+    expect(SoundDesignPractice.of(SoundDesignDrill.ambience), isEmpty);
+    MockSession.hasPremium = true;
+    expect(SoundDesignPractice.pick(SoundDesignDrill.reverb), isNotNull);
+    MockSession.hasPremium = false;
   });
 
   test('filters: three levels, answers in the options, one variable', () {

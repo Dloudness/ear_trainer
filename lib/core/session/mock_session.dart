@@ -427,6 +427,9 @@ class MockSession {
     if (focus.contains('musical')) {
       return AppRoutes.moduleMusical;
     }
+    if (focus.contains('diseño') || focus.contains('diseno')) {
+      return AppRoutes.moduleDisenoSonoro;
+    }
     if (focus.contains('escucha')) {
       return AppRoutes.moduleEscuchaReal;
     }
